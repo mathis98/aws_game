@@ -4,9 +4,11 @@ build:
   script:
     - npm ci
     - npm run build
+    - mv dist public # rename the dist folder (result of npm run build)
+    - gzip -k -6 $(find public -type f) # compress the artifacts
   artifacts:
     paths:
-      - dist # so you can look at the generated site via the gitlab artifacts site
+      - public # so you can look at the generated site via the gitlab artifacts site
 
 
 # doing the same thing again when pushing to master because only the
@@ -18,6 +20,7 @@ pages: # the job to publish the site
     - npm ci
     - npm run build
     - mv dist public # rename the dist folder (result of npm run build)
+    - gzip -k -6 $(find public -type f) # compress the artifacts
   artifacts:
     paths:
       - public # artifact path must be /public for GitLab Pages to pick it up
