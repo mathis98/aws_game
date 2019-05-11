@@ -1,4 +1,17 @@
-pages: # the job must be named pages
+build:
+  image: node:10-alpine
+  stage: deploy
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist # so you can look at the generated site via the gitlab artifacts site
+
+
+# doing the same thing again when pushing to master because only the
+# master version should be available via gitlab pages
+pages: # the job to publish the site
   image: node:10-alpine
   stage: deploy
   script:
