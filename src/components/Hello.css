@@ -1,7 +1,56 @@
-.component {
-  border: 1px solid black;
+.header_wrapper, .button_group {
+  width: 30%;
+  margin: 0 auto;
 }
 
 .text {
-  color: green;
+  color: #336633;
+  font-family: Impact;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 2px solid #336633;
+  border-bottom: 2px solid #336633;
+  text-align: center;
+}
+
+.button_group > button {
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-color: black;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: .1s linear;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.button_group > button:hover {
+  color: white;
+}
+
+.instruction_button:hover {
+  background-color: #EBB424;
+}
+
+.start_button:hover {
+  background-color: #E51670;
+}
+
+.level_button:hover {
+  background-color: #3F0F3F;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 1000px) {
+  .header_wrapper, .button_group {
+    width: 50%;
+  }
+}
+
+@media(max-width: 800px) {
+  .header_wrapper, .button_group {
+    width: 90%;
+  }
 }
