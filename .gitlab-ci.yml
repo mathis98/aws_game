@@ -16,7 +16,7 @@ buildNpm:
     paths:
       - dist/
 
-deployS3:
+deployS3Branch:
   image: python:3.7-alpine3.9
   stage: deploy
   dependencies:
@@ -27,4 +27,17 @@ deployS3:
     - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_REF_SLUG} --recursive
   environment:
     name: ${CI_COMMIT_REF_SLUG}
-    url: http://${BUCKET_NAME}.s3-website.${AWS_DEFAULT_REGION}.amazonaws.com/${CI_COMMIT_REF_SLUG}
+    url: https://slsgame.janbe.eu/${CI_COMMIT_REF_SLUG}
+
+deployS3CommitId:
+  image: python:3.7-alpine3.9
+  stage: deploy
+  dependencies:
+    - buildNpm
+  before_script:
+    - pip install awscli
+  script:
+    - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_SHA} --recursive
+  environment:
+    name: ${CI_COMMIT_SHA}
+    url: https://slsgame.janbe.eu/${CI_COMMIT_SHA}
