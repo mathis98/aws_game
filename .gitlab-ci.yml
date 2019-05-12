@@ -1,28 +1,43 @@
-build:
+stages:
+  - build
+  - deploy
+
+variables:
+  AWS_DEFAULT_REGION: eu-central-1
+  BUCKET_NAME: serverless-game-gitlab-build
+
+buildNpm:
   image: node:10-alpine
-  stage: deploy
+  stage: build
   script:
     - npm ci
     - npm run build
-    - mv dist public # rename the dist folder (result of npm run build)
-    - gzip -k -6 $(find public -type f) # compress the artifacts
   artifacts:
     paths:
-      - public # so you can look at the generated site via the gitlab artifacts site
+      - dist/
 
-
-# doing the same thing again when pushing to master because only the
-# master version should be available via gitlab pages
-pages: # the job to publish the site
-  image: node:10-alpine
+deployS3Branch:
+  image: python:3.7-alpine3.9
   stage: deploy
+  dependencies:
+    - buildNpm
+  before_script:
+    - pip install awscli
   script:
-    - npm ci
-    - npm run build
-    - mv dist public # rename the dist folder (result of npm run build)
-    - gzip -k -6 $(find public -type f) # compress the artifacts
-  artifacts:
-    paths:
-      - public # artifact path must be /public for GitLab Pages to pick it up
-  only:
-    - master
+    - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_REF_SLUG} --recursive
+  environment:
+    name: ${CI_COMMIT_REF_SLUG}
+    url: https://slsgame.janbe.eu/${CI_COMMIT_REF_SLUG}
+
+deployS3CommitId:
+  image: python:3.7-alpine3.9
+  stage: deploy
+  dependencies:
+    - buildNpm
+  before_script:
+    - pip install awscli
+  script:
+    - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_SHA} --recursive
+  environment:
+    name: ${CI_COMMIT_SHA}
+    url: https://slsgame.janbe.eu/${CI_COMMIT_SHA}
