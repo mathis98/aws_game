@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  devServer: {
+    historyApiFallback: true
+  },
   entry: './src/app.tsx',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.css']
