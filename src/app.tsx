@@ -10,6 +10,7 @@ import {BrowserRouter} from "react-router-dom";
 
 console.log(process.env.PUBLIC_URL);
 console.log(process.env.AWS_DEFAULT_REGION);
+console.log("hmm");
 
 // the routes
 ReactDOM.render(
