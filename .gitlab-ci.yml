@@ -17,8 +17,6 @@ buildNpm:
       - dist/
 
 deployS3NotMaster:
-  variables:
-    PUBLIC_URL: "${CI_COMMIT_REF_SLUG}"
   image: python:3.7-alpine3.9
   stage: deploy
   dependencies:
@@ -35,7 +33,7 @@ deployS3NotMaster:
 
 deployS3OnlyMaster:
   variables:
-    PUBLIC_URL: ""
+    CI_COMMIT_REF_SLUG: ""
   image: python:3.7-alpine3.9
   stage: deploy
   dependencies:
