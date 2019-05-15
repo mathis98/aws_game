@@ -15,11 +15,11 @@ const history = createBrowserHistory();
 
 console.log(process.env.CI_COMMIT_REF_SLUG);
 console.log(process.env.AWS_DEFAULT_REGION);
-console.log(process.env.BUCKET_NAME);
+console.log(process.env.PUBLIC_URL);
 
 // the routes
 ReactDOM.render(
-  <BrowserRouter basename={"/" + process.env.CI_COMMIT_REF_SLUG}>
+  <BrowserRouter basename={"/" + process.env.PUBLIC_URL}>
     <Route path="/" exact component={StartPage} />
     <Route path="/game" exact component={GamePage} />
     <Route path="/levels" exact component={LevelsPage} />
