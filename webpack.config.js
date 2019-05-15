@@ -58,6 +58,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new webpack.EnvironmentPlugin(['PUBLIC_URL', 'BRANCH_NAME']),
+    new webpack.EnvironmentPlugin(['PUBLIC_URL', 'BRANCH_NAME', 'CI_COMMIT_SHA']),
   ]
 }

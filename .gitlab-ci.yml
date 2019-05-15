@@ -25,10 +25,10 @@ deployS3NotMaster:
   before_script:
     - pip install awscli
   script:
-    - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_REF_SLUG} --recursive
+    - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_SHA} --recursive
   environment:
     name: ${CI_COMMIT_REF_SLUG}
-    url: https://slsgame.janbe.eu/${CI_COMMIT_REF_SLUG}
+    url: https://slsgame.janbe.eu/${CI_COMMIT_SHA}
   except:
     - master
 
