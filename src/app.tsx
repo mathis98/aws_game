@@ -9,6 +9,7 @@ import { InstructionsPage } from "./pages/InstructionsPage";
 import {BrowserRouter} from "react-router-dom";
 
 console.log(process.env.PUBLIC_URL);
+console.log(process.env.AWS_DEFAULT_REGION);
 
 // the routes
 ReactDOM.render(
