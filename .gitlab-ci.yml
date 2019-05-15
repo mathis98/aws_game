@@ -16,7 +16,9 @@ buildNpm:
     paths:
       - dist/
 
-deployS3Branch:
+deployS3NotMaster:
+  variables:
+    PUBLIC_URL: "${CI_COMMIT_REF_SLUG}"
   image: python:3.7-alpine3.9
   stage: deploy
   dependencies:
@@ -28,8 +30,12 @@ deployS3Branch:
   environment:
     name: ${CI_COMMIT_REF_SLUG}
     url: https://slsgame.janbe.eu/${CI_COMMIT_REF_SLUG}
+  except:
+    - master
 
-deployS3CommitId:
+deployS3OnlyMaster:
+  variables:
+    PUBLIC_URL: ""
   image: python:3.7-alpine3.9
   stage: deploy
   dependencies:
@@ -37,7 +43,9 @@ deployS3CommitId:
   before_script:
     - pip install awscli
   script:
-    - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_SHA} --recursive
+    - aws s3 cp dist s3://${BUCKET_NAME} --recursive
   environment:
-    name: ${CI_COMMIT_SHA}
-    url: https://slsgame.janbe.eu/${CI_COMMIT_SHA}
+    name: ${CI_COMMIT_REF_SLUG}
+    url: https://slsgame.janbe.eu/
+  only:
+    - master
