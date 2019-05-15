@@ -1,21 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Router, Route } from "react-router";
-import { createBrowserHistory } from 'history';
+import { Route } from "react-router";
 
 import { StartPage } from "./pages/StartPage";
 import { GamePage } from "./pages/GamePage";
 import { LevelsPage } from "./pages/LevelsPage";
 import { InstructionsPage } from "./pages/InstructionsPage";
 import {BrowserRouter} from "react-router-dom";
-
-// the history required for the Router element
-const history = createBrowserHistory();
-
-
-console.log(process.env.CI_COMMIT_REF_SLUG);
-console.log(process.env.AWS_DEFAULT_REGION);
-console.log(process.env.PUBLIC_URL);
 
 // the routes
 ReactDOM.render(
