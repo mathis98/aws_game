@@ -10,26 +10,14 @@ buildNpm:
   image: node:10-alpine
   stage: build
   script:
+    - export BRANCH_NAME=${CI_COMMIT_REF_SLUG}
     - npm ci
     - npm run build
   artifacts:
     paths:
       - dist/
 
-deployS3Branch:
-  image: python:3.7-alpine3.9
-  stage: deploy
-  dependencies:
-    - buildNpm
-  before_script:
-    - pip install awscli
-  script:
-    - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_REF_SLUG} --recursive
-  environment:
-    name: ${CI_COMMIT_REF_SLUG}
-    url: https://slsgame.janbe.eu/${CI_COMMIT_REF_SLUG}
-
-deployS3CommitId:
+deployS3NotMaster:
   image: python:3.7-alpine3.9
   stage: deploy
   dependencies:
@@ -41,3 +29,22 @@ deployS3CommitId:
   environment:
     name: ${CI_COMMIT_SHA}
     url: https://slsgame.janbe.eu/${CI_COMMIT_SHA}
+  except:
+    - master
+
+deployS3OnlyMaster:
+  variables:
+    CI_COMMIT_REF_SLUG: ""
+  image: python:3.7-alpine3.9
+  stage: deploy
+  dependencies:
+    - buildNpm
+  before_script:
+    - pip install awscli
+  script:
+    - aws s3 cp dist s3://${BUCKET_NAME} --recursive
+  environment:
+    name: ${CI_COMMIT_REF_SLUG}
+    url: https://slsgame.janbe.eu/
+  only:
+    - master
