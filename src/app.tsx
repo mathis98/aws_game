@@ -12,6 +12,11 @@ import {BrowserRouter} from "react-router-dom";
 // the history required for the Router element
 const history = createBrowserHistory();
 
+
+console.log(process.env.CI_COMMIT_REF_SLUG);
+console.log(process.env.AWS_DEFAULT_REGION);
+console.log(process.env.BUCKET_NAME);
+
 // the routes
 ReactDOM.render(
   <BrowserRouter basename={"/" + process.env.CI_COMMIT_REF_SLUG}>
