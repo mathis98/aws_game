@@ -8,6 +8,8 @@ import { LevelsPage } from "./pages/LevelsPage";
 import { InstructionsPage } from "./pages/InstructionsPage";
 import {BrowserRouter} from "react-router-dom";
 
+console.log(process.env.PUBLIC_URL);
+
 // the routes
 ReactDOM.render(
   <BrowserRouter basename={"/" + process.env.PUBLIC_URL}>
