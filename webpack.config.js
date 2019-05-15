@@ -58,6 +58,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new webpack.EnvironmentPlugin(['PUBLIC_URL', 'AWS_DEFAULT_REGION', 'HMM1', 'HMM2']),
+    new webpack.EnvironmentPlugin(['PUBLIC_URL', 'BRANCH_NAME']),
   ]
 }
