@@ -14,7 +14,7 @@ const history = createBrowserHistory();
 
 // the routes
 ReactDOM.render(
-  <BrowserRouter basename="/routing-s3-fix/">
+  <BrowserRouter basename={"/" + process.env.PUBLIC_URL}>
     <Route path="/" exact component={StartPage} />
     <Route path="/game" exact component={GamePage} />
     <Route path="/levels" exact component={LevelsPage} />
