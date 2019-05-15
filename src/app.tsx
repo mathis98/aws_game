@@ -8,6 +8,8 @@ import { LevelsPage } from "./pages/LevelsPage";
 import { InstructionsPage } from "./pages/InstructionsPage";
 import {BrowserRouter} from "react-router-dom";
 
+console.log(process.env.HMM1);
+console.log(process.env.HMM2);
 console.log(process.env.PUBLIC_URL);
 console.log(process.env.AWS_DEFAULT_REGION);
 console.log("hmm");

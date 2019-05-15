@@ -10,7 +10,8 @@ buildNpm:
   image: node:10-alpine
   stage: build
   script:
-    - export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    - export HMM1=branchNameo
+    - export HMM2=${CI_COMMIT_REF_SLUG}
     - "[[ ${CI_COMMIT_REF_SLUG} = \"master\" ]] && export PUBLIC_URL=${CI_COMMIT_REF_SLUG} || export PUBLIC_URL=\"\""
     - npm ci
     - npm run build
