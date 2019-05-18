@@ -33,6 +33,7 @@ deployS3NotMaster:
     - buildNpm
   before_script:
     - pip install awscli
+    - ls /usr/local/lib/python3.7/site-packages/
   script:
     - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_SHA} --recursive
   environment:
