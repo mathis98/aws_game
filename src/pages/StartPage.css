@@ -1,6 +1,23 @@
+body {
+  margin: 0px;
+}
+
 .header_wrapper, .button_group {
   width: 30%;
   margin: 0 auto;
+}
+
+.button_group {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.start_button {
+  width: 100%;
+}
+
+.start_button_wrapper {
+  margin-bottom: 20px;
 }
 
 .text {
@@ -11,40 +28,6 @@
   border-top: 2px solid #336633;
   border-bottom: 2px solid #336633;
   text-align: center;
-}
-
-.button {
-  font-family: Arial, Helvetica, sans-serif;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 5px;
-  background-color: white;
-  border: solid black 1px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: .1s linear;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.button:hover {
-  color: white;
-}
-
-.instruction_button:hover {
-  background-color: #EBB424;
-}
-
-.start_button:hover {
-  background-color: #E51670;
-}
-
-.level_button:hover {
-  background-color: #3F0F3F;
 }
 
 /* MEDIA QUERIES */
