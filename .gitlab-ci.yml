@@ -32,9 +32,13 @@ deployS3NotMaster:
   dependencies:
     - buildNpm
   before_script:
+    - ls .cache
     - "cp -r .cache/ /usr/local/lib/python3.7/site-packages/ || :"
+    - ls /usr/local/lib/python3.7/site-packages/
     - pip install awscli
+    - ls /usr/local/lib/python3.7/site-packages/
     - cp -r /usr/local/lib/python3.7/site-packages/ .cache/
+    - ls .cache
   script:
     - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_SHA} --recursive
   environment:
