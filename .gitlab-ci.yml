@@ -14,7 +14,7 @@ buildNpm:
     paths:
     - node_modules/
   before_script:
-  - npm install
+    - npm install
   script:
     - export BRANCH_NAME=${CI_COMMIT_REF_SLUG}
     - npm run build
@@ -28,12 +28,13 @@ deployS3NotMaster:
   cache:
     key: deployS3v1
     paths:
-    - /usr/local/lib/python3.7/site-packages/
+    - .cache
   dependencies:
     - buildNpm
   before_script:
+    - cp .cache/ /usr/local/lib/python3.7/site-packages/
     - pip install awscli
-    - ls /usr/local/lib/python3.7/site-packages/
+    - cp /usr/local/lib/python3.7/site-packages/ .cache
   script:
     - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_SHA} --recursive
   environment:
@@ -48,11 +49,13 @@ deployS3OnlyMaster:
   cache:
     key: deployS3v1
     paths:
-    - /usr/local/lib/python3.7/site-packages/
+    - .cache
   dependencies:
     - buildNpm
   before_script:
+    - cp .cache/ /usr/local/lib/python3.7/site-packages/
     - pip install awscli
+    - cp /usr/local/lib/python3.7/site-packages/ .cache
   script:
     - aws s3 cp dist s3://${BUCKET_NAME} --recursive
     - aws cloudfront create-invalidation --distribution-id E200JT0ASF5PL9 --paths "/*"
