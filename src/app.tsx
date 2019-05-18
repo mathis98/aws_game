@@ -9,9 +9,12 @@ import { InstructionsPage } from "./pages/InstructionsPage";
 import { BrowserRouter } from "react-router-dom";
 import { ErrorPage } from "./pages/ErrorPage";
 
+import Header from './components/Header';
+
 // the routes
 ReactDOM.render(
   <BrowserRouter basename={"/" + (process.env.BRANCH_NAME === "master" ? "" : (process.env.CI_COMMIT_SHA || ""))}>
+    <Header></Header>
     <Switch>
       <Route path="/" exact component={StartPage} />
       <Route path="/game" exact component={GamePage} />

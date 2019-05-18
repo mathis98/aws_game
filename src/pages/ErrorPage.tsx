@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-const css = require('./ErrorPage.css');
+const css = require('../global.css');
+import LinkButton from '../components/LinkButton';
+import Typography from '@material-ui/core/Typography';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 export interface ErroPageProps { compiler: string; framework: string; }
 
@@ -10,11 +13,13 @@ export class ErrorPage extends React.Component<ErroPageProps, {}> {
   render() {
     return (
       <div className={css.component}>
-        <h1>
+        <Typography variant="h4" color="error" gutterBottom>
           404 - Seite nicht gefunden
-        </h1>
+        </Typography>
         <p>
-          <Link to="/">Zum Start</Link>
+          <LinkButton to="/" variant="contained" color="primary">
+            <ArrowBack/> Zurück
+          </LinkButton>
         </p>
       </div>
     );
