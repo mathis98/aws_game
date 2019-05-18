@@ -28,13 +28,13 @@ deployS3NotMaster:
   cache:
     key: deployS3v1
     paths:
-    - .cache
+    - .cache/
   dependencies:
     - buildNpm
   before_script:
     - cp .cache/ /usr/local/lib/python3.7/site-packages/
     - pip install awscli
-    - cp /usr/local/lib/python3.7/site-packages/ .cache
+    - cp /usr/local/lib/python3.7/site-packages/ .cache/
   script:
     - aws s3 cp dist s3://${BUCKET_NAME}/${CI_COMMIT_SHA} --recursive
   environment:
@@ -49,13 +49,13 @@ deployS3OnlyMaster:
   cache:
     key: deployS3v1
     paths:
-    - .cache
+    - .cache/
   dependencies:
     - buildNpm
   before_script:
     - cp .cache/ /usr/local/lib/python3.7/site-packages/
     - pip install awscli
-    - cp /usr/local/lib/python3.7/site-packages/ .cache
+    - cp /usr/local/lib/python3.7/site-packages/ .cache/
   script:
     - aws s3 cp dist s3://${BUCKET_NAME} --recursive
     - aws cloudfront create-invalidation --distribution-id E200JT0ASF5PL9 --paths "/*"
