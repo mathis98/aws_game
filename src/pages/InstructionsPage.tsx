@@ -4,6 +4,10 @@ const css = require('../global.css');
 import LinkButton from '../components/LinkButton';
 import Typography from '@material-ui/core/Typography';
 import ArrowBack from '@material-ui/icons/ArrowBack';
+import MarkdownViewer from '../components/MarkdownViewer';
+import { Paper } from '@material-ui/core';
+
+const anleitungMd = require("../../level_data/Anleitung.md").default;
 
 export interface InstructionsPageProps { compiler: string; framework: string; }
 
@@ -16,6 +20,9 @@ export class InstructionsPage extends React.Component<InstructionsPageProps, {}>
         <Typography variant="h4" gutterBottom>
           Anleitung
         </Typography>
+        <Paper>
+          <MarkdownViewer source={anleitungMd} />
+        </Paper>
         <p>
           <LinkButton to="/" variant="contained" color="primary">
             <ArrowBack/> Zurück

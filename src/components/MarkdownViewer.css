@@ -1,0 +1,24 @@
+.markdownContainer {
+  font-family: "Roboto";
+  padding: 1.5em;
+}
+
+.markdownContainer pre {
+  background-color: #f6f8fa;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.markdownContainer a {
+  color: #1b69b6;
+  text-decoration: none;
+}
+
+.markdownContainer a:hover {
+  text-decoration: underline;
+}
+
+.markdownContainer h1, .markdownContainer h2 {
+  padding-bottom: .3em;
+  border-bottom: 1px solid #eaecef;
+}
