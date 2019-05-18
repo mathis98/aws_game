@@ -32,7 +32,7 @@ deployS3NotMaster:
   dependencies:
     - buildNpm
   before_script:
-    - cp .cache/ /usr/local/lib/python3.7/site-packages/ || :
+    - "cp .cache/ /usr/local/lib/python3.7/site-packages/ || :"
     - pip install awscli
     - cp /usr/local/lib/python3.7/site-packages/ .cache/
   script:
