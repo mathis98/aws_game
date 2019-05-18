@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-const css = require('./StartPage.css');
+const css = require('../global.css');
+import LinkButton from '../components/LinkButton';
+import Typography from '@material-ui/core/Typography';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 export interface LevelsPageProps { compiler: string; framework: string; }
 
@@ -10,11 +13,13 @@ export class LevelsPage extends React.Component<LevelsPageProps, {}> {
   render() {
     return (
       <div className={css.component}>
-        <h1>
-          🦅 LevelsPage 🦅
-        </h1>
+        <Typography variant="h4" gutterBottom>
+          Level wählen
+        </Typography>
         <p>
-          <Link to="/">Zurück</Link>
+          <LinkButton to="/" variant="contained" color="primary">
+            <ArrowBack/> Zurück
+          </LinkButton>
         </p>
       </div>
     );

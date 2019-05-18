@@ -1,0 +1,19 @@
+.component {
+  width: 30%;
+  margin: 0 auto;
+  padding-top: 20px;
+  text-align: center;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 1000px) {
+  .component {
+    width: 50%;
+  }
+}
+
+@media(max-width: 800px) {
+  .component {
+    width: 90%;
+  }
+}
