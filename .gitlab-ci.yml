@@ -53,9 +53,9 @@ deployS3OnlyMaster:
   dependencies:
     - buildNpm
   before_script:
-    - cp .cache/ /usr/local/lib/python3.7/site-packages/
+    - "cp -r .cache/ /usr/local/lib/python3.7/site-packages/ || :"
     - pip install awscli
-    - cp /usr/local/lib/python3.7/site-packages/ .cache/
+    - cp -r /usr/local/lib/python3.7/site-packages/ .cache/
   script:
     - aws s3 cp dist s3://${BUCKET_NAME} --recursive
     - aws cloudfront create-invalidation --distribution-id E200JT0ASF5PL9 --paths "/*"
