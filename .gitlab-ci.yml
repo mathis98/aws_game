@@ -54,6 +54,7 @@ deployS3OnlyMaster:
     - pip install awscli
   script:
     - aws s3 cp dist s3://${BUCKET_NAME} --recursive
+    - aws cloudfront create-invalidation --distribution-id E200JT0ASF5PL9 --paths "/*"
   environment:
     name: ${CI_COMMIT_REF_SLUG}
     url: https://slsgame.janbe.eu/
