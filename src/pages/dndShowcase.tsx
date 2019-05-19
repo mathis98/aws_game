@@ -2,27 +2,33 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 const css = require('../global.css');
 import LinkButton from '../components/LinkButton';
+import Draggable from '../components/Draggable';
+import Droppable from '../components/Droppable';
 import Typography from '@material-ui/core/Typography';
 import ArrowBack from '@material-ui/icons/ArrowBack';
-import MarkdownViewer from '../components/MarkdownViewer';
-import { Paper } from '@material-ui/core';
 
-const anleitungMd = require("../../level_data/Anleitung.md").default;
-
-export interface InstructionsPageProps { compiler: string; framework: string; }
+export interface dndShowcaseProps {
+  compiler: string;
+  framework: string;
+  dropItem: string;
+}
 
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
-export class InstructionsPage extends React.Component<InstructionsPageProps, {}> {
+export class dndShowcase extends React.Component<dndShowcaseProps, {}> {
+  dropItem = '';
+  changeDropItem = (id: string) => {
+    this.dropItem = id;
+    console.log(`changing drop item to ${this.dropItem}`);
+  };
   render() {
     return (
       <div className={css.component_big}>
         <Typography variant="h4" gutterBottom>
-          Anleitung
+          Beispielseite für Drag 'n' Drop
         </Typography>
-        <Paper>
-          <MarkdownViewer source={anleitungMd} />
-        </Paper>
+        <Draggable id="a" callback={this.changeDropItem}/>
+        <Droppable id="1" item={this.dropItem}/>
         <p>
           <LinkButton to="/" variant="contained" color="primary">
             <ArrowBack/> Zurück
