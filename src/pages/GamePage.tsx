@@ -1,26 +1,23 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-const css = require('../global.css');
-import LinkButton from '../components/LinkButton';
-import Typography from '@material-ui/core/Typography';
-import ArrowBack from '@material-ui/icons/ArrowBack';
+import SplitPane from 'react-split-pane';
 
-export interface GamePageProps { compiler: string; framework: string; }
+const css = require('./Gamepage.css');
+
+export interface GamePageProps {}
 
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export class GamePage extends React.Component<GamePageProps, {}> {
   render() {
     return (
-      <div className={css.component}>
-        <Typography variant="h4" gutterBottom>
-          Neues Spiel
-        </Typography>
-        <p>
-          <LinkButton to="/" variant="contained" color="primary">
-            <ArrowBack/> Zurück
-          </LinkButton>
-        </p>
+      <div>
+        <SplitPane resizerClassName={css.splitPaneBorder} split="vertical" minSize="30%" defaultSize="50%">
+          <div>Main window</div>
+          <SplitPane resizerClassName={css.splitPaneBorder} split="horizontal" size="20%">
+            <div>Selection part</div>
+            <div>Explanation</div>
+          </SplitPane>
+        </SplitPane>
       </div>
     );
   }
