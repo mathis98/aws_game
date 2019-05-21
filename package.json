@@ -39,6 +39,7 @@
     "raw-loader": "^2.0.0",
     "react-markdown": "^4.0.8",
     "react-router-dom": "^5.0.0",
+    "react-splitter-layout": "3.0.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "typescript": "^3.4.5",

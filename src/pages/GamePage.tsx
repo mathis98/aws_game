@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SplitPane from 'react-split-pane';
+import SplitterLayout from 'react-splitter-layout';
 
 const css = require('./GamePage.css');
 
@@ -11,13 +11,13 @@ export class GamePage extends React.Component<GamePageProps, {}> {
   render() {
     return (
       <div className={css.hmm}>
-        <SplitPane className={css.hmm} resizerClassName={css.splitPaneBorder} split="vertical" minSize="30%" defaultSize="50%">
-          <div>Main window</div>
-          <SplitPane className={css.hmm} resizerClassName={css.splitPaneBorder} split="horizontal" size="20%">
-            <div>Selection part</div>
-            <div>Explanation</div>
-          </SplitPane>
-        </SplitPane>
+        <SplitterLayout customClassName={css.mainSplitter} percentage primaryMinSize={25} secondaryMinSize={10}>
+          <div>Main</div>
+          <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25}>
+            <div>Components</div>
+            <div>Description</div>
+          </SplitterLayout>
+        </SplitterLayout>
       </div>
     );
   }
