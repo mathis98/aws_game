@@ -41,6 +41,9 @@ class Draggable extends React.Component<DraggableProps, {}> {
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource (
       <div style={{opacity: isDragging ? 0.5 : 1, cursor: isDragging ? 'grabbing' : '', backgroundColor: this.props.data.color, display: this.props.data.display}} className={css.draggable}>
+        <div className={css.draggable_text}>
+          <Typography color="inherit">{this.props.data.text}</Typography>
+        </div>
       </div>
     );
   }

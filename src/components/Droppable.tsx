@@ -2,6 +2,7 @@ import * as React from 'react';
 const css = require('./Droppable.css');
 
 import { DropTarget, ConnectDropTarget, DropTargetCollector } from 'react-dnd';
+import Typography from '@material-ui/core/Typography';
 
 const types = {
   ITEM: 'draggable'
@@ -15,6 +16,7 @@ const squareTarget = {
     console.log(`Drop area ${props.data.id} is being dropped on by Draggable ${monitor.getItem().id}`);
     console.log(monitor.getItem());
     props.data.bg = monitor.getItem().color;
+    props.data.text = monitor.getItem().text;
   }
 };
 
@@ -43,7 +45,11 @@ class Droppable extends React.Component<DroppableProps, {}> {
   render() {
     const { connectDropTarget, isOver, canDrop } = this.props;
     return connectDropTarget(
-      <div className={css.droppable} style={{border: this.border(isOver, canDrop), backgroundColor: this.props.data.bg}}/>
+      <div className={css.droppable} style={{border: this.border(isOver, canDrop), backgroundColor: this.props.data.bg}}>
+        <div className={css.droppable_text}>
+          <Typography color="inherit">{this.props.data.text}</Typography>
+        </div>
+      </div>
     )
   }
 }

@@ -7,3 +7,10 @@
   margin-left: 20px;
   display: inline-block;
 }
+
+
+.droppable_text {
+  color: white;
+  text-align: center;
+  margin-top: 80px;
+}

@@ -1,9 +1,15 @@
 .draggable {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   margin: 0 auto;
   cursor: grab;
   margin-bottom: 20px;
   margin-left: 20px;
   display: inline-block;
+}
+
+.draggable_text {
+  color: white;
+  text-align: center;
+  margin-top: 40px;
 }
