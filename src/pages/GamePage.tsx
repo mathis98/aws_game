@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SplitPane from 'react-split-pane';
 
-const css = require('./Gamepage.css');
+const css = require('./GamePage.css');
 
 export interface GamePageProps {}
 
