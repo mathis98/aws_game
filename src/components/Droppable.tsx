@@ -11,8 +11,8 @@ const squareTarget = {
   canDrop(props: any) {
       return true;
   },
-  drop(props: any) {
-    console.log(`Drop area ${props.id} is being dropped on by ${props.item}`);
+  drop(props: any, monitor: any, component: any) {
+    console.log(`Drop area ${props.id} is being dropped on by Draggable ${monitor.getItem().id}`);
   }
 };
 
@@ -27,7 +27,6 @@ const collect = (connect: any, monitor: any) => {
 export interface DroppableProps {
   connectDropTarget?: ConnectDropTarget;
   id: string;
-  item: string;
   isOver?: boolean;
   canDrop?: boolean;
 }

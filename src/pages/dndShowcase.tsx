@@ -16,19 +16,14 @@ export interface dndShowcaseProps {
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export class dndShowcase extends React.Component<dndShowcaseProps, {}> {
-  dropItem = '';
-  changeDropItem = (id: string) => {
-    this.dropItem = id;
-    console.log(`changing drop item to ${this.dropItem}`);
-  };
   render() {
     return (
       <div className={css.component_big}>
         <Typography variant="h4" gutterBottom>
           Beispielseite für Drag 'n' Drop
         </Typography>
-        <Draggable id="a" callback={this.changeDropItem}/>
-        <Droppable id="1" item={this.dropItem}/>
+        <Draggable id="a"/>
+        <Droppable id="1"/>
         <p>
           <LinkButton to="/" variant="contained" color="primary">
             <ArrowBack/> Zurück

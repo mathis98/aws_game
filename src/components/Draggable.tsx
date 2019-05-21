@@ -10,12 +10,10 @@ const types = {
 
 const itemSource = {
   beginDrag(props: any) {
-    props.callback(props.id);
-    return {}
+    return {id:props.id}
   },
   endDrag(props: any) {
     /* code here */
-    console.log(`element ${props.id}`);
   }
 }
 
@@ -30,7 +28,6 @@ export interface DraggableProps {
   connectDragSource?: ConnectDragSource;
   isDragging?: boolean;
   id: string;
-  callback: any;
 }
 
 // 'StartPageProps' describes the shape of props.
