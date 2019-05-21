@@ -19,11 +19,12 @@
   },
   "homepage": "https://gitlab.com/progprak-sose-19/game#readme",
   "dependencies": {
-    "@types/react": "^16.8.17",
+    "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
+    "@types/react-splitter-layout": "^3.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-split-pane": "^0.1.87"
+    "react-splitter-layout": "^4.0.0"
   },
   "devDependencies": {
     "@material-ui/core": "^3.9.3",
@@ -39,7 +40,6 @@
     "raw-loader": "^2.0.0",
     "react-markdown": "^4.0.8",
     "react-router-dom": "^5.0.0",
-    "react-splitter-layout": "3.0.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "typescript": "^3.4.5",
