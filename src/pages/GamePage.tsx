@@ -10,10 +10,10 @@ export interface GamePageProps {}
 export class GamePage extends React.Component<GamePageProps, {}> {
   render() {
     return (
-      <div>
-        <SplitPane resizerClassName={css.splitPaneBorder} split="vertical" minSize="30%" defaultSize="50%">
+      <div className={css.hmm}>
+        <SplitPane className={css.hmm} resizerClassName={css.splitPaneBorder} split="vertical" minSize="30%" defaultSize="50%">
           <div>Main window</div>
-          <SplitPane resizerClassName={css.splitPaneBorder} split="horizontal" size="20%">
+          <SplitPane className={css.hmm} resizerClassName={css.splitPaneBorder} split="horizontal" size="20%">
             <div>Selection part</div>
             <div>Explanation</div>
           </SplitPane>
