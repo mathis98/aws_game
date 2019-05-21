@@ -1,0 +1,9 @@
+.droppable {
+  height: 200px;
+  width: 200px;
+  border: 2px solid black;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  display: inline-block;
+}

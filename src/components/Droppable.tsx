@@ -1,5 +1,5 @@
 import * as React from 'react';
-const css = require('../global.css');
+const css = require('./Droppable.css');
 
 import { DropTarget, ConnectDropTarget, DropTargetCollector } from 'react-dnd';
 
@@ -12,7 +12,9 @@ const squareTarget = {
       return true;
   },
   drop(props: any, monitor: any, component: any) {
-    console.log(`Drop area ${props.id} is being dropped on by Draggable ${monitor.getItem().id}`);
+    console.log(`Drop area ${props.data.id} is being dropped on by Draggable ${monitor.getItem().id}`);
+    console.log(monitor.getItem());
+    props.data.bg = monitor.getItem().color;
   }
 };
 
@@ -26,9 +28,9 @@ const collect = (connect: any, monitor: any) => {
 
 export interface DroppableProps {
   connectDropTarget?: ConnectDropTarget;
-  id: string;
   isOver?: boolean;
   canDrop?: boolean;
+  data: any;
 }
 
 class Droppable extends React.Component<DroppableProps, {}> {
@@ -41,7 +43,7 @@ class Droppable extends React.Component<DroppableProps, {}> {
   render() {
     const { connectDropTarget, isOver, canDrop } = this.props;
     return connectDropTarget(
-      <div className={css.droppable} style={{border: this.border(isOver, canDrop)}}/>
+      <div className={css.droppable} style={{border: this.border(isOver, canDrop), backgroundColor: this.props.data.bg}}/>
     )
   }
 }

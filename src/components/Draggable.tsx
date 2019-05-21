@@ -1,5 +1,5 @@
 import * as React from 'react';
-const css = require('../global.css');
+const css = require('./Draggable.css');
 
 import { DragSource, ConnectDragSource } from 'react-dnd';
 import Typography from '@material-ui/core/Typography';
@@ -10,7 +10,11 @@ const types = {
 
 const itemSource = {
   beginDrag(props: any) {
-    return {id:props.id}
+    return {
+      id: props.data.id,
+      text: props.data.text,
+      color: props.data.color
+    }
   },
   endDrag(props: any) {
     /* code here */
@@ -27,7 +31,7 @@ function collect(connect: any, monitor: any) {
 export interface DraggableProps {
   connectDragSource?: ConnectDragSource;
   isDragging?: boolean;
-  id: string;
+  data: any;
 }
 
 // 'StartPageProps' describes the shape of props.
@@ -36,7 +40,7 @@ class Draggable extends React.Component<DraggableProps, {}> {
   render() {
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource (
-      <div style={{opacity: isDragging ? 0 : 1, cursor: isDragging ? 'grabbing' : ''}} className={css.draggable}>
+      <div style={{opacity: isDragging ? 0.5 : 1, cursor: isDragging ? 'grabbing' : '', backgroundColor: this.props.data.color, display: this.props.data.display}} className={css.draggable}>
       </div>
     );
   }

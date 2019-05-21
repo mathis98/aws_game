@@ -1,0 +1,9 @@
+.draggable {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  cursor: grab;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  display: inline-block;
+}
