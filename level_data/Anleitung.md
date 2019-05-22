@@ -1,98 +1,18 @@
-An h1 header
-============
+Willkommen, neuer Mitarbeiter
 
-Paragraphs are separated by a blank line.
+Willkommen bei AWS Bootcamp,  ein Internetdienstleister. Wir bieten unseren Kunden Web Services an. Unsere Kunden können bei uns ihre Webseite hosten, einen Cloud Service anbieten,  Echtzeit Wetter Analysen berechnen und vieles mehr. Wir setzen auf einen neuen Standard: Serverless Computing. Unsere Kunden müssen sich nicht darum kümmern virtuelle Maschinen oder Container zu verwalten. Die lästige Arbeit nehmen wir ihnen ab. Sie geben uns ihren Code und wir kümmern uns darum dass er 24/7 läuft. Dabei muss sich der Kunde nicht einmal um die Ressourcen kümmern. Das beste daran ist, dass sie nur für die Ressourcen bezahlen müssen die sie auch wirklich verbrauchen.
 
-2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
-look like:
+Immer mehr Firmen wechseln zu uns und der Technik der Zukunft. Mit diesem Wechsel kommen natürlich viele Fragen auf. Wir haben Sie eingestellt, um uns zu Helfen all diese Fragen zu beantworten.
+Um Ihnen das Themengebiet Serverless näher zubringen haben wir einige Testaufgaben für Sie vorbereitet. Wir zeigen und erklären Ihnen unsere Dienstleistungen und deren Stärken und Schwächen.
 
-  * this one
-  * that one
-  * the other one
-
-Note that --- not considering the asterisk --- the actual text
-content starts at 4-columns in.
-
-> Block quotes are
-> written like so.
->
-> They can span multiple paragraphs,
-> if you like.
-
-Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., "it's all
-in chapters 12--14"). Three dots ... will be converted to an ellipsis.
-Unicode is supported. ☺
+Fangen wir mit einem einfachen Beispiel an:
+Der Bundesnachrichtendienst (BND) möchte die Gesichtserkennung auf dem Südkreuz verbessern. Sie haben aber nicht genug Rechenleistung um den neuen Algorithmus in Echtzeit laufen zu lassen. Deshalb haben sie uns beauftragt: 
+Zunächst brauchen wir eine Möglichkeit die Video Dateien auf unsere Server hochzuladen (um den Datenschutz kümmern wir uns später). 
+Dafür bietet sich ein S3-Buket an. Ziehen Sie das gebrauchte Icon einfach auf den dafür vorgesehenen Slot. Eine hervorragende Übung!
 
 
 
-An h2 header
-------------
 
-Here's a numbered list:
-
- 1. first item
- 2. second item
- 3. third item
-
-Note again how the actual text starts at 4 columns in (4 characters
-from the left side). Here's a code sample:
-
-    # Let me re-iterate ...
-    for i in 1 .. 10 { do-something(i) }
-
-As you probably guessed, indented 4 spaces. By the way, instead of
-indenting the block, you can use delimited blocks, if you like:
-
-~~~
-define foobar() {
-    print "Welcome to flavor country!";
-}
-~~~
-
-(which makes copying & pasting easier). You can optionally mark the
-delimited block for Pandoc to syntax highlight it:
-
-~~~python
-import time
-# Quick, count to ten!
-for i in range(10):
-    # (but not *too* quick)
-    time.sleep(0.5)
-    print i
-~~~
-
-
-
-### An h3 header ###
-
-Now a nested list:
-
- 1. First, get these ingredients:
-
-      * carrots
-      * celery
-      * lentils
-
- 2. Boil some water.
-
- 3. Dump everything in the pot and follow
-    this algorithm:
-
-        find wooden spoon
-        uncover pot
-        stir
-        cover pot
-        balance wooden spoon precariously on pot handle
-        wait 10 minutes
-        goto first step (or shut off burner when done)
-
-    Do not bump wooden spoon or it will fall.
-
-Notice again how text always lines up on 4-space indents (including
-that last line which continues item 3 above).
-
-Here's a link to [a website](http://foo.bar), to a [local
-doc](local-doc.html), and to a [section heading in the current
-doc](#an-h2-header). Here's a footnote [^1].
-
-[^1]: Footnote text goes here.
+Note:
+Die Tutorialphase: einfach Beispiele der Firma
+Später: richtige Spielphase mit komplexen Aufgaben (quasi aus der echten Spielwelt)
