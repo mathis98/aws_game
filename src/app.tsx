@@ -11,6 +11,8 @@ import { ErrorPage } from "./pages/ErrorPage";
 
 import Header from './components/Header';
 
+require('./global.css');
+
 // the routes
 ReactDOM.render(
   <BrowserRouter basename={"/" + (process.env.BRANCH_NAME === "master" ? "" : (process.env.CI_COMMIT_SHA || ""))}>
