@@ -4,7 +4,7 @@ Wir sind ein Internetdienstleister und bieten unseren Kunden verschiedene Web Se
 Sie können bei uns ihre Webseiten hosten,
 über uns einen Cloud-Service anbieten, Echtzeit Wetteranalysen berechnen und vieles mehr.
 Wir setzen auf den neuen Standard: Serverless.
-Unsere Kunden müssen sich nicht um das Verwalten von virtuelle Maschinen oder Container kümmern.
+Unsere Kunden müssen sich nicht um das Verwalten von virtuelle Maschinen oder Containern kümmern.
 Die lästige Arbeit nehmen wir ihnen ab. Sie geben uns ihren Code und wir kümmern uns
 darum, dass er 24/7 läuft. Dabei muss sich der Kunde nicht einmal um das Ressourcenmanagement kümmern.
 Das Beste daran: sie bezahlen nur für die Ressourcen, die sie auch tatsächlich in Anspruch nehmen.
