@@ -15,4 +15,5 @@ Dafür bietet sich ein S3-Buket an. Ziehen Sie das gebrauchte Icon einfach auf d
 
 Note:
 Die Tutorialphase: einfach Beispiele der Firma
+
 Später: richtige Spielphase mit komplexen Aufgaben (quasi aus der echten Spielwelt)
