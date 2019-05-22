@@ -3,3 +3,16 @@
   margin: 0 auto;
   padding-top: 20px;
 }
+
+/* MEDIA QUERIES */
+@media(max-width: 1000px) {
+  .component {
+    width: 50%;
+  }
+}
+
+@media(max-width: 800px) {
+  .component {
+    width: 90%;
+  }
+}
