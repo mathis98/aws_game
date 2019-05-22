@@ -9,8 +9,10 @@ import MarkdownViewer from 'components/MarkdownViewer';
 
 const { default: instructions } = require("level_data/level_1/popup.md");
 
-export default class Popup extends React.Component {
-  constructor(props) {
+export default class Popup extends React.Component<any, any> {
+  handleCloseBound: any;
+
+  constructor(props: any) {
     super(props);
     this.state = {open: true};
 
