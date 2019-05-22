@@ -1,4 +1,12 @@
+:root {
+  --app-bar-height: 64px;
+}
+
 .link_nostyle {
   text-decoration: none;
   color: white;
+}
+
+.fixed_size_app_bar {
+  height: var(--app-bar-height);
 }

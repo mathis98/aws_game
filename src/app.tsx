@@ -14,14 +14,14 @@ import Header from './components/Header';
 // the routes
 ReactDOM.render(
   <BrowserRouter basename={"/" + (process.env.BRANCH_NAME === "master" ? "" : (process.env.CI_COMMIT_SHA || ""))}>
-    <Header></Header>
+    <Header />
     <Switch>
       <Route path="/" exact component={StartPage} />
       <Route path="/game" exact component={GamePage} />
       <Route path="/levels" exact component={LevelsPage} />
       <Route path="/instruction" exact component={InstructionsPage} />
 
-      /* Catch all unknown routes and show error page */}
+      {/* Catch all unknown routes and show error page */}
       <Route component={ErrorPage} />
     </Switch>
   </BrowserRouter>,
