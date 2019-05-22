@@ -29,12 +29,14 @@ var droppables: any = [
   {
     'id': 1,
     'accepts': 'a',
-    'done': false
+    'done': false,
+    'child': {}
   },
   {
     'id': 2,
     'accepts': 'b',
-    'done': false
+    'done': false,
+    'child': {}
   }
 ]
 
@@ -46,7 +48,9 @@ export class dndShowcase extends React.Component<dndShowcaseProps, {}> {
     if(correct) {
       droppables.find((a: any) => a.id == id).done = true;
       if(droppables.every((a: any) => a.done))
-        alert('Du hast gewonnen!');
+        setTimeout(() => {
+          alert('Du hast gewonnen!');
+        },200);
     }
     else droppables.find((a: any) => a.id == id).done = false;
   }

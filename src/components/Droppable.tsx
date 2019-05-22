@@ -3,6 +3,8 @@ const css = require('./Droppable.css');
 
 import { DropTarget, ConnectDropTarget, DropTargetCollector } from 'react-dnd';
 import Typography from '@material-ui/core/Typography';
+import Close from '@material-ui/icons/Close';
+import DraggableChild from './DraggableChild';
 
 const types = {
   ITEM: 'draggable'
@@ -13,8 +15,7 @@ const squareTarget = {
       return true;
   },
   drop(props: any, monitor: any, component: any) {
-    props.data.bg = monitor.getItem().color;
-    props.data.text = monitor.getItem().text;
+    props.data.child = monitor.getItem();
     if(monitor.getItem().id == props.data.accepts)
       props.setDroppableDone(props.data.id, true);
     else props.setDroppableDone(props.data.id, false);
@@ -44,13 +45,15 @@ class Droppable extends React.Component<DroppableProps, {}> {
     else if(over && drop) return '4px dashed black';
   }
 
+  undoWin = () => {
+    this.props.setDroppableDone(this.props.data.id, false);
+  }
+
   render() {
     const { connectDropTarget, isOver, canDrop } = this.props;
     return connectDropTarget(
-      <div className={css.droppable} style={{border: this.border(isOver, canDrop), backgroundColor: this.props.data.bg}}>
-        <div className={css.droppable_text}>
-          <Typography color="inherit">{this.props.data.text}</Typography>
-        </div>
+      <div className={css.droppable} style={{border: this.border(isOver, canDrop)}}>
+        {this.props.data.child.id && <DraggableChild data={this.props.data.child} undoWin={this.undoWin}/>}
       </div>
     )
   }

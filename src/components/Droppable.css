@@ -6,8 +6,17 @@
   margin-bottom: 20px;
   margin-left: 20px;
   display: inline-block;
+  border-radius: 4px;
 }
 
+.droppable > .close {
+  float: right;
+  cursor: pointer;
+  margin-bottom: -34px;
+  margin-top: 10px;
+  margin-right: 10px;
+  color: white;
+}
 
 .droppable_text {
   color: white;
@@ -15,4 +24,9 @@
   float: left;
   width: 100%;
   margin-top: 80px;
+}
+
+.large_child {
+  height: 200px;
+  width: 200px;
 }
