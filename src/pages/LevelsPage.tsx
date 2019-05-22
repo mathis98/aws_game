@@ -1,18 +1,16 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-const css = require('../global.css');
-import LinkButton from '../components/LinkButton';
+import PageWrapper from 'components/PageWrapper';
+import LinkButton from 'components/LinkButton';
 import Typography from '@material-ui/core/Typography';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 
-export interface LevelsPageProps { compiler: string; framework: string; }
-
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
-export class LevelsPage extends React.Component<LevelsPageProps, {}> {
+export class LevelsPage extends React.Component {
   render() {
     return (
-      <div className={css.component}>
+      <PageWrapper>
         <Typography variant="h4" gutterBottom>
           Level wählen
         </Typography>
@@ -21,7 +19,7 @@ export class LevelsPage extends React.Component<LevelsPageProps, {}> {
             <ArrowBack/> Zurück
           </LinkButton>
         </p>
-      </div>
+      </PageWrapper>
     );
   }
 }
