@@ -29,11 +29,6 @@ export class StartPage extends React.Component<StartPageProps, {}> {
               Level wählen
             </LinkButton>
           </div>
-          <div className={css.start_button_wrapper}>
-            <LinkButton className={css.start_button} variant="contained" size="large" color="primary" to="/dnd">
-              Drag 'n' Drop
-            </LinkButton>
-          </div>
         </div>
       </div>
     );
