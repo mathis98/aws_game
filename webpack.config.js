@@ -6,7 +6,8 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    port: 7070
   },
   entry: './src/app.tsx',
   resolve: {
