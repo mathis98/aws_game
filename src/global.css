@@ -1,7 +1,5 @@
-.component {
-  width: 30%;
-  margin: 0 auto;
-  padding-top: 20px;
+body {
+  margin: 0;
 }
 
 /* MEDIA QUERIES */

@@ -5,10 +5,22 @@
         "noImplicitAny": true,
         "module": "commonjs",
         "target": "es6",
-        "jsx": "react"
+        "jsx": "react",
+        "baseUrl": ".",
+        "paths": {
+            "components/*": [
+                "src/components/*",
+            ],
+            "pages/*": [
+                "src/pages/*",
+            ],
+            "level_data/*": [
+                "level_data/*",
+            ]
+        }
     },
     "include": [
-        "./src/**/*",
-        "./level_data/**/*"
+        "str",
+        "level_data"
     ]
 }
