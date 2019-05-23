@@ -22,7 +22,7 @@ export default class Popup extends React.Component<any, any> {
 
   render() {
     return (
-      <Dialog open={this.state.open} maxWidth={"lg"} >
+      <Dialog open={this.state.open} maxWidth={"md"}>
         <DialogTitle id="alert-dialog-title">Anleitung</DialogTitle>
           <DialogContent>
             <MarkdownViewer source={instructions} />
