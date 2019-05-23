@@ -1,11 +1,7 @@
-.header_wrapper, .button_group {
-  width: 30%;
-  margin: 0 auto;
-}
-
 .button_group {
-  text-align: center;
-  margin-top: 10%;
+  margin: 0 auto;
+  max-width: 350px;
+  padding: 20px;
 }
 
 .start_button {
@@ -24,17 +20,4 @@
   border-top: 2px solid #336633;
   border-bottom: 2px solid #336633;
   text-align: center;
-}
-
-/* MEDIA QUERIES */
-@media(max-width: 1000px) {
-  .header_wrapper, .button_group {
-    width: 50%;
-  }
-}
-
-@media(max-width: 800px) {
-  .header_wrapper, .button_group {
-    width: 90%;
-  }
 }
