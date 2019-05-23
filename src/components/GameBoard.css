@@ -1,0 +1,28 @@
+.fullSize {
+    height: 100%;
+    width: 100%;
+}
+
+.board {
+    height: 100%;
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+
+    display: grid;
+}
+
+.boardElement {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.arrowTarget {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+}
