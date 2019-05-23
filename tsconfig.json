@@ -20,7 +20,7 @@
         }
     },
     "include": [
-        "str",
+        "src",
         "level_data"
     ]
 }
