@@ -83,7 +83,6 @@ export default class GameBoard extends React.Component<GameBoardProps, any> {
       gridTemplate: getFrStr(l.rows) + "/" + getFrStr(l.columns),
       gridGap: l.gap + " " + l.gap
     }
-    console.log(gridStyle);
 
     return (
       // redraw on resize because the react-archer library is buggy sometimes
