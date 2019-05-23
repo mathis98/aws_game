@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import PageWrapper from 'components/PageWrapper';
 import LinkButton from '../components/LinkButton';
 
 const css = require('./StartPage.css');
@@ -10,7 +11,7 @@ import cx from "classnames";
 export class StartPage extends React.Component {
   render() {
     return (
-      <div className={css.component}>
+      <PageWrapper>
         <div className={css.button_group}>
           <div className={css.start_button_wrapper}>
             <LinkButton className={css.start_button} variant="contained" size="large" color="secondary" to="/instruction">
@@ -28,7 +29,7 @@ export class StartPage extends React.Component {
             </LinkButton>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     );
   }
 }
