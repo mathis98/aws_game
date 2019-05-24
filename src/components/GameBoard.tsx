@@ -37,33 +37,25 @@ export interface LevelPosition {
 
 
 const exampleLevel: Level = {
-  columns: [1, 3, 1],
-  rows: 3,
+  columns: 5,
+  rows: 5,
   gap: "1em",
   elements: [
     {
       position: {
-        column: 0,
-        row: 0
+        column: 1,
+        row: 1
       },
       id: "camera",
       component: <h1>CAMERA</h1>,
     },
     {
       position: {
-        column: 1,
-        row: 1
+        column: 3,
+        row: 3
       },
       id: "database",
       component: <h1>DATABASE</h1>
-    },
-    {
-      position: {
-        column: 2,
-        row: 2
-      },
-      id: "user",
-      component: <h1>USER</h1>
     }
   ],
   relations: [
@@ -71,29 +63,68 @@ const exampleLevel: Level = {
       sourceId: "camera",
       targetId: "database",
       sourceAnchor: "bottom",
-      targetAnchor: "top-left"
+      targetAnchor: "top"
     },
     {
-      sourceId: "database",
-      targetId: "user",
-      sourceAnchor: "bottom-right",
-      targetAnchor: "top"
+      sourceId: "camera",
+      targetId: "database",
+      sourceAnchor: "bottom",
+      targetAnchor: "top-left",
+    },
+    {
+      sourceId: "camera",
+      targetId: "database",
+      sourceAnchor: "bottom",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "camera",
+      targetId: "database",
+      sourceAnchor: "bottom",
+      targetAnchor: "bottom-left",
+    },
+    {
+      sourceId: "camera",
+      targetId: "database",
+      sourceAnchor: "bottom",
+      targetAnchor: "bottom",
+    },
+    {
+      sourceId: "camera",
+      targetId: "database",
+      sourceAnchor: "bottom",
+      targetAnchor: "bottom-right",
+    },
+    {
+      sourceId: "camera",
+      targetId: "database",
+      sourceAnchor: "bottom",
+      targetAnchor: "right",
+    },
+    {
+      sourceId: "camera",
+      targetId: "database",
+      sourceAnchor: "bottom",
+      targetAnchor: "top-right",
     }
   ]
 }
 
 const arrowStyle = {
-  stroke: "darkgray",
-  strokeWidth: 10
+  stroke: "black",
+  strokeWidth: 6
 }
 
 interface GameBoardState {
   edges?: Edge[];
 }
 
+
 interface Edge {
   start: Point;
   end: Point;
+  startNormal: Point;
+  endNormal: Point;
 }
 
 interface Point {
@@ -127,8 +158,13 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
 
           <div className={css.svgOverlay} key={"gameBoardSVG"} >
             <svg className={css.svg} >
+              <defs>
+                <marker id="arrow" markerWidth="5" markerHeight="4" refY="2" orient="auto">
+                  <path d="M 0,0 L5,2 L0,4 z" fill="black" />
+                </marker>
+              </defs>
               {this.state.edges.map((edge, idx) => {
-                return <line key={"boardEdge" + idx} x1={edge.start.x} y1={edge.start.y} x2={edge.end.x} y2={edge.end.y} style={arrowStyle} />;
+                return renderSVGEdge(edge, "edge" + idx);
               })}
             </svg>
           </div>
@@ -161,7 +197,9 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
     for (const relation of this.level.relations) {
       state.edges.push({
         start: calculateAnchorPoint(this.elements[relation.sourceId].current, relation.sourceAnchor),
-        end: calculateAnchorPoint(this.elements[relation.targetId].current, relation.targetAnchor)
+        end: calculateAnchorPoint(this.elements[relation.targetId].current, relation.targetAnchor),
+        startNormal: getNormal(relation.sourceAnchor),
+        endNormal: getNormal(relation.targetAnchor),
       })
     }
 
@@ -169,12 +207,34 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
   }
 }
 
+
 // get the fractions as a string for the css property
 function getFrStr(spec: number[] | number): string {
   if (spec instanceof Array) {
     return spec.map(el => el + "fr").join(" ");
   }
   return " 1fr".repeat(spec);
+}
+
+
+function renderSVGEdge(edge: Edge, key: string): JSX.Element {
+  // get required space for arrow
+  if (edge.endNormal.x && edge.endNormal.y) {
+    edge.end.x += edge.endNormal.x * 5 * arrowStyle.strokeWidth * 0.707;
+    edge.end.y += edge.endNormal.y * 5 * arrowStyle.strokeWidth * 0.707;
+  } else {
+    edge.end.x += edge.endNormal.x * 5 * arrowStyle.strokeWidth;
+    edge.end.y += edge.endNormal.y * 5 * arrowStyle.strokeWidth;
+  }
+
+  // draw a bezier curve using the anchor normals
+  const normalFactor = 150;
+  const d = `M ${edge.start.x} ${edge.start.y}
+             C ${edge.start.x + (edge.startNormal.x * normalFactor)} ${edge.start.y + (edge.startNormal.y * normalFactor)},
+               ${edge.end.x + (edge.endNormal.x * normalFactor)} ${edge.end.y + (edge.endNormal.y * normalFactor)},
+               ${edge.end.x} ${edge.end.y}`;
+
+  return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" />;
 }
 
 
@@ -207,3 +267,25 @@ function calculateAnchorPoint(elem: any, anchor: AnchorPosition ): Point {
       return { x, y: y + h2 };
   }
 }
+
+function getNormal(anchor: AnchorPosition): Point {
+  switch (anchor) {
+    case "top-left":
+      return { x: -1, y: -1 };
+    case "top":
+      return { x: 0, y: -1 };
+    case "top-right":
+      return { x: 1, y: -1 };
+    case "right":
+      return { x: 1, y: 0 };
+    case "bottom-right":
+      return { x: 1, y: 1 };
+    case "bottom":
+      return { x: 0, y: 1 };
+    case "bottom-left":
+      return { x: -1, y: 1 };
+    case "left":
+      return { x: -1, y: 0 };
+  }
+}
+
