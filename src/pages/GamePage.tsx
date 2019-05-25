@@ -3,6 +3,9 @@ import SplitterLayout from 'react-splitter-layout';
 import Popup from 'components/Popup';
 import '!style-loader!css-loader!./SplitterLayoutCustom.css';
 import GameBoard from 'components/GameBoard';
+import SplitterPanel from 'components/SplitterPanel';
+
+import exampleLevel from 'levels/exampleLevel';
 
 const css = require('./GamePage.css');
 
@@ -16,12 +19,16 @@ export class GamePage extends React.Component<GamePageProps, {}> {
       <div>
         <Popup />
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={33}>
-
-          <GameBoard />
-
+          <SplitterPanel className={css.gridBackground} >
+            <GameBoard level={exampleLevel} />
+          </SplitterPanel>
           <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={40}>
-            <div>Components</div>
-            <div>Description</div>
+            <SplitterPanel>
+              Components
+            </SplitterPanel>
+            <SplitterPanel>
+              Info
+            </SplitterPanel>
           </SplitterLayout>
         </SplitterLayout>
       </div>
