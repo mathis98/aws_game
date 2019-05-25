@@ -16,7 +16,10 @@
             ],
             "level_data/*": [
                 "level_data/*",
-            ]
+            ],
+            "levels/*": [
+                "src/levels/*",
+            ],
         }
     },
     "include": [

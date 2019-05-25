@@ -15,7 +15,8 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, 'src/components'),
       pages: path.resolve(__dirname, 'src/pages'),
-      level_data: path.resolve(__dirname, 'level_data')
+      level_data: path.resolve(__dirname, 'level_data'),
+      levels: path.resolve(__dirname, 'src/levels'),
     }
   },
   output: {

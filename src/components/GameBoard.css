@@ -31,12 +31,5 @@
 
 .svgOverlay {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
-.svg {
-    height: 100%;
-    width: 100%;
+    overflow: visible;
 }
