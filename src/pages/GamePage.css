@@ -1,3 +1,11 @@
 .matchViewportHeight {
   height: calc(100vh - var(--app-bar-height)) !important;
 }
+
+.sidebar_upper {
+  padding-top: 20px;
+}
+
+.service_header {
+  text-align: center;
+}

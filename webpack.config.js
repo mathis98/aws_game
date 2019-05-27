@@ -56,6 +56,17 @@ module.exports = {
         test: /\.md$/i,
         use: 'raw-loader',
       },
+      {
+        test: /\.(png|jpg|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000
+            }
+          }
+        ]
+      }
     ]
   },
   plugins: [

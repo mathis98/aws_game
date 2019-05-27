@@ -3,6 +3,7 @@ const css = require('./Draggable.css');
 
 import { DragSource, ConnectDragSource } from 'react-dnd';
 import Typography from '@material-ui/core/Typography';
+import { draggableDataProps } from './Draggable';
 
 const types = {
   ITEM: 'draggable'
@@ -15,7 +16,7 @@ const itemSource = {
     return {
       id: props.data.id,
       text: props.data.text,
-      color: props.data.color
+      icon: props.data.icon
     }
   },
   endDrag(props: any) {
@@ -33,7 +34,7 @@ function collect(connect: any, monitor: any) {
 export interface DraggableProps {
   connectDragSource?: ConnectDragSource;
   isDragging?: boolean;
-  data: any;
+  data: draggableDataProps;
   undoWin: any;
 }
 
@@ -43,10 +44,8 @@ class Draggable extends React.Component<DraggableProps, {}> {
   render() {
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource (
-      <div style={{opacity: isDragging ? 0 : 1, cursor: isDragging ? 'grabbing' : '', display: this.props.data.hide ? 'none' : 'block', backgroundColor: this.props.data.color}} className={css.draggable_big}>
-        <div className={css.draggable_big_text}>
-          <Typography color="inherit">{this.props.data.text}</Typography>
-        </div>
+      <div style={{opacity: isDragging ? 0 : 1, cursor: isDragging ? 'grabbing' : '', display: this.props.data.hide ? 'none' : 'block'}} className={css.draggable_big}>
+        <img src={require(`../../../assets/img/${this.props.data.icon}.svg`) as string} />
       </div>
     );
   }
