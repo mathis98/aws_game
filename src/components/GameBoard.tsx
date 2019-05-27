@@ -25,7 +25,7 @@ interface Point {
 
 const arrowStyle = {
   stroke: "black",
-  strokeWidth: 6
+  strokeWidth: 3
 }
 
 export default class GameBoard extends React.Component<GameBoardProps, GameBoardState> {
@@ -60,7 +60,7 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
         <div className={css.board} style={gridStyle} key="gameBoard" >
           {this.props.level.elements.map(el => {
             this.elements[el.id] = React.createRef();
-            var elementStyle = {
+            const elementStyle = {
               gridColumn: (el.position.column + 1) + "/ span " + (el.position.columnSpan || 1),
               gridRow: (el.position.row + 1) + "/ span " + (el.position.rowSpan || 1)
             }
