@@ -8,7 +8,6 @@ import { LevelsPage } from "./pages/LevelsPage";
 import { InstructionsPage } from "./pages/InstructionsPage";
 import { BrowserRouter } from "react-router-dom";
 import { ErrorPage } from "./pages/ErrorPage";
-import { dndShowcase } from "./pages/dndShowcase";
 
 import Header from './components/Header';
 
@@ -23,7 +22,6 @@ ReactDOM.render(
       <Route path="/game" exact component={GamePage} />
       <Route path="/levels" exact component={LevelsPage} />
       <Route path="/instruction" exact component={InstructionsPage} />
-      <Route path="/dnd" exact component={dndShowcase} />
 
       {/* Catch all unknown routes and show error page */}
       <Route component={ErrorPage} />

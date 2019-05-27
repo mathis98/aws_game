@@ -1,24 +1,18 @@
 import * as React from 'react';
+import cx from 'classnames';
+import { DragSource, ConnectDragSource } from 'react-dnd';
+
 const css = require('./Draggable.css');
 
-import { DragSource, ConnectDragSource } from 'react-dnd';
-import Typography from '@material-ui/core/Typography';
-
-const types = {
-  ITEM: 'draggable'
-}
 
 const itemSource = {
   beginDrag(props: any) {
     return {
       id: props.data.id,
-      text: props.data.text,
-      color: props.data.color
+      component: props.data.component
     }
   },
-  endDrag(props: any) {
-    /* code here */
-  }
+  endDrag() {}
 }
 
 function collect(connect: any, monitor: any) {
@@ -34,19 +28,15 @@ export interface DraggableProps {
   data: any;
 }
 
-// 'StartPageProps' describes the shape of props.
-// State is never set so we use the '{}' type.
 class Draggable extends React.Component<DraggableProps, {}> {
   render() {
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource (
-      <div style={{opacity: isDragging ? 0.5 : 1, cursor: isDragging ? 'grabbing' : '', backgroundColor: this.props.data.color, display: this.props.data.display}} className={css.draggable}>
-        <div className={css.draggable_text}>
-          <Typography color="inherit">{this.props.data.text}</Typography>
-        </div>
+      <div className={cx({ [css.draggableActive]: isDragging })}>
+        {this.props.data.component}
       </div>
     );
   }
 }
 
-export default DragSource(types.ITEM, itemSource, collect) (Draggable);
+export default DragSource('draggable', itemSource, collect) (Draggable);

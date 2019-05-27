@@ -6,6 +6,8 @@ import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 
 import exampleLevel from 'levels/exampleLevel';
+import { DragDropContextProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 const css = require('./GamePage.css');
 
@@ -18,6 +20,7 @@ export class GamePage extends React.Component<GamePageProps, {}> {
     return (
       <div>
         <Popup />
+        <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={33}>
           <SplitterPanel className={css.gridBackground} >
             <GameBoard level={exampleLevel} />
@@ -31,6 +34,7 @@ export class GamePage extends React.Component<GamePageProps, {}> {
             </SplitterPanel>
           </SplitterLayout>
         </SplitterLayout>
+        </DragDropContextProvider>
       </div>
     );
   }

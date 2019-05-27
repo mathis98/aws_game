@@ -1,8 +1,33 @@
 import * as React from 'react';
+import Draggable from 'components/dnd/Draggable';
+import Droppable from 'components/dnd/Droppable';
+
+
+var draggables: any = [
+  {
+    'id': 'a',
+    'component': <h1>S3</h1>
+  },
+  {
+    'id': 'b',
+    'component': <h1>DynamoDB</h1>
+  }
+]
+
+var droppables: any = [
+  {
+    'id': 'zone1',
+    'child': {}
+  },
+  {
+    'id': 'zone2',
+    'child': {}
+  }
+]
 
 const exampleLevel: Level = {
-  columns: 7,
-  rows: 7,
+  columns: 6,
+  rows: 5,
   gap: "1em",
   elements: [
     {
@@ -15,35 +40,43 @@ const exampleLevel: Level = {
     },
     {
       position: {
-        column: 5,
-        row: 1
+        column: 2,
+        row: 2
       },
-      id: "database1",
-      component: <h1>DATABASE1</h1>
+      id: "database",
+      component: <Droppable data={droppables[0]} />
     },
     {
       position: {
-        column: 1,
-        row: 5
+        column: 4,
+        row: 3
+      },
+      id: "client",
+      component: <h1>CLIENT</h1>
+    },
+    {
+      position: {
+        column: 3,
+        row: 2
       },
       id: "database2",
-      component: <h1>DATABASE2</h1>
+      component: <Droppable data={droppables[1]} />
+    },
+    {
+      position: {
+        column: 4,
+        row: 0
+      },
+      id: "S3",
+      component: <Draggable data={draggables[0]} />
     },
     {
       position: {
         column: 3,
         row: 0
       },
-      id: "database3",
-      component: <h1>DATABASE3</h1>
-    },
-    {
-      position: {
-        column: 5,
-        row: 5
-      },
-      id: "database",
-      component: <h1>DATABASE4</h1>
+      id: "DynamoDB",
+      component: <Draggable data={draggables[1]} />
     }
   ],
   relations: [
@@ -51,49 +84,19 @@ const exampleLevel: Level = {
       sourceId: "camera",
       targetId: "database",
       sourceAnchor: "bottom",
+      targetAnchor: "left"
+    },
+    {
+      sourceId: "database2",
+      targetId: "client",
+      sourceAnchor: "right",
       targetAnchor: "top"
     },
     {
-      sourceId: "camera",
-      targetId: "database",
-      sourceAnchor: "bottom",
-      targetAnchor: "top-left",
-    },
-    {
-      sourceId: "camera",
-      targetId: "database",
-      sourceAnchor: "bottom",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "camera",
-      targetId: "database",
-      sourceAnchor: "bottom",
-      targetAnchor: "bottom-left",
-    },
-    {
-      sourceId: "camera",
-      targetId: "database",
-      sourceAnchor: "bottom",
-      targetAnchor: "bottom",
-    },
-    {
-      sourceId: "camera",
-      targetId: "database",
-      sourceAnchor: "bottom",
-      targetAnchor: "bottom-right",
-    },
-    {
-      sourceId: "camera",
-      targetId: "database",
-      sourceAnchor: "bottom",
-      targetAnchor: "right",
-    },
-    {
-      sourceId: "camera",
-      targetId: "database",
-      sourceAnchor: "bottom",
-      targetAnchor: "top-right",
+      sourceId: "database",
+      targetId: "database2",
+      sourceAnchor: "right",
+      targetAnchor: "left"
     }
   ]
 }
