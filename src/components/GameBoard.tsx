@@ -117,7 +117,7 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
   }
 
   // draw a bezier curve using the anchor normals
-  const normalFactor = 150;
+  const normalFactor = Math.min(distance(edge.start, edge.end), 150);
   const d = `M ${edge.start.x} ${edge.start.y}
              C ${edge.start.x + (edge.startNormal.x * normalFactor)} ${edge.start.y + (edge.startNormal.y * normalFactor)},
                ${edge.end.x + (edge.endNormal.x * normalFactor)} ${edge.end.y + (edge.endNormal.y * normalFactor)},
@@ -174,4 +174,8 @@ function getNormal(anchor: AnchorPosition): Point {
     case "left":
       return { x: -1, y: 0 };
   }
+}
+
+function distance(a: Point, b: Point): number {
+  return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
 }

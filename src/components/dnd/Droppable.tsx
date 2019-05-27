@@ -1,24 +1,19 @@
 import * as React from 'react';
+import cx from 'classnames';
+import { DropTarget, ConnectDropTarget } from 'react-dnd';
+import DraggableChild from 'components/dnd/DraggableChild';
+
 const css = require('./Droppable.css');
 
-import { DropTarget, ConnectDropTarget, DropTargetCollector } from 'react-dnd';
-import Typography from '@material-ui/core/Typography';
-import Close from '@material-ui/icons/Close';
-import DraggableChild from './DraggableChild';
-
-const types = {
-  ITEM: 'draggable'
-}
-
 const squareTarget = {
-  canDrop(props: any) {
+  canDrop() {
       return true;
   },
-  drop(props: any, monitor: any, component: any) {
+  drop(props: any, monitor: any) {
     props.data.child = monitor.getItem();
-    if(monitor.getItem().id == props.data.accepts)
-      props.setDroppableDone(props.data.id, true);
-    else props.setDroppableDone(props.data.id, false);
+    if (props.dropCallback) {
+      props.dropCallback(props.data.child);
+    }
   }
 };
 
@@ -35,27 +30,18 @@ export interface DroppableProps {
   isOver?: boolean;
   canDrop?: boolean;
   data: any;
-  setDroppableDone: any;
+  dropCallback?: any;
 }
 
 class Droppable extends React.Component<DroppableProps, {}> {
-
-  border = (over: boolean, drop: boolean) => {
-    if(!over && drop) return '2px dashed black';
-    else if(over && drop) return '4px dashed black';
-  }
-
-  undoWin = () => {
-    this.props.setDroppableDone(this.props.data.id, false);
-  }
-
   render() {
     const { connectDropTarget, isOver, canDrop } = this.props;
+
     return connectDropTarget(
-      <div className={css.droppable} style={{border: this.border(isOver, canDrop)}}>
-        {this.props.data.child.id && <DraggableChild data={this.props.data.child} undoWin={this.undoWin}/>}
+      <div className={cx(css.droppable, { [css.droppableHover]: isOver, [css.droppableActive]: canDrop})} >
+        {<DraggableChild data={this.props.data.child} />}
       </div>
     )
   }
 }
-export default DropTarget(types.ITEM, squareTarget, collect)(Droppable)
+export default DropTarget('draggable', squareTarget, collect)(Droppable)
