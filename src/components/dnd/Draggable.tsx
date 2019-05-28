@@ -50,7 +50,8 @@ class Draggable extends React.Component<DraggableProps, {}> {
     return connectDragSource (
       <div style={{opacity: isDragging ? 0.5 : 1, cursor: isDragging ? 'grabbing' : ''}} className={css.draggable}>
         <Info className={css.info}/>
-        <img src={require(`../../../assets/img/${this.props.data.icon}.svg`) as string} />
+        <img src={require(`../../../assets/img/${this.props.data.icon}.svg`) as string} className={css.draggable_icon} />
+        <p className={css.draggable_text}>{this.props.data.text}</p>
       </div>
     );
   }

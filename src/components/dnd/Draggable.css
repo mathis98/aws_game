@@ -1,13 +1,12 @@
 .draggable {
   height: 100px;
   width: 100px;
-  margin: 0 auto;
   cursor: grab;
   margin-bottom: 20px;
-  margin-left: 20px;
   display: inline-block;
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .draggable_big {
@@ -19,9 +18,10 @@
 }
 
 .draggable_text {
-  color: white;
+  color: black;
   text-align: center;
-  margin-top: 40px;
+  margin-top: -3px;
+  font-size: 13px;
 }
 
 .draggable_big_text {
@@ -38,4 +38,8 @@
   color: white;
   font-size: 19px!important;
   cursor: pointer;
+}
+
+.draggable_icon {
+  margin-top: -18px;
 }

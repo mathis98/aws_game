@@ -32,16 +32,18 @@ export class GamePage extends React.Component<GamePageProps, {}> {
       <DragDropContextProvider backend={HTML5Backend}>
         <div>
           <Popup />
-          <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={33}>
+          <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={25}>
             <div>Main</div>
             <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={40}>
               <div className={css.sidebar_upper}>
                 <Typography variant="h5" gutterBottom className={css.service_header}>
                   Services
                 </Typography>
-                {draggables.map(draggable => {
-                  return <Draggable data={draggable} key={draggable.id} />
-                })}
+                <div className={css.draggable_wrapper}>
+                  {draggables.map(draggable => {
+                    return <Draggable data={draggable} key={draggable.id} />
+                  })}
+                </div>
               </div>
               <div>Description</div>
             </SplitterLayout>
