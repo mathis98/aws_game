@@ -6,28 +6,20 @@ import { Level } from './level';
 
 var draggables: any = [
   {
-    'id': 'a',
+    'id': 's3',
     'component': <h1>S3</h1>
-  },
-  {
-    'id': 'b',
-    'component': <h1>DynamoDB</h1>
   }
 ]
 
 var droppables: any = [
   {
-    'id': 'zone1',
-    'child': {}
-  },
-  {
-    'id': 'zone2',
+    'id': 'slot1',
     'child': {}
   }
 ]
 
 const exampleLevel: Level = {
-  columns: 6,
+  columns: 5,
   rows: 5,
   gap: "1em",
   elements: [
@@ -50,36 +42,19 @@ const exampleLevel: Level = {
     },
     {
       position: {
-        column: 4,
+        column: 3,
         row: 3
       },
-      id: "client",
-      component: <h1>CLIENT</h1>
+      id: "bnd",
+      component: <h1>BND</h1>
     },
     {
       position: {
-        column: 3,
-        row: 2
-      },
-      id: "database2",
-      droppable: true,
-      component: <Droppable data={droppables[1]} dropCallback={console.log} />
-    },
-    {
-      position: {
-        column: 4,
+        column: 2,
         row: 0
       },
       id: "S3",
       component: <Draggable data={draggables[0]} />
-    },
-    {
-      position: {
-        column: 3,
-        row: 0
-      },
-      id: "DynamoDB",
-      component: <Draggable data={draggables[1]} />
     }
   ],
   relations: [
@@ -90,15 +65,9 @@ const exampleLevel: Level = {
       targetAnchor: "left"
     },
     {
-      sourceId: "database2",
-      targetId: "client",
-      sourceAnchor: "right",
-      targetAnchor: "top"
-    },
-    {
       sourceId: "database",
-      targetId: "database2",
-      sourceAnchor: "right",
+      targetId: "bnd",
+      sourceAnchor: "bottom",
       targetAnchor: "left"
     }
   ]
