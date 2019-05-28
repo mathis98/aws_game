@@ -14,3 +14,10 @@
 .gridBackground::-webkit-scrollbar {
   display: none;
 }
+
+.startButton {
+  bottom: 0;
+  position: absolute !important;
+  right: 0;
+  margin: 1em !important;
+}

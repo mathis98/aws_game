@@ -8,6 +8,9 @@ import SplitterPanel from 'components/SplitterPanel';
 import exampleLevel from 'levels/exampleLevel';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import Fab from '@material-ui/core/Fab';
+import Icon from '@material-ui/core/Icon';
+import { Level, getState } from 'levels/level';
 
 const css = require('./GamePage.css');
 
@@ -16,6 +19,14 @@ export interface GamePageProps {}
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export class GamePage extends React.Component<GamePageProps, {}> {
+  level: Level;
+
+  constructor(props: GamePageProps) {
+    super(props);
+    this.level = exampleLevel;
+    this.checkLevel = this.checkLevel.bind(this);
+  }
+
   render() {
     return (
       <div>
@@ -23,7 +34,10 @@ export class GamePage extends React.Component<GamePageProps, {}> {
         <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={33}>
           <SplitterPanel className={css.gridBackground} >
-            <GameBoard level={exampleLevel} />
+            <GameBoard level={this.level} />
+            <Fab variant="extended" color="primary" className={css.startButton} onClick={this.checkLevel} >
+              <Icon>play_circle_outline</Icon>&nbsp;&nbsp;Abgabe
+            </Fab>
           </SplitterPanel>
           <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={40}>
             <SplitterPanel>
@@ -37,5 +51,14 @@ export class GamePage extends React.Component<GamePageProps, {}> {
         </DragDropContextProvider>
       </div>
     );
+  }
+
+  checkLevel() {
+    const state: any = getState(this.level);
+    if (state["database"] === "s3") {
+      alert("Richtig!")
+    } else {
+      alert("Da fehlt noch was!")
+    }
   }
 }
