@@ -33,7 +33,7 @@ export interface DroppableProps {
   dropCallback?: any;
 }
 
-class Droppable extends React.Component<DroppableProps, {}> {
+export class DroppableType extends React.Component<DroppableProps, {}> {
   render() {
     const { connectDropTarget, isOver, canDrop } = this.props;
 
@@ -44,4 +44,5 @@ class Droppable extends React.Component<DroppableProps, {}> {
     )
   }
 }
-export default DropTarget('draggable', squareTarget, collect)(Droppable)
+
+export default DropTarget('draggable', squareTarget, collect)(DroppableType);

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Draggable from 'components/dnd/Draggable';
 import Droppable from 'components/dnd/Droppable';
+import { Level } from './level';
 
 
 var draggables: any = [
@@ -44,6 +45,7 @@ const exampleLevel: Level = {
         row: 2
       },
       id: "database",
+      droppable: true,
       component: <Droppable data={droppables[0]} />
     },
     {
@@ -60,7 +62,8 @@ const exampleLevel: Level = {
         row: 2
       },
       id: "database2",
-      component: <Droppable data={droppables[1]} />
+      droppable: true,
+      component: <Droppable data={droppables[1]} dropCallback={console.log} />
     },
     {
       position: {

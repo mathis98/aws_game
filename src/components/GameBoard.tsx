@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
+import { Level, AnchorPosition } from 'levels/level';
 
 const css = require('./GameBoard.css');
 
