@@ -5,12 +5,14 @@ import '!style-loader!css-loader!./SplitterLayoutCustom.css';
 import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
+import Draggable from 'components/dnd/Draggable';
 
 import exampleLevel from 'levels/exampleLevel';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
 import { Level, getState } from 'levels/level';
 
 const css = require('./GamePage.css');
@@ -44,7 +46,17 @@ export class GamePage extends React.Component<GamePageProps, {}> {
           </SplitterPanel>
           <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={40}>
             <SplitterPanel>
-              Components
+              <div className={css.sidebar_upper}>
+                <Typography variant="h5" gutterBottom className={css.service_header}>
+                  Services
+                </Typography>
+                <div className={css.draggable_wrapper}>
+                  {exampleLevel.draggables.map((draggable: any)=> {
+                    return <Draggable data={draggable} key={draggable.id} />
+                  })}
+                </div>
+              </div>
+
             </SplitterPanel>
             <SplitterPanel>
               <MarkdownViewer source={s3Md} />

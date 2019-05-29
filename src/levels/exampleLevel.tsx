@@ -1,17 +1,20 @@
 import * as React from 'react';
 import Draggable from 'components/dnd/Draggable';
 import Droppable from 'components/dnd/Droppable';
+import Standard from 'components/dnd/Standard';
 import { Level } from './level';
 
 
 var draggables: any = [
   {
     'id': 's3',
-    'component': <h1>S3</h1>
+    'icon': 'S3',
+    'text': 'S3',
+    'component': <div><Standard icon='S3' text='S3' /></div>
   }
 ]
 
-var droppables: any = [
+export var droppables: any = [
   {
     'id': 'slot1',
     'child': {}
@@ -47,14 +50,6 @@ const exampleLevel: Level = {
       },
       id: "bnd",
       component: <h1>BND</h1>
-    },
-    {
-      position: {
-        column: 2,
-        row: 0
-      },
-      id: "S3",
-      component: <Draggable data={draggables[0]} />
     }
   ],
   relations: [
@@ -70,7 +65,8 @@ const exampleLevel: Level = {
       sourceAnchor: "bottom",
       targetAnchor: "left"
     }
-  ]
+  ],
+  draggables: draggables
 }
 
 export default exampleLevel;

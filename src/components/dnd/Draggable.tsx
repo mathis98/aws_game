@@ -2,6 +2,8 @@ import * as React from 'react';
 import cx from 'classnames';
 import { DragSource, ConnectDragSource } from 'react-dnd';
 
+import Info from '@material-ui/icons/Info';
+
 const css = require('./Draggable.css');
 
 
@@ -32,9 +34,12 @@ class Draggable extends React.Component<DraggableProps, {}> {
   render() {
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource (
-      <div className={cx({ [css.draggableActive]: isDragging })}>
-        {this.props.data.component}
+      <div style={{opacity: isDragging ? 0.5 : 1, cursor: isDragging ? 'grabbing' : ''}} className={css.draggable}>
+        <Info className={css.info}/>
+        <img src={require(`../../../assets/img/${this.props.data.icon}.svg`) as string} className={css.draggable_icon} />
+        <p className={css.draggable_text}>{this.props.data.text}</p>
       </div>
+
     );
   }
 }
