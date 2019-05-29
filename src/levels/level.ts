@@ -6,6 +6,7 @@ export interface Level {
   gap?: string;
   elements?: LevelElement[];
   relations?: LevelRelation[];
+  draggables: any;
 }
 
 export interface LevelElement {
