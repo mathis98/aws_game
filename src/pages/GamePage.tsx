@@ -4,6 +4,7 @@ import Popup from 'components/Popup';
 import '!style-loader!css-loader!./SplitterLayoutCustom.css';
 import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
+import MarkdownViewer from 'components/MarkdownViewer';
 
 import exampleLevel from 'levels/exampleLevel';
 import { DragDropContextProvider } from 'react-dnd';
@@ -13,6 +14,8 @@ import Icon from '@material-ui/core/Icon';
 import { Level, getState } from 'levels/level';
 
 const css = require('./GamePage.css');
+
+const { default: s3Md } = require("level_data/services_desc/s3.md");
 
 export interface GamePageProps {}
 
@@ -44,7 +47,7 @@ export class GamePage extends React.Component<GamePageProps, {}> {
               Components
             </SplitterPanel>
             <SplitterPanel>
-              Info
+              <MarkdownViewer source={s3Md} />
             </SplitterPanel>
           </SplitterLayout>
         </SplitterLayout>
