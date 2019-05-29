@@ -32,7 +32,7 @@ const exampleLevel: Level = {
         row: 1
       },
       id: "camera",
-      component: <h1>CAMERA</h1>,
+      component: <img style={{borderRadius: 6}} height="200px" width="200px" src={require('../../assets/img/Cam.svg')} alt={"BND"}/>,
     },
     {
       position: {
@@ -49,7 +49,7 @@ const exampleLevel: Level = {
         row: 3
       },
       id: "bnd",
-      component: <h1>BND</h1>
+      component: <img style={{borderRadius: 6}} height="200px" width="200px" src={require('../../assets/img/BND.svg')} alt={"BND"}/>
     }
   ],
   relations: [
