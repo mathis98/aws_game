@@ -2,54 +2,75 @@ import * as React from 'react';
 import SplitterLayout from 'react-splitter-layout';
 import Popup from 'components/Popup';
 import '!style-loader!css-loader!./SplitterLayoutCustom.css';
-import Draggable from '../components/dnd/Draggable';
+import GameBoard from 'components/GameBoard';
+import SplitterPanel from 'components/SplitterPanel';
+import Draggable from 'components/dnd/Draggable';
+
+import exampleLevel from 'levels/exampleLevel';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import Fab from '@material-ui/core/Fab';
+import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
+import { Level, getState } from 'levels/level';
 
 const css = require('./GamePage.css');
 
 export interface GamePageProps {}
 
-const draggables = [
-  {
-    id: 'a',
-    text: 'S3',
-    icon: 'S3'
-  },
-  {
-    id: 'b',
-    text: 'DynamoDB',
-    icon: 'DynamoDB'
-  }
-]
-
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export class GamePage extends React.Component<GamePageProps, {}> {
+  level: Level;
+
+  constructor(props: GamePageProps) {
+    super(props);
+    this.level = exampleLevel;
+    this.checkLevel = this.checkLevel.bind(this);
+  }
+
   render() {
     return (
-      <DragDropContextProvider backend={HTML5Backend}>
-        <div>
-          <Popup />
-          <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={25}>
-            <div>Main</div>
-            <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={40}>
+      <div>
+        <Popup />
+        <DragDropContextProvider backend={HTML5Backend}>
+        <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={33}>
+          <SplitterPanel className={css.gridBackground} >
+            <GameBoard level={this.level} />
+            <Fab variant="extended" color="primary" className={css.startButton} onClick={this.checkLevel} >
+              <Icon>play_circle_outline</Icon>&nbsp;&nbsp;Abgabe
+            </Fab>
+          </SplitterPanel>
+          <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={40}>
+            <SplitterPanel>
               <div className={css.sidebar_upper}>
                 <Typography variant="h5" gutterBottom className={css.service_header}>
                   Services
                 </Typography>
                 <div className={css.draggable_wrapper}>
-                  {draggables.map(draggable => {
+                  {exampleLevel.draggables.map((draggable: any)=> {
                     return <Draggable data={draggable} key={draggable.id} />
                   })}
                 </div>
               </div>
-              <div>Description</div>
-            </SplitterLayout>
+
+            </SplitterPanel>
+            <SplitterPanel>
+              Info
+            </SplitterPanel>
           </SplitterLayout>
-        </div>
-      </DragDropContextProvider>
+        </SplitterLayout>
+        </DragDropContextProvider>
+      </div>
     );
+  }
+
+  checkLevel() {
+    const state: any = getState(this.level);
+    if (state["database"] === "s3") {
+      alert("Richtig!")
+    } else {
+      alert("Da fehlt noch was!")
+    }
   }
 }

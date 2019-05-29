@@ -12,9 +12,10 @@
 .draggable_big {
   height: 200px;
   width: 200px;
-  margin: 0 auto;
   cursor: grab;
-  float: left;
+  margin-bottom: 20px;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .draggable_text {
@@ -42,4 +43,8 @@
 
 .draggable_icon {
   margin-top: -18px;
+}
+
+.draggableActive {
+  opacity: 0.5;
 }

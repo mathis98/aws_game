@@ -1,0 +1,43 @@
+.board {
+    height: 100%;
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+    display: grid;
+    position: absolute;
+    min-width: min-content;
+    min-height: min-content;
+}
+
+.boardElement {
+    border: 1px solid gray;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrowTarget {
+    border: 1px solid forestgreen;
+    display: inline-block;
+}
+
+.svgOverlay {
+    position: absolute;
+    overflow: visible;
+}
+
+.sidebar_upper {
+  padding-top: 20px;
+}
+
+.service_header {
+  text-align: center;
+}
+
+.draggable_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

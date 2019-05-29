@@ -15,7 +15,8 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, 'src/components'),
       pages: path.resolve(__dirname, 'src/pages'),
-      level_data: path.resolve(__dirname, 'level_data')
+      level_data: path.resolve(__dirname, 'level_data'),
+      levels: path.resolve(__dirname, 'src/levels'),
     }
   },
   output: {
@@ -57,18 +58,18 @@ module.exports = {
         use: 'raw-loader',
       },
       {
-        test: /\.(png|jpg|gif|svg)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000
+          test: /\.(png|jpg|gif|svg)$/i,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 10000
+              }
             }
-          }
-        ]
-      }
-    ]
-  },
+          ]
+        }
+      ]
+    },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'

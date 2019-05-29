@@ -1,25 +1,20 @@
 import * as React from 'react';
-const css = require('./Draggable.css');
-
+import cx from 'classnames';
 import { DragSource, ConnectDragSource } from 'react-dnd';
-import Typography from '@material-ui/core/Typography';
+
 import Info from '@material-ui/icons/Info';
 
-const types = {
-  ITEM: 'draggable'
-}
+const css = require('./Draggable.css');
+
 
 const itemSource = {
   beginDrag(props: any) {
     return {
       id: props.data.id,
-      text: props.data.text,
-      icon: props.data.icon
+      component: props.data.component
     }
   },
-  endDrag(props: any) {
-    /* code here */
-  }
+  endDrag() {}
 }
 
 function collect(connect: any, monitor: any) {
@@ -29,21 +24,12 @@ function collect(connect: any, monitor: any) {
   }
 }
 
-export interface draggableDataProps {
-  id: string,
-  text: string,
-  icon: string,
-  hide?: boolean
-}
-
 export interface DraggableProps {
   connectDragSource?: ConnectDragSource;
   isDragging?: boolean;
-  data: draggableDataProps;
+  data: any;
 }
 
-// 'StartPageProps' describes the shape of props.
-// State is never set so we use the '{}' type.
 class Draggable extends React.Component<DraggableProps, {}> {
   render() {
     const { isDragging, connectDragSource } = this.props;
@@ -53,8 +39,9 @@ class Draggable extends React.Component<DraggableProps, {}> {
         <img src={require(`../../../assets/img/${this.props.data.icon}.svg`) as string} className={css.draggable_icon} />
         <p className={css.draggable_text}>{this.props.data.text}</p>
       </div>
+
     );
   }
 }
 
-export default DragSource(types.ITEM, itemSource, collect) (Draggable);
+export default DragSource('draggable', itemSource, collect) (Draggable);
