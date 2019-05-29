@@ -19,8 +19,8 @@ export interface LevelElement {
 export interface LevelRelation {
   sourceId: string;
   targetId: string;
-  sourceAnchor: AnchorPosition;
-  targetAnchor: AnchorPosition;
+  sourceAnchor?: AnchorPosition;
+  targetAnchor?: AnchorPosition;
 }
 
 export interface LevelPosition {
