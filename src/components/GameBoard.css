@@ -25,17 +25,3 @@
     position: absolute;
     overflow: visible;
 }
-
-.sidebar_upper {
-  padding-top: 20px;
-}
-
-.service_header {
-  text-align: center;
-}
-
-.draggable_wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}

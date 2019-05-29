@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
-import { Level, AnchorPosition } from 'levels/level';
+import { Level, AnchorPosition, LevelRelation } from 'levels/level';
 
 const css = require('./GameBoard.css');
 
@@ -85,6 +85,9 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
     for (const relation of this.props.level.relations) {
       const source = this.elements[relation.sourceId].current;
       const target = this.elements[relation.targetId].current;
+
+      completeAnchors(source, target, relation);
+
       state.edges.push({
         start: calculateAnchorPoint(source, relation.sourceAnchor),
         end: calculateAnchorPoint(target, relation.targetAnchor),
@@ -106,7 +109,27 @@ function getFrStr(spec: number[] | number): string {
   return " 1fr".repeat(spec);
 }
 
+// auto complete missing anchor points by minimizing the distance
+function completeAnchors(source: any, target: any, relation: LevelRelation): void {
+  const allAnchors: AnchorPosition[] = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
+  var minDist = Infinity;
+  var bestSourceAnchor: AnchorPosition;
+  var bestTargetAnchor: AnchorPosition;
+  for (const sourceAnchor of (relation.sourceAnchor && [relation.sourceAnchor]) || allAnchors) {
+    for (const targetAnchor of (relation.targetAnchor && [relation.targetAnchor]) || allAnchors) {
+      const dist = distance(calculateAnchorPoint(source, sourceAnchor), calculateAnchorPoint(target, targetAnchor));
+      if (dist < minDist) {
+        minDist = dist;
+        bestSourceAnchor = sourceAnchor;
+        bestTargetAnchor = targetAnchor;
+      }
+    }
+  }
+  relation.sourceAnchor = bestSourceAnchor;
+  relation.targetAnchor = bestTargetAnchor;
+}
 
+// build the svg path of an edge
 function renderSVGEdge(edge: Edge, key: string): JSX.Element {
   // get required space for arrow
   if (edge.endNormal.x && edge.endNormal.y) {
@@ -118,7 +141,7 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
   }
 
   // draw a bezier curve using the anchor normals
-  const normalFactor = Math.min(distance(edge.start, edge.end), Math.abs(edge.start.x - edge.end.x), Math.abs(edge.start.y - edge.end.y), 150);
+  const normalFactor = Math.min(Math.abs(edge.start.x - edge.end.x), Math.abs(edge.start.y - edge.end.y));
   const d = `M ${edge.start.x} ${edge.start.y}
              C ${edge.start.x + (edge.startNormal.x * normalFactor)} ${edge.start.y + (edge.startNormal.y * normalFactor)},
                ${edge.end.x + (edge.endNormal.x * normalFactor)} ${edge.end.y + (edge.endNormal.y * normalFactor)},
@@ -127,14 +150,14 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
   return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" />;
 }
 
-
+// get the concrete position of an elements anchor point
 function calculateAnchorPoint(elem: any, anchor: AnchorPosition ): Point {
   const x: number = elem.offsetLeft;
   const y: number = elem.offsetTop;
   const w: number = elem.clientWidth;
   const h: number = elem.clientHeight;
-  const w2: number = Math.round(elem.clientWidth / 2);
-  const h2: number = Math.round(elem.clientHeight / 2);
+  const w2: number = elem.clientWidth / 2;
+  const h2: number = elem.clientHeight / 2;
 
   switch (anchor) {
     case "top-left":
@@ -156,6 +179,7 @@ function calculateAnchorPoint(elem: any, anchor: AnchorPosition ): Point {
   }
 }
 
+// get the normal vector of an anchor
 function getNormal(anchor: AnchorPosition): Point {
   switch (anchor) {
     case "top-left":
@@ -177,6 +201,7 @@ function getNormal(anchor: AnchorPosition): Point {
   }
 }
 
+// calculate the distance between twoo points
 function distance(a: Point, b: Point): number {
   return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
 }

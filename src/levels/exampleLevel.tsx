@@ -56,14 +56,10 @@ const exampleLevel: Level = {
     {
       sourceId: "camera",
       targetId: "database",
-      sourceAnchor: "bottom",
-      targetAnchor: "left"
     },
     {
       sourceId: "database",
       targetId: "bnd",
-      sourceAnchor: "bottom",
-      targetAnchor: "left"
     }
   ],
   draggables: draggables
