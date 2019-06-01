@@ -18,6 +18,10 @@ import { Level, getState } from 'levels/level';
 const css = require('./GamePage.css');
 
 const { default: s3Md } = require("level_data/services_desc/s3.md");
+const { default: popup } = require("level_data/level_1/popup.md");
+
+var source = popup;
+var active = false;
 
 export interface GamePageProps {}
 
@@ -26,25 +30,33 @@ export interface GamePageProps {}
 export class GamePage extends React.Component<GamePageProps, {}> {
   level: Level;
 
+  private Markdown = React.createRef<MarkdownViewer>();
+
+  showDesc = (id:string) => {
+    source = active ? popup : require(`level_data/services_desc/${id}.md`).default;
+    active = !active;
+    this.Markdown.current.changeText(source);
+  }
+
   constructor(props: GamePageProps) {
     super(props);
     this.level = exampleLevel;
     this.checkLevel = this.checkLevel.bind(this);
+    this.Markdown = React.createRef();
   }
-
   render() {
     return (
       <div>
         <Popup />
         <DragDropContextProvider backend={HTML5Backend}>
-        <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={33}>
+        <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
           <SplitterPanel className={css.gridBackground} >
             <GameBoard level={this.level} />
             <Fab variant="extended" color="primary" className={css.startButton} onClick={this.checkLevel} >
               <Icon>play_circle_outline</Icon>&nbsp;&nbsp;Abgabe
             </Fab>
           </SplitterPanel>
-          <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={40}>
+          <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={50}>
             <SplitterPanel>
               <div className={css.sidebar_upper}>
                 <Typography variant="h5" gutterBottom className={css.service_header}>
@@ -52,14 +64,15 @@ export class GamePage extends React.Component<GamePageProps, {}> {
                 </Typography>
                 <div className={css.draggable_wrapper}>
                   {exampleLevel.draggables.map((draggable: any)=> {
-                    return <Draggable data={draggable} key={draggable.id} />
+                    return <Draggable data={draggable} key={draggable.id} showMe={this.showDesc} />
                   })}
                 </div>
               </div>
 
             </SplitterPanel>
             <SplitterPanel>
-              <MarkdownViewer source={s3Md} />
+              <MarkdownViewer source={source} ref={this.Markdown}/>
+              {/* <MarkdownViewer source={s3Md} /> */}
             </SplitterPanel>
           </SplitterLayout>
         </SplitterLayout>

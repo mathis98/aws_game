@@ -28,6 +28,7 @@ export interface DraggableProps {
   connectDragSource?: ConnectDragSource;
   isDragging?: boolean;
   data: any;
+  showMe: any;
 }
 
 class Draggable extends React.Component<DraggableProps, {}> {
@@ -35,7 +36,9 @@ class Draggable extends React.Component<DraggableProps, {}> {
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource (
       <div style={{opacity: isDragging ? 0.5 : 1, cursor: isDragging ? 'grabbing' : ''}} className={css.draggable}>
-        <Info className={css.info}/>
+        <div onClick={() => this.props.showMe(this.props.data.id)}>
+          <Info className={css.info} />
+        </div>
         <img src={require(`../../../assets/img/${this.props.data.icon}.svg`) as string} className={css.draggable_icon} />
         <p className={css.draggable_text}>{this.props.data.text}</p>
       </div>
