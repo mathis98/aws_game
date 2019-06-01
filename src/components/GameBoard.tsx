@@ -120,7 +120,7 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
   // draw a bezier curve using the anchor normals
   const normalFactor = Math.min(distance(edge.start, edge.end), Math.abs(edge.start.x - edge.end.x), Math.abs(edge.start.y - edge.end.y), 150);
   const d = `M ${edge.start.x} ${edge.start.y}
-             C ${edge.start.x + (edge.startNormal.x * normalFactor)} ${edge.start.y + (edge.startNormal.y * normalFactor)},
+             L ${edge.start.x + (edge.startNormal.x * normalFactor)} ${edge.start.y + (edge.startNormal.y * normalFactor)},
                ${edge.end.x + (edge.endNormal.x * normalFactor)} ${edge.end.y + (edge.endNormal.y * normalFactor)},
                ${edge.end.x} ${edge.end.y}`;
 
