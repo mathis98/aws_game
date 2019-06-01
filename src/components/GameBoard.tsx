@@ -39,6 +39,11 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
     this.onResize = this.onResize.bind(this);
   }
 
+  shouldComponentUpdate(props: GameBoardProps, state: GameBoardState) {
+    if(this.props != props) return false;
+    return true;
+  }
+
   render() {
     var gridStyle = {
       gridTemplate: getFrStr(this.props.level.rows) + "/" + getFrStr(this.props.level.columns),
