@@ -23,10 +23,14 @@ const { default: popup } = require("level_data/level_1/popup.md");
 var source = popup;
 
 export interface GamePageProps {}
+export interface GamePageState {
+  shown: string;
+  source: string;
+}
 
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
-export class GamePage extends React.Component<GamePageProps, any> {
+export class GamePage extends React.Component<GamePageProps, GamePageState> {
   level: Level;
 
   private Markdown = React.createRef<MarkdownViewer>();
