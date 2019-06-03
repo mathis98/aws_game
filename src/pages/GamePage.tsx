@@ -5,44 +5,43 @@ import '!style-loader!css-loader!./SplitterLayoutCustom.css';
 import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
-import Draggable from 'components/dnd/Draggable';
 
-import exampleLevel from 'levels/exampleLevel';
+import { level2 } from 'levels/exampleLevel';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
-import { Level, getState } from 'levels/level';
+import { Level } from 'levels/level';
+import { allAWSProducts } from 'levels/LevelElements';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const css = require('./GamePage.css');
 
-const { default: s3Md } = require("level_data/services_desc/s3.md");
 const { default: popup } = require("level_data/level_1/popup.md");
 
-var source = popup;
-
 export interface GamePageProps {}
+
 export interface GamePageState {
-  shown: string;
-  source: string;
+  currentInfoId?: string;
+  currentInfoMd?: string;
 }
 
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export class GamePage extends React.Component<GamePageProps, GamePageState> {
   level: Level;
-
-  showDesc = (id:string) => {
-    source = id == '' ? popup : require(`level_data/services_desc/${id}.md`).default;
-    this.setState({shown: id, source: source});
-  }
+  defaultInfo: string;
+  gameBoardRef: any;
 
   constructor(props: GamePageProps) {
     super(props);
-    this.level = exampleLevel;
+    this.level = level2;
+    this.defaultInfo = popup;
     this.checkLevel = this.checkLevel.bind(this);
-    this.state = {shown: '', source: source};
+    this.showInfo = this.showInfo.bind(this);
+    this.state = {currentInfoMd: this.defaultInfo};
+    this.gameBoardRef = React.createRef();
   }
 
   render() {
@@ -52,7 +51,7 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
         <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
           <SplitterPanel className={css.gridBackground} >
-            <GameBoard level={this.level} />
+            <GameBoard level={this.level} ref={this.gameBoardRef} />
             <Fab variant="extended" color="primary" className={css.startButton} onClick={this.checkLevel} >
               <Icon>play_circle_outline</Icon>&nbsp;&nbsp;Abgabe
             </Fab>
@@ -64,14 +63,21 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
                   Services
                 </Typography>
                 <div className={css.draggable_wrapper}>
-                  {exampleLevel.draggables.map((draggable: any)=> {
-                    return <Draggable data={draggable} key={draggable.id} showMe={this.showDesc} shown={this.state.shown} />
-                  })}
+                    {this.level.awspalette.map(product => {
+                      const el = allAWSProducts[product];
+                      return React.cloneElement(el, { infoCallback: this.showInfo });
+                    })}
                 </div>
               </div>
             </SplitterPanel>
             <SplitterPanel>
-              <MarkdownViewer source={this.state.source}/>
+              <MarkdownViewer source={this.state.currentInfoMd} />
+              {this.state.currentInfoId &&
+              <Tooltip title="Zurück">
+                <Fab color="primary" className={css.infoResetButton} onClick={() => this.showInfo("")}>
+                  <Icon>undo</Icon>
+                </Fab>
+              </Tooltip>}
             </SplitterPanel>
           </SplitterLayout>
         </SplitterLayout>
@@ -80,12 +86,19 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
     );
   }
 
-  checkLevel() {
-    const state: any = getState(this.level);
-    if (state["database"] === "s3") {
-      alert("Richtig!")
+  showInfo(infoId: string) {
+    const state: GamePageState = {currentInfoId: infoId};
+    if (infoId) {
+      state.currentInfoMd = require(`level_data/services_desc/${infoId}.md`).default;
     } else {
-      alert("Da fehlt noch was!")
+      state.currentInfoMd = this.defaultInfo;
+    }
+    this.setState(state);
+  }
+
+  checkLevel() {
+    if (this.gameBoardRef && this.gameBoardRef.current) {
+      console.log("State of level:", this.gameBoardRef.current.getState());
     }
   }
 }

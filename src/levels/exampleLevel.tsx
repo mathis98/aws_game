@@ -1,27 +1,6 @@
-import * as React from 'react';
-import Draggable from 'components/dnd/Draggable';
-import Droppable from 'components/dnd/Droppable';
-import Standard from 'components/dnd/Standard';
 import { Level } from './level';
 
-
-var draggables: any = [
-  {
-    'id': 's3',
-    'icon': 'S3',
-    'text': 'S3',
-    'component': <div><Standard icon='S3' text='S3' /></div>
-  }
-]
-
-export var droppables: any = [
-  {
-    'id': 'slot1',
-    'child': {}
-  }
-]
-
-const exampleLevel: Level = {
+export const level1: Level = {
   columns: 5,
   rows: 5,
   gap: "1em",
@@ -32,7 +11,7 @@ const exampleLevel: Level = {
         row: 1
       },
       id: "camera",
-      component: <img style={{ borderRadius: 6, WebkitUserDrag: "none"}} height="200px" width="200px" src={require('../../assets/img/Cam.svg')} alt={"BND"}/>,
+      icon: "bnd"
     },
     {
       position: {
@@ -40,8 +19,7 @@ const exampleLevel: Level = {
         row: 2
       },
       id: "database",
-      droppable: true,
-      component: <Droppable data={droppables[0]} />
+      droppable: true
     },
     {
       position: {
@@ -49,7 +27,7 @@ const exampleLevel: Level = {
         row: 3
       },
       id: "bnd",
-      component: <img style={{ borderRadius: 6, WebkitUserDrag: "none"}} height="200px" width="200px" src={require('../../assets/img/BND.svg')} alt={"BND"}/>
+      icon: "cam"
     }
   ],
   relations: [
@@ -62,7 +40,64 @@ const exampleLevel: Level = {
       targetId: "bnd",
     }
   ],
-  draggables: draggables
+  awspalette: ["s3"]
 }
 
-export default exampleLevel;
+export const level2: Level = {
+  columns: 5,
+  rows: 6,
+  gap: "1em",
+  elements: [
+    {
+      position: {
+        column: 1,
+        row: 1
+      },
+      id: "camera",
+      icon: "bnd"
+    },
+    {
+      position: {
+        column: 2,
+        row: 2
+      },
+      id: "database1",
+      droppable: true
+    },
+    {
+      position: {
+        column: 2,
+        row: 3
+      },
+      id: "database2",
+      droppable: true
+    },
+    {
+      position: {
+        column: 3,
+        row: 4
+      },
+      id: "bnd",
+      icon: "cam"
+    }
+  ],
+  relations: [
+    {
+      sourceId: "camera",
+      targetId: "database1",
+    },
+    {
+      sourceId: "camera",
+      targetId: "database2",
+    },
+    {
+      sourceId: "database1",
+      targetId: "bnd",
+    },
+    {
+      sourceId: "database2",
+      targetId: "bnd",
+    }
+  ],
+  awspalette: ["s3", "dynamodb"]
+}

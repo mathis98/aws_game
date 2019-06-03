@@ -1,6 +1,8 @@
 import * as React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 import { Level, AnchorPosition, LevelRelation } from 'levels/level';
+import { allIcons } from 'levels/LevelElements';
+import Droppable from 'components/dnd/Droppable';
 
 const css = require('./GameBoard.css');
 
@@ -31,12 +33,22 @@ const arrowStyle = {
 
 export default class GameBoard extends React.Component<GameBoardProps, GameBoardState> {
   elements: Record<string, any>;
+  droppables: Record<string, any>;
 
   constructor(props: Readonly<GameBoardProps>) {
     super(props);
     this.elements = {};
     this.state = { edges: []};
     this.onResize = this.onResize.bind(this);
+
+    this.droppables = {};
+
+    // create droppable components
+    for (let el of this.props.level.elements || []) {
+      if (el.droppable) {
+        this.droppables[el.id] = <Droppable data={{ id: el.id, child: {} }} />;
+      }
+    }
   }
 
   shouldComponentUpdate(props: GameBoardProps, state: GameBoardState) {
@@ -70,10 +82,20 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
               gridColumn: (el.position.column + 1) + "/ span " + (el.position.columnSpan || 1),
               gridRow: (el.position.row + 1) + "/ span " + (el.position.rowSpan || 1)
             }
+
+            let component;
+            if (el.droppable) {
+              component = this.droppables[el.id];
+            } else if (el.icon) {
+              component = allIcons[el.icon];
+            } else {
+              throw "At least one of the properties 'droppable', 'icon' must be set!";
+            }
+
             return (
               <div key={el.id} className={css.boardElement} style={elementStyle}>
                 <div className={css.arrowTarget} ref={this.elements[el.id]} >
-                  {el.component}
+                  {component}
                 </div>
               </div>
               )
@@ -102,6 +124,20 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
     }
 
     this.setState(state);
+  }
+
+  // get the state of the dropzones (the id of the draggable child)
+  getState() {
+    const state: any = {};
+    for (const droppableID of Object.keys(this.droppables)) {
+      const data = this.droppables[droppableID].props.data;
+      if (data && data.child && data.child.id && !data.child.hide) {
+        state[droppableID] = data.child.id;
+      } else {
+        state[droppableID] = undefined;
+      }
+    }
+    return state;
   }
 }
 

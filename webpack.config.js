@@ -17,6 +17,7 @@ module.exports = {
       pages: path.resolve(__dirname, 'src/pages'),
       level_data: path.resolve(__dirname, 'level_data'),
       levels: path.resolve(__dirname, 'src/levels'),
+      assets: path.resolve(__dirname, 'assets'),
     }
   },
   output: {

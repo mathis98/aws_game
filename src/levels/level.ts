@@ -1,4 +1,4 @@
-import { DroppableType } from "components/dnd/Droppable";
+import { IconLevelElement, AWSProductLevelElement } from "levels/LevelElements";
 
 export interface Level {
   columns: number[] | number;
@@ -6,14 +6,14 @@ export interface Level {
   gap?: string;
   elements?: LevelElement[];
   relations?: LevelRelation[];
-  draggables: any;
+  awspalette: AWSProductLevelElement[];
 }
 
 export interface LevelElement {
-  droppable?: boolean;
-  component: React.ReactNode;
   id: string;
   position: LevelPosition;
+  droppable?: boolean;     // <-  one of these
+  icon?: IconLevelElement; // <-  must be set
 }
 
 export interface LevelRelation {
@@ -31,19 +31,3 @@ export interface LevelPosition {
 }
 
 export type AnchorPosition = "top-left" | "top" | "top-right" | "right" | "bottom-right" | "bottom" | "bottom-left" | "left";
-
-// returns a map from droppable ids with the ids of the containing elements
-export function getState(level: Level) {
-  const result: any = {};
-  if (level.elements) {
-    level.elements.filter(el => el.droppable).forEach(el => {
-      const dropEl = <DroppableType> el.component;
-      if (dropEl.props.data.child && !dropEl.props.data.child.hide) {
-        result[el.id] = dropEl.props.data.child.id;
-      } else {
-        result[el.id] = undefined;
-      }
-    });
-  }
-  return result;
-}

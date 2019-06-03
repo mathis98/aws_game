@@ -31,7 +31,8 @@ export interface DraggableProps {
 class Draggable extends React.Component<DraggableProps, {}> {
   render() {
     const { connectDragSource } = this.props;
-    return connectDragSource(!this.props.data.hide && this.props.data.component);
+    const component = <div className={css.draggable} >{this.props.data.component}</div>;
+    return connectDragSource(!this.props.data.hide && component);
   }
 }
 
