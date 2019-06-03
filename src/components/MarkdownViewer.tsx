@@ -14,17 +14,10 @@ export interface MarkdownViewerProps {
  * @returns div element conaining the rendered markdown
  */
 export default class MarkdownViewer extends React.Component<MarkdownViewerProps, {sourceString:string}> {
-  constructor(props: any) {
-    super(props);
-    this.state = {sourceString: this.props.source}
-  }
-  changeText = (s: any) => {
-    this.setState({sourceString: s});
-  }
   render() {
     return (
       <div className={css.markdownContainer}>
-        <ReactMarkdown source={this.state.sourceString} escapeHtml={false} />
+        <ReactMarkdown source={this.props.source} escapeHtml={false} />
       </div>
     )
   }

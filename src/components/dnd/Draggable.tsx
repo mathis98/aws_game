@@ -2,8 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { DragSource, ConnectDragSource } from 'react-dnd';
 
-import Info from '@material-ui/icons/Info';
-import Close from '@material-ui/icons/Close';
+import Icon from '@material-ui/core/Icon';
 
 const css = require('./Draggable.css');
 
@@ -35,24 +34,17 @@ export interface DraggableProps {
 class Draggable extends React.Component<DraggableProps, any> {
 
   show = () => {
-    if(this.state.shown == this.props.data.id) {
-      this.props.showMe('');
-      this.setState({shown: ''})
-    }
-    else {
-      this.props.showMe(this.props.data.id);
-      this.setState({shown: this.props.data.id});
-    }
+    if(this.props.shown == this.props.data.id) this.props.showMe('');
+    else this.props.showMe(this.props.data.id);
   }
 
   render() {
-    this.state = {shown: this.props.shown}
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource (
       <div style={{opacity: isDragging ? 0.5 : 1, cursor: isDragging ? 'grabbing' : ''}} className={css.draggable}>
         <div onClick={() => {this.show()}}>
-          {this.props.data.id != this.state.shown && <Info className={css.info} />}
-          {this.props.data.id == this.state.shown && <Close className={css.info} />}
+          {this.props.data.id != this.props.shown && <Icon className={css.info}>info</Icon>}
+          {this.props.data.id == this.props.shown && <Icon className={css.info}>close</Icon>}
         </div>
         <img src={require(`../../../assets/img/${this.props.data.icon}.svg`) as string} className={css.draggable_icon} />
         <p className={css.draggable_text}>{this.props.data.text}</p>

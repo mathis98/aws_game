@@ -32,19 +32,17 @@ export class GamePage extends React.Component<GamePageProps, any> {
   private Markdown = React.createRef<MarkdownViewer>();
 
   showDesc = (id:string) => {
-    if(id == '') source = popup;
-    else source = require(`level_data/services_desc/${id}.md`).default;
-    this.Markdown.current.changeText(source);
-    this.setState({shown: id});
+    source = id == '' ? popup : require(`level_data/services_desc/${id}.md`).default;
+    this.setState({shown: id, source: source});
   }
 
   constructor(props: GamePageProps) {
     super(props);
     this.level = exampleLevel;
     this.checkLevel = this.checkLevel.bind(this);
-    this.Markdown = React.createRef();
-    this.state = {shown: ''};
+    this.state = {shown: '', source: source};
   }
+
   render() {
     return (
       <div>
@@ -69,10 +67,9 @@ export class GamePage extends React.Component<GamePageProps, any> {
                   })}
                 </div>
               </div>
-
             </SplitterPanel>
             <SplitterPanel>
-              <MarkdownViewer source={source} ref={this.Markdown}/>
+              <MarkdownViewer source={this.state.source}/>
             </SplitterPanel>
           </SplitterLayout>
         </SplitterLayout>
