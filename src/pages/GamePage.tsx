@@ -5,15 +5,15 @@ import '!style-loader!css-loader!./SplitterLayoutCustom.css';
 import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
-import Draggable from 'components/dnd/Draggable';
 
-import exampleLevel from 'levels/exampleLevel';
+import { level2 } from 'levels/exampleLevel';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
-import { Level, getState } from 'levels/level';
+import { Level } from 'levels/level';
+import { allAWSProducts } from 'levels/LevelElements';
 
 const css = require('./GamePage.css');
 
@@ -25,11 +25,14 @@ export interface GamePageProps {}
 // State is never set so we use the '{}' type.
 export class GamePage extends React.Component<GamePageProps, {}> {
   level: Level;
+  gameBoardRef: any;
 
   constructor(props: GamePageProps) {
     super(props);
-    this.level = exampleLevel;
+    this.level = level2;
     this.checkLevel = this.checkLevel.bind(this);
+
+    this.gameBoardRef = React.createRef();
   }
 
   render() {
@@ -39,7 +42,7 @@ export class GamePage extends React.Component<GamePageProps, {}> {
         <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={33}>
           <SplitterPanel className={css.gridBackground} >
-            <GameBoard level={this.level} />
+            <GameBoard level={this.level} ref={this.gameBoardRef} />
             <Fab variant="extended" color="primary" className={css.startButton} onClick={this.checkLevel} >
               <Icon>play_circle_outline</Icon>&nbsp;&nbsp;Abgabe
             </Fab>
@@ -51,9 +54,7 @@ export class GamePage extends React.Component<GamePageProps, {}> {
                   Services
                 </Typography>
                 <div className={css.draggable_wrapper}>
-                  {exampleLevel.draggables.map((draggable: any)=> {
-                    return <Draggable data={draggable} key={draggable.id} />
-                  })}
+                    {this.level.awspalette.map(product => allAWSProducts[product])}
                 </div>
               </div>
 
@@ -69,11 +70,8 @@ export class GamePage extends React.Component<GamePageProps, {}> {
   }
 
   checkLevel() {
-    const state: any = getState(this.level);
-    if (state["database"] === "s3") {
-      alert("Richtig!")
-    } else {
-      alert("Da fehlt noch was!")
+    if (this.gameBoardRef && this.gameBoardRef.current) {
+      console.log("State of level:", this.gameBoardRef.current.getState());
     }
   }
 }

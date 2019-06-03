@@ -1,0 +1,14 @@
+.awsProduct {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.awsProductText {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: white;
+}
