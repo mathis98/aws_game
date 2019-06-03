@@ -33,8 +33,6 @@ export interface GamePageState {
 export class GamePage extends React.Component<GamePageProps, GamePageState> {
   level: Level;
 
-  private Markdown = React.createRef<MarkdownViewer>();
-
   showDesc = (id:string) => {
     source = id == '' ? popup : require(`level_data/services_desc/${id}.md`).default;
     this.setState({shown: id, source: source});

@@ -31,7 +31,7 @@ export interface DraggableProps {
   shown: string;
 }
 
-class Draggable extends React.Component<DraggableProps, any> {
+class Draggable extends React.Component<DraggableProps, {}> {
 
   show = () => {
     if(this.props.shown == this.props.data.id) this.props.showMe('');
