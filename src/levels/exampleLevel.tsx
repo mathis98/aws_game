@@ -11,6 +11,12 @@ var draggables: any = [
     'icon': 'S3',
     'text': 'S3',
     'component': <div><Standard icon='S3' text='S3' /></div>
+  },
+  {
+    'id': 's4',
+    'icon': 'S3',
+    'text': 'S4',
+    'component': <div><Standard icon='S3' text='S4' /></div>
   }
 ]
 

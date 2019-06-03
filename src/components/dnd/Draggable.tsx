@@ -29,21 +29,30 @@ export interface DraggableProps {
   isDragging?: boolean;
   data: any;
   showMe: any;
+  shown: string;
 }
 
-class Draggable extends React.Component<DraggableProps, {shown:boolean}> {
-  constructor(props: any) {
-    super(props);
-    this.state = {shown: false}
+class Draggable extends React.Component<DraggableProps, any> {
+
+  show = () => {
+    if(this.state.shown == this.props.data.id) {
+      this.props.showMe('');
+      this.setState({shown: ''})
+    }
+    else {
+      this.props.showMe(this.props.data.id);
+      this.setState({shown: this.props.data.id});
+    }
   }
 
   render() {
+    this.state = {shown: this.props.shown}
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource (
       <div style={{opacity: isDragging ? 0.5 : 1, cursor: isDragging ? 'grabbing' : ''}} className={css.draggable}>
-        <div onClick={() => {this.props.showMe(this.props.data.id); this.setState({shown: !this.state.shown})}}>
-          {!this.state.shown && <Info className={css.info} />}
-          {this.state.shown && <Close className={css.info} />}
+        <div onClick={() => {this.show()}}>
+          {this.props.data.id != this.state.shown && <Info className={css.info} />}
+          {this.props.data.id == this.state.shown && <Close className={css.info} />}
         </div>
         <img src={require(`../../../assets/img/${this.props.data.icon}.svg`) as string} className={css.draggable_icon} />
         <p className={css.draggable_text}>{this.props.data.text}</p>

@@ -21,21 +21,21 @@ const { default: s3Md } = require("level_data/services_desc/s3.md");
 const { default: popup } = require("level_data/level_1/popup.md");
 
 var source = popup;
-var active = false;
 
 export interface GamePageProps {}
 
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
-export class GamePage extends React.Component<GamePageProps, {}> {
+export class GamePage extends React.Component<GamePageProps, any> {
   level: Level;
 
   private Markdown = React.createRef<MarkdownViewer>();
 
   showDesc = (id:string) => {
-    source = active ? popup : require(`level_data/services_desc/${id}.md`).default;
-    active = !active;
+    if(id == '') source = popup;
+    else source = require(`level_data/services_desc/${id}.md`).default;
     this.Markdown.current.changeText(source);
+    this.setState({shown: id});
   }
 
   constructor(props: GamePageProps) {
@@ -43,6 +43,7 @@ export class GamePage extends React.Component<GamePageProps, {}> {
     this.level = exampleLevel;
     this.checkLevel = this.checkLevel.bind(this);
     this.Markdown = React.createRef();
+    this.state = {shown: ''};
   }
   render() {
     return (
@@ -64,7 +65,7 @@ export class GamePage extends React.Component<GamePageProps, {}> {
                 </Typography>
                 <div className={css.draggable_wrapper}>
                   {exampleLevel.draggables.map((draggable: any)=> {
-                    return <Draggable data={draggable} key={draggable.id} showMe={this.showDesc} />
+                    return <Draggable data={draggable} key={draggable.id} showMe={this.showDesc} shown={this.state.shown} />
                   })}
                 </div>
               </div>
@@ -72,7 +73,6 @@ export class GamePage extends React.Component<GamePageProps, {}> {
             </SplitterPanel>
             <SplitterPanel>
               <MarkdownViewer source={source} ref={this.Markdown}/>
-              {/* <MarkdownViewer source={s3Md} /> */}
             </SplitterPanel>
           </SplitterLayout>
         </SplitterLayout>
