@@ -46,9 +46,21 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
   }
 
   render() {
+    let popup;
+
+    console.log("hi");
+    // @ts-ignore
+      if (this.state["database"] === "s3") {
+        popup = <Popup/>;
+    } else {
+        popup = <div/>;
+    }
+
+
     return (
       <div>
-        <Popup />
+        <Popup/>
+          {popup}
         <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
           <SplitterPanel className={css.gridBackground} >
@@ -83,9 +95,9 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
   checkLevel() {
     const state: any = getState(this.level);
     if (state["database"] === "s3") {
-      alert("Richtig!")
+      return true;
     } else {
-      alert("Da fehlt noch was!")
+      return false;
     }
   }
 }
