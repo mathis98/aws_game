@@ -1,4 +1,4 @@
-## Willkommen, neuer Mitarbeiter, bei AWS Bootcamp!
+## Willkommen, neuer Mitarbeiter, bei AWS Boot Camp!
 
 Wir sind ein Internetdienstleister und bieten unseren Kunden verschiedene Web Services an.
 Sie können bei uns Ihre Webseiten hosten,

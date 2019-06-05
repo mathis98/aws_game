@@ -2,9 +2,8 @@
   --app-bar-height: 64px;
 }
 
-.link_nostyle {
-  text-decoration: none;
-  color: white;
+.toolBar {
+  justify-content: space-between;
 }
 
 .fixed_size_app_bar {
