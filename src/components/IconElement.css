@@ -1,6 +1,6 @@
 .iconElement {
   border-radius: 6px;
   -webkit-user-drag: none;
-  height: 200px;
-  width: 200px;
+  height: var(--element-size);
+  width: var(--element-size);
 }
