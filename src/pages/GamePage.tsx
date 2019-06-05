@@ -7,6 +7,7 @@ import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
 
 import { level1 } from 'levels/level1';
+import { level2 } from 'levels/level2';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Fab from '@material-ui/core/Fab';
