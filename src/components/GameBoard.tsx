@@ -181,12 +181,13 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
     edge.end.y += edge.endNormal.y * 5 * arrowStyle.strokeWidth;
   }
 
-  // draw a bezier curve using the anchor normals
-  const normalFactor = Math.min(Math.abs(edge.start.x - edge.end.x), Math.abs(edge.start.y - edge.end.y));
+  const width = edge.end.x - edge.start.x;
+  const height = edge.end.y - edge.start.y;
+
   const d = `M ${edge.start.x} ${edge.start.y}
-             L ${edge.start.x + (edge.startNormal.x * normalFactor)} ${edge.start.y + (edge.startNormal.y * normalFactor)},
-               ${edge.end.x + (edge.endNormal.x * normalFactor)} ${edge.end.y + (edge.endNormal.y * normalFactor)},
-               ${edge.end.x} ${edge.end.y}`;
+             l ${Math.min(width / 2, height / 2)} ${Math.min(width / 2, height / 2)}
+             l ${width > height ? Math.abs(height - width) : 0} ${width <= height ? Math.abs(height - width) : 0}
+             L ${edge.end.x} ${edge.end.y}`;
 
   return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" />;
 }
