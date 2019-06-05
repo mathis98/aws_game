@@ -40,3 +40,7 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+
+:root {
+  --element-size: 17vh;
+}
