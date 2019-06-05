@@ -52,8 +52,8 @@ export const level2: Level = {
   elements: [
     {
       position: {
-        column: 0,
-        row: 0
+        column: 1,
+        row: 1
       },
       id: "camera",
       icon: "bnd"
@@ -87,11 +87,13 @@ export const level2: Level = {
     {
       sourceId: "camera",
       targetId: "database1",
-        sourceAnchor: "right"
+        sourceAnchor: "right",
+      targetAnchor: "top"
     },
     {
       sourceId: "camera",
       targetId: "database2",
+      sourceAnchor: "bottom",
         targetAnchor: "left"
     },
     {
@@ -103,6 +105,8 @@ export const level2: Level = {
     {
       sourceId: "database2",
       targetId: "bnd",
+      sourceAnchor: "bottom",
+      targetAnchor: "left"
     }
   ],
   awspalette: ["s3", "dynamodb"]
