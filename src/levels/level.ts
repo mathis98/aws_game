@@ -7,6 +7,7 @@ export interface Level {
   elements?: LevelElement[];
   relations?: LevelRelation[];
   awspalette: AWSProductLevelElement[];
+  solution: any;
 }
 
 export interface LevelElement {

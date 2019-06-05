@@ -6,9 +6,7 @@ import LinkButton from '../components/LinkButton';
 const css = require('./StartPage.css');
 import cx from "classnames";
 
-// 'StartPageProps' describes the shape of props.
-// State is never set so we use the '{}' type.
-export class StartPage extends React.Component {
+export default class StartPage extends React.Component {
   render() {
     return (
       <PageWrapper>

@@ -5,7 +5,6 @@ import '!style-loader!css-loader!./SplitterLayoutCustom.css';
 import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
-
 import { level1 } from 'levels/level1';
 import { level2 } from 'levels/level2';
 import { DragDropContextProvider } from 'react-dnd';
@@ -16,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { Level } from 'levels/level';
 import { allAWSProducts } from 'levels/LevelElements';
 import Tooltip from '@material-ui/core/Tooltip';
+import { withRouter } from 'react-router-dom';
 
 const css = require('./GamePage.css');
 
@@ -28,9 +28,8 @@ export interface GamePageState {
   currentInfoMd?: string;
 }
 
-// 'StartPageProps' describes the shape of props.
-// State is never set so we use the '{}' type.
-export class GamePage extends React.Component<GamePageProps, GamePageState> {
+// use <any, any> so withRouter() works
+class GamePage extends React.Component<any, any> {
   level: Level;
   defaultInfo: string;
   gameBoardRef: any;
@@ -100,7 +99,16 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
 
   checkLevel() {
     if (this.gameBoardRef && this.gameBoardRef.current) {
-      console.log("State of level:", this.gameBoardRef.current.getState());
+      const state = this.gameBoardRef.current.getState();
+      console.log("State of level:", state);
+      if (JSON.stringify(state) === JSON.stringify(this.level.solution)) {
+        // TODO: make next level dynamic
+        this.props.history.push('/success/2');
+      } else {
+        alert("falsch");
+      }
     }
   }
 }
+
+export default withRouter(GamePage);
