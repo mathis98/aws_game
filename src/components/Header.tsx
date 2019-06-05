@@ -14,12 +14,14 @@ export default class Header extends React.Component<HeaderProps, any> {
   render() {
     return (
       <AppBar position="static" className={css.fixed_size_app_bar}>
-        <Toolbar>
-          <Link to="/" className={css.link_nostyle}>
-            <Typography variant="title" color="inherit">
-              🦅 AWS Bootcamp 🦅
-            </Typography>
-          </Link>
+        <Toolbar className={css.toolBar}>
+          <Typography variant="h6" color="inherit">
+            AWS Boot Camp
+          </Typography>
+
+          <Typography variant="h7" color="inherit">
+            42 Punkte
+          </Typography>
         </Toolbar>
       </AppBar>
     );
