@@ -10,6 +10,7 @@ export const level1: Level = {
         column: 1,
         row: 1
       },
+      // btw was that intentional?
       id: "camera",
       icon: "bnd"
     },
@@ -26,6 +27,7 @@ export const level1: Level = {
         column: 3,
         row: 3
       },
+      // hmm
       id: "bnd",
       icon: "cam"
     }
@@ -50,8 +52,8 @@ export const level2: Level = {
   elements: [
     {
       position: {
-        column: 1,
-        row: 1
+        column: 0,
+        row: 0
       },
       id: "camera",
       icon: "bnd"
@@ -75,7 +77,7 @@ export const level2: Level = {
     {
       position: {
         column: 3,
-        row: 4
+        row: 5
       },
       id: "bnd",
       icon: "cam"
@@ -85,14 +87,18 @@ export const level2: Level = {
     {
       sourceId: "camera",
       targetId: "database1",
+        sourceAnchor: "right"
     },
     {
       sourceId: "camera",
       targetId: "database2",
+        targetAnchor: "left"
     },
     {
       sourceId: "database1",
       targetId: "bnd",
+        sourceAnchor: "right",
+        targetAnchor: "top"
     },
     {
       sourceId: "database2",
