@@ -18,8 +18,8 @@ ReactDOM.render(
     <Header />
     <Switch>
       <Route path="/" exact component={StartPage} />
-      <Route path="/game" exact component={GamePage} />
       <Route path="/levels" exact component={LevelsPage} />
+      <Route path="/levels/:levelId" exact component={GamePage} />
 
       {/* Catch all unknown routes and show error page */}
       <Route component={ErrorPage} />

@@ -1,7 +1,5 @@
 import * as React from 'react';
 import IconElement from 'components/IconElement';
-import Draggable from 'components/dnd/Draggable';
-import AWSProduct from 'components/dnd/AWSProduct';
 import AWSPaletteItem from 'components/dnd/AWSPaletteItem';
 
 export type IconLevelElement = "cam" | "bnd" | "camera" | "documents" | "shop" | "customer";

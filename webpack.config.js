@@ -22,7 +22,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle.min.js'
+    filename: 'bundle.min.js',
+    publicPath: '/' + (process.env.BRANCH_NAME === "master" ? "" : (process.env.CI_COMMIT_SHA || "")),
   },
   devtool: "source-map",
   module: {
