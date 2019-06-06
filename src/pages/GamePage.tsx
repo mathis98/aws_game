@@ -38,6 +38,7 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
   constructor(props: GamePageProps) {
     super(props);
     this.level = level1;
+    //this.level = level2; //load level 2 at start (comment line above)
     this.defaultInfo = popup;
     this.checkLevel = this.checkLevel.bind(this);
     this.showInfo = this.showInfo.bind(this);
