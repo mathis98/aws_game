@@ -4,12 +4,16 @@ import Draggable from 'components/dnd/Draggable';
 import AWSProduct from 'components/dnd/AWSProduct';
 import AWSPaletteItem from 'components/dnd/AWSPaletteItem';
 
-export type IconLevelElement = "cam" | "bnd";
+export type IconLevelElement = "cam" | "bnd" | "camera" | "documents" | "shop" | "customer";
 
 // the decorative level elements without functionality
 export const allIcons: Record<IconLevelElement, JSX.Element> = {
   cam: <IconElement image={require('../../assets/img/Cam.svg')} description="Kamera" />,
   bnd: <IconElement image={require('../../assets/img/BND.svg')} description="BND" />,
+  camera: <IconElement image={require('../../assets/img/camera.svg')} description="Kamera" />,
+  documents: <IconElement image={require('../../assets/img/documents.svg')} description="Kundendaten" />,
+  shop: <IconElement image={require('../../assets/img/shop.svg')} description="Shop" />,
+  customer: <IconElement image={require('../../assets/img/customer.svg')} description="Kunde" />
 }
 
 export type AWSProductLevelElement = "s3" | "dynamodb";

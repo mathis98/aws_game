@@ -6,6 +6,7 @@ import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
 import { level1 } from 'levels/level1';
+import { level2 } from 'levels/level2';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Fab from '@material-ui/core/Fab';
@@ -36,6 +37,7 @@ class GamePage extends React.Component<any, any> {
   constructor(props: GamePageProps) {
     super(props);
     this.level = level1;
+    //this.level = level2; //load level 2 at start (comment line above)
     this.defaultInfo = popup;
     this.checkLevel = this.checkLevel.bind(this);
     this.showInfo = this.showInfo.bind(this);
