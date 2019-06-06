@@ -14,7 +14,7 @@ export class StartPage extends React.Component {
       <PageWrapper>
         <div className={css.button_group}>
           <div className={css.start_button_wrapper}>
-            <LinkButton className={css.start_button} variant="contained" size="large" color="secondary" to="/game">
+            <LinkButton className={css.start_button} variant="contained" size="large" color="secondary" to="/levels/1">
               Neues Spiel starten
             </LinkButton>
           </div>
