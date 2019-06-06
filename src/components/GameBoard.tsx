@@ -184,12 +184,21 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
   const width = edge.end.x - edge.start.x;
   const height = edge.end.y - edge.start.y;
 
-  const d = `M ${edge.start.x} ${edge.start.y}
+  const is90degree = true;
+  let d;
+  if(is90degree) {
+    const normalFactor = Math.min(Math.abs(edge.start.x - edge.end.x), Math.abs(edge.start.y - edge.end.y));
+    d = `M ${edge.start.x} ${edge.start.y}
+             L ${edge.start.x + (edge.startNormal.x * normalFactor)} ${edge.start.y + (edge.startNormal.y * normalFactor)},
+               ${edge.end.x + (edge.endNormal.x * normalFactor)} ${edge.end.y + (edge.endNormal.y * normalFactor)},
+               ${edge.end.x} ${edge.end.y}`;
+  } else {
+    d = `M ${edge.start.x} ${edge.start.y}
              l ${Math.min(width / 2, height / 2)} ${Math.min(width / 2, height / 2)}
              l ${width > height ? Math.abs(height - width) : 0} ${width <= height ? Math.abs(height - width) : 0}
              L ${edge.end.x} ${edge.end.y}`;
-
-  return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" />;
+  }
+  return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)"/>;
 }
 
 // get the concrete position of an elements anchor point
