@@ -5,9 +5,7 @@ import LinkButton from 'components/LinkButton';
 import Typography from '@material-ui/core/Typography';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 
-// 'StartPageProps' describes the shape of props.
-// State is never set so we use the '{}' type.
-export class ErrorPage extends React.Component {
+export default class ErrorPage extends React.Component {
   render() {
     return (
       <PageWrapper>

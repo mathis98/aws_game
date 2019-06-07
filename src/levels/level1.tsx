@@ -44,5 +44,8 @@ export const level1: Level = {
       targetAnchor: "left"
     }
   ],
-  awspalette: ["s3"]
+  awspalette: ["s3"],
+  solution: {
+    database: "s3"
+  }
 }
