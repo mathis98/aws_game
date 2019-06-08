@@ -66,16 +66,11 @@ export const level3: Level ={
       targetAnchor: "left"
     },
     {
-      sourceId: "dynamo",
-      targetId: "iam",
-      sourceAnchor: "top",
-      targetAnchor: "bottom"
-    },
-    {
       sourceId: "iam",
       targetId: "dynamo",
       sourceAnchor: "bottom",
-      targetAnchor: "top"
+      targetAnchor: "top",
+      doubleArrow: true
     }
   ],
   awspalette: ["iam", "shield", "dynamodb", "s3"]
