@@ -1,0 +1,5 @@
+## Level 3
+
+Ein Spieleunternehmen hat wegen eines Patches die Wut von Spielern ihres MMORPG entfacht. Seitdem werden die Anmelde- und Spielserver durch DDoS-Angriffen lahm gelegt, sodass das Unternehmen täglich Spieler -und Geld- verliert!
+
+Gebraucht werden leistungsstarke Spielserver die vom Anmeldeservice abgekoppelt ist. Die registrierten Spielern werden mit Account und verschlüsseltem Passwort gespeichert. Nach außen soll das System Robust gegen DDoS-Angriffen sein.
