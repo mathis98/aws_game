@@ -19,6 +19,11 @@ export class StartPage extends React.Component {
             </LinkButton>
           </div>
           <div className={css.start_button_wrapper}>
+            <LinkButton className={css.start_button} variant="contained" size="large" color="secondary" to="/levels/2">
+              Level 2
+            </LinkButton>
+          </div>
+          <div className={css.start_button_wrapper}>
             <LinkButton className={css.start_button} variant="contained" size="large" color="secondary" to="/levels">
               Level wählen
             </LinkButton>

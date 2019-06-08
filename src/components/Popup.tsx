@@ -7,9 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MarkdownViewer from 'components/MarkdownViewer';
 
-const { default: instructions } = require("level_data/level_1/popup.md");
+const { default: instructions } = require(`level_data/level_${1}/popup.md`);
 
-class Popup extends React.Component<any, any> {
+export interface PopupProps {
+  levelId?: number;
+}
+
+class Popup extends React.Component<PopupProps, any> {
   handleNextBound: any;
   handleCancelBound: any;
 
