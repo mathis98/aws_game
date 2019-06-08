@@ -70,6 +70,12 @@ export const level3: Level ={
       targetId: "iam",
       sourceAnchor: "top",
       targetAnchor: "bottom"
+    },
+    {
+      sourceId: "iam",
+      targetId: "dynamo",
+      sourceAnchor: "bottom",
+      targetAnchor: "top"
     }
   ],
   awspalette: ["iam", "shield", "dynamodb", "s3"]
