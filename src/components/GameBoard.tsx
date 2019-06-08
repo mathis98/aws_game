@@ -19,6 +19,7 @@ interface Edge {
   end: Point;
   startNormal: Point;
   endNormal: Point;
+  doubleArrow?: boolean;
 }
 
 interface Point {
@@ -71,6 +72,9 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
             <marker id="arrow" markerWidth="5" markerHeight="4" refY="2" orient="auto">
               <path d="M 0,0 L5,2 L0,4 z" fill="black" />
             </marker>
+            <marker id="arrowBack" markerWidth="-5" markerHeight="-4" refY="-2" orient="auto">
+              <path d="M 0,0 L-5,-2 L0,-4 z" fill="black" />
+            </marker>
           </defs>
           {this.state.edges.map((edge, idx) => renderSVGEdge(edge, "edge" + idx))}
         </svg>
@@ -120,6 +124,7 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
         end: calculateAnchorPoint(target, relation.targetAnchor),
         startNormal: getNormal(relation.sourceAnchor),
         endNormal: getNormal(relation.targetAnchor),
+        doubleArrow: relation.doubleArrow
       })
     }
 
@@ -181,6 +186,17 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
     edge.end.y += edge.endNormal.y * 5 * arrowStyle.strokeWidth;
   }
 
+  if (edge.doubleArrow) {
+    // get required space for back arrow
+    if (edge.startNormal.x && edge.startNormal.y) {
+      edge.start.x += edge.startNormal.x * 5 * arrowStyle.strokeWidth * 0.707;
+      edge.start.y += edge.startNormal.y * 5 * arrowStyle.strokeWidth * 0.707;
+    } else {
+      edge.start.x += edge.startNormal.x * 5 * arrowStyle.strokeWidth;
+      edge.start.y += edge.startNormal.y * 5 * arrowStyle.strokeWidth;
+    }
+  }
+
   const a1 = edge.start.x;
   const a2 = edge.start.y;
   const b1 = edge.end.x;
@@ -207,7 +223,11 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
          L ${edge.end.x} ${edge.end.y}`;
   }
 
-  return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" />;
+  if (edge.doubleArrow) {
+    return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" markerStart="url(#arrowBack)" />;
+  } else {
+    return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" />;
+  }
 }
 
 // get the concrete position of an elements anchor point
