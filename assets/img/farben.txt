@@ -1,0 +1,2 @@
+s3 bucket:  #3F8624
+dynamo db:  #3B48CC
