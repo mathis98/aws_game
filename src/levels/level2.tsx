@@ -1,4 +1,5 @@
 import { Level } from './level';
+import { ExactMatchValidator } from './DefaultValidators';
 
 export const level2: Level ={
     columns: 6,
@@ -86,5 +87,6 @@ export const level2: Level ={
       targetAnchor: "top"
     }
   ],
-  awspalette: ["s3", "dynamodb"]
+  awspalette: ["s3", "dynamodb"],
+  validator: ExactMatchValidator({ dynamo: "dynamodb", S3: "s3" })
 }

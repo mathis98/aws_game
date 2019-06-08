@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
-import { Level, AnchorPosition, LevelRelation } from 'levels/level';
+import { Level, AnchorPosition, LevelRelation, LevelState } from 'levels/level';
 import { allIcons } from 'levels/LevelElements';
 import Droppable from 'components/dnd/Droppable';
 
@@ -127,8 +127,8 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
   }
 
   // get the state of the dropzones (the id of the draggable child)
-  getState() {
-    const state: any = {};
+  getState(): LevelState {
+    const state: LevelState = {};
     for (const droppableID of Object.keys(this.droppables)) {
       const data = this.droppables[droppableID].props.data;
       if (data && data.child && data.child.id && !data.child.hide) {

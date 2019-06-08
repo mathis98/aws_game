@@ -16,6 +16,7 @@ import { Level } from 'levels/level';
 import { allAWSProducts } from 'levels/LevelElements';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withRouter } from 'react-router-dom';
+import GamePageSnackbar from 'components/GamePageSnackbar';
 
 const css = require('./GamePage.css');
 
@@ -26,7 +27,9 @@ export interface GamePageProps {}
 export interface GamePageState {
   currentInfoId?: string;
   currentInfoMd?: string;
+  showSnackbar?: boolean;
 }
+
 
 // use <any, any> so withRouter() works
 class GamePage extends React.Component<any, any> {
@@ -49,6 +52,9 @@ class GamePage extends React.Component<any, any> {
     return (
       <div>
         <Popup />
+        <GamePageSnackbar open={this.state.showSnackbar} onClose={() => this.setState({ showSnackbar: false })}
+          message="Es gibt noch leere Felder! Fülle alle Felder bevor du abgibst."
+        />
         <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
           <SplitterPanel className={css.gridBackground} >
@@ -101,12 +107,16 @@ class GamePage extends React.Component<any, any> {
     if (this.gameBoardRef && this.gameBoardRef.current) {
       const state = this.gameBoardRef.current.getState();
       console.log("State of level:", state);
-      if (JSON.stringify(state) === JSON.stringify(this.level.solution)) {
-        // TODO: make next level dynamic
-        this.props.history.push('/success/2');
-      } else {
-        alert("falsch");
+
+      // show snackbar if some empty dropzones exist
+      for (let key in state) {
+        if (state[key] === undefined) {
+          this.setState({ showSnackbar: true });
+          return;
+        }
       }
+
+      console.log(this.level.validator(state));
     }
   }
 }
