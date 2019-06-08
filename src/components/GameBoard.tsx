@@ -181,12 +181,31 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
     edge.end.y += edge.endNormal.y * 5 * arrowStyle.strokeWidth;
   }
 
-  // draw a bezier curve using the anchor normals
-  const normalFactor = Math.min(Math.abs(edge.start.x - edge.end.x), Math.abs(edge.start.y - edge.end.y));
-  const d = `M ${edge.start.x} ${edge.start.y}
-             L ${edge.start.x + (edge.startNormal.x * normalFactor)} ${edge.start.y + (edge.startNormal.y * normalFactor)},
-               ${edge.end.x + (edge.endNormal.x * normalFactor)} ${edge.end.y + (edge.endNormal.y * normalFactor)},
-               ${edge.end.x} ${edge.end.y}`;
+  const a1 = edge.start.x;
+  const a2 = edge.start.y;
+  const b1 = edge.end.x;
+  const b2 = edge.end.y;
+
+  const v1 = edge.startNormal.x;
+  const v2 = edge.startNormal.y;
+  const w1 = edge.endNormal.x;
+  const w2 = edge.endNormal.y;
+
+  // calculate the intersection of the 2 lines
+  const s = (v2 * (b1 - a1) + a2 * v1 - b2 * v1) / (v1 * w2 - v2 * w1); // magic
+
+  let d;
+
+  if (!isNaN(s) && isFinite(s)) {
+    // an intersection exists
+    d = `M ${edge.start.x} ${edge.start.y}
+         L ${edge.end.x + s * edge.endNormal.x} ${edge.end.y + s * edge.endNormal.y},
+           ${edge.end.x} ${edge.end.y}`;
+  } else {
+    // lines are parallel, fall back to direct connection
+    d = `M ${edge.start.x} ${edge.start.y}
+         L ${edge.end.x} ${edge.end.y}`;
+  }
 
   return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" />;
 }
