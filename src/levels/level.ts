@@ -7,7 +7,7 @@ export interface Level {
   elements?: LevelElement[];
   relations?: LevelRelation[];
   awspalette: AWSProductLevelElement[];
-  solution: any;
+  validator: LevelValidator;
 }
 
 export interface LevelElement {
@@ -32,3 +32,15 @@ export interface LevelPosition {
 }
 
 export type AnchorPosition = "top-left" | "top" | "top-right" | "right" | "bottom-right" | "bottom" | "bottom-left" | "left";
+
+export type LevelState = Record<string, string>;
+
+export interface LevelFeedback {
+  correct: boolean;
+  points?: number;
+  maxPoints?: number;
+  stars?: 0 | 1 | 2 | 3;
+  feedbackComponent?: JSX.Element;
+}
+
+export type LevelValidator = (state: LevelState) => LevelFeedback;
