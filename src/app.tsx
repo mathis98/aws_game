@@ -8,7 +8,6 @@ import Header from 'components/Header';
 import StartPage from "pages/StartPage";
 import GamePage from "pages/GamePage";
 import LevelsPage from "pages/LevelsPage";
-import SuccessPage from "pages/SuccessPage";
 import ErrorPage from "pages/ErrorPage";
 
 require('./global.css');
@@ -21,7 +20,6 @@ ReactDOM.render(
       <Route path="/" exact component={StartPage} />
       <Route path="/game" exact component={GamePage} />
       <Route path="/levels" exact component={LevelsPage} />
-      <Route path="/success/:nextLevel" exact component={SuccessPage} />
 
       {/* Catch all unknown routes and show error page */}
       <Route component={ErrorPage} />

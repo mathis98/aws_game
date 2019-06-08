@@ -1,0 +1,9 @@
+.snackbar {
+  margin-bottom: 4em;
+}
+
+.closeButton {
+  color: #d21d1d !important;
+  margin: 0 0 0 0.5em !important;
+  padding: 0 !important;
+}
