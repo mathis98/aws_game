@@ -2,7 +2,7 @@ import { Level } from './level';
 
 export const level3: Level ={
   columns: 6,
-  rows: 6,
+  rows: 5,
   gap: "2em",
   elements: [
     {
