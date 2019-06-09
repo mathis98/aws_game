@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import MarkdownViewer from 'components/MarkdownViewer';
 
 export interface InstructionsPopupProps extends RouteComponentProps<any> {
-  levelId?: number;
+  instructionsMd: string;
 }
 
 interface InstructionsPopupState {
@@ -15,13 +15,9 @@ interface InstructionsPopupState {
 }
 
 class InstructionsPopup extends React.Component<InstructionsPopupProps, InstructionsPopupState> {
-  instructionsMd: string;
-
   constructor(props: InstructionsPopupProps) {
     super(props);
     this.state = {open: true};
-
-    this.instructionsMd = require(`level_data/level_${this.props.levelId}/popup.md`).default;
 
     this.handleNext = this.handleNext.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
@@ -31,7 +27,7 @@ class InstructionsPopup extends React.Component<InstructionsPopupProps, Instruct
     return (
       <Dialog open={this.state.open} maxWidth="md">
         <DialogContent>
-          <MarkdownViewer source={this.instructionsMd} />
+          <MarkdownViewer source={this.props.instructionsMd} />
         </DialogContent>
         <DialogActions>
           <Button onClick={this.handleCancel} color="secondary">

@@ -20,8 +20,6 @@ import { ErrorPage } from 'pages/ErrorPage'
 
 const css = require('./GamePage.css');
 
-const { default: popup } = require("level_data/level_1/popup.md");
-
 export interface MatchParams {
   levelId: string;
 }
@@ -34,8 +32,6 @@ export interface GamePageState {
   currentInfoMd?: string;
 }
 
-// 'StartPageProps' describes the shape of props.
-// State is never set so we use the '{}' type.
 export class GamePage extends React.Component<GamePageProps, GamePageState> {
   levelId: number;
   level: Level;
@@ -49,7 +45,7 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
 
     this.level = levels[this.levelId - 1];
 
-    this.defaultInfo = popup;
+    this.defaultInfo = require(`level_data/level_${this.levelId}/popup.md`).default;;
     this.checkLevel = this.checkLevel.bind(this);
     this.showInfo = this.showInfo.bind(this);
     this.state = {currentInfoMd: this.defaultInfo};
@@ -63,7 +59,7 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
 
     return (
       <div>
-        <InstructionsPopup levelId={this.levelId} />
+        <InstructionsPopup instructionsMd={this.defaultInfo} />
         <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
           <SplitterPanel className={css.gridBackground} >
