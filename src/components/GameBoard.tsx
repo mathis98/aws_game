@@ -72,8 +72,8 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
             <marker id="arrow" markerWidth="5" markerHeight="4" refY="2" orient="auto">
               <path d="M 0,0 L5,2 L0,4 z" fill="black" />
             </marker>
-            <marker id="arrowBack" markerWidth="-5" markerHeight="-4" refY="-2" orient="auto">
-              <path d="M 0,0 L-5,-2 L0,-4 z" fill="black" />
+            <marker id="arrowBack" markerWidth="5" markerHeight="4" refY="2" orient="auto-start-reverse">
+              <path d="M 0,0 L5,2 L0,4 z" fill="black" />
             </marker>
           </defs>
           {this.state.edges.map((edge, idx) => renderSVGEdge(edge, "edge" + idx))}
