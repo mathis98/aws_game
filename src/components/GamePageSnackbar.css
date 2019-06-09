@@ -2,8 +2,15 @@
   margin-bottom: 4em;
 }
 
+/* remove offset for mobile snackbar */
+@media (max-width: 959.95px) {
+  .snackbar {
+    margin-bottom: initial;
+  }
+}
+
 .closeButton {
-  color: #d21d1d !important;
+  color: #f44336 !important;
   margin: 0 0 0 0.5em !important;
   padding: 0 !important;
 }

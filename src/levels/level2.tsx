@@ -1,5 +1,5 @@
-import { Level } from './level';
-import { ExactMatchValidator } from './DefaultValidators';
+import * as React from 'react';
+import { Level, LevelState, LevelFeedback } from './level';
 
 export const level2: Level ={
     columns: 6,
@@ -88,5 +88,19 @@ export const level2: Level ={
     }
   ],
   awspalette: ["s3", "dynamodb"],
-  validator: ExactMatchValidator({ dynamo: "dynamodb", S3: "s3" })
+  validator: Level2Validator
+}
+
+function Level2Validator(state: LevelState): LevelFeedback {
+  if (state.dynamo === "dynamodb" && state.S3 === "s3") {
+    return {correct: true, stars: 3};
+  } else if (state.dynamo === "s3" && state.S3 === "s3") {
+    return {correct: true, points: 20};
+  } else if (state.dynamo === "dynamodb" && state.S3 === "dynamodb") {
+    return { correct: true, points: 10};
+  } else if (state.dynamo === "s3" && state.S3 === "dynamodb") {
+    return { correct: false, feedbackComponent: <span>Das ist aber wirklich nicht sinnvoll!</span> }; // TODO: set to true, just to show the correct: false case
+  }
+
+  return {correct: false};
 }
