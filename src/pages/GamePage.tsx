@@ -12,11 +12,12 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
-import { Level } from 'levels/level';
+import { Level, LevelFeedback } from 'levels/level';
 import { allAWSProducts } from 'levels/LevelElements';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withRouter } from 'react-router-dom';
 import GamePageSnackbar from 'components/GamePageSnackbar';
+import FeedbackPopup from 'components/FeedbackPopup';
 
 const css = require('./GamePage.css');
 
@@ -28,6 +29,8 @@ export interface GamePageState {
   currentInfoId?: string;
   currentInfoMd?: string;
   showSnackbar?: boolean;
+  feedback?: LevelFeedback;
+  showFeedback?: boolean;
 }
 
 
@@ -39,7 +42,7 @@ class GamePage extends React.Component<any, any> {
 
   constructor(props: GamePageProps) {
     super(props);
-    this.level = level1;
+    this.level = level2;
     //this.level = level2; //load level 2 at start (comment line above)
     this.defaultInfo = popup;
     this.checkLevel = this.checkLevel.bind(this);
@@ -52,6 +55,7 @@ class GamePage extends React.Component<any, any> {
     return (
       <div>
         <Popup />
+        <FeedbackPopup open={this.state.showFeedback} feedback={this.state.feedback} onClose={() => this.setState({showFeedback: false})} />
         <GamePageSnackbar open={this.state.showSnackbar} onClose={() => this.setState({ showSnackbar: false })}
           message="Es gibt noch leere Felder! Fülle alle Felder bevor du abgibst."
         />
@@ -106,7 +110,6 @@ class GamePage extends React.Component<any, any> {
   checkLevel() {
     if (this.gameBoardRef && this.gameBoardRef.current) {
       const state = this.gameBoardRef.current.getState();
-      console.log("State of level:", state);
 
       // show snackbar if some empty dropzones exist
       for (let key in state) {
@@ -116,7 +119,7 @@ class GamePage extends React.Component<any, any> {
         }
       }
 
-      console.log(this.level.validator(state));
+      this.setState({feedback: this.level.validator(state), showFeedback: true});
     }
   }
 }

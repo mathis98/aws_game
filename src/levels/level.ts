@@ -35,12 +35,31 @@ export type AnchorPosition = "top-left" | "top" | "top-right" | "right" | "botto
 
 export type LevelState = Record<string, string>;
 
+/**
+ * LevelFeedback:
+ *  correct: true wenn das Level (egal wie gut) richtig gelöst wurde
+ *  points: wie viele Punkte der Spieler für seine Lösung bekommt    \
+ *  maxPoints: die maximale punktzahl für das level (default: 100)    | <- nur relevant wenn correct = true
+ *  stars: wie viele Sterne gefüllt werden, wenn nicht angegeben,    /
+ *         dann anteil der punkte von den maximalen punkten, sonst alle 3
+ *  feedbackComponent: component die als Tipp im dialog angezeigt wird,
+ *                     für richtige und falsche lösungen
+ */
 export interface LevelFeedback {
   correct: boolean;
   points?: number;
   maxPoints?: number;
-  stars?: 0 | 1 | 2 | 3;
+  stars?: 1 | 2 | 3;
   feedbackComponent?: JSX.Element;
 }
 
+/**
+ * LevelValidator:
+ *  LevelState: Objekt, in dem die für jede dropzone die id des darin
+ *              liegenden aws produkts gespeichert ist
+ *
+ * je nach levelstate soll ein hilfreiches LevelFeedback generiert werden,
+ * gerade bei richtigen aber nicht optimalen Lösungen soll ein tipp gegeben
+ * werden, warum es nicht optimal ist
+ */
 export type LevelValidator = (state: LevelState) => LevelFeedback;
