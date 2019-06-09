@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import PageWrapper from 'components/PageWrapper';
 import LinkButton from '../components/LinkButton';
 
 const css = require('./StartPage.css');
-import cx from "classnames";
 
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
@@ -16,11 +14,6 @@ export class StartPage extends React.Component {
           <div className={css.start_button_wrapper}>
             <LinkButton className={css.start_button} variant="contained" size="large" color="secondary" to="/levels/1">
               Neues Spiel starten
-            </LinkButton>
-          </div>
-          <div className={css.start_button_wrapper}>
-            <LinkButton className={css.start_button} variant="contained" size="large" color="secondary" to="/levels/2">
-              Level 2
             </LinkButton>
           </div>
           <div className={css.start_button_wrapper}>
