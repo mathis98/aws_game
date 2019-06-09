@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SplitterLayout from 'react-splitter-layout';
-import Popup from 'components/Popup';
+import InstructionsPopup from 'components/InstructionsPopup';
 import '!style-loader!css-loader!./SplitterLayoutCustom.css';
 import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
@@ -63,7 +63,7 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
 
     return (
       <div>
-        <Popup levelId={this.levelId} />
+        <InstructionsPopup levelId={this.levelId} />
         <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
           <SplitterPanel className={css.gridBackground} >

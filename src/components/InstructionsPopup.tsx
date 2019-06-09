@@ -6,38 +6,38 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import MarkdownViewer from 'components/MarkdownViewer';
 
-let instructions : string;
-
-export interface PopupProps extends RouteComponentProps<any> {
+export interface InstructionsPopupProps extends RouteComponentProps<any> {
   levelId?: number;
 }
 
-class Popup extends React.Component<PopupProps, any> {
-  handleNextBound: any;
-  handleCancelBound: any;
+interface InstructionsPopupState {
+  open?: boolean;
+}
 
-  constructor(props: any) {
+class InstructionsPopup extends React.Component<InstructionsPopupProps, InstructionsPopupState> {
+  instructionsMd: string;
+
+  constructor(props: InstructionsPopupProps) {
     super(props);
     this.state = {open: true};
 
-    instructions = require(`level_data/level_${this.props.levelId}/popup.md`).default;
+    this.instructionsMd = require(`level_data/level_${this.props.levelId}/popup.md`).default;
 
-    // This binding is necessary to make `this` work in the callback
-    this.handleNextBound = this.handleNext.bind(this);
-    this.handleCancelBound = this.handleCancel.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   render() {
     return (
-      <Dialog open={this.state.open} maxWidth={"md"}>
+      <Dialog open={this.state.open} maxWidth="md">
         <DialogContent>
-          <MarkdownViewer source={instructions} />
+          <MarkdownViewer source={this.instructionsMd} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleCancelBound} color="secondary">
+          <Button onClick={this.handleCancel} color="secondary">
             Abbruch
           </Button>
-          <Button onClick={this.handleNextBound} color="primary" autoFocus>
+          <Button onClick={this.handleNext} color="primary" autoFocus>
             Weiter
           </Button>
         </DialogActions>
@@ -54,4 +54,4 @@ class Popup extends React.Component<PopupProps, any> {
   }
 }
 
-export default withRouter(Popup);
+export default withRouter(InstructionsPopup);
