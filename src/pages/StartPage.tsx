@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import PageWrapper from 'components/PageWrapper';
 import LinkButton from '../components/LinkButton';
 
 const css = require('./StartPage.css');
-import cx from "classnames";
 
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.

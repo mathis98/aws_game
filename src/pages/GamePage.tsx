@@ -37,6 +37,7 @@ export interface GamePageState {
 // 'StartPageProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export class GamePage extends React.Component<GamePageProps, GamePageState> {
+  levelId: number;
   level: Level;
   defaultInfo: string;
   gameBoardRef: any;
@@ -44,7 +45,9 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
   constructor(props: GamePageProps) {
     super(props);
 
-    this.level = levels[Number(this.props.match.params.levelId) - 1];
+    this.levelId = Number(this.props.match.params.levelId);
+
+    this.level = levels[this.levelId - 1];
 
     this.defaultInfo = popup;
     this.checkLevel = this.checkLevel.bind(this);
@@ -54,14 +57,13 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
   }
 
   render() {
-    const levelId = this.props.match.params.levelId;
-    if (isNaN(Number(levelId)) || Number(levelId) - 1 > levels.length) {
+    if (isNaN(this.levelId) || this.levelId - 1 > levels.length) {
       return <ErrorPage />
     }
 
     return (
       <div>
-        <Popup />
+        <Popup levelId={this.levelId} />
         <DragDropContextProvider backend={HTML5Backend}>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
           <SplitterPanel className={css.gridBackground} >
