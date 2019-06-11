@@ -1,7 +1,7 @@
 import { Level } from './level';
 import { ExactMatchValidator } from './DefaultValidators';
 
-export const level1: Level = {
+const level1: Level = {
   columns: 5,
   rows: 5,
   gap: "1em",
@@ -48,3 +48,5 @@ export const level1: Level = {
   awspalette: ["s3"],
   validator: ExactMatchValidator({ database: "s3" })
 }
+
+export default level1;

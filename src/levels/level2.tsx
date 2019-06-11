@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Level, LevelState, LevelFeedback } from './level';
 
-export const level2: Level ={
+const level2: Level ={
     columns: 6,
   rows: 6,
   gap: "1em",
@@ -104,3 +104,5 @@ function Level2Validator(state: LevelState): LevelFeedback {
 
   return {correct: false};
 }
+
+export default level2;
