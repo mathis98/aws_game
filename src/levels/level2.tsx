@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Level, LevelState, LevelFeedback } from './level';
 
-export const level2: Level ={
+const level2: Level ={
     columns: 6,
   rows: 6,
   gap: "1em",
@@ -90,6 +90,8 @@ export const level2: Level ={
   awspalette: ["s3", "dynamodb"],
   validator: Level2Validator
 }
+
+export default level2;
 
 function Level2Validator(state: LevelState): LevelFeedback {
   if (state.dynamo === "dynamodb" && state.S3 === "s3") {
