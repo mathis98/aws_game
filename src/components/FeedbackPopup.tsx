@@ -9,35 +9,65 @@ import ClearIcon from '@material-ui/icons/ClearRounded';
 import StarIcon from '@material-ui/icons/StarRounded';
 import Typography from '@material-ui/core/Typography';
 import LinkButton from './LinkButton';
+import { connect } from 'react-redux';
+import { addScore } from '../actions';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 const css = require('./FeedbackPopup.css');
 
-export interface FeedbackPopupProps {
+export interface FeedbackPopupProps extends RouteComponentProps {
   onClose: () => void;
   feedback?: LevelFeedback;
   open: boolean;
   levelId: number;
+  dispatch: Function;
 }
 
-export default class FeedbackPopup extends React.Component<FeedbackPopupProps, {}> {
+export interface FeedbackPopupState {
+  feedback?: LevelFeedback;
+  starCount: number;
+  points: number;
+}
+
+class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupState> {
+  state: FeedbackPopupState = {
+    starCount: 0,
+    points: 0,
+  };
+
+  nextLevelBound = this.nextLevel.bind(this);
+
+  componentWillReceiveProps(props: FeedbackPopupProps, state: FeedbackPopupState) {
+    this.setState({feedback: props.feedback});
+
+    if (props.feedback && props.feedback.correct) {
+      const starCount = props.feedback.stars || Math.ceil(3 * props.feedback.points / (props.feedback.maxPoints || 100)) || 3;
+      const points = props.feedback.points || Math.round(100 * starCount / 3);
+      this.setState({starCount, points});
+    }
+  }
+
+  nextLevel() {
+    this.props.dispatch(addScore(this.state.points));
+    this.props.history.push(`/levels/${this.props.levelId + 1}`);
+  }
+
   render() {
 
     let content, buttons, hint;
 
     if (this.props.feedback) {
       if (this.props.feedback.correct) {
-        const starCount = this.props.feedback.stars || Math.ceil(3 * this.props.feedback.points / (this.props.feedback.maxPoints || 100)) || 3;
-        const points = this.props.feedback.points || Math.round(100 * starCount / 3);
         content = <>
           <Typography variant="h5">
             Level abgeschlossen!
           </Typography>
           <div className={css.starContainer}>
             <Star delay={0.5} filled />
-            <Star delay={1} filled={starCount > 1} />
-            <Star delay={1.5} filled={starCount > 2} />
+            <Star delay={1} filled={this.state.starCount > 1} />
+            <Star delay={1.5} filled={this.state.starCount > 2} />
           </div>
-          <AnimatedPoints value={points} ticks={4 * 60} />
+          <AnimatedPoints value={this.state.points} ticks={4 * 60} />
           <Typography variant="body1">
             Gute Arbeit! Sie haben eine funktionierende Konfiguration gefunden.
             Wenn Sie noch nicht alle Sterne haben, können sie ihre Lösung noch
@@ -46,7 +76,7 @@ export default class FeedbackPopup extends React.Component<FeedbackPopupProps, {
         </>;
         buttons = <>
           <Button onClick={this.props.onClose}>Lösung verbessern</Button>
-          <LinkButton to={`/levels/${this.props.levelId + 1}`}>Nächstes Level</LinkButton>
+          <Button onClick={this.nextLevelBound}>Nächstes Level</Button>
         </>;
       } else {
         content = <>
@@ -144,3 +174,5 @@ class AnimatedPoints extends React.Component<AnimatedPointsProps, {currentTick: 
     clearInterval(this.interval);
   }
 }
+
+export default connect()(withRouter(FeedbackPopup));
