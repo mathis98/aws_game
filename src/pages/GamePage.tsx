@@ -15,7 +15,6 @@ import { Level, LevelFeedback } from 'levels/level';
 import { allAWSProducts } from 'levels/LevelElements';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withRouter } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router'
 import GamePageSnackbar from 'components/GamePageSnackbar';
 import FeedbackPopup from 'components/FeedbackPopup';
 import ErrorPage from 'pages/ErrorPage'
@@ -23,11 +22,8 @@ import ErrorPage from 'pages/ErrorPage'
 
 const css = require('./GamePage.css');
 
-export interface MatchParams {
-  levelId: string;
-}
-
-export interface GamePageProps extends RouteComponentProps<MatchParams> {
+export interface GamePageProps {
+  levelId: number;
 }
 
 export interface GamePageState {
@@ -38,8 +34,7 @@ export interface GamePageState {
   showFeedback?: boolean;
 }
 
-class GamePage extends React.Component<GamePageProps, GamePageState> {
-  levelId: number;
+export default class GamePage extends React.Component<GamePageProps, GamePageState> {
   level: Level;
   levelInfoMd: string;
   gameBoardRef: any;
@@ -47,10 +42,8 @@ class GamePage extends React.Component<GamePageProps, GamePageState> {
   constructor(props: GamePageProps) {
     super(props);
 
-    this.levelId = Number(this.props.match.params.levelId);
-
-    this.levelInfoMd = require(`level_data/level_${this.levelId}/popup.md`).default;
-    this.level = levels[this.levelId - 1];
+    this.levelInfoMd = require(`level_data/level_${this.props.levelId}/popup.md`).default;
+    this.level = levels[this.props.levelId - 1];
     this.checkLevel = this.checkLevel.bind(this);
     this.showInfo = this.showInfo.bind(this);
     this.state = {currentInfoMd: this.levelInfoMd};
@@ -58,14 +51,14 @@ class GamePage extends React.Component<GamePageProps, GamePageState> {
   }
 
   render() {
-    if (isNaN(this.levelId) || this.levelId - 1 > levels.length) {
+    if (this.props.levelId - 1 > levels.length) {
       return <ErrorPage />
     }
 
     return (
       <div>
         <InstructionsPopup instructionsMd={this.levelInfoMd} />
-        <FeedbackPopup open={this.state.showFeedback} feedback={this.state.feedback} onClose={() => this.setState({showFeedback: false})} />
+        <FeedbackPopup open={this.state.showFeedback} feedback={this.state.feedback} onClose={() => this.setState({showFeedback: false})} levelId={this.props.levelId} />
         <GamePageSnackbar open={this.state.showSnackbar} onClose={() => this.setState({ showSnackbar: false })}
                           message="Es gibt noch leere Felder! Fülle alle Felder bevor du abgibst."
         />
@@ -133,5 +126,3 @@ class GamePage extends React.Component<GamePageProps, GamePageState> {
     }
   }
 }
-
-export default withRouter(GamePage);

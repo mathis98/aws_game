@@ -8,6 +8,7 @@ import cx from "classnames";
 import ClearIcon from '@material-ui/icons/ClearRounded';
 import StarIcon from '@material-ui/icons/StarRounded';
 import Typography from '@material-ui/core/Typography';
+import LinkButton from './LinkButton';
 
 const css = require('./FeedbackPopup.css');
 
@@ -15,6 +16,7 @@ export interface FeedbackPopupProps {
   onClose: () => void;
   feedback?: LevelFeedback;
   open: boolean;
+  levelId: number;
 }
 
 export default class FeedbackPopup extends React.Component<FeedbackPopupProps, {}> {
@@ -44,7 +46,7 @@ export default class FeedbackPopup extends React.Component<FeedbackPopupProps, {
         </>;
         buttons = <>
           <Button onClick={this.props.onClose}>Lösung verbessern</Button>
-          <Button onClick={() => console.log("NOT IMPLEMENTED: save points and start next level")}>Nächstes Level</Button>
+          <LinkButton to={`/levels/${this.props.levelId + 1}`}>Nächstes Level</LinkButton>
         </>;
       } else {
         content = <>

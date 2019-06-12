@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import Header from 'components/Header';
 
 import StartPage from "pages/StartPage";
-import GamePage from "pages/GamePage";
+import GamePageManager from "components/GamePageManager";
 import LevelsPage from "pages/LevelsPage";
 import ErrorPage from "pages/ErrorPage";
 
@@ -19,7 +19,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/" exact component={StartPage} />
       <Route path="/levels" exact component={LevelsPage} />
-      <Route path="/levels/:levelId" exact component={GamePage} />
+      <Route path="/levels/:levelId" exact component={GamePageManager} />
 
       {/* Catch all unknown routes and show error page */}
       <Route component={ErrorPage} />
