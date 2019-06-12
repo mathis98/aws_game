@@ -11,12 +11,13 @@ export interface AWSPaletteItemProps {
   icon: string;
   text: string;
   id: string;
+  color: string;
   infoCallback?: any;
 }
 
 export default class AWSPaletteItem extends React.Component<AWSPaletteItemProps, {}> {
   render() {
-    const awsProduct = <div> <AWSProduct icon={this.props.icon} text={this.props.text} /> </div>;
+    const awsProduct = <div> <AWSProduct icon={this.props.icon} text={this.props.text} color={this.props.color}/> </div>;
     return (
       <div className={css.paletteItem}>
         <Draggable component={awsProduct} id={this.props.id} />

@@ -20,13 +20,8 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
 export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
-<<<<<<< HEAD
   s3: <AWSPaletteItem id="s3" icon="S3" text="S3" key="s3_paletteItem" />,
   dynamodb: <AWSPaletteItem id="dynamodb" icon="DynamoDB" text="DynamoDB" key="dynamodb_paletteItem" />,
   iam: <AWSPaletteItem id="iam" icon="iam" text="IAM" key="iam_paletteItem" />,
   shield: <AWSPaletteItem id="shield" icon="shield" text="Shield" key="shield_paletteItem" />,
-=======
-  s3: <AWSPaletteItem id="s3" icon="s3" text="S3" key="s3_paletteItem" />,
-  dynamodb: <AWSPaletteItem id="dynamodb" icon="dynamodb" text="DynamoDB" key="dynamodb_paletteItem" />,
->>>>>>> rename files to lowercase, add color registry
 }
