@@ -16,7 +16,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   customer: <IconElement image={require('../../assets/img/customer.svg')} description="Kunde" />
 }
 
-export type AWSProductLevelElement = "s3" | "dynamodb";
+export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
