@@ -2,6 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {Route, Switch} from "react-router";
 import { BrowserRouter } from "react-router-dom";
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+import { Provider } from 'react-redux';
 
 import Header from 'components/Header';
 
@@ -12,17 +15,24 @@ import ErrorPage from "pages/ErrorPage";
 
 require('./global.css');
 
-// the routes
-ReactDOM.render(
-  <BrowserRouter basename={"/" + (process.env.BRANCH_NAME === "master" ? "" : (process.env.CI_COMMIT_SHA || ""))}>
-    <Header />
-    <Switch>
-      <Route path="/" exact component={StartPage} />
-      <Route path="/levels" exact component={LevelsPage} />
-      <Route path="/levels/:levelId" exact component={GamePageManager} />
+const store = createStore(
+  rootReducer,
+  '__REDUX_DEVTOOLS_EXTENSION__' in window && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-      {/* Catch all unknown routes and show error page */}
-      <Route component={ErrorPage} />
-    </Switch>
-  </BrowserRouter>,document.getElementById("app")
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter basename={"/" + (process.env.BRANCH_NAME === "master" ? "" : (process.env.CI_COMMIT_SHA || ""))}>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={StartPage} />
+        <Route path="/levels" exact component={LevelsPage} />
+        <Route path="/levels/:levelId" exact component={GamePageManager} />
+
+          {/* Catch all unknown routes and show error page */}
+          <Route component={ErrorPage} />
+        </Switch>
+      </BrowserRouter>,
+  </Provider>,
+  document.getElementById("app")
 );

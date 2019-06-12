@@ -2,11 +2,26 @@
   --app-bar-height: 64px;
 }
 
-.link_nostyle {
-  text-decoration: none;
-  color: white;
+.toolBar {
+  justify-content: space-between;
+  height: var(--app-bar-height);
+  white-space: nowrap;
 }
 
 .fixed_size_app_bar {
   height: var(--app-bar-height);
+}
+
+.toolBarName {
+  background-image: url("../../assets/img/awslogo.svg");
+  background-repeat: no-repeat;
+  background-size: 2.2em;
+  background-position: 0 0.5em;
+  margin-bottom: -0.5em !important;
+  padding-bottom: 0.5em;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
 }
