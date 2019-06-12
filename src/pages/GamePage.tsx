@@ -17,6 +17,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import levels from 'levels/levels'
 import { RouteComponentProps } from 'react-router'
 import { ErrorPage } from 'pages/ErrorPage'
+import DynamicDnDProvider from 'components/DynamicDnDProvider';
 
 const css = require('./GamePage.css');
 
@@ -60,7 +61,7 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
     return (
       <div>
         <InstructionsPopup instructionsMd={this.defaultInfo} />
-        <DragDropContextProvider backend={HTML5Backend}>
+        <DynamicDnDProvider>
         <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
           <SplitterPanel className={css.gridBackground} >
             <GameBoard level={this.level} ref={this.gameBoardRef} />
@@ -93,7 +94,7 @@ export class GamePage extends React.Component<GamePageProps, GamePageState> {
             </SplitterPanel>
           </SplitterLayout>
         </SplitterLayout>
-        </DragDropContextProvider>
+        </DynamicDnDProvider>
       </div>
     );
   }
