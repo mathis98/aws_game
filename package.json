@@ -21,11 +21,13 @@
   "dependencies": {
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^7.1.0",
     "@types/react-splitter-layout": "^3.0.0",
     "react": "^16.8.6",
     "react-dnd": "^7.4.5",
     "react-dnd-html5-backend": "^7.4.4",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
     "react-splitter-layout": "^4.0.0",
     "save": "^2.4.0"
   },

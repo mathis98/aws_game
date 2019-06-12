@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
+import {ScoreState} from '../reducers/score';
 
 const css = require('./Header.css');
 
-export interface HeaderProps {}
+export interface HeaderProps {
+  score: number;
+}
 
-export default class Header extends React.Component<HeaderProps, any> {
+class Header extends React.Component<HeaderProps, {}> {
   render() {
     return (
       <AppBar position="static" className={css.fixed_size_app_bar}>
@@ -20,10 +24,16 @@ export default class Header extends React.Component<HeaderProps, any> {
           </Link>
 
           <Typography variant="h6" color="inherit">
-            42 Punkte
+            {this.props.score} Punkte
           </Typography>
         </Toolbar>
       </AppBar>
     );
   }
 }
+
+const mapStateToProps = (state: {score: ScoreState}) => ({
+  score: state.score.score,
+})
+
+export default connect(mapStateToProps)(Header);
