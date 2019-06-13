@@ -32,7 +32,7 @@ ReactDOM.render(
           {/* Catch all unknown routes and show error page */}
           <Route component={ErrorPage} />
         </Switch>
-      </BrowserRouter>,
+      </BrowserRouter>
   </Provider>,
   document.getElementById("app")
 );
