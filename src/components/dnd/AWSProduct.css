@@ -1,14 +1,25 @@
 .awsProduct {
-    height: 100%;
-    width: 100%;
-    position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.awsProductText {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    background-color: white;
+.awsProductIcon {
+  flex-grow: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.awsProductName {
+  color: white !important;
+  border: solid 0.1em white;
+  border-radius: 1em;
+  padding: 0 0.7em;
+  font-size: 1.2em !important;
+  background-color: #ffffff1c;
+}
+
+.awsProductNameWrapper {
+  margin: 0 auto 0.5em auto;
 }
