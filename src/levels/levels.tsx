@@ -1,5 +1,6 @@
 import level1 from 'levels/level1';
 import level2 from 'levels/level2';
 import level3 from 'levels/level3';
+import level5 from 'levels/level5';
 
-export default [level1, level2, level3];
+export default [level1, level2, level3, null, level5];
