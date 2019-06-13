@@ -14,9 +14,7 @@ export default class AWSProduct extends React.Component<AWSProductProps, {}> {
     const img = require(`assets/img/${this.props.icon}.svg`);
     return (
       <div className={css.awsProduct} style={{backgroundColor: this.props.color}}>
-        {/* <img src={require(`assets/img/${this.props.icon}.svg`) as string} className={css.awsProductIcon} />
-        <span className={css.awsProductText}>{this.props.text}</span> */}
-        <div className={css.awsProductIcon} style={{backgroundImage: `url(${img})`}}/>
+        <div className={css.awsProductIcon} style={{backgroundImage: `url(${img})`}} />
         <div className={css.awsProductNameWrapper}>
           <Typography variant="body1" component="span" className={css.awsProductName}>
             {this.props.text}
