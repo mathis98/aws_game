@@ -8,7 +8,6 @@ import cx from "classnames";
 import ClearIcon from '@material-ui/icons/ClearRounded';
 import StarIcon from '@material-ui/icons/StarRounded';
 import Typography from '@material-ui/core/Typography';
-import LinkButton from './LinkButton';
 import { connect } from 'react-redux';
 import { addScore } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
