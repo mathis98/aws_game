@@ -22,5 +22,3 @@ Zunächst müssen wir die **Videodateien** auf unseren Server hochladen.
 Dafür bietet sich ein **S3-Bucket** an. Ziehen Sie das gebrauchte Icon einfach auf den dafür vorgesehenen Slot.
 
 Eine hervorragende Übung!
-
-<div style='text-align: justify'> asdfasdfasdf </div>
