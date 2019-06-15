@@ -17,7 +17,7 @@ export default class MarkdownViewer extends React.Component<MarkdownViewerProps,
   render() {
     return (
       <div className={css.markdownContainer}>
-        <ReactMarkdown source={this.props.source} escapeHtml={false} />
+        <ReactMarkdown source={this.props.source} escapeHtml={false} linkTarget={"_blank"} />
       </div>
     )
   }
