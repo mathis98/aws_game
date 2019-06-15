@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
-import Icon from "@material-ui/core/Icon";
+import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 
 const css = require('./MarkdownViewer.css');
 
@@ -29,7 +29,7 @@ function LinkRenderer(props: { href: string; children: React.ReactNode; }) {
     <div>
       <a href={props.href} target="_blank" title={props.href}>
         {props.children}
-        <Icon className={css.materialIcons}>open_in_new</Icon>
+        <OpenInNewIcon className={css.materialIcons} />
       </a>
     </div>
   )

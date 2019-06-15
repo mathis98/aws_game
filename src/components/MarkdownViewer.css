@@ -1,7 +1,6 @@
 .markdownContainer {
   font-family: "Roboto";
   padding: 1.5em;
-  text-align: justify;
 }
 
 .markdownContainer pre {
@@ -25,5 +24,6 @@
 }
 
 .materialIcons {
-  vertical-align: text-bottom;
+  font-size: 1em !important;
+  vertical-align: middle;
 }
