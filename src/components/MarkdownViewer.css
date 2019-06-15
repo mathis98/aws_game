@@ -23,3 +23,7 @@
   padding-bottom: .3em;
   border-bottom: 1px solid #eaecef;
 }
+
+.materialIcons {
+  vertical-align: text-bottom;
+}
