@@ -1,18 +1,55 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import {ScoreState} from '../reducers/score';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import StarIcon from '@material-ui/icons/StarRounded';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 const css = require('./Header.css');
 
-export interface HeaderProps {
+export interface HeaderProps extends RouteComponentProps {
   score: number;
 }
 
-class Header extends React.Component<HeaderProps, {}> {
+// TODO: get data from redux instead!
+const data = [
+  {
+    points: 100,
+    stars: 3
+  },
+  {
+    points: 40,
+    stars: 1
+  },
+  {
+    points: 70,
+    stars: 2
+  },
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {}
+];
+
+const totalPoints = data.filter(a => a.points).reduce((a,b) => a+b.points, 0);
+
+class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
+
+  constructor(props: HeaderProps) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <AppBar position="static" className={css.fixed_size_app_bar}>
@@ -23,9 +60,34 @@ class Header extends React.Component<HeaderProps, {}> {
             </Typography>
           </Link>
 
-          <Typography variant="h6" color="inherit">
-            {this.props.score} Punkte
-          </Typography>
+          <Menu
+            keepMounted
+            open={Boolean(this.state.anchorEl)}
+            anchorEl={this.state.anchorEl}
+            onClose={() => this.setState({anchorEl: null})}
+            disableAutoFocusItem
+          >
+            <MenuItem onClick={console.log} disabled divider style={{ opacity: 1 }}>Gesamtpunktzahl: {totalPoints} Punkte</MenuItem>
+            {data.map((d, i) => {
+              i++;
+              return (
+                <MenuItem onClick={() => {this.props.history.push(`/levels/${i}`); this.setState({anchorEl: null})}} key={`menuitem${i}`}>
+                  <div className={css.levelName}>Level {i}</div>
+                  {Boolean(d.points) && <div className={css.levelPoints}>{d.points} Pkt.</div>}
+                  <div className={css.starContainer}>
+                    <StarIcon className={cx(css.star, {[css.starFilled]: d.stars > 0})} />
+                    <StarIcon className={cx(css.star, {[css.starFilled]: d.stars > 1})} />
+                    <StarIcon className={cx(css.star, {[css.starFilled]: d.stars > 2})} />
+                  </div>
+                </MenuItem>)
+            })}
+          </Menu>
+
+          <Button color="inherit" onClick={(event) => this.setState({anchorEl: event.currentTarget})}>
+            <Typography variant="h6" color="inherit">
+              {this.props.score} Punkte
+            </Typography>
+          </Button>
         </Toolbar>
       </AppBar>
     );
@@ -36,4 +98,4 @@ const mapStateToProps = (state: {score: ScoreState}) => ({
   score: state.score.score,
 })
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));
