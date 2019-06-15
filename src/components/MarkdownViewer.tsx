@@ -27,10 +27,10 @@ export default class MarkdownViewer extends React.Component<MarkdownViewerProps,
 function LinkRenderer(props: { href: string; children: React.ReactNode; }) {
   return (
     <div>
-        <a href={props.href} target="_blank" title={props.href}>
-          {props.children}
-          <Icon>open_in_new</Icon>
-        </a>
+      <a href={props.href} target="_blank" title={props.href}>
+        {props.children}
+        <Icon>open_in_new</Icon>
+      </a>
     </div>
   )
 }
