@@ -48,4 +48,8 @@ const score = (state: ScoreState = initialState, action: ScoreAction) => {
   }
 };
 
+export function scoreSum(array: scoreType[]) {
+  return array.reduce((acc, el) => el.points + acc, 0);
+}
+
 export default score;
