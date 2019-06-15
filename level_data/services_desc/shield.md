@@ -17,4 +17,4 @@ Verfügbarkeit nicht zu beeinflussen. Mehrkosten die auf Grund von
 Belastungsspikes eines Angriffes entstehen, werden von AWS nicht
 verrechnet.
 
-Mehr Infos: [AWS Shield](https://aws.amazon.com/shield/)
+[Mehr Infos](https://aws.amazon.com/shield/)
