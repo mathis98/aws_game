@@ -10,4 +10,4 @@ oder Administrators.
 IAM wird automatisch in allen AWS Ressourcen eingebunden, sodass
 granulare Zugriffsverwaltung auch Services-übergreifend möglich ist.
 
-Mehr Infos: [AWS Identity and Access Management (IAM)](https://aws.amazon.com/iam/)
+[Mehr Infos](https://aws.amazon.com/iam/)
