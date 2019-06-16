@@ -1,9 +1,7 @@
 import * as React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
-import Slide from '@material-ui/core/Slide';
+import { Snackbar, Slide, IconButton } from '@material-ui/core';
 import { TransitionProps } from 'react-transition-group/Transition';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import { Close as CloseIcon } from '@material-ui/icons';
 const css = require('./GamePageSnackbar.css');
 
 
