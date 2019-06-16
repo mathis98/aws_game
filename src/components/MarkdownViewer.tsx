@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const css = require('./MarkdownViewer.css');
 
@@ -27,10 +28,12 @@ export default class MarkdownViewer extends React.Component<MarkdownViewerProps,
 function LinkRenderer(props: { href: string; children: React.ReactNode; }) {
   return (
     <div>
-      <a href={props.href} target="_blank" title={props.href}>
-        {props.children}
-        <OpenInNewIcon className={css.materialIcons} />
-      </a>
+      <Tooltip title={props.href}>
+        <a href={props.href} target="_blank">
+          {props.children}
+          <OpenInNewIcon className={css.materialIcons} />
+        </a>
+      </Tooltip>
     </div>
   )
 }
