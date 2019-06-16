@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { LevelFeedback } from 'levels/level';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
+import { DialogContent, DialogActions, Dialog, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import cx from "classnames";
-import ClearIcon from '@material-ui/icons/ClearRounded';
-import StarIcon from '@material-ui/icons/StarRounded';
-import Typography from '@material-ui/core/Typography';
+import { ClearRounded as ClearIcon, StarRounded as StarIcon } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { addScore } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';

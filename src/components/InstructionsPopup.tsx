@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
+import { Button, Dialog, DialogActions, DialogContent } from '@material-ui/core';
 import MarkdownViewer from 'components/MarkdownViewer';
 
 export interface InstructionsPopupProps extends RouteComponentProps<any> {

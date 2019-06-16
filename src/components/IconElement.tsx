@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tooltip from '@material-ui/core/Tooltip';
+import { Tooltip } from '@material-ui/core';
 const css = require('./IconElement.css');
 
 export interface IconElementProps {
