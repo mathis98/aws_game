@@ -1,12 +1,17 @@
 .markdownContainer {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   padding: 1.5em;
+  text-align: left;
 }
 
 .markdownContainer pre {
   background-color: #f6f8fa;
   padding: 1em;
   border-radius: 5px;
+}
+
+.markdownContainer p {
+  text-align: justify;
 }
 
 .markdownContainer a {
