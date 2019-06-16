@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {ScoreState} from '../reducers/score';
 
@@ -14,6 +12,8 @@ export interface HeaderProps {
 
 class Header extends React.Component<HeaderProps, {}> {
   render() {
+    console.log("hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+
     return (
       <AppBar position="static" className={css.fixed_size_app_bar}>
         <Toolbar className={css.toolBar}>

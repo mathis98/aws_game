@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Draggable from 'components/dnd/Draggable';
 import AWSProduct from 'components/dnd/AWSProduct';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-import Tooltip from '@material-ui/core/Tooltip';
+import { IconButton, Tooltip } from '@material-ui/core';
+import { Info as InfoIcon } from '@material-ui/icons';
 
 const css = require('./AWSPaletteItem.css');
 
