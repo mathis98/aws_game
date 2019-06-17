@@ -23,6 +23,7 @@ export interface LevelRelation {
   sourceAnchor?: AnchorPosition;
   targetAnchor?: AnchorPosition;
   doubleArrow?: boolean;
+  dashed?: boolean;
 }
 
 export interface LevelPosition {

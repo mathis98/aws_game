@@ -5,3 +5,9 @@
 .draggable {
   cursor: grab;
 }
+
+/* we need this so the child content fills the entire space */
+.draggable, .draggable > div {
+  height: 100%;
+  width: 100%;
+}

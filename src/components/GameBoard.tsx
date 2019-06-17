@@ -20,6 +20,7 @@ interface Edge {
   startNormal: Point;
   endNormal: Point;
   doubleArrow?: boolean;
+  dashed?: boolean;
 }
 
 interface Point {
@@ -31,6 +32,10 @@ const arrowStyle = {
   stroke: "black",
   strokeWidth: 3
 }
+
+const dashedArrowStyle = Object.assign({
+  strokeDasharray: 6
+}, arrowStyle);
 
 export default class GameBoard extends React.Component<GameBoardProps, GameBoardState> {
   elements: Record<string, any>;
@@ -124,7 +129,8 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
         end: calculateAnchorPoint(target, relation.targetAnchor),
         startNormal: getNormal(relation.sourceAnchor),
         endNormal: getNormal(relation.targetAnchor),
-        doubleArrow: relation.doubleArrow
+        doubleArrow: relation.doubleArrow,
+        dashed: relation.dashed
       })
     }
 
@@ -223,11 +229,10 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
          L ${edge.end.x} ${edge.end.y}`;
   }
 
-  if (edge.doubleArrow) {
-    return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" markerStart="url(#arrowBack)" />;
-  } else {
-    return <path d={d} style={arrowStyle} fill="transparent" key={key} markerEnd="url(#arrow)" />;
-  }
+  const style = edge.dashed ? dashedArrowStyle : arrowStyle;
+  const endMarker = edge.doubleArrow ? "url(#arrowBack)" : null;
+
+  return <path d={d} style={style} fill="transparent" key={key} markerEnd="url(#arrow)" markerStart={endMarker} />;
 }
 
 // get the concrete position of an elements anchor point
