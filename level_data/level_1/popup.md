@@ -7,7 +7,7 @@ Wir setzen auf den neuen Standard: **Serverless**.
 Unsere Kunden müssen sich nicht um das Verwalten von virtuelle Maschinen oder Containern kümmern.
 Die lästige Arbeit nehmen wir Ihnen ab. Sie geben uns Ihren Code und wir kümmern uns
 darum, dass er 24/7 läuft. Dabei muss sich der Kunde nicht einmal um das Ressourcenmanagement kümmern.
-Das Beste daran: sie bezahlen nur für die Ressourcen, die Sie auch tatsächlich in Anspruch nehmen.
+Das Beste daran: sie bezahlen nur für die Ressourcen, die sie auch tatsächlich in Anspruch nehmen.
 
 Immer mehr Firmen wechseln zu uns und der Technik der Zukunft. Mit diesem Wechsel kommen natürlich **viele Fragen** auf.
 Wir haben Sie eingestellt, um uns zu helfen all diese Fragen zu beantworten.
@@ -20,5 +20,7 @@ Sie haben aber nicht genug Rechenleistung, um den neuen Algorithmus in Echtzeit 
 Deshalb hat die BPOL uns beauftragt:
 Zunächst müssen wir die **Videodateien** auf unseren Server hochladen.
 Dafür bietet sich ein **S3-Bucket** an. Ziehen Sie das gebrauchte Icon einfach auf den dafür vorgesehenen Slot.
+
+Geben Sie anschließend Ihr Ergebnis mit dem Abgabe-Button unten links ab.
 
 Eine hervorragende Übung!
