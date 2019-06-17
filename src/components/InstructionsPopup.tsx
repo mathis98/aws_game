@@ -20,18 +20,18 @@ class InstructionsPopup extends React.Component<InstructionsPopupProps, Instruct
     this.state = {open: true};
 
     this.handleNext = this.handleNext.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
+    this.handleBackToMainMenu = this.handleBackToMainMenu.bind(this);
   }
 
   render() {
     return (
-      <Dialog open={this.state.open} maxWidth="md">
+      <Dialog open={this.state.open} onClose={this.handleNext} maxWidth="md">
         <DialogContent>
           <MarkdownViewer source={this.props.instructionsMd} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleCancel} color="secondary">
-            Abbruch
+          <Button onClick={this.handleBackToMainMenu} color="secondary">
+            Zurück zum Hauptmenü
           </Button>
           <Button onClick={this.handleNext} color="primary" autoFocus>
             Weiter
@@ -45,7 +45,7 @@ class InstructionsPopup extends React.Component<InstructionsPopupProps, Instruct
     this.setState({open: false});
   }
 
-  handleCancel() {
+  handleBackToMainMenu() {
     this.props.history.push('/');
   }
 }
