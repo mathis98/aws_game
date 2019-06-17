@@ -20,6 +20,7 @@ class InstructionsPopup extends React.Component<InstructionsPopupProps, Instruct
     this.state = {open: true};
 
     this.handleNext = this.handleNext.bind(this);
+    this.handleBackToMainMenu = this.handleBackToMainMenu.bind(this);
   }
 
   render() {
@@ -29,6 +30,9 @@ class InstructionsPopup extends React.Component<InstructionsPopupProps, Instruct
           <MarkdownViewer source={this.props.instructionsMd} />
         </DialogContent>
         <DialogActions>
+          <Button onClick={this.handleBackToMainMenu} color="secondary">
+            Zurück zum Hauptmenü
+          </Button>
           <Button onClick={this.handleNext} color="primary" autoFocus>
             Weiter
           </Button>
@@ -39,6 +43,10 @@ class InstructionsPopup extends React.Component<InstructionsPopupProps, Instruct
 
   handleNext() {
     this.setState({open: false});
+  }
+
+  handleBackToMainMenu() {
+    this.props.history.push('/');
   }
 }
 
