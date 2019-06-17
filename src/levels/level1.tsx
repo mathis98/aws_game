@@ -27,8 +27,8 @@ const level1: Level = {
         column: 3,
         row: 3
       },
-      id: "bnd",
-      icon: "bnd"
+      id: "bpol",
+      icon: "bpol"
     }
   ],
   relations: [
@@ -40,7 +40,7 @@ const level1: Level = {
     },
     {
       sourceId: "database",
-      targetId: "bnd",
+      targetId: "bpol",
       sourceAnchor: "bottom",
       targetAnchor: "left"
     }
