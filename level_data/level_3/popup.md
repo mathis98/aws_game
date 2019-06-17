@@ -8,7 +8,7 @@ Gebraucht werden leistungsstarke **Spielserver** die vom Anmeldeservice **abgeko
 Die registrierten Spieler werden mit Account und verschlüsseltem Passwort gespeichert.
 Nach außen soll das System robust gegen DDoS-Angriffen sein.
 
-Wenn Sie oben rechts auf ihre aktuelle Punktzahl klicken, sehen Sie wie ihr Score berechnet wurde.
+Wenn Sie oben rechts auf ihre aktuelle **Punktzahl** klicken, sehen Sie wie ihr Score berechnet wurde.
 Sie können jederzeit ein Level erneut spielen, um einen besseren Score zu erhalten.
 
 Fangen Sie an.

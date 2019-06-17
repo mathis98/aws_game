@@ -21,6 +21,6 @@ Deshalb hat die BPOL uns beauftragt:
 Zunächst müssen wir die **Videodateien** auf unseren Server hochladen.
 Dafür bietet sich ein **S3-Bucket** an. Ziehen Sie das gebrauchte Icon einfach auf den dafür vorgesehenen Slot.
 
-Geben Sie anschließend Ihr Ergebnis mit dem Abgabe-Button unten links ab.
+Geben Sie anschließend Ihr Ergebnis mit dem **Abgabe-Button** unten links ab.
 
 Eine hervorragende Übung!
