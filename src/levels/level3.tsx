@@ -81,10 +81,11 @@ const level3: Level ={
 function Level3Validator(state: LevelState): LevelFeedback {
   if (state.iam === "iam" && state.shield === "shield") {
     if (state.dynamo === "dynamodb") return { correct: true }
-    else
-    return {
-      correct: true,
-      points: 60,
+    else {
+      return {
+        correct: true,
+        points: 60,
+      }
     }
   }
 
