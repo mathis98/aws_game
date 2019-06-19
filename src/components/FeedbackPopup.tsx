@@ -47,7 +47,7 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
   }
 
   nextLevel() {
-    this.props.dispatch(setScore(this.state.points, this.props.levelId));
+    this.props.dispatch(setScore(this.state.points, this.props.levelId, this.state.starCount));
     this.props.history.push(`/levels/${this.props.levelId + 1}`);
   }
 

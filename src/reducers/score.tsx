@@ -5,15 +5,16 @@ export interface ScoreAction {
   type: string;
   score: number;
   level: number;
+  stars: number;
 }
 
 export interface ScoreState {
-  score: number[];
+  score: any;
   level: number;
 }
 
 const initialState = {
-    score: new Array(levels.length).fill(0),
+    score: new Array(levels.length).fill({points:0,stars:0}),
     level: 1,
 };
 
@@ -23,10 +24,13 @@ const score = (state: ScoreState = initialState, action: ScoreAction) => {
       console.log(action);
       return {
         ...state,
-        score: state.score.map((item, index) => {
+        score: state.score.map((item:any, index:any) => {
           if (index + 1 !== action.level)
             return item
-          return action.score
+          return {
+            points: action.score,
+            stars: action.stars
+          }
         })
       }
     case NEXT_LEVEL:
