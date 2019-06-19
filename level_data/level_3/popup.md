@@ -6,6 +6,7 @@ sodass das Unternehmen täglich Spieler und Geld verliert!
 
 Gebraucht werden leistungsstarke **Spielserver** die vom Anmeldeservice **abgekoppelt** sind.
 Die registrierten Spieler werden mit Account und verschlüsseltem Passwort gespeichert.
+Dazu sollen die Scores der Spieler in einer **separaten Datenbank** gespeichert werden.
 Nach außen soll das System robust gegen DDoS-Angriffen sein.
 
 Wenn Sie oben rechts auf ihre aktuelle **Punktzahl** klicken, sehen Sie wie ihr Score berechnet wurde.
