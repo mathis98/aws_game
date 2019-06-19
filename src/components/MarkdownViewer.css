@@ -1,6 +1,7 @@
 .markdownContainer {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   padding: 1.5em;
+  text-align: left;
 }
 
 .markdownContainer pre {
@@ -21,4 +22,9 @@
 .markdownContainer h1, .markdownContainer h2 {
   padding-bottom: .3em;
   border-bottom: 1px solid #eaecef;
+}
+
+.materialIcons {
+  font-size: 1em !important;
+  vertical-align: middle;
 }
