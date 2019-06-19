@@ -1,0 +1,8 @@
+.gridBackground {
+  background-image: linear-gradient(rgb(240, 240, 240) 2px, transparent 2px),
+    linear-gradient(90deg, rgb(240, 240, 240) 2px, transparent 2px),
+    linear-gradient(rgb(245,245,245) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(245,245,245) 1px, transparent 1px);
+  background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
