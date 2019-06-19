@@ -7,13 +7,15 @@ import { connect } from 'react-redux';
 import {ScoreState} from '../reducers/score';
 
 const css = require('./Header.css');
+const sum = (arr: number[]) => arr.reduce((a,b) => a + b, 0);
 
 export interface HeaderProps {
-  score: number;
+  score: number[];
 }
 
 class Header extends React.Component<HeaderProps, {}> {
   render() {
+    console.log(this.props.score);
     return (
       <AppBar position="static" className={css.fixed_size_app_bar}>
         <Toolbar className={css.toolBar}>
@@ -24,7 +26,7 @@ class Header extends React.Component<HeaderProps, {}> {
           </Link>
 
           <Typography variant="h6" color="inherit">
-            {this.props.score} Punkte
+            {sum(this.props.score)} Punkte
           </Typography>
         </Toolbar>
       </AppBar>
