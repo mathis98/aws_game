@@ -79,7 +79,16 @@ const level3: Level ={
 }
 
 function Level3Validator(state: LevelState): LevelFeedback {
-  return {correct: false, feedbackComponent: <span>not yet implemented</span>};
+  if (state.iam === "iam" && state.shield === "shield") {
+    if (state.dynamo === "dynamodb") return { correct: true }
+    else
+    return {
+      correct: true,
+      points: 60,
+    }
+  }
+
+  return {correct: false};
 }
 
 export default level3;
