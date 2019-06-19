@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createStore } from 'redux';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux';
+import { loadState, saveState } from './localStorage';
 
 import Header from 'components/Header';
 
@@ -15,10 +16,16 @@ import ErrorPage from "pages/ErrorPage";
 
 require('./global.css');
 
+const persistedState = loadState();
 const store = createStore(
   rootReducer,
+  persistedState,
   '__REDUX_DEVTOOLS_EXTENSION__' in window && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+store.subscribe(() => {
+  saveState(store.getState())
+})
 
 ReactDOM.render(
   <Provider store={store}>

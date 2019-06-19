@@ -8,8 +8,13 @@ export interface ScoreAction {
   stars: number;
 }
 
+export interface scoreType {
+  points: number;
+  stars: number;
+}
+
 export interface ScoreState {
-  score: any;
+  score: scoreType[];
   level: number;
 }
 
