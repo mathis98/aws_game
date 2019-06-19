@@ -1,5 +1,6 @@
 import { Level, LevelFeedback, LevelState } from './level'
 import * as React from 'react'
+import { stat } from 'fs';
 
 const level3: Level ={
   columns: 6,
@@ -79,7 +80,14 @@ const level3: Level ={
 }
 
 function Level3Validator(state: LevelState): LevelFeedback {
-  return {correct: false, feedbackComponent: <span>not yet implemented</span>};
+  if (state.cognito === "cognito" && state.dynamo === "dynamodb" && state.shield === "shield") {
+    return {correct: true, stars: 3};
+  } else if (state.cognito === "cognito" && state.dynamo === "s3" && state.shield === "shield") {
+    return {correct: true, points: 20};
+  } else if (state.cognito === "shield" && state.shield === "cognito") {
+    return { correct: false, feedbackComponent: <span>Der Login-Service ist gegen DDoS Angriffe ungeschützt!</span>}
+  }
+  return {correct: false};
 }
 
 export default level3;
