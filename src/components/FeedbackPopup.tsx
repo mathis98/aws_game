@@ -9,7 +9,7 @@ import ClearIcon from '@material-ui/icons/ClearRounded';
 import StarIcon from '@material-ui/icons/StarRounded';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import { addScore } from '../actions';
+import { setScore } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 const css = require('./FeedbackPopup.css');
@@ -47,7 +47,7 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
   }
 
   nextLevel() {
-    this.props.dispatch(addScore(this.state.points));
+    this.props.dispatch(setScore(this.state.points, this.props.levelId));
     this.props.history.push(`/levels/${this.props.levelId + 1}`);
   }
 
