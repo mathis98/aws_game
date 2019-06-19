@@ -27,20 +27,20 @@ const level3: Level ={
         column: 3,
         row: 1
       },
-      id: "iam",
+      id: "cognito",
       droppable: true
     },
     {
       position: {
-        column: 4,
-        row: 1
+        column: 3,
+        row: 3
       },
       id: "gameserver",
       icon: "gameserver"
     },
     {
       position: {
-        column: 3,
+        column: 2,
         row: 3
       },
       id: "dynamo",
@@ -56,25 +56,25 @@ const level3: Level ={
     },
     {
       sourceId: "shield",
-      targetId: "iam",
+      targetId: "cognito",
       sourceAnchor: "right",
       targetAnchor: "left"
     },
     {
-      sourceId: "iam",
+      sourceId: "cognito",
       targetId: "gameserver",
-      sourceAnchor: "right",
-      targetAnchor: "left"
+      sourceAnchor: "bottom",
+      targetAnchor: "top"
     },
     {
-      sourceId: "iam",
+      sourceId: "gameserver",
       targetId: "dynamo",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
+      sourceAnchor: "left",
+      targetAnchor: "right",
       doubleArrow: true
     }
   ],
-  awspalette: ["iam", "shield", "dynamodb", "s3"],
+  awspalette: ["shield", "cognito", "dynamodb", "s3"],
   validator: Level3Validator
 }
 
