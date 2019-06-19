@@ -7,7 +7,11 @@ import { connect } from 'react-redux';
 import {ScoreState} from '../reducers/score';
 
 const css = require('./Header.css');
-const sum = (arr: number[]) => arr.reduce((a,b) => a + b, 0);
+const sum = (arr: any) => {
+  let sum = 0;
+  for(let i of arr) sum += i.points;
+  return sum;
+}
 
 export interface HeaderProps {
   score: number[];
