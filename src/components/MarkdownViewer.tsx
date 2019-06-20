@@ -33,13 +33,11 @@ function LinkRenderer(props: { href: string; children: React.ReactNode; }) {
     return <YoutubePopup id={match[1]} />
   }
   return (
-    <div>
-      <Tooltip title={props.href}>
-        <a href={props.href} target="_blank">
-          {props.children}
-          <OpenInNewIcon className={css.materialIcons} />
-        </a>
-      </Tooltip>
-    </div>
+    <Tooltip title={props.href}>
+      <a href={props.href} target="_blank">
+        {props.children}
+        <OpenInNewIcon className={css.materialIcons} />
+      </a>
+    </Tooltip>
   )
 }
