@@ -7,3 +7,5 @@ DynamoDB ist hoch skalierbar und hat extrem niedrige Latenzzeiten.
 Alle Anwendungen, die einen hohen und zuverlässigen Durchsatz brauchen, können von DynamoDB profitieren.
 
 [Mehr Infos](https://aws.amazon.com/dynamodb/)
+
+https://www.youtube.com/watch?v=sI-zciHAh-4

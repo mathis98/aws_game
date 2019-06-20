@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import Tooltip from "@material-ui/core/Tooltip";
+import YoutubePopup from './YoutubePopup';
 
 const css = require('./MarkdownViewer.css');
 
@@ -26,6 +27,11 @@ export default class MarkdownViewer extends React.Component<MarkdownViewerProps,
 }
 
 function LinkRenderer(props: { href: string; children: React.ReactNode; }) {
+  const ytregex = /.*?youtube\.com\/watch\?v=(.*)/;
+  const match = ytregex.exec(props.href);
+  if (match) {
+    return <YoutubePopup id={match[1]} />
+  }
   return (
     <div>
       <Tooltip title={props.href}>
