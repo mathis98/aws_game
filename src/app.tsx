@@ -13,15 +13,16 @@ import StartPage from "pages/StartPage";
 import GamePageManager from "components/GamePageManager";
 import LevelsPage from "pages/LevelsPage";
 import ErrorPage from "pages/ErrorPage";
+import { receiveInitialData } from "./actions";
 
 require('./global.css');
 
-const persistedState = loadState();
 const store = createStore(
   rootReducer,
-  persistedState,
+  {},
   (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );
+const persistedState = loadState().then(data => store.dispatch(receiveInitialData(data)));
 
 store.subscribe(() => {
   saveState(store.getState())

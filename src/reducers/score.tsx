@@ -1,4 +1,4 @@
-import {SET_SCORE, NEXT_LEVEL} from '../actions';
+import { SET_SCORE, NEXT_LEVEL, RECEIVE_INITIAL_DATA } from '../actions';
 import levels from 'levels/levels';
 
 export interface ScoreAction {
@@ -6,6 +6,7 @@ export interface ScoreAction {
   score: number;
   level: number;
   stars: number;
+  data: ScoreAction;
 }
 
 export interface scoreType {
@@ -25,6 +26,8 @@ const initialState = {
 
 const score = (state: ScoreState = initialState, action: ScoreAction) => {
   switch (action.type) {
+    case RECEIVE_INITIAL_DATA:
+      return action.data.score;
     case SET_SCORE:
       return {
         ...state,
