@@ -33,7 +33,7 @@ const level5: Level = {
     {
       position: {
         column: 3,
-        row: 2,
+        row: 1,
       },
       id: "supportEmployee",
       icon: "supportEmployee",
@@ -54,6 +54,12 @@ const level5: Level = {
     },
     {
       sourceId: "lambdaTensorflow",
+      targetId: "ses",
+      sourceAnchor: "top",
+      targetAnchor: "bottom",
+    },
+    {
+      sourceId: "ses",
       targetId: "supportEmployee",
       sourceAnchor: "right",
       targetAnchor: "left",
