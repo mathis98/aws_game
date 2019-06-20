@@ -1,6 +1,7 @@
 import { Level, LevelFeedback, LevelState } from './level'
 import * as React from 'react'
 
+
 const level3: Level ={
   columns: 6,
   rows: [2, 2, 1, 2, 2],
@@ -27,20 +28,20 @@ const level3: Level ={
         column: 3,
         row: 1
       },
-      id: "iam",
+      id: "cognito",
       droppable: true
     },
     {
       position: {
-        column: 4,
-        row: 1
+        column: 3,
+        row: 3
       },
       id: "gameserver",
       icon: "gameserver"
     },
     {
       position: {
-        column: 3,
+        column: 2,
         row: 3
       },
       id: "dynamo",
@@ -56,30 +57,37 @@ const level3: Level ={
     },
     {
       sourceId: "shield",
-      targetId: "iam",
+      targetId: "cognito",
       sourceAnchor: "right",
       targetAnchor: "left"
     },
     {
-      sourceId: "iam",
+      sourceId: "cognito",
       targetId: "gameserver",
-      sourceAnchor: "right",
-      targetAnchor: "left"
+      sourceAnchor: "bottom",
+      targetAnchor: "top"
     },
     {
-      sourceId: "iam",
+      sourceId: "gameserver",
       targetId: "dynamo",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
+      sourceAnchor: "left",
+      targetAnchor: "right",
       doubleArrow: true
     }
   ],
-  awspalette: ["iam", "shield", "dynamodb", "s3"],
+  awspalette: ["shield", "cognito", "dynamodb", "s3"],
   validator: Level3Validator
 }
 
 function Level3Validator(state: LevelState): LevelFeedback {
-  return {correct: false, feedbackComponent: <span>not yet implemented</span>};
+  if (state.cognito === "cognito" && state.dynamo === "dynamodb" && state.shield === "shield") {
+    return {correct: true, stars: 3};
+  } else if (state.cognito === "cognito" && state.dynamo === "s3" && state.shield === "shield") {
+    return {correct: true, points: 20};
+  } else if (state.cognito === "shield" && state.shield === "cognito") {
+    return { correct: false, feedbackComponent: <span>Der Login-Service ist gegen DDoS Angriffe ungeschützt!</span>}
+  }
+  return {correct: false};
 }
 
 export default level3;

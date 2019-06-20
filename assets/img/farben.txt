@@ -3,3 +3,4 @@ dynamo db:  #3B48CC
 iam:        #D6242D
 shield:     #D6242D
 lambda:     #D86613
+cognito:    #D6242D
