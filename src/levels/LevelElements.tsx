@@ -17,11 +17,12 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   gameserver: <IconElement image={require('../../assets/img/gameserver.svg')} description="Gameserver" />,
 }
 
-export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield";
+export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "lambda";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
   dynamodb: <AWSPaletteItem id="dynamodb" icon="dynamodb" text="DynamoDB" color="#3B48CC" key="dynamodb_paletteItem" />,
   iam: <AWSPaletteItem id="iam" icon="iam" text="IAM" color="#D6242D" key="iam_paletteItem" />,
-  shield: <AWSPaletteItem id="shield" icon="shield" text="AWS Shield" color="#D6242D" key="shield_paletteItem" />
+  shield: <AWSPaletteItem id="shield" icon="shield" text="AWS Shield" color="#D6242D" key="shield_paletteItem" />,
+  lambda: <AWSPaletteItem id="lamda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />
 }
