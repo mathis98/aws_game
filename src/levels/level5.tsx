@@ -72,8 +72,6 @@ const level5: Level = {
 function Level5Validator(state: LevelState): LevelFeedback {
   if (state.ses === "ses" && state.lambdaTensorflow === "lambdaTensorflow") {
     return {correct: true, stars: 3};
-  } else {
-    return {correct: false, feedbackComponent: <span>Das funktioniert nicht!</span>};
   }
 
   return {correct: false};
