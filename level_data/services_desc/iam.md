@@ -11,3 +11,5 @@ IAM wird automatisch in allen AWS Ressourcen eingebunden, sodass
 granulare Zugriffsverwaltung auch Services-übergreifend möglich ist.
 
 [Mehr Infos](https://aws.amazon.com/iam/)
+
+https://www.youtube.com/watch?v=Ul6FW4UANGc
