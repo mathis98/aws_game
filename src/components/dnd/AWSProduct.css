@@ -16,7 +16,8 @@
   border: solid 0.1em white;
   border-radius: 1em;
   padding: 0 0.7em;
-  font-size: 1.2em !important;
+  font-size: 2vh !important;
+  display: block;
   background-color: #ffffff1c;
 }
 

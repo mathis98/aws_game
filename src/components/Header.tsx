@@ -4,12 +4,17 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import {ScoreState} from '../reducers/score';
+import { ScoreState, scoreType } from '../reducers/score';
 
 const css = require('./Header.css');
+const sum = (arr: scoreType[]) => {
+  let sum = 0;
+  for(let i of arr) sum += i.points;
+  return sum;
+}
 
 export interface HeaderProps {
-  score: number;
+  score: scoreType[];
 }
 
 class Header extends React.Component<HeaderProps, {}> {
@@ -24,7 +29,7 @@ class Header extends React.Component<HeaderProps, {}> {
           </Link>
 
           <Typography variant="h6" color="inherit">
-            {this.props.score} Punkte
+            {sum(this.props.score)} Punkte
           </Typography>
         </Toolbar>
       </AppBar>
