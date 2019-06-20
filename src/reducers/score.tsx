@@ -26,7 +26,6 @@ const initialState = {
 const score = (state: ScoreState = initialState, action: ScoreAction) => {
   switch (action.type) {
     case SET_SCORE:
-      console.log(action);
       return {
         ...state,
         score: state.score.map((item:any, index:any) => {
@@ -47,5 +46,9 @@ const score = (state: ScoreState = initialState, action: ScoreAction) => {
       return state
   }
 };
+
+export function scoreSum(array: scoreType[]) {
+  return array.reduce((acc, el) => el.points + acc, 0);
+}
 
 export default score;
