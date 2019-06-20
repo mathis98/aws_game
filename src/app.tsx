@@ -20,7 +20,7 @@ const persistedState = loadState();
 const store = createStore(
   rootReducer,
   persistedState,
-  '__REDUX_DEVTOOLS_EXTENSION__' in window && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
