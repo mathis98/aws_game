@@ -2,8 +2,8 @@ import { Level, LevelFeedback, LevelState } from './level'
 import * as React from 'react'
 
 const level4: Level ={
-  columns: 4,
-  rows: 1,
+  columns: 6,
+  rows: 3,
   gap: "2em",
   elements: [
     {
