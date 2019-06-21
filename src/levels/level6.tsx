@@ -19,19 +19,19 @@ const level6: Level = {
         column: 2,
         row: 1,
       },
-      id: "hmm",
+      id: "kinesis",
       droppable: true,
     },
   ],
   relations: [
     {
       sourceId: "customer",
-      targetId: "hmm",
+      targetId: "kinesis",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "hmm"],
+  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "lambda"],
   validator: Level6Validator,
 };
 

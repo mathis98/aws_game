@@ -16,9 +16,9 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   users: <IconElement image={require('../../assets/img/users.svg')} description="Benutzer" />,
   gameserver: <IconElement image={require('../../assets/img/gameserver.svg')} description="Gameserver" />,
   supportEmployee: <IconElement image={require('../../assets/img/supportEmployee.svg')} description="Support-Mitarbeiter" color="#000"/>,
-}
+};
 
-export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "hmm";
+export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "kinesis";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
@@ -28,5 +28,5 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   ses: <AWSPaletteItem id="ses" icon="ses" text="SES" color="#445EE0" key="ses_paletteItem" />,
   lambda: <AWSPaletteItem id="lamda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
-  hmm: <AWSPaletteItem id="hmm" icon="s3" text="hmmm" color="#FF0000" key="s3_paletteItem" />,
-}
+  kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
+};
