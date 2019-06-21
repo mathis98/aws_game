@@ -18,7 +18,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   supportEmployee: <IconElement image={require('../../assets/img/supportEmployee.svg')} description="Support-Mitarbeiter" color="#000"/>,
 }
 
-export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow";
+export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "hmm";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
@@ -28,4 +28,5 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   ses: <AWSPaletteItem id="ses" icon="ses" text="SES" color="#445EE0" key="ses_paletteItem" />,
   lambda: <AWSPaletteItem id="lamda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
+  hmm: <AWSPaletteItem id="hmm" icon="s3" text="hmmm" color="#FF0000" key="s3_paletteItem" />,
 }
