@@ -3,7 +3,7 @@ import IconElement from 'components/IconElement';
 import AWSPaletteItem from 'components/dnd/AWSPaletteItem';
 
 export type IconLevelElement = "cam" | "bpol" | "camera" | "documents" | "shop" | "customer" |
-                               "users" | "gameserver" | "supportEmployee";
+                               "users" | "gameserver" | "supportEmployee" | "weatherStation";
 
 // the decorative level elements without functionality
 export const allIcons: Record<IconLevelElement, JSX.Element> = {
@@ -16,6 +16,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   users: <IconElement image={require('../../assets/img/users.svg')} description="Benutzer" />,
   gameserver: <IconElement image={require('../../assets/img/gameserver.svg')} description="Gameserver" />,
   supportEmployee: <IconElement image={require('../../assets/img/supportEmployee.svg')} description="Support-Mitarbeiter" color="#000"/>,
+  weatherStation: <IconElement image={require('../../assets/img/weatherStation.svg')} description="Wetterstation" color="#0071BC"/>,
 };
 
 export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "kinesis";

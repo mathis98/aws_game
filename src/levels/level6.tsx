@@ -12,7 +12,7 @@ const level6: Level = {
         row: 1,
       },
       id: "customer",
-      icon: "customer",
+      icon: "weatherStation",
     },
     {
       position: {
