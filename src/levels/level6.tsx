@@ -26,15 +26,9 @@ const level6: Level = {
   relations: [
     {
       sourceId: "customer",
-      targetId: "ses",
+      targetId: "hmm",
       sourceAnchor: "right",
       targetAnchor: "left",
-    },
-    {
-      sourceId: "hmm",
-      targetId: "hmm",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
     },
   ],
   awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "hmm"],
