@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Level, LevelState, LevelFeedback } from './level';
 
 const level6: Level = {
-  columns: 5,
-  rows: 4,
+  columns: 3,
+  rows: 3,
   gap: "3em",
   elements: [
     {
       position: {
-        column: 1,
+        column: 0,
         row: 0,
       },
       id: "weatherStation",
@@ -16,7 +16,7 @@ const level6: Level = {
     },
     {
       position: {
-        column: 1,
+        column: 0,
         row: 1,
       },
       id: "kinesis",
@@ -24,7 +24,7 @@ const level6: Level = {
     },
     {
       position: {
-        column: 1,
+        column: 0,
         row: 2,
       },
       id: "dynamodb",
@@ -32,7 +32,7 @@ const level6: Level = {
     },
     {
       position: {
-        column: 2,
+        column: 1,
         row: 1,
       },
       id: "lambda",
@@ -40,7 +40,7 @@ const level6: Level = {
     },
     {
       position: {
-        column: 3,
+        column: 2,
         row: 1,
       },
       id: "ses",
@@ -48,7 +48,7 @@ const level6: Level = {
     },
     {
       position: {
-        column: 3,
+        column: 2,
         row: 2,
       },
       id: "users",
@@ -98,6 +98,8 @@ function Level6Validator(state: LevelState): LevelFeedback {
   // needs to be correct
   if(state.kinesis !== "kinesis" )
     return { correct: false, feedbackComponent: <span>Die Wetterdaten werden nicht empfangen.</span> };
+  if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb"))
+    return { correct: false, feedbackComponent: <span>Die Wetterdaten können nicht abgespeichert werden.</span> };
   if(state.lambda !== "lambda" )
     return { correct: false, feedbackComponent: <span>Die gesamelten Daten werden nicht richtig verarbeitet</span> };
   if(state.ses !== "ses" )
