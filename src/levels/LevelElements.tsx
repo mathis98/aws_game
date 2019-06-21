@@ -16,7 +16,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   users: <IconElement image={require('../../assets/img/users.svg')} description="Benutzer" />,
   gameserver: <IconElement image={require('../../assets/img/gameserver.svg')} description="Gameserver" />,
   supportEmployee: <IconElement image={require('../../assets/img/supportEmployee.svg')} description="Support-Mitarbeiter" color="#000"/>,
-  weatherStation: <IconElement image={require('../../assets/img/weatherStation.svg')} description="Wetterstation" color="#0071BC"/>,
+  weatherStation: <IconElement image={require('../../assets/img/weatherStation.svg')} description="Wetterstation" color="#1498C3"/>,
 };
 
 export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "kinesis";
