@@ -4,19 +4,19 @@ import { Level, LevelState, LevelFeedback } from './level';
 const level6: Level = {
   columns: 5,
   rows: 4,
-  gap: "1em",
+  gap: "3em",
   elements: [
     {
       position: {
         column: 1,
-        row: 1,
+        row: 0,
       },
       id: "weatherStation",
       icon: "weatherStation",
     },
     {
       position: {
-        column: 2,
+        column: 1,
         row: 1,
       },
       id: "kinesis",
@@ -24,15 +24,15 @@ const level6: Level = {
     },
     {
       position: {
-        column: 2,
+        column: 1,
         row: 2,
       },
-      id: "dynamo",
+      id: "dynamodb",
       droppable: true,
     },
     {
       position: {
-        column: 3,
+        column: 2,
         row: 1,
       },
       id: "lambda",
@@ -40,7 +40,7 @@ const level6: Level = {
     },
     {
       position: {
-        column: 4,
+        column: 3,
         row: 1,
       },
       id: "ses",
@@ -48,8 +48,8 @@ const level6: Level = {
     },
     {
       position: {
-        column: 5,
-        row: 1,
+        column: 3,
+        row: 2,
       },
       id: "users",
       icon: "users"
@@ -59,8 +59,34 @@ const level6: Level = {
     {
       sourceId: "weatherStation",
       targetId: "kinesis",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+    },
+    {
+      sourceId: "kinesis",
+      targetId: "dynamodb",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+      dashed: true,
+      doubleArrow: true,
+    },
+    {
+      sourceId: "kinesis",
+      targetId: "lambda",
       sourceAnchor: "right",
       targetAnchor: "left",
+    },
+    {
+      sourceId: "lambda",
+      targetId: "ses",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "ses",
+      targetId: "users",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
     },
   ],
   awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "lambda"],
@@ -68,10 +94,22 @@ const level6: Level = {
 };
 
 function Level6Validator(state: LevelState): LevelFeedback {
-  if (true) {
+
+  // needs to be correct
+  if(state.kinesis !== "kinesis" )
+    return { correct: false, feedbackComponent: <span>Die Wetterdaten werden nicht empfangen.</span> };
+  if(state.lambda !== "lambda" )
+    return { correct: false, feedbackComponent: <span>Die gesamelten Daten werden nicht richtig verarbeitet</span> };
+  if(state.ses !== "ses" )
+    return { correct: false, feedbackComponent: <span>Es werden keine Emails verschickt.</span> };
+
+  // possible:
+  if (state.dynamodb === "s3") {
+    return {correct: true, stars: 1, feedbackComponent: <span>Zu viele kleine Daten für S3.</span> };
+  }
+  // perfect:
+  if (state.dynamodb === "dynamodb") {
     return {correct: true, stars: 3};
-  } else {
-    return {correct: false, feedbackComponent: <span>Das funktioniert nicht!</span>};
   }
 
   return {correct: false};

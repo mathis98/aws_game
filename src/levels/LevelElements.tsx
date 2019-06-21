@@ -27,7 +27,7 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   iam: <AWSPaletteItem id="iam" icon="iam" text="IAM" color="#D6242D" key="iam_paletteItem" />,
   shield: <AWSPaletteItem id="shield" icon="shield" text="AWS Shield" color="#D6242D" key="shield_paletteItem" />,
   ses: <AWSPaletteItem id="ses" icon="ses" text="SES" color="#445EE0" key="ses_paletteItem" />,
-  lambda: <AWSPaletteItem id="lamda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
+  lambda: <AWSPaletteItem id="lambda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
   kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
 };
