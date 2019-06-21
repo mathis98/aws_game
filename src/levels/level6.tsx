@@ -11,7 +11,7 @@ const level6: Level = {
         column: 1,
         row: 1,
       },
-      id: "customer",
+      id: "weatherStation",
       icon: "weatherStation",
     },
     {
@@ -22,10 +22,42 @@ const level6: Level = {
       id: "kinesis",
       droppable: true,
     },
+    {
+      position: {
+        column: 2,
+        row: 2,
+      },
+      id: "dynamo",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 3,
+        row: 1,
+      },
+      id: "lambda",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 4,
+        row: 1,
+      },
+      id: "ses",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 5,
+        row: 1,
+      },
+      id: "users",
+      icon: "users"
+    },
   ],
   relations: [
     {
-      sourceId: "customer",
+      sourceId: "weatherStation",
       targetId: "kinesis",
       sourceAnchor: "right",
       targetAnchor: "left",
