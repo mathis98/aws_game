@@ -4,7 +4,7 @@ import { Level, LevelState, LevelFeedback } from './level';
 const level6: Level = {
   columns: 3,
   rows: 3,
-  gap: "3em",
+  gap: "2em",
   elements: [
     {
       position: {
