@@ -4,15 +4,15 @@ import { Level, LevelState, LevelFeedback } from './level';
 const level5: Level = {
   columns: 5,
   rows: 4,
-  gap: "1em",
+  gap: "3em",
   elements: [
     {
       position: {
         column: 1,
         row: 1,
       },
-      id: "customer",
-      icon: "customer",
+      id: "users",
+      icon: "users",
     },
     {
       position: {
@@ -41,7 +41,7 @@ const level5: Level = {
   ],
   relations: [
     {
-      sourceId: "customer",
+      sourceId: "users",
       targetId: "ses",
       sourceAnchor: "right",
       targetAnchor: "left",
@@ -51,12 +51,8 @@ const level5: Level = {
       targetId: "lambdaTensorflow",
       sourceAnchor: "bottom",
       targetAnchor: "top",
-    },
-    {
-      sourceId: "lambdaTensorflow",
-      targetId: "ses",
-      sourceAnchor: "top",
-      targetAnchor: "bottom",
+      doubleArrow: true,
+      dashed: true,
     },
     {
       sourceId: "ses",
