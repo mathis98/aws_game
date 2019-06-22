@@ -1,49 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    viewBox="0 0 75 75"
    version="1.1"
    id="svg27"
-   sodipodi:docname="cognito.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+   >
   <metadata
      id="metadata31">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>Amazon-Cognito_light-bg</dc:title>
-      </cc:Work>
-    </rdf:RDF>
   </metadata>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1012"
-     id="namedview29"
-     showgrid="false"
-     inkscape:zoom="3.1466667"
-     inkscape:cx="37.5"
-     inkscape:cy="37.5"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="Reference" />
   <defs
      id="defs4">
     <style
@@ -55,14 +20,12 @@
      id="Reference">
     <rect
        id="Red_Light_BG"
-       data-name="Red Light BG"
        class="cls-1"
        width="75"
        height="75"
        style="fill:none;fill-opacity:1" />
     <g
-       id="Product_Icon"
-       data-name="Product Icon">
+       id="Product_Icon">
       <path
          class="cls-2"
          d="M55,15H16.46a3.92,3.92,0,0,0-3.71,4.1v24.8A3.92,3.92,0,0,0,16.46,48H37.75V46H16.46a2,2,0,0,1-1.71-2.1V27h18V42a1,1,0,0,0,1,1h8V41H35.2V40.7a7.74,7.74,0,0,1,5.53-7.43,5.91,5.91,0,0,0,4.92,0,7.82,7.82,0,0,1,4.42,3.42l1.7-1v0a9.8,9.8,0,0,0-4.34-3.82,5.4,5.4,0,0,0,1.27-3.48,5.5,5.5,0,0,0-11,0A5.42,5.42,0,0,0,39,31.8a9.67,9.67,0,0,0-4.22,3.62V22h17v13.7h0V36h2V27h3V37h2l0-17.9A3.92,3.92,0,0,0,55,15ZM43.2,24.87a3.48,3.48,0,0,1,3.5,3.46,3.43,3.43,0,0,1-1.81,3,3.57,3.57,0,0,1-3.39,0,3.44,3.44,0,0,1-1.8-3A3.48,3.48,0,0,1,43.2,24.87ZM53.75,25V21a1,1,0,0,0-1-1h-19a1,1,0,0,0-1,1v4h-18v-5.9A2,2,0,0,1,16.46,17H55a2,2,0,0,1,1.73,2.1V25Z"
