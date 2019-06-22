@@ -11,9 +11,6 @@ const squareTarget = {
   },
   drop(props: any, monitor: any) {
     props.data.child = monitor.getItem();
-    if (props.dropCallback) {
-      props.dropCallback(props.data.child);
-    }
   }
 };
 
@@ -30,10 +27,14 @@ export interface DroppableProps {
   isOver?: boolean;
   canDrop?: boolean;
   data: any;
-  dropCallback?: any;
 }
 
 export class DroppableType extends React.Component<DroppableProps, {}> {
+  constructor(props: DroppableProps) {
+    super(props);
+    this.props.data.child.hide = true; // hide droppable child on creation
+  }
+
   render() {
     const { connectDropTarget, isOver, canDrop } = this.props;
 
