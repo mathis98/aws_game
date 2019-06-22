@@ -100,7 +100,7 @@ function Level6Validator(state: LevelState): LevelFeedback {
     return { correct: false, feedbackComponent: <span>Die Wetterdaten werden nicht empfangen.</span> };
   if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb"))
     return { correct: false, feedbackComponent: <span>Die Wetterdaten können nicht abgespeichert werden.</span> };
-  if(state.lambda !== "lambda" )
+  if(!(state.lambda === "lambda" || state.lambda === "lambdaTensorflow") )
     return { correct: false, feedbackComponent: <span>Die gesamelten Daten werden nicht richtig verarbeitet</span> };
   if(state.ses !== "ses" )
     return { correct: false, feedbackComponent: <span>Es werden keine Emails verschickt.</span> };
