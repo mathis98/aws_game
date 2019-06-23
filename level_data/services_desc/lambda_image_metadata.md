@@ -1,10 +1,9 @@
-## Lambda für Tensorflow
+## Lambda Function
 
 AWS Lambda ist ein Dienst, der eigenen Code ausführt, ohne dass man sich um die
 unterliegende Server-Infrastruktur kümmern muss.
 
-Tensorflow ist ein Framework für maschinelles Lernen, das zum Beispiel zum
-Klassifizieren von Daten verwendet werden kann.
+Diese Lambda Function ist programmiert um Metadaten aus einer Bilddatei zu extrahieren und in einer Datenbank zu speichern.
 
 [Mehr Infos](https://aws.amazon.com/de/lambda/)
 

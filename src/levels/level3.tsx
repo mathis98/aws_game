@@ -3,7 +3,7 @@ import * as React from 'react'
 
 const level3: Level ={
   columns: 6,
-  rows: [2, 2, 1, 2, 2],
+  rows: 3,
   gap: "2em",
   elements: [
     {
@@ -11,15 +11,15 @@ const level3: Level ={
         column: 1,
         row: 1
       },
-      id: "users",
-      icon: "users"
+      id: "camera",
+      icon: "camera"
     },
     {
       position: {
         column: 2,
         row: 1
       },
-      id: "shield",
+      id: "s3",
       droppable: true
     },
     {
@@ -27,7 +27,7 @@ const level3: Level ={
         column: 3,
         row: 1
       },
-      id: "iam",
+      id: "lambda_image_metadata",
       droppable: true
     },
     {
@@ -35,51 +35,43 @@ const level3: Level ={
         column: 4,
         row: 1
       },
-      id: "gameserver",
-      icon: "gameserver"
-    },
-    {
-      position: {
-        column: 3,
-        row: 3
-      },
-      id: "dynamo",
+      id: "dynamodb",
       droppable: true
     }
   ],
   relations: [
     {
-      sourceId: "users",
-      targetId: "shield",
+      sourceId: "camera",
+      targetId: "s3",
       sourceAnchor: "right",
       targetAnchor: "left"
     },
     {
-      sourceId: "shield",
-      targetId: "iam",
+      sourceId: "s3",
+      targetId: "lambda_image_metadata",
       sourceAnchor: "right",
       targetAnchor: "left"
     },
     {
-      sourceId: "iam",
-      targetId: "gameserver",
+      sourceId: "lambda_image_metadata",
+      targetId: "dynamodb",
       sourceAnchor: "right",
       targetAnchor: "left"
-    },
-    {
-      sourceId: "iam",
-      targetId: "dynamo",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-      doubleArrow: true
     }
   ],
-  awspalette: ["iam", "shield", "dynamodb", "s3"],
+  awspalette: ["s3", "dynamodb", "lambda_image_metadata"],
   validator: Level3Validator
 }
 
 function Level3Validator(state: LevelState): LevelFeedback {
-  return {correct: false, feedbackComponent: <span>not yet implemented</span>};
+  if (
+    state.s3 === 's3' &&
+    state.lambda_image_metadata === 'lambda_image_metadata' &&
+    state.dynamodb === 'dynamodb'
+  ) {
+    return {correct: true};
+  }
+  return {correct: false};
 }
 
 export default level3;

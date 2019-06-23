@@ -4,15 +4,15 @@ import { Level, LevelState, LevelFeedback } from './level';
 const level5: Level = {
   columns: 5,
   rows: 4,
-  gap: "1em",
+  gap: "3em",
   elements: [
     {
       position: {
         column: 1,
         row: 1,
       },
-      id: "customer",
-      icon: "customer",
+      id: "users",
+      icon: "users",
     },
     {
       position: {
@@ -33,7 +33,7 @@ const level5: Level = {
     {
       position: {
         column: 3,
-        row: 2,
+        row: 1,
       },
       id: "supportEmployee",
       icon: "supportEmployee",
@@ -41,7 +41,7 @@ const level5: Level = {
   ],
   relations: [
     {
-      sourceId: "customer",
+      sourceId: "users",
       targetId: "ses",
       sourceAnchor: "right",
       targetAnchor: "left",
@@ -51,9 +51,11 @@ const level5: Level = {
       targetId: "lambdaTensorflow",
       sourceAnchor: "bottom",
       targetAnchor: "top",
+      doubleArrow: true,
+      dashed: true,
     },
     {
-      sourceId: "lambdaTensorflow",
+      sourceId: "ses",
       targetId: "supportEmployee",
       sourceAnchor: "right",
       targetAnchor: "left",
@@ -66,8 +68,6 @@ const level5: Level = {
 function Level5Validator(state: LevelState): LevelFeedback {
   if (state.ses === "ses" && state.lambdaTensorflow === "lambdaTensorflow") {
     return {correct: true, stars: 3};
-  } else {
-    return {correct: false, feedbackComponent: <span>Das funktioniert nicht!</span>};
   }
 
   return {correct: false};

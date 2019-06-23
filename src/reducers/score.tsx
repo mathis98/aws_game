@@ -1,5 +1,5 @@
-import { SET_SCORE, NEXT_LEVEL, RECEIVE_INITIAL_DATA } from '../actions';
-import levels from 'levels/levels';
+import { SET_SCORE, SET_NEXT_LEVEL, RECEIVE_INITIAL_DATA, RESET_SCORE } from '../actions';
+import { LEVELS } from 'levels/levels';
 
 export interface ScoreAction {
   type: string;
@@ -20,7 +20,7 @@ export interface ScoreState {
 }
 
 const initialState = {
-    score: new Array(levels.length).fill({points:0,stars:0}),
+    score: new Array(LEVELS.length).fill({points:0, stars:0}),
     level: 1,
 };
 
@@ -40,11 +40,17 @@ const score = (state: ScoreState = initialState, action: ScoreAction) => {
           }
         })
       }
-    case NEXT_LEVEL:
+    case SET_NEXT_LEVEL:
       return {
         ...state,
-        level: state.level + 1,
+        level: action.level,
       };
+    case RESET_SCORE:
+      return {
+        ...state,
+        level: initialState.level,
+        score: initialState.score,
+      }
     default:
       return state
   }

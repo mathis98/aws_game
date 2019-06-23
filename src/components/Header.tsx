@@ -1,16 +1,12 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { ScoreState, scoreType, scoreSum } from '../reducers/score';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import StarIcon from '@material-ui/icons/StarRounded';
+import { StarRounded as StarIcon } from '@material-ui/icons';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { LEVEL_TITLES } from 'levels/levels';
 
 const css = require('./Header.css');
 
@@ -45,10 +41,9 @@ class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
           >
             <MenuItem onClick={console.log} disabled divider style={{ opacity: 1 }}>Gesamtpunktzahl: {totalPoints} Punkte</MenuItem>
             {this.props.score.map((d, i) => {
-              i++;
               return (
-                <MenuItem onClick={() => {this.props.history.push(`/levels/${i}`); this.setState({anchorEl: null})}} key={`menuitem${i}`}>
-                  <div className={css.levelName}>Level {i}</div>
+                <MenuItem onClick={() => {this.props.history.push(`/levels/${i + 1}`); this.setState({anchorEl: null})}} key={`menuitem${i}`}>
+                  <div className={css.levelName}>{`${i + 1}: ${LEVEL_TITLES[i]}`}</div>
                   {Boolean(d.points) && <div className={css.levelPoints}>{d.points} Pkt.</div>}
                   <div className={css.starContainer}>
                     <StarIcon className={cx(css.star, {[css.starFilled]: d.stars > 0})} />

@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { LevelFeedback } from 'levels/level';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
+import { DialogContent, DialogActions, Dialog, Typography, Button } from '@material-ui/core';
 import cx from "classnames";
-import ClearIcon from '@material-ui/icons/ClearRounded';
-import StarIcon from '@material-ui/icons/StarRounded';
-import Typography from '@material-ui/core/Typography';
+import { ClearRounded as ClearIcon, StarRounded as StarIcon } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import { setScore, nextLevel } from '../actions';
+import { setScore, setNextLevel } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 const css = require('./FeedbackPopup.css');
@@ -48,7 +43,7 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
 
   nextLevel() {
     this.props.dispatch(setScore(this.state.points, this.props.levelId, this.state.starCount));
-    this.props.dispatch(nextLevel());
+    this.props.dispatch(setNextLevel(this.props.levelId + 1));
     this.props.history.push(`/levels/${this.props.levelId + 1}`);
   }
 
@@ -94,13 +89,18 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
       }
 
       if (this.props.feedback.feedbackComponent) {
+        const feedback = typeof this.props.feedback.feedbackComponent === "string" ?
+          <Typography variant="body1">
+            {this.props.feedback.feedbackComponent}
+          </Typography> :
+          this.props.feedback.feedbackComponent;
         hint = <>
           <hr className={css.slimHr} />
           <Typography variant="h6">
-            Hinweise:
+            Hinweis:
           </Typography>
           <div className={css.hintContainer}>
-            {this.props.feedback.feedbackComponent}
+            {feedback}
           </div>
         </>
       }
