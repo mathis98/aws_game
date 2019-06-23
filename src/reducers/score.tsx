@@ -1,5 +1,5 @@
-import {LEVELS} from 'levels/levels';
 import {SET_SCORE, NEXT_LEVEL, RESET_SCORE} from '../actions';
+import {LEVELS} from 'levels/levels';
 
 export interface ScoreAction {
   type: string;
