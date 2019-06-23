@@ -3,7 +3,7 @@ import * as React from 'react'
 
 const level3: Level ={
   columns: 6,
-  rows: [2, 2, 1, 2, 2],
+  rows: 3,
   gap: "2em",
   elements: [
     {
@@ -11,15 +11,15 @@ const level3: Level ={
         column: 1,
         row: 1
       },
-      id: "users",
-      icon: "users"
+      id: "camera",
+      icon: "camera"
     },
     {
       position: {
         column: 2,
         row: 1
       },
-      id: "shield",
+      id: "s3",
       droppable: true
     },
     {
@@ -27,66 +27,47 @@ const level3: Level ={
         column: 3,
         row: 1
       },
-      id: "cognito",
+      id: "lambda",
       droppable: true
     },
     {
       position: {
-        column: 3,
-        row: 3
+        column: 4,
+        row: 1
       },
-      id: "gameserver",
-      icon: "gameserver"
-    },
-    {
-      position: {
-        column: 2,
-        row: 3
-      },
-      id: "dynamo",
+      id: "dynamodb",
       droppable: true
     }
   ],
   relations: [
     {
-      sourceId: "users",
-      targetId: "shield",
+      sourceId: "camera",
+      targetId: "s3",
       sourceAnchor: "right",
       targetAnchor: "left"
     },
     {
-      sourceId: "shield",
-      targetId: "cognito",
+      sourceId: "s3",
+      targetId: "lambda",
       sourceAnchor: "right",
       targetAnchor: "left"
     },
     {
-      sourceId: "cognito",
-      targetId: "gameserver",
-      sourceAnchor: "bottom",
-      targetAnchor: "top"
-    },
-    {
-      sourceId: "gameserver",
-      targetId: "dynamo",
-      sourceAnchor: "left",
-      targetAnchor: "right",
-      doubleArrow: true
+      sourceId: "lambda",
+      targetId: "dynamodb",
+      sourceAnchor: "right",
+      targetAnchor: "left"
     }
   ],
-  awspalette: ["shield", "cognito", "dynamodb", "s3"],
+  awspalette: ["s3", "dynamodb", "lambda"],
   validator: Level3Validator
 }
 
 function Level3Validator(state: LevelState): LevelFeedback {
-  if (state.cognito === "cognito" && state.dynamo === "dynamodb" && state.shield === "shield") {
-    return {correct: true, stars: 3};
-  } else if (state.cognito === "cognito" && state.dynamo === "s3" && state.shield === "shield") {
-    return {correct: true, points: 20};
-  } else if (state.cognito === "shield" && state.shield === "cognito") {
-    return { correct: false, feedbackComponent: "Der Login-Service ist gegen DDoS Angriffe ungeschützt!"}
+  if (state.s3 === 's3' && state.lambda === 'lambda' && state.dynamodb === 'dynamodb') {
+    return {correct: true, feedbackComponent: <span>Sehr gut.</span>};
   }
-  return {correct: false};
+  return {correct: false, feedbackComponent: <span>Leider nicht richtig.</span>};
 }
 
 export default level3;
