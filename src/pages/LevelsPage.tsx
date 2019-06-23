@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PageWrapper from 'components/PageWrapper';
 import LinkButton from 'components/LinkButton';
-import Typography from '@material-ui/core/Typography';
-import ArrowBack from '@material-ui/icons/ArrowBack';
+import { Typography } from '@material-ui/core';
+import { ArrowBack as ArrowBackIcon } from '@material-ui/icons';
 import levels from "levels/levels";
 
 export default class LevelsPage extends React.Component {
@@ -28,7 +28,7 @@ export default class LevelsPage extends React.Component {
 
         <p>
           <LinkButton to="/" variant="contained" color="primary">
-            <ArrowBack/> Zurück
+            <ArrowBackIcon/> Zurück
           </LinkButton>
         </p>
       </PageWrapper>
