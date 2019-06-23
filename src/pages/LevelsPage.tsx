@@ -12,7 +12,7 @@ export default class LevelsPage extends React.Component {
         levelJsx.push(
           <p>
             <LinkButton to={`levels/${i}`} variant="contained" color="secondary">
-              Level {i}: {LEVEL_TITLES[i]}
+              Level {i}: {LEVEL_TITLES[i - 1]}
             </LinkButton>
           </p>)
       }
