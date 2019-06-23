@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { LevelFeedback } from 'levels/level';
-import { DialogContent, DialogActions, Dialog, Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import { DialogContent, DialogActions, Dialog, Typography, Button } from '@material-ui/core';
 import cx from "classnames";
 import { ClearRounded as ClearIcon, StarRounded as StarIcon } from '@material-ui/icons';
 import { connect } from 'react-redux';
