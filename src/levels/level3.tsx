@@ -84,7 +84,7 @@ function Level3Validator(state: LevelState): LevelFeedback {
   } else if (state.cognito === "cognito" && state.dynamo === "s3" && state.shield === "shield") {
     return {correct: true, points: 20};
   } else if (state.cognito === "shield" && state.shield === "cognito") {
-    return { correct: false, feedbackComponent: <span>Der Login-Service ist gegen DDoS Angriffe ungeschützt!</span>}
+    return { correct: false, feedbackComponent: "Der Login-Service ist gegen DDoS Angriffe ungeschützt!"}
   }
   return {correct: false};
 }
