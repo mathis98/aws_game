@@ -89,13 +89,18 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
       }
 
       if (this.props.feedback.feedbackComponent) {
+        const feedback = typeof this.props.feedback.feedbackComponent === "string" ?
+          <Typography variant="body1">
+            {this.props.feedback.feedbackComponent}
+          </Typography> :
+          this.props.feedback.feedbackComponent;
         hint = <>
           <hr className={css.slimHr} />
           <Typography variant="h6">
-            Hinweise:
+            Hinweis:
           </Typography>
           <div className={css.hintContainer}>
-            {this.props.feedback.feedbackComponent}
+            {feedback}
           </div>
         </>
       }

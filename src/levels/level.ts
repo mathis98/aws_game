@@ -52,7 +52,7 @@ export interface LevelFeedback {
   points?: number;
   maxPoints?: number;
   stars?: 1 | 2 | 3;
-  feedbackComponent?: JSX.Element;
+  feedbackComponent?: JSX.Element | string;
 }
 
 /**

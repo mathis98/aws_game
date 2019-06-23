@@ -97,17 +97,17 @@ function Level6Validator(state: LevelState): LevelFeedback {
 
   // needs to be correct
   if(state.kinesis !== "kinesis" )
-    return { correct: false, feedbackComponent: <span>Die Wetterdaten werden nicht empfangen.</span> };
+    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht empfangen." };
   if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb"))
-    return { correct: false, feedbackComponent: <span>Die Wetterdaten können nicht abgespeichert werden.</span> };
+    return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
   if(!(state.lambda === "lambda" || state.lambda === "lambdaTensorflow") )
-    return { correct: false, feedbackComponent: <span>Die gesamelten Daten werden nicht richtig verarbeitet</span> };
+    return { correct: false, feedbackComponent: "Die gesamelten Daten werden nicht richtig verarbeitet" };
   if(state.ses !== "ses" )
-    return { correct: false, feedbackComponent: <span>Es werden keine Emails verschickt.</span> };
+    return { correct: false, feedbackComponent: "Es werden keine Emails verschickt." };
 
   // possible:
   if (state.dynamodb === "s3") {
-    return {correct: true, stars: 1, feedbackComponent: <span>Zu viele kleine Daten für S3.</span> };
+    return {correct: true, stars: 1, feedbackComponent: "Zu viele kleine Daten für S3." };
   }
   // perfect:
   if (state.dynamodb === "dynamodb") {
