@@ -17,3 +17,7 @@ export const setNextLevel = (level: number) => ({
 export const resetScore = () => ({
   type: RESET_SCORE,
 });
+
+export const resetScore = () => ({
+  type: RESET_SCORE,
+});
