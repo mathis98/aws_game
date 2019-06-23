@@ -3,16 +3,16 @@ import PageWrapper from 'components/PageWrapper';
 import LinkButton from 'components/LinkButton';
 import { Typography } from '@material-ui/core';
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons';
-import levels from "levels/levels";
+import {LEVELS, LEVEL_TITLES} from "levels/levels";
 
 export default class LevelsPage extends React.Component {
   render() {
     const levelJsx = [];
-      for (let i = 1; i <= levels.length; i++) {
+      for (let i = 1; i <= LEVELS.length; i++) {
         levelJsx.push(
           <p>
             <LinkButton to={`levels/${i}`} variant="contained" color="secondary">
-              Level {i}
+              Level {i}: {LEVEL_TITLES[i]}
             </LinkButton>
           </p>)
       }
