@@ -15,6 +15,7 @@ export interface LevelElement {
   position: LevelPosition;
   droppable?: boolean;     // <-  one of these
   icon?: IconLevelElement; // <-  must be set
+  description?: string;
 }
 
 export interface LevelRelation {

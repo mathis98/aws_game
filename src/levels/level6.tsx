@@ -13,6 +13,7 @@ const level6: Level = {
       },
       id: "weatherStation",
       icon: "weatherStation",
+      description: "lol",
     },
     {
       position: {

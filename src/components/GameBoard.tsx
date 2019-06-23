@@ -3,6 +3,7 @@ import ReactResizeDetector from 'react-resize-detector';
 import { Level, AnchorPosition, LevelRelation, LevelState } from 'levels/level';
 import { allIcons } from 'levels/LevelElements';
 import Droppable from 'components/dnd/Droppable';
+import {setPriority} from "os";
 
 const css = require('./GameBoard.css');
 
@@ -97,6 +98,9 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
               component = this.droppables[el.id];
             } else if (el.icon) {
               component = allIcons[el.icon];
+              if(el.description) {
+                component = {description: "test"}
+              }
             } else {
               throw "At least one of the properties 'droppable', 'icon' must be set!";
             }
