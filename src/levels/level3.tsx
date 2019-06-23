@@ -27,7 +27,7 @@ const level3: Level ={
         column: 3,
         row: 1
       },
-      id: "lambda",
+      id: "lambda_image_metadata",
       droppable: true
     },
     {
@@ -48,26 +48,30 @@ const level3: Level ={
     },
     {
       sourceId: "s3",
-      targetId: "lambda",
+      targetId: "lambda_image_metadata",
       sourceAnchor: "right",
       targetAnchor: "left"
     },
     {
-      sourceId: "lambda",
+      sourceId: "lambda_image_metadata",
       targetId: "dynamodb",
       sourceAnchor: "right",
       targetAnchor: "left"
     }
   ],
-  awspalette: ["s3", "dynamodb", "lambda"],
+  awspalette: ["s3", "dynamodb", "lambda_image_metadata"],
   validator: Level3Validator
 }
 
 function Level3Validator(state: LevelState): LevelFeedback {
-  if (state.s3 === 's3' && state.lambda === 'lambda' && state.dynamodb === 'dynamodb') {
-    return {correct: true, feedbackComponent: <span>Sehr gut.</span>};
+  if (
+    state.s3 === 's3' &&
+    state.lambda_image_metadata === 'lambda_image_metadata' &&
+    state.dynamodb === 'dynamodb'
+  ) {
+    return {correct: true};
   }
-  return {correct: false, feedbackComponent: <span>Leider nicht richtig.</span>};
+  return {correct: false};
 }
 
 export default level3;
