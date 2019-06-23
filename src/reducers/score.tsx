@@ -1,5 +1,5 @@
 import {SET_SCORE, NEXT_LEVEL} from '../actions';
-import levels from 'levels/levels';
+import {LEVELS} from 'levels/levels';
 
 export interface ScoreAction {
   type: string;
@@ -19,7 +19,7 @@ export interface ScoreState {
 }
 
 const initialState = {
-    score: new Array(levels.length).fill({points:0,stars:0}),
+    score: new Array(LEVELS.length).fill({points:0, stars:0}),
     level: 1,
 };
 
