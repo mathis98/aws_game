@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import cx from "classnames";
 import { ClearRounded as ClearIcon, StarRounded as StarIcon } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import { addScore } from '../actions';
+import { setScore, nextLevel } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 const css = require('./FeedbackPopup.css');
@@ -43,7 +43,8 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
   }
 
   nextLevel() {
-    this.props.dispatch(addScore(this.state.points));
+    this.props.dispatch(setScore(this.state.points, this.props.levelId, this.state.starCount));
+    this.props.dispatch(nextLevel());
     this.props.history.push(`/levels/${this.props.levelId + 1}`);
   }
 
