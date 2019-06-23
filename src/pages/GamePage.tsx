@@ -5,7 +5,7 @@ import '!style-loader!css-loader!./SplitterLayoutCustom.css';
 import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
-import levels from 'levels/levels'
+import {LEVELS} from 'levels/levels'
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { isMobile } from 'react-device-detect';
@@ -42,7 +42,7 @@ export default class GamePage extends React.Component<GamePageProps, GamePageSta
     super(props);
 
     this.levelInfoMd = require(`level_data/level_${this.props.levelId}/popup.md`).default;
-    this.level = levels[this.props.levelId - 1];
+    this.level = LEVELS[this.props.levelId - 1];
     this.checkLevel = this.checkLevel.bind(this);
     this.showInfo = this.showInfo.bind(this);
     this.state = {currentInfoMd: this.levelInfoMd};
@@ -50,7 +50,7 @@ export default class GamePage extends React.Component<GamePageProps, GamePageSta
   }
 
   render() {
-    if (this.props.levelId - 1 > levels.length) {
+    if (this.props.levelId - 1 > LEVELS.length) {
       return <ErrorPage />
     }
 
