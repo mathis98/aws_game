@@ -1,4 +1,4 @@
-## Level 2
+## Level 2: Fotostudio
 
 Ein Fotograf möchte die **Bilder** als auch die Informationen seiner Kunden,
 wie z.&nbsp;B. die Personalien, die **Aufträge** und eventuelle Anmerkungen, über uns verwalten
