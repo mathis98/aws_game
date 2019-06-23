@@ -16,11 +16,15 @@
   border: solid 0.1em white;
   border-radius: 1em;
   padding: 0 0.7em;
-  font-size: 2vh !important;
+  font-size: 1.7vh !important;
   display: block;
   background-color: #ffffff1c;
+  margin: 0 1em !important;
+  overflow: hidden;
+  text-align: center;
 }
 
 .awsProductNameWrapper {
   margin: 0 auto 0.5em auto;
+  max-width: -webkit-fill-available;
 }
