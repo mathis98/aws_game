@@ -1,4 +1,4 @@
-import {SET_SCORE, NEXT_LEVEL} from '../actions';
+import {SET_SCORE, NEXT_LEVEL, RESET_SCORE} from '../actions';
 import levels from 'levels/levels';
 
 export interface ScoreAction {
@@ -42,6 +42,12 @@ const score = (state: ScoreState = initialState, action: ScoreAction) => {
         ...state,
         level: state.level + 1,
       };
+    case RESET_SCORE:
+      return {
+        ...state,
+        level: initialState.level,
+        score: initialState.score,
+      }
     default:
       return state
   }
