@@ -1,4 +1,4 @@
-import levels from 'levels/levels';
+import { LEVELS } from 'levels/levels';
 
 /**
  * Function that loads the serialized state from localStorage
@@ -17,8 +17,8 @@ export const loadState = () => {
      * if new levels where added since last play
      * add points 0 and 0 stars in levels array
      */
-    if(state.score.score.length < levels.length) {
-      let temp = new Array(levels.length - state.score.score.length)
+    if(state.score.score.length < LEVELS.length) {
+      let temp = new Array(LEVELS.length - state.score.score.length)
                   .fill({points: 0, stars: 0});
       state.score.score.append(temp);
     }
