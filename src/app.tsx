@@ -2,7 +2,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {Route, Switch} from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import preventWrongLevel from './middleware/levels';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux';
 import { loadState, saveState } from './localStorage';
@@ -20,7 +21,10 @@ const persistedState = loadState();
 const store = createStore(
   rootReducer,
   persistedState,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(preventWrongLevel),
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  ),
 );
 
 store.subscribe(() => {
