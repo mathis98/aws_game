@@ -20,6 +20,11 @@ module.exports = {
       assets: path.resolve(__dirname, 'assets'),
     }
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.min.js',

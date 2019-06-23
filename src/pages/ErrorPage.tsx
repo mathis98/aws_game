@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import PageWrapper from 'components/PageWrapper';
 import LinkButton from 'components/LinkButton';
-import Typography from '@material-ui/core/Typography';
-import ArrowBack from '@material-ui/icons/ArrowBack';
+import { Typography } from '@material-ui/core';
+import { ArrowBack as ArrowBackIcon } from '@material-ui/icons';
 
 export default class ErrorPage extends React.Component {
   render() {
@@ -14,7 +13,7 @@ export default class ErrorPage extends React.Component {
         </Typography>
         <p>
           <LinkButton to="/" variant="contained" color="primary">
-            <ArrowBack/> Zurück
+            <ArrowBackIcon/> Zurück
           </LinkButton>
         </p>
       </PageWrapper>

@@ -10,12 +10,10 @@ import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { isMobile } from 'react-device-detect';
 import TouchBackend from 'react-dnd-touch-backend';
-import Fab from '@material-ui/core/Fab';
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { PlayCircleOutline as PlayCircleOutlineIcon, Undo as UndoIcon } from '@material-ui/icons'
+import { Fab, Typography, Tooltip } from '@material-ui/core';
 import { Level, LevelFeedback } from 'levels/level';
 import { allAWSProducts } from 'levels/LevelElements';
-import Tooltip from '@material-ui/core/Tooltip';
 import GamePageSnackbar from 'components/GamePageSnackbar';
 import FeedbackPopup from 'components/FeedbackPopup';
 import ErrorPage from 'pages/ErrorPage'
@@ -68,7 +66,7 @@ export default class GamePage extends React.Component<GamePageProps, GamePageSta
             <SplitterPanel className={css.gridBackground} >
               <GameBoard level={this.level} ref={this.gameBoardRef} />
               <Fab variant="extended" color="primary" className={css.startButton} onClick={this.checkLevel} >
-                <Icon>play_circle_outline</Icon>&nbsp;&nbsp;Abgabe
+                <PlayCircleOutlineIcon/>&nbsp;&nbsp;Abgabe
               </Fab>
             </SplitterPanel>
             <SplitterLayout vertical percentage primaryMinSize={25} secondaryMinSize={25} secondaryInitialSize={50}>
@@ -90,7 +88,7 @@ export default class GamePage extends React.Component<GamePageProps, GamePageSta
                 {this.state.currentInfoId &&
                 <Tooltip title="Zurück">
                   <Fab color="primary" className={css.infoResetButton} onClick={() => this.showInfo("")}>
-                    <Icon>undo</Icon>
+                    <UndoIcon/>
                   </Fab>
                 </Tooltip>}
               </SplitterPanel>

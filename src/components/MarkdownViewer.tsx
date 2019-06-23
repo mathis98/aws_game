@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactMarkdown from 'react-markdown';
-import OpenInNewIcon from "@material-ui/icons/OpenInNew";
-import Tooltip from "@material-ui/core/Tooltip";
+import { OpenInNew as OpenInNewIcon } from "@material-ui/icons";
+import { Tooltip } from "@material-ui/core";
 import YoutubePopup from './YoutubePopup';
 
 const css = require('./MarkdownViewer.css');
