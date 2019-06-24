@@ -13,8 +13,8 @@ export default class LevelsPage extends React.Component {
       for (let i = 1; i <= LEVELS.length; i++) {
         levelJsx.push(
           <p>
-            <LinkButton className={css.button_group} to={`levels/${i}`} variant="contained" color="secondary" fullWidth={true}
-                        style={{justifyContent: 'left', textTransform: "none"}}>
+            <LinkButton className={css.button_group} to={`levels/${i}`} variant="contained" color="secondary"
+                        fullWidth={true} style={{justifyContent: 'left', textTransform: "none"}}>
               Level {i}: {LEVEL_TITLES[i - 1]}
             </LinkButton>
           </p>)
