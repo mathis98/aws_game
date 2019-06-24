@@ -16,6 +16,6 @@ export const LEVEL_TITLES = [
     'Benachrichtigung',
     'Machine Learning Wetterdaten',
     'Internet of Things (IoT)',
-]
+];
 
 export const LEVELS = [level1, level2, level3, level4, level5, level6];
