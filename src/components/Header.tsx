@@ -1,12 +1,13 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { ScoreState, scoreType, scoreSum } from '../reducers/score';
 import { StarRounded as StarIcon } from '@material-ui/icons';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { LEVEL_TITLES } from 'levels/levels';
+import { setUsername } from "../actions";
 
 const css = require('./Header.css');
 
@@ -21,6 +22,11 @@ class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
     this.state = {};
   }
 
+  handleUsernameInputChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    // @ts-ignore
+    this.props.dispatch(setUsername(event.target.value));
+  }
+
   render() {
     const totalPoints = scoreSum(this.props.score);
     return (
@@ -31,6 +37,15 @@ class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
               AWS Boot Camp
             </Typography>
           </Link>
+
+
+          <TextField
+            label="Nutzername"
+            variant="outlined"
+            // @ts-ignore
+            value={this.props.username}
+            onChange={event => this.handleUsernameInputChange(event)}
+          />
 
           <Menu
             keepMounted

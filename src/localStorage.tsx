@@ -1,12 +1,10 @@
-import { LEVELS } from "levels/levels";
-
-const url = "https://g8t2iybhtf.execute-api.eu-central-1.amazonaws.com/dev/score";
+import * as api from "./BackendInteractor";
 
 /**
  * Function that loads the serialized state from localStorage
  * @return the deserialized state on success or undefined on error
  */
-export const loadState = async () => {
+export const loadState = async (state: any) => {
   // try {
   //   // load the serialized state from localStorage
   //   const serializedState = localStorage.getItem('state');
@@ -29,10 +27,7 @@ export const loadState = async () => {
   //   return undefined;
   // }
 
-  const resp = await fetch(url);
-  const json = JSON.parse((await resp.json()).data);
-
-  return json;
+  return api.getStateFromBackend(state.username);
 };
 
 
@@ -51,10 +46,5 @@ export const saveState = (state: any) => {
   //   // ignore dem errors
   // }
 
-  fetch(url, {method: "POST", body: JSON.stringify({data: state})})
-    .then(resp => resp.json())
-    .then(json => {
-        console.log(json);
-      },
-    );
+  api.saveStateToBackend(state);
 };

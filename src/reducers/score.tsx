@@ -27,7 +27,7 @@ const initialState = {
 const score = (state: ScoreState = initialState, action: ScoreAction) => {
   switch (action.type) {
     case RECEIVE_INITIAL_DATA:
-      return action.data.score;
+      return action.data;
     case SET_SCORE:
       return {
         ...state,
