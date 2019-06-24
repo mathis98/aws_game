@@ -1,0 +1,63 @@
+.cardButtonWrapper {
+  width: 100%;
+  display: block !important;
+  text-align: left;
+}
+
+.backButton {
+  margin: 2em 0 !important;
+}
+
+.gameboardContainer {
+  width: 100%;
+  height: 15em;
+  background-image: linear-gradient(rgb(240, 240, 240) 2px, transparent 2px),
+    linear-gradient(90deg, rgb(240, 240, 240) 2px, transparent 2px),
+    linear-gradient(rgb(245,245,245) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(245,245,245) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 5px 5px, 5px 5px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.levelItemWrapper {
+  padding: 2em 0;
+  background-color: #f1f1f1;
+}
+
+.levelSelectionTitle {
+  padding: 3em 0 1em 0;
+}
+
+.backIcon {
+  margin-right: 0.4em;
+}
+
+.starContainer {
+  margin: 0.5em 0 -0.5em -0.35em;
+}
+
+.star {
+  font-size: 2.3em !important;
+  color: rgb(231, 231, 231);
+}
+
+.starFilled {
+  color: rgb(248, 192, 50);
+}
+
+.star:nth-child(2) {
+  margin: 0 -0.2em;
+}
+
+.levelPoints {
+  border: 1px solid rgba(0, 0, 0, 0.87);
+  border-radius: 1em;
+  padding: 0 0.4em;
+  font-size: 0.8em;
+  display: inline;
+  font-size: 0.5em;
+  vertical-align: middle;
+  margin-left: 1em;
+}

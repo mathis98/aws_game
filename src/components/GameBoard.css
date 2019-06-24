@@ -9,6 +9,10 @@
     min-height: min-content;
 }
 
+.thumbnail {
+    padding: 0.2em;
+}
+
 .boardElement {
     height: 100%;
     width: 100%;

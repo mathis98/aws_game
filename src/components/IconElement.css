@@ -1,6 +1,11 @@
 .iconElement {
   border-radius: 6px;
   -webkit-user-drag: none;
-  height: var(--element-size);
-  width: var(--element-size);
+  height: 17vh;
+  width: 17vh;
+}
+
+.thumbnailIcon {
+  height: 3em;
+  width: 3em;
 }
