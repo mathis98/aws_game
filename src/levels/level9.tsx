@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Level, LevelState, LevelFeedback } from './level';
 
 const level9: Level = {
-  columns: 3,
+  columns: 6,
   rows: 3,
   gap: "2em",
   elements: [
@@ -11,7 +11,7 @@ const level9: Level = {
         column: 0,
         row: 0,
       },
-      id: "weatherStation",
+      id: "weatherStation1",
       icon: "weatherStation",
     },
     {
@@ -19,31 +19,31 @@ const level9: Level = {
         column: 0,
         row: 1,
       },
-      id: "kinesis",
-      droppable: true,
+      id: "weatherStation2",
+      icon: "weatherStation",
     },
     {
       position: {
         column: 0,
         row: 2,
       },
-      id: "dynamodb",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 1,
-        row: 1,
-      },
-      id: "lambda",
-      droppable: true,
+      id: "weatherStation3",
+      icon: "weatherStation",
     },
     {
       position: {
         column: 2,
-        row: 1,
+        row: 0,
       },
-      id: "ses",
+      id: "lakeFormation",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 3,
+        row: 0,
+      },
+      id: "s3",
       droppable: true,
     },
     {
@@ -51,45 +51,99 @@ const level9: Level = {
         column: 2,
         row: 2,
       },
-      id: "users",
-      icon: "users"
+      id: "redshift",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 3,
+        row: 2,
+      },
+      id: "forecast",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 5,
+        row: 2,
+      },
+      id: "mobile1",
+      icon: "mobile"
+    },
+    {
+      position: {
+        column: 5,
+        row: 1,
+      },
+      id: "mobile2",
+      icon: "mobile"
+    },
+    {
+      position: {
+        column: 5,
+        row: 0,
+      },
+      id: "mobile3",
+      icon: "mobile"
     },
   ],
   relations: [
     {
-      sourceId: "weatherStation",
-      targetId: "kinesis",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-    },
-    {
-      sourceId: "kinesis",
-      targetId: "dynamodb",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-      dashed: true,
-      doubleArrow: true,
-    },
-    {
-      sourceId: "kinesis",
-      targetId: "lambda",
+      sourceId: "weatherStation1",
+      targetId: "lakeFormation",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
-      sourceId: "lambda",
-      targetId: "ses",
+      sourceId: "weatherStation2",
+      targetId: "lakeFormation",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
-      sourceId: "ses",
-      targetId: "users",
+      sourceId: "weatherStation3",
+      targetId: "lakeFormation",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "lakeFormation",
+      targetId: "s3",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "s3",
+      targetId: "redshift",
       sourceAnchor: "bottom",
       targetAnchor: "top",
+    },
+    {
+      sourceId: "redshift",
+      targetId: "forecast",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "forecast",
+      targetId: "mobile1",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "forecast",
+      targetId: "mobile2",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "forecast",
+      targetId: "mobile3",
+      sourceAnchor: "right",
+      targetAnchor: "left",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "lambda"],
+  awspalette: ["redshift", "forecast", "s3", "lakeFormation", "dynamodb", "lambdaTensorflow"],
   validator: level9Validator,
 };
 
