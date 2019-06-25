@@ -24,7 +24,8 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
 };
 
 
-export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "lambda_image_metadata" | "kinesis" | "cognito" | "lakeFormation" | "redshift";
+export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" |
+                                     "lambda_image_metadata" | "kinesis" | "cognito" | "lakeFormation" | "redshift";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
