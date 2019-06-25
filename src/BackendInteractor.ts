@@ -1,4 +1,4 @@
-const apiUrl = "https://g8t2iybhtf.execute-api.eu-central-1.amazonaws.com/dev/score";
+const apiUrl = "https://api.slsgame.janbe.eu/score";
 
 export async function getStateFromBackend(username: string) {
   const resp = await fetch(apiUrl + "?user=" + username);
