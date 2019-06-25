@@ -1,30 +1,32 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, TextField } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { ScoreState, scoreType, scoreSum } from '../reducers/score';
-import { StarRounded as StarIcon } from '@material-ui/icons';
+import { PersonRounded as PersonRoundedIcon, StarRounded as StarIcon } from '@material-ui/icons';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { LEVEL_TITLES } from 'levels/levels';
-import { setUsername } from "../actions";
+import SignInPopup from "components/SignInPopup";
 
 const css = require('./Header.css');
 
-export interface HeaderProps extends RouteComponentProps {
-  score: scoreType[];
+
+interface SignInPopupState {
+  signInPopupOpen: boolean;
+  anchorEl?: HTMLElement;
 }
 
-class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
+export interface HeaderProps extends RouteComponentProps {
+  score: scoreType[];
+  username: string;
+}
+
+class Header extends React.Component<HeaderProps, SignInPopupState> {
 
   constructor(props: HeaderProps) {
     super(props);
-    this.state = {};
-  }
-
-  handleUsernameInputChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    // @ts-ignore
-    this.props.dispatch(setUsername(event.target.value));
+    this.state = {signInPopupOpen: false};
   }
 
   render() {
@@ -37,15 +39,6 @@ class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
               AWS Boot Camp
             </Typography>
           </Link>
-
-
-          <TextField
-            label="Nutzername"
-            variant="outlined"
-            // @ts-ignore
-            value={this.props.username}
-            onChange={event => this.handleUsernameInputChange(event)}
-          />
 
           <Menu
             keepMounted
@@ -74,13 +67,39 @@ class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
               {totalPoints} Punkte
             </Typography>
           </Button>
+
+
+          <SignInPopup open={this.state.signInPopupOpen} onClose={() => this.setState({signInPopupOpen: false})}/>
+
+          {
+            this.props.username
+              ?
+              <Button
+                color="inherit" variant="outlined"
+                onClick={() => this.setState({signInPopupOpen: true})}
+              >
+                <Typography style={{textTransform: 'none'}}>{this.props.username}</Typography>
+                <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
+              </Button>
+
+              :
+              <Button
+                color="inherit" variant="outlined"
+                onClick={() => this.setState({signInPopupOpen: true})}
+              >
+                Anmelden
+                <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
+              </Button>
+
+          }
         </Toolbar>
       </AppBar>
     );
   }
 }
 
-const mapStateToProps = (state: {score: ScoreState}) => ({
+const mapStateToProps = (state: {score: ScoreState, username: string}) => ({
+  username: state.username,
   score: state.score.score,
 })
 
