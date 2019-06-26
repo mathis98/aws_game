@@ -19,7 +19,7 @@ const store = createStore(
     ((window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()) || compose),
 );
 
-store.dispatch(setUsername(loadUsername()));
+store.dispatch(setUsername(loadUsername() || ''));
 
 const loadInitialSavegame = () => {
   getSavegame((store.getState() as StateType).username).then(data => store.dispatch(receiveInitialData(data)));
