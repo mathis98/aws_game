@@ -12,8 +12,10 @@ const initialUsername = '';
 const username = (state: string = initialUsername, action: UsernameAction) => {
   switch (action.type) {
     case SET_USERNAME:
-      getStateFromBackend(action.username)
-        .then(data => store.dispatch(receiveInitialData(data)));
+      if (action.username) {
+        getStateFromBackend(action.username)
+          .then(data => store.dispatch(receiveInitialData(data)));
+      }
       return action.username;
     default:
       return state;

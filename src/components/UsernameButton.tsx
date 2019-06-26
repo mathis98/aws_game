@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import * as React from "react";
 import { PersonRounded as PersonRoundedIcon } from "@material-ui/icons";
@@ -12,7 +12,19 @@ interface SignInPopupState {
   signInPopupOpen: boolean;
 }
 
+const [open, setOpen] = React.useState(false);
+const anchorRef = React.useRef(null);
+
+function handleClose(event: any) {
+  if (anchorRef.current && anchorRef.current.contains(event.target)) {
+    return;
+  }
+
+  setOpen(false);
+}
+
 class UsernameButton extends React.Component<SignInPopupProps, SignInPopupState> {
+
   constructor(props: SignInPopupProps) {
     super(props);
     this.state = {signInPopupOpen: false};
@@ -26,7 +38,7 @@ class UsernameButton extends React.Component<SignInPopupProps, SignInPopupState>
         {
           this.props.username
             ?
-            <Button
+            <Button id={"hmmm"}
               color="inherit" variant="outlined"
               onClick={() => this.setState({signInPopupOpen: true})}
             >
@@ -44,6 +56,29 @@ class UsernameButton extends React.Component<SignInPopupProps, SignInPopupState>
             </Button>
 
         }
+
+        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+              }}
+            >
+              <Paper id="menu-list-grow">
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList>
+                      <MenuItem
+                      >
+                        Text
+                      </MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+
       </div>
     );
   }
