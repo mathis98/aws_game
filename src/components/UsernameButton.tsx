@@ -3,88 +3,85 @@ import { connect } from "react-redux";
 import * as React from "react";
 import { PersonRounded as PersonRoundedIcon } from "@material-ui/icons";
 import SignInPopup from "components/SignInPopup";
+import store from "../store";
+import { setUsername } from "../actions";
 
 interface SignInPopupProps {
   username: string;
 }
 
-interface SignInPopupState {
-  signInPopupOpen: boolean;
-}
+const UsernameButton = (props: SignInPopupProps) => {
 
-const [open, setOpen] = React.useState(false);
-const anchorRef = React.useRef(null);
+  const [signInPopupOpen, setSignInPopupOpen] = React.useState(false);
+  const [signOutPopperOpen, setSignOutPopperOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
 
-function handleClose(event: any) {
-  if (anchorRef.current && anchorRef.current.contains(event.target)) {
-    return;
-  }
+  const handleClose = (event: any) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
 
-  setOpen(false);
-}
+    setSignOutPopperOpen(false);
+  };
 
-class UsernameButton extends React.Component<SignInPopupProps, SignInPopupState> {
+  const signOut = (event: any): void => {
+    store.dispatch(setUsername(''));
+    setSignOutPopperOpen(false);
+  };
 
-  constructor(props: SignInPopupProps) {
-    super(props);
-    this.state = {signInPopupOpen: false};
-  }
+  return (
+    <div>
+      <SignInPopup open={signInPopupOpen} onClose={() => setSignInPopupOpen(false)}/>
 
-  render() {
-    return (
-      <div>
-        <SignInPopup open={this.state.signInPopupOpen} onClose={() => this.setState({signInPopupOpen: false})}/>
+      {
+        props.username
+          ?
+          <Button id={"hmmm"}
+                  color="inherit" variant="outlined"
+                  onClick={() => setSignOutPopperOpen(true)}
+          >
+            <Typography style={{textTransform: 'none'}}>{props.username}</Typography>
+            <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
+          </Button>
 
-        {
-          this.props.username
-            ?
-            <Button id={"hmmm"}
-              color="inherit" variant="outlined"
-              onClick={() => this.setState({signInPopupOpen: true})}
-            >
-              <Typography style={{textTransform: 'none'}}>{this.props.username}</Typography>
-              <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
-            </Button>
+          :
+          <Button
+            color="inherit" variant="outlined"
+            onClick={() => setSignInPopupOpen(true)}
+          >
+            Anmelden
+            <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
+          </Button>
 
-            :
-            <Button
-              color="inherit" variant="outlined"
-              onClick={() => this.setState({signInPopupOpen: true})}
-            >
-              Anmelden
-              <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
-            </Button>
+      }
 
-        }
+      <Popper open={signOutPopperOpen} anchorEl={anchorRef.current} transition disablePortal>
+        {({TransitionProps, placement}) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+            }}
+          >
+            <Paper id="menu-list-grow">
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList>
+                  <MenuItem
+                  >
+                    <Button onClick={signOut}>Abmelden</Button>
+                  </MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
 
-        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-              }}
-            >
-              <Paper id="menu-list-grow">
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList>
-                      <MenuItem
-                      >
-                        Text
-                      </MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
+    </div>
+  );
+};
 
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state: {username: string}) => ({
+const mapStateToProps = (state: { username: string }) => ({
   username: state.username,
 });
 
