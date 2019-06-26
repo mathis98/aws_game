@@ -9,13 +9,13 @@ export interface ScoreAction {
   data: ScoreAction;
 }
 
-export interface scoreType {
+export interface ScoreType {
   points: number;
   stars: number;
 }
 
 export interface ScoreState {
-  score: scoreType[];
+  score: ScoreType[];
   level: number;
 }
 
@@ -56,7 +56,9 @@ const score = (state: ScoreState = initialState, action: ScoreAction) => {
   }
 };
 
-export function scoreSum(array: scoreType[]) {
+export function scoreSum(array: ScoreType[]) {
+  console.log("arrr", array);
+
   return array.reduce((acc, el) => el.points + acc, 0);
 }
 

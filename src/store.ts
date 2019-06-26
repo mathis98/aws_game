@@ -1,8 +1,14 @@
 import { applyMiddleware, compose, createStore } from "redux";
 import rootReducer from "./reducers";
 import preventWrongLevel from "./middleware/levels";
-import { loadState, saveState } from "./localStorage";
 import { receiveInitialData } from "./actions";
+import { getSavegame, saveSavegame } from "./Storage/Savegame";
+import { ScoreState } from "./reducers/score";
+
+export interface StateType {
+  username: string;
+  score: ScoreState;
+}
 
 const store = createStore(
   rootReducer,
@@ -11,14 +17,15 @@ const store = createStore(
     applyMiddleware(preventWrongLevel),
     ((window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()) || compose),
 );
-loadInitialScore();
+
+const loadInitialSavegame = () => {
+  getSavegame(store.getState().username).then(data => store.dispatch(receiveInitialData(data)));
+};
 
 store.subscribe(() => {
-  saveState(store.getState())
+  saveSavegame(store.getState() as StateType)
 });
 
-function loadInitialScore() {
-  loadState(store.getState()).then(data => store.dispatch(receiveInitialData(data)));
-}
+loadInitialSavegame();
 
 export default store;

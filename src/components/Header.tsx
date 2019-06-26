@@ -1,32 +1,29 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@material-ui/core';
+import { AppBar, Button, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { ScoreState, scoreType, scoreSum } from '../reducers/score';
-import { PersonRounded as PersonRoundedIcon, StarRounded as StarIcon } from '@material-ui/icons';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { ScoreState, scoreSum, ScoreType } from '../reducers/score';
+import { StarRounded as StarIcon } from '@material-ui/icons';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { LEVEL_TITLES } from 'levels/levels';
-import SignInPopup from "components/SignInPopup";
+import UsernameButton from "components/UsernameButton";
 
 const css = require('./Header.css');
 
 
 interface SignInPopupState {
-  signInPopupOpen: boolean;
   anchorEl?: HTMLElement;
 }
 
 export interface HeaderProps extends RouteComponentProps {
-  score: scoreType[];
-  username: string;
+  score: ScoreType[];
 }
 
 class Header extends React.Component<HeaderProps, SignInPopupState> {
 
   constructor(props: HeaderProps) {
     super(props);
-    this.state = {signInPopupOpen: false};
+    this.state = {};
   }
 
   render() {
@@ -69,38 +66,16 @@ class Header extends React.Component<HeaderProps, SignInPopupState> {
           </Button>
 
 
-          <SignInPopup open={this.state.signInPopupOpen} onClose={() => this.setState({signInPopupOpen: false})}/>
+          <UsernameButton/>
 
-          {
-            this.props.username
-              ?
-              <Button
-                color="inherit" variant="outlined"
-                onClick={() => this.setState({signInPopupOpen: true})}
-              >
-                <Typography style={{textTransform: 'none'}}>{this.props.username}</Typography>
-                <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
-              </Button>
-
-              :
-              <Button
-                color="inherit" variant="outlined"
-                onClick={() => this.setState({signInPopupOpen: true})}
-              >
-                Anmelden
-                <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
-              </Button>
-
-          }
         </Toolbar>
       </AppBar>
     );
   }
 }
 
-const mapStateToProps = (state: {score: ScoreState, username: string}) => ({
-  username: state.username,
+const mapStateToProps = (state: {score: ScoreState}) => ({
   score: state.score.score,
-})
+});
 
 export default connect(mapStateToProps)(withRouter(Header));
