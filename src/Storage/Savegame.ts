@@ -3,16 +3,18 @@ import * as localStorage from "./LocalStorage";
 import { StateType } from "../store";
 import { ScoreState } from "../reducers/score";
 
-export const getSavegame = async (username: string): Promise<ScoreState> => {
-  // console.log("localstorage", localStorage.loadSavegame());
-
-  console.log("hmmmmm", username);
-
-  return await api.getStateFromBackend(username);
+export const getSavegame = async (username: string) => {
+  let localSavegame: ScoreState;
+  if (username) {
+    localSavegame = await api.getStateFromBackend(username);
+  } else {
+    localSavegame = localStorage.loadSavegame();
+  }
+  return localSavegame;
 };
 
 export const saveSavegame = (store: StateType): void => {
-  // localStorage.saveSavegame(store);
+  localStorage.saveSavegame(store);
 
   api.saveStateToBackend(store);
 

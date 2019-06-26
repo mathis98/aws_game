@@ -7,7 +7,7 @@ export interface UsernameAction {
   username: string;
 }
 
-const initialUsername = 'hmm';
+const initialUsername = '';
 
 const username = (state: string = initialUsername, action: UsernameAction) => {
   switch (action.type) {

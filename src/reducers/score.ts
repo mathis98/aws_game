@@ -57,8 +57,6 @@ const score = (state: ScoreState = initialState, action: ScoreAction) => {
 };
 
 export function scoreSum(array: ScoreType[]) {
-  console.log("arrr", array);
-
   return array.reduce((acc, el) => el.points + acc, 0);
 }
 

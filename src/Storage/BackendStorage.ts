@@ -10,9 +10,4 @@ export const getStateFromBackend = async (username: string) : Promise<ScoreState
 
 export const saveStateToBackend = (state: StateType) : void => {
   fetch(apiUrl, {method: "POST", body: JSON.stringify({data: state})})
-    .then(resp => resp.json())
-    .then(json => {
-        console.log(json);
-      },
-    );
 };

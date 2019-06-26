@@ -44,7 +44,7 @@ class Header extends React.Component<HeaderProps, SignInPopupState> {
             onClose={() => this.setState({anchorEl: null})}
             disableAutoFocusItem
           >
-            <MenuItem onClick={console.log} disabled divider style={{ opacity: 1 }}>Gesamtpunktzahl: {totalPoints} Punkte</MenuItem>
+            <MenuItem disabled divider style={{ opacity: 1 }}>Gesamtpunktzahl: {totalPoints} Punkte</MenuItem>
             {this.props.score.map((d, i) => {
               return (
                 <MenuItem onClick={() => {this.props.history.push(`/levels/${i + 1}`); this.setState({anchorEl: null})}} key={`menuitem${i}`}>
