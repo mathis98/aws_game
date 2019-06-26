@@ -150,21 +150,21 @@ const level9: Level = {
 function level9Validator(state: LevelState): LevelFeedback {
 
   // needs to be correct
-  if(state.kinesis !== "kinesis" )
-    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht empfangen." };
-  if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb"))
-    return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
-  if(!(state.lambda === "lambda" || state.lambda === "lambdaTensorflow") )
-    return { correct: false, feedbackComponent: "Die gesamelten Daten werden nicht richtig verarbeitet" };
-  if(state.ses !== "ses" )
-    return { correct: false, feedbackComponent: "Es werden keine Emails verschickt." };
+  if(state.lakeFormation === "s3" )
+    return { correct: false, feedbackComponent: "Die rohen Daten kann man nicht ohne weiteres in einen S3 Bucket schreiben." };
+  if(state.s3 === "redshift")
+    return { correct: false, feedbackComponent: "Redshift hat keinen Data Lake worauf es Queries ausführen kann." };
+  if(state.s3 === "dynamodb")
+    return { correct: false, feedbackComponent: "Data Lakes können nicht in Datenbanken wie Dynamo erstellt werden." };
+  if(state.redshift === "forecast")
+    return { correct: false, feedbackComponent: "Queries auf Data Lakes sind ohne weitere Datenverarbeitung unmöglich!" };
 
   // possible:
-  if (state.dynamodb === "s3") {
-    return {correct: true, stars: 1, feedbackComponent: "Zu viele kleine Daten für S3." };
+  if (state.forecast === "lambdaTensorflow") {
+    return {correct: true, stars: 2, feedbackComponent: "Gute Wahl, wenn Machine Learning den Mittelpunkt des Services darstellen soll. Es gibt aber anderse AWS Webservices, die diese Arbeit übernehmen." };
   }
   // perfect:
-  if (state.dynamodb === "dynamodb") {
+  if (state.lakeFormation === "lakeFormation" && state.s3 === "s3" && state.redshift === "redshift" && state.forecast === "forecast") {
     return {correct: true, stars: 3};
   }
 
