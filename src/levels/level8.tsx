@@ -2,37 +2,29 @@ import * as React from 'react';
 import { Level, LevelState, LevelFeedback } from './level';
 
 const level8: Level = {
-  columns: 3,
+  columns: 5,
   rows: 3,
   gap: "2em",
   elements: [
     {
       position: {
         column: 0,
-        row: 0,
-      },
-      id: "weatherStation",
-      icon: "weatherStation",
-    },
-    {
-      position: {
-        column: 0,
         row: 1,
       },
-      id: "kinesis",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 0,
-        row: 2,
-      },
-      id: "dynamodb",
-      droppable: true,
+      id: "sender",
+      icon: "mobile",
     },
     {
       position: {
         column: 1,
+        row: 1,
+      },
+      id: "apiGateway",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 2,
         row: 1,
       },
       id: "lambda",
@@ -41,79 +33,96 @@ const level8: Level = {
     {
       position: {
         column: 2,
-        row: 1,
+        row: 2,
       },
-      id: "ses",
-      droppable: true,
+      id: "dynamodb",
+      droppable: true
     },
     {
       position: {
-        column: 2,
+        column: 3,
+        row: 1,
+      },
+      id: "sns",
+      droppable: true
+    },
+    {
+      position: {
+        column: 4,
+        row: 0,
+      },
+      id: "rec1",
+      icon: "mobile"
+    },
+    {
+      position: {
+        column: 4,
+        row: 1,
+      },
+      id: "rec2",
+      icon: "vdots"
+    },
+    {
+      position: {
+        column: 4,
         row: 2,
       },
-      id: "users",
-      icon: "users"
+      id: "rec3",
+      icon: "mobile"
     },
   ],
   relations: [
     {
-      sourceId: "weatherStation",
-      targetId: "kinesis",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
+      sourceId: "sender",
+      targetId: "apiGateway",
+      sourceAnchor: "right",
+      targetAnchor: "left",
     },
     {
-      sourceId: "kinesis",
-      targetId: "dynamodb",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-      dashed: true,
-      doubleArrow: true,
-    },
-    {
-      sourceId: "kinesis",
+      sourceId: "apiGateway",
       targetId: "lambda",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
       sourceId: "lambda",
-      targetId: "ses",
+      targetId: "dznamodb",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+    },
+    {
+      sourceId: "lambda",
+      targetId: "sns",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
-      sourceId: "ses",
-      targetId: "users",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
+      sourceId: "sns",
+      targetId: "re1",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "sns",
+      targetId: "rec3",
+      sourceAnchor: "right",
+      targetAnchor: "left",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "lambda"],
+  awspalette: ["s3", "dynamodb", "iam", "lambda", "sns", "apiGateway"],
   validator: level8Validator,
 };
 
 function level8Validator(state: LevelState): LevelFeedback {
-
-  // needs to be correct
-  if(state.kinesis !== "kinesis" )
-    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht empfangen." };
-  if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb"))
-    return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
-  if(!(state.lambda === "lambda" || state.lambda === "lambdaTensorflow") )
-    return { correct: false, feedbackComponent: "Die gesamelten Daten werden nicht richtig verarbeitet" };
-  if(state.ses !== "ses" )
-    return { correct: false, feedbackComponent: "Es werden keine Emails verschickt." };
-
-  // possible:
-  if (state.dynamodb === "s3") {
-    return {correct: true, stars: 1, feedbackComponent: "Zu viele kleine Daten für S3." };
-  }
-  // perfect:
-  if (state.dynamodb === "dynamodb") {
+  if (state.apiGateway === "iam") {
+    return {correct: false, feedbackComponent: "IAM ermöglicht den Zugriff der Services nur über die Command Line Interface (CLI)"};
+  } else if(!(state.lambda === "lambda")) {
+    return { correct: false, feedbackComponent: "Es git keine funktion die getriggert werden soll."};
+  } else if(state.apiGateway === "apiGateway" && state.lambda === "lambda" && state.dynamodb === "s3" && state.sns === "sns") {
+    return {correct: true, stars: 1, feedbackComponent: "Kontakte mit einem *Namen* und einer *Nummer* können effizienter Gespeichert werden."};
+  } else if(state.apiGateway === "apiGateway" && state.lambda === "lambda" && state.dynamodb === "dynamodb" && state.sns === "sns") {
     return {correct: true, stars: 3};
   }
-
   return {correct: false};
 }
 

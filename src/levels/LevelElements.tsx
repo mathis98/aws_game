@@ -3,7 +3,8 @@ import IconElement from 'components/IconElement';
 import AWSPaletteItem from 'components/dnd/AWSPaletteItem';
 
 export type IconLevelElement = "cam" | "bpol" | "camera" | "documents" | "shop" | "customer" |
-                               "users" | "gameserver" | "supportEmployee" | "weatherStation";
+                               "users" | "gameserver" | "supportEmployee" | "weatherStation" |
+                              "mobile" | "vdots";
 
 function getIcon(filename: IconLevelElement) {
   return require(`../../assets/img/${filename}.svg`)
@@ -21,10 +22,12 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   gameserver: <IconElement image={getIcon('gameserver')} description="Gameserver" />,
   supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
   weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,
+  mobile: <IconElement image={getIcon('mobile')} description="Nutzer"/>,
+  vdots: <IconElement image={getIcon('vdots')} />
 };
 
 
-export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "lambda_image_metadata" | "kinesis" | "cognito";
+export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "lambda_image_metadata" | "kinesis" | "cognito" | "apiGateway" | "sns";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
@@ -37,4 +40,6 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
   lambda_image_metadata: <AWSPaletteItem id="lambda_image_metadata" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
+  apiGateway: <AWSPaletteItem id="apiGateway" icon="apiGateway" text="API Gateway" color="#7A48D6" key="apiGateway_paletteItem" />,
+  sns: <AWSPaletteItem id="sns" icon="sns" text="SNS" color="#CC2264" key="sns_paletteItem" />
 };

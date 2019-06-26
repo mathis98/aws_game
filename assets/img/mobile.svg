@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg178"
+   version="1.1"
+   viewBox="0 0 75 75">
+  <metadata
+     id="metadata182">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Amazon-Elasticsearch-Service_light-bg</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs157">
+    <style
+       id="style155">.cls-1{fill:#693cc5;}.cls-2{fill:#fff;}</style>
+  </defs>
+  <title
+     id="title159">Amazon-Elasticsearch-Service_light-bg</title>
+  <rect
+     id="Purple_Light_BG"
+     data-name="Purple Light BG"
+     class="cls-1"
+     width="75"
+     height="75"
+     x="0"
+     y="0"
+     style="fill:#232f3e;fill-opacity:1" />
+  <g
+     style="fill:#ffffff"
+     id="Working"
+     transform="matrix(1.3197851,0,0,1.3197851,5.5120822,4.1571891)">
+    <path
+       style="fill:#ffffff"
+       id="path8"
+       d="M 32.42,48.5 H 17.58 c -3,0 -4.83,-1.53 -4.83,-4 V 6.38 A 4.86,4.86 0 0 1 17.58,1.5 h 14.84 a 4.86,4.86 0 0 1 4.83,4.88 V 10 h -2 V 6.38 A 2.86,2.86 0 0 0 32.42,3.5 H 17.58 a 2.86,2.86 0 0 0 -2.83,2.88 v 38.13 c 0,1.32 1,2 2.83,2 h 14.84 c 1.87,0 2.83,-0.67 2.83,-2 v -2.35 h 2 v 2.35 c 0,2.49 -1.86,3.99 -4.83,3.99 z"
+       class="cls-1" />
+    <rect
+       style="fill:#ffffff"
+       id="rect10"
+       height="2"
+       width="5.6300001"
+       y="5.25"
+       x="24.059999"
+       class="cls-1" />
+    <path
+       style="fill:#ffffff"
+       id="path12"
+       d="M 20.31,8 A 1.7,1.7 0 1 1 22,6.25 1.69,1.69 0 0 1 20.31,8 Z m 0,-2 A 0.3,0.3 0 1 0 20.63,6.3 0.31,0.31 0 0 0 20.31,6 Z"
+       class="cls-1" />
+    <path
+       style="fill:#ffffff"
+       id="path14"
+       d="m 37.25,38.12 h -2 V 11 H 13.75 V 9 h 22.5 a 1,1 0 0 1 1,1 z"
+       class="cls-1" />
+    <path
+       style="fill:#ffffff"
+       id="path16"
+       d="m 36.25,42.88 h -22.5 v -2 h 21.5 v -4.63 h 2 v 5.63 a 1,1 0 0 1 -1,1 z"
+       class="cls-1" />
+  </g>
+</svg>
