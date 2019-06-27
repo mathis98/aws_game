@@ -1,7 +1,7 @@
 ## Redshift
 
 Redshift kann Queries direkt auf einen S3 Data Lake
-ausführen. Das heisst, dass die Daten nicht erneut
+ausführen. Das heißt, dass die Daten nicht erneut
 geladen werden müssen, welches Zeit, Speicherplatz,
 und deshalb auch Geld, spart. Weil Datensätze in S3
 Buckets als einzelne Dateien gespeichert werden (in
