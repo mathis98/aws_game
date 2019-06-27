@@ -5,14 +5,14 @@ import { StarRounded as StarIcon } from '@material-ui/icons';
 import {LEVELS, LEVEL_TITLES} from "levels/levels";
 import GameBoard from 'components/GameBoard';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { ScoreState, scoreType } from 'src/reducers/score';
+import { ScoreState, ScoreType } from 'src/reducers/score';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 
 const css = require("./LevelsPage.css");
 
 export interface LevelsPageProps extends RouteComponentProps {
-  score: scoreType[];
+  score: ScoreType[];
 }
 
 
