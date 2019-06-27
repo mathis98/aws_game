@@ -6,6 +6,7 @@ import level5 from 'levels/level5';
 import level6 from 'levels/level6';
 import level7 from 'levels/level7';
 import level8 from 'levels/level8';
+import level9 from 'levels/level9';
 
 export const LEVEL_TITLES = [
     'Einführung',
@@ -28,5 +29,6 @@ export const LEVELS = [
     level5,
     level6,
     level7,
-    level8
+    level8,
+    level9
 ];
