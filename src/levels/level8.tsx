@@ -86,7 +86,7 @@ const level8: Level = {
     },
     {
       sourceId: "lambda",
-      targetId: "dznamodb",
+      targetId: "dynamodb",
       sourceAnchor: "bottom",
       targetAnchor: "top",
     },
