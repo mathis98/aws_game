@@ -3,11 +3,14 @@ import ReactResizeDetector from 'react-resize-detector';
 import { Level, AnchorPosition, LevelRelation, LevelState } from 'levels/level';
 import { allIcons } from 'levels/LevelElements';
 import Droppable from 'components/dnd/Droppable';
+import cx from 'classnames';
+import IconElement from 'components/IconElement';
 
 const css = require('./GameBoard.css');
 
 export interface GameBoardProps {
   level: Level;
+  thumbnailMode?: boolean;
 }
 
 interface GameBoardState {
@@ -37,6 +40,15 @@ const dashedArrowStyle = Object.assign({
   strokeDasharray: 6
 }, arrowStyle);
 
+const arrowStyleThumbnail = {
+  stroke: "black",
+  strokeWidth: 1
+}
+
+const dashedArrowStyleThumbnail = Object.assign({
+  strokeDasharray: 2
+}, arrowStyleThumbnail);
+
 export default class GameBoard extends React.Component<GameBoardProps, GameBoardState> {
   elements: Record<string, any>;
   droppables: Record<string, any>;
@@ -52,7 +64,9 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
     // create droppable components
     for (let el of this.props.level.elements || []) {
       if (el.droppable) {
-        this.droppables[el.id] = <Droppable data={{ id: el.id, child: {} }} />;
+        if (!this.props.thumbnailMode) {
+          this.droppables[el.id] = <Droppable data={{ id: el.id, child: {} }} />;
+        }
       }
     }
   }
@@ -65,7 +79,7 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
   render() {
     var gridStyle = {
       gridTemplate: getFrStr(this.props.level.rows) + "/" + getFrStr(this.props.level.columns),
-      gridGap: ((this.props.level.gap || 0) + " ").repeat(2)
+      gridGap: this.props.thumbnailMode ? "0.3em" : this.props.level.gap || 0
     }
 
     return (
@@ -81,10 +95,10 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
               <path d="M 0,0 L5,2 L0,4 z" fill="black" />
             </marker>
           </defs>
-          {this.state.edges.map((edge, idx) => renderSVGEdge(edge, "edge" + idx))}
+          {this.state.edges.map((edge, idx) => renderSVGEdge(edge, "edge" + idx, this.props.thumbnailMode))}
         </svg>
 
-        <div className={css.board} style={gridStyle} key="gameBoard" >
+        <div className={cx(css.board, {[css.thumbnail]: this.props.thumbnailMode})} style={gridStyle} key="gameBoard" >
           {this.props.level.elements.map(el => {
             this.elements[el.id] = React.createRef();
             const elementStyle = {
@@ -93,12 +107,22 @@ export default class GameBoard extends React.Component<GameBoardProps, GameBoard
             }
 
             let component;
-            if (el.droppable) {
-              component = this.droppables[el.id];
-            } else if (el.icon) {
-              component = allIcons[el.icon];
+            if (this.props.thumbnailMode) {
+              if (el.droppable) {
+                component = <IconElement image={require('../../assets/img/dropzoneDummy.svg')} thumbnailMode />;
+              } else if (el.icon) {
+                component = React.cloneElement(allIcons[el.icon], {thumbnailMode: true});
+              } else {
+                throw "At least one of the properties 'droppable', 'icon' must be set!";
+              }
             } else {
-              throw "At least one of the properties 'droppable', 'icon' must be set!";
+              if (el.droppable) {
+                component = this.droppables[el.id];
+              } else if (el.icon) {
+                component = allIcons[el.icon];
+              } else {
+                throw "At least one of the properties 'droppable', 'icon' must be set!";
+              }
             }
 
             return (
@@ -182,24 +206,26 @@ function completeAnchors(source: any, target: any, relation: LevelRelation): voi
 }
 
 // build the svg path of an edge
-function renderSVGEdge(edge: Edge, key: string): JSX.Element {
+function renderSVGEdge(edge: Edge, key: string, thumbnail: boolean): JSX.Element {
+  const strokeWidth = thumbnail ? arrowStyleThumbnail.strokeWidth : arrowStyle.strokeWidth;
+
   // get required space for arrow
   if (edge.endNormal.x && edge.endNormal.y) {
-    edge.end.x += edge.endNormal.x * 5 * arrowStyle.strokeWidth * 0.707;
-    edge.end.y += edge.endNormal.y * 5 * arrowStyle.strokeWidth * 0.707;
+    edge.end.x += edge.endNormal.x * 5 * strokeWidth * 0.707;
+    edge.end.y += edge.endNormal.y * 5 * strokeWidth * 0.707;
   } else {
-    edge.end.x += edge.endNormal.x * 5 * arrowStyle.strokeWidth;
-    edge.end.y += edge.endNormal.y * 5 * arrowStyle.strokeWidth;
+    edge.end.x += edge.endNormal.x * 5 * strokeWidth;
+    edge.end.y += edge.endNormal.y * 5 * strokeWidth;
   }
 
   if (edge.doubleArrow) {
     // get required space for back arrow
     if (edge.startNormal.x && edge.startNormal.y) {
-      edge.start.x += edge.startNormal.x * 5 * arrowStyle.strokeWidth * 0.707;
-      edge.start.y += edge.startNormal.y * 5 * arrowStyle.strokeWidth * 0.707;
+      edge.start.x += edge.startNormal.x * 5 * strokeWidth * 0.707;
+      edge.start.y += edge.startNormal.y * 5 * strokeWidth * 0.707;
     } else {
-      edge.start.x += edge.startNormal.x * 5 * arrowStyle.strokeWidth;
-      edge.start.y += edge.startNormal.y * 5 * arrowStyle.strokeWidth;
+      edge.start.x += edge.startNormal.x * 5 * strokeWidth;
+      edge.start.y += edge.startNormal.y * 5 * strokeWidth;
     }
   }
 
@@ -229,7 +255,7 @@ function renderSVGEdge(edge: Edge, key: string): JSX.Element {
          L ${edge.end.x} ${edge.end.y}`;
   }
 
-  const style = edge.dashed ? dashedArrowStyle : arrowStyle;
+  const style = thumbnail ? (edge.dashed ? dashedArrowStyleThumbnail : arrowStyleThumbnail) : ( edge.dashed ? dashedArrowStyle : arrowStyle);
   const endMarker = edge.doubleArrow ? "url(#arrowBack)" : null;
 
   return <path d={d} style={style} fill="transparent" key={key} markerEnd="url(#arrow)" markerStart={endMarker} />;

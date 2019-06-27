@@ -2,25 +2,61 @@ import * as React from 'react';
 import IconElement from 'components/IconElement';
 import AWSPaletteItem from 'components/dnd/AWSPaletteItem';
 
-export type IconLevelElement = "cam" | "bpol" | "camera" | "documents" | "shop" | "customer" |
-                               "users" | "gameserver" | "supportEmployee" | "weatherStation";
+export type IconLevelElement =
+  "cam" |
+  "bpol" |
+  "camera" |
+  "documents" |
+  "shop" |
+  "customer" |
+  "users" |
+  "gameserver" |
+  "supportEmployee" |
+  "weatherStation" |
+  "browser" |
+  "mobile" |
+  "vdots";
+
+function getIcon(filename: IconLevelElement) {
+  return require(`../../assets/img/${filename}.svg`)
+}
 
 // the decorative level elements without functionality
 export const allIcons: Record<IconLevelElement, JSX.Element> = {
-  cam: <IconElement image={require('../../assets/img/cam.svg')} description="Kamera" />,
-  bpol: <IconElement image={require('../../assets/img/bpol.svg')} description="Bundespolizei" />,
-  camera: <IconElement image={require('../../assets/img/camera.svg')} description="Kamera" />,
-  documents: <IconElement image={require('../../assets/img/documents.svg')} description="Kundendaten" />,
-  shop: <IconElement image={require('../../assets/img/shop.svg')} description="Shop" />,
-  customer: <IconElement image={require('../../assets/img/customer.svg')} description="Kunde" />,
-  users: <IconElement image={require('../../assets/img/users.svg')} description="Benutzer" />,
-  gameserver: <IconElement image={require('../../assets/img/gameserver.svg')} description="Gameserver" />,
-  supportEmployee: <IconElement image={require('../../assets/img/supportEmployee.svg')} description="Support-Mitarbeiter" color="#CD912D"/>,
-  weatherStation: <IconElement image={require('../../assets/img/weatherStation.svg')} description="Wetterstation" color="#1498C3"/>,
+  cam: <IconElement image={getIcon('cam')} description="Kamera" />,
+  bpol: <IconElement image={getIcon('bpol')} description="Bundespolizei" />,
+  camera: <IconElement image={getIcon('camera')} description="Kamera" />,
+  documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
+  shop: <IconElement image={getIcon('shop')} description="Shop" />,
+  customer: <IconElement image={getIcon('customer')} description="Kunde" />,
+  users: <IconElement image={getIcon('users')} description="Benutzer" />,
+  gameserver: <IconElement image={getIcon('gameserver')} description="Gameserver" />,
+  supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
+  weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,
+  browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#1498C3"/>,
+  mobile: <IconElement image={getIcon('mobile')} description="Benutzer"/>,
+  vdots: <IconElement image={getIcon('vdots')}/>,
 };
 
 
-export type AWSProductLevelElement = "s3" | "dynamodb" | "iam" | "shield" | "ses" | "lambda" | "lambdaTensorflow" | "lambda_image_metadata" | "kinesis" | "cognito";
+export type AWSProductLevelElement =
+  "s3" |
+  "dynamodb" |
+  "iam" |
+  "shield" |
+  "ses" |
+  "lambda" |
+  "lambdaTensorflow" |
+  "lambda_image_metadata" |
+  "lambda_stock_data" |
+  "kinesis" |
+  "cognito" |
+  "api_gateway"|
+  "apiGateway" |
+  "sns"|
+  "lakeFormation" |
+  "redshift" |
+  "forecast";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
@@ -32,5 +68,12 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   lambda: <AWSPaletteItem id="lambda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
   lambda_image_metadata: <AWSPaletteItem id="lambda_image_metadata" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
+  lambda_stock_data: <AWSPaletteItem id="lambda_stock_data" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
+  api_gateway: <AWSPaletteItem id="api_gateway" icon="aws-api-gateway" text="API Gateway" color="#D5A449" key="api_gateway_paletteItem" />,
+  apiGateway: <AWSPaletteItem id="apiGateway" icon="apiGateway" text="API Gateway" color="#7A48D6" key="apiGateway_paletteItem" />,
+  sns: <AWSPaletteItem id="sns" icon="sns" text="SNS" color="#CC2264" key="sns_paletteItem" />,
+  lakeFormation: <AWSPaletteItem id="lakeFormation" icon="lakeFormation" text="Lake Formation" color="#693CC5" key="lakeFormation_paletteItem" />,
+  redshift: <AWSPaletteItem id="redshift" icon="redshift" text="Redshift" color="#693CC5" key="redshift_paletteItem" />,
+  forecast: <AWSPaletteItem id="forecast" icon="forecast" text="Forecast" color="#1C7B68" key="forecast_paletteItem" />
 };
