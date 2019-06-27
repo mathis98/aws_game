@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg25"
+   version="1.1"
+   viewBox="0 0 75 75">
+  <metadata
+     id="metadata29">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Amazon-Forecast_light-bg</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#1c7b68;}.cls-2{fill:#fff;}</style>
+  </defs>
+  <title
+     id="title6">Amazon-Forecast_light-bg</title>
+  <rect
+     id="Turquoise_Light_BG"
+     data-name="Turquoise Light BG"
+     class="cls-1"
+     width="75"
+     height="75"
+     x="0"
+     y="0"
+     style="fill:none" />
+  <g
+     id="Product_Icon"
+     data-name="Product Icon">
+    <polygon
+       class="cls-2"
+       points="51.03,59.53 51.03,57.53 55.96,57.53 55.96,26.05 57.96,26.05 57.96,59.53 "
+       id="polygon9"
+       style="fill:#ffffff" />
+    <polygon
+       class="cls-2"
+       points="51.03,57.53 51.03,59.53 13.59,59.53 13.59,17.42 49.57,17.42 49.57,19.42 15.59,19.42 15.59,57.53 "
+       id="polygon11"
+       style="fill:#ffffff" />
+    <path
+       class="cls-2"
+       d="m 27.17,38.38 h -8.69 v -2 h 8 l 2.69,-7.09 a 1,1 0 0 1 0.94,-0.64 h 9 l 3.34,-6 a 1,1 0 0 1 0.87,-0.51 h 9.14 l 6.42,-5.36 1.28,1.54 -6.69,5.59 a 1,1 0 0 1 -0.64,0.23 h -8.95 l -3.34,6 a 1,1 0 0 1 -0.87,0.52 H 30.8 l -2.7,7.09 a 1,1 0 0 1 -0.93,0.63 z"
+       id="path13"
+       style="fill:#ffffff" />
+    <polygon
+       class="cls-2"
+       points="59.41,20.91 59.41,17.47 55.98,17.47 55.98,15.47 61.41,15.47 61.41,20.91 "
+       id="polygon15"
+       style="fill:#ffffff" />
+    <path
+       class="cls-2"
+       d="M 27.51,55.23 H 18.7 V 40.65 h 8.81 z m -6.81,-2 h 4.81 V 42.65 H 20.7 Z"
+       id="path17"
+       style="fill:#ffffff" />
+    <path
+       class="cls-2"
+       d="M 40,55.23 H 31.18 V 32.9 H 40 Z m -6.81,-2 H 38 V 34.9 h -4.82 z"
+       id="path19"
+       style="fill:#ffffff" />
+    <path
+       class="cls-2"
+       d="M 52.59,55.23 H 43.78 V 26.48 h 8.81 z m -6.81,-2 h 4.81 V 28.48 h -4.81 z"
+       id="path21"
+       style="fill:#ffffff" />
+  </g>
+</svg>
