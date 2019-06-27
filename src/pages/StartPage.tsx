@@ -55,6 +55,11 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
               Level wählen
             </LinkButton>
           </div>
+          <div className={css.start_button_wrapper}>
+            <LinkButton className={css.start_button} variant="contained" size="large" color="secondary" to="/credits">
+              Credits
+            </LinkButton>
+          </div>
         </div>
       </PageWrapper>
     );
