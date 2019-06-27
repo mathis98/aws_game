@@ -117,7 +117,7 @@ function level8Validator(state: LevelState): LevelFeedback {
   if (state.apiGateway === "iam") {
     return {correct: false, feedbackComponent: "IAM ermöglicht den Zugriff der Services nur über die Command Line Interface (CLI)"};
   } else if(!(state.lambda === "lambda")) {
-    return { correct: false, feedbackComponent: "Es git keine funktion die getriggert werden soll."};
+    return { correct: false, feedbackComponent: "Es gibt keine funktion die getriggert werden soll."};
   } else if(state.apiGateway === "apiGateway" && state.lambda === "lambda" && state.dynamodb === "s3" && state.sns === "sns") {
     return {correct: true, stars: 1, feedbackComponent: "Kontakte mit einem *Namen* und einer *Nummer* können effizienter Gespeichert werden."};
   } else if(state.apiGateway === "apiGateway" && state.lambda === "lambda" && state.dynamodb === "dynamodb" && state.sns === "sns") {
