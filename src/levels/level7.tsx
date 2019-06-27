@@ -4,6 +4,7 @@ import * as React from 'react'
 const level7: Level ={
   columns: 3,
   rows: 2,
+  gap: "2em",
   elements: [
     {
       position: {
