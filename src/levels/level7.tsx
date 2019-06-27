@@ -34,7 +34,7 @@ const level7: Level ={
         column: 2,
         row: 1
       },
-      id: "lambda",
+      id: "lambda_stock_data",
       droppable: true
     },
     {
@@ -62,19 +62,19 @@ const level7: Level ={
     },
     {
       sourceId: "api_gateway",
-      targetId: "lambda",
+      targetId: "lambda_stock_data",
       sourceAnchor: "right",
       targetAnchor: "left",
       doubleArrow: true
     },
     {
-      sourceId: "lambda",
+      sourceId: "lambda_stock_data",
       targetId: "dynamodb",
       sourceAnchor: "top",
       targetAnchor: "bottom"
     }
   ],
-  awspalette: ["s3", "dynamodb", "lambda", "api_gateway"],
+  awspalette: ["s3", "dynamodb", "lambda_stock_data", "api_gateway"],
   validator: Level7Validator
 }
 
@@ -82,7 +82,7 @@ function Level7Validator(state: LevelState): LevelFeedback {
   if (
     state.s3 === 's3' &&
     state.dynamodb === 'dynamodb' &&
-    state.lambda === 'lambda' &&
+    state.lambda_stock_data === 'lambda_stock_data' &&
     state.api_gateway === 'api_gateway'
   ) {
     return {correct: true};

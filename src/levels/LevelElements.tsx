@@ -44,6 +44,7 @@ export type AWSProductLevelElement =
   "lambda" |
   "lambdaTensorflow" |
   "lambda_image_metadata" |
+  "lambda_stock_data" |
   "kinesis" |
   "cognito" |
   "api_gateway";
@@ -58,6 +59,7 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   lambda: <AWSPaletteItem id="lambda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
   lambda_image_metadata: <AWSPaletteItem id="lambda_image_metadata" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
+  lambda_stock_data: <AWSPaletteItem id="lambda_stock_data" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
   api_gateway: <AWSPaletteItem id="api_gateway" icon="aws-api-gateway" text="API Gateway" color="#D5A449" key="api_gateway_paletteItem" />,
 };
