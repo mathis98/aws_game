@@ -13,7 +13,9 @@ export type IconLevelElement =
   "gameserver" |
   "supportEmployee" |
   "weatherStation" |
-  "browser";
+  "browser" |
+  "mobile" |
+  "vdots";
 
 function getIcon(filename: IconLevelElement) {
   return require(`../../assets/img/${filename}.svg`)
@@ -32,6 +34,8 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
   weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,
   browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#1498C3"/>,
+  mobile: <IconElement image={getIcon('mobile')} description="Benutzer"/>,
+  vdots: <IconElement image={getIcon('vdots')}/>,
 };
 
 
@@ -47,7 +51,9 @@ export type AWSProductLevelElement =
   "lambda_stock_data" |
   "kinesis" |
   "cognito" |
-  "api_gateway";
+  "api_gateway"|
+  "apiGateway" |
+  "sns";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
@@ -62,4 +68,6 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   lambda_stock_data: <AWSPaletteItem id="lambda_stock_data" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
   api_gateway: <AWSPaletteItem id="api_gateway" icon="aws-api-gateway" text="API Gateway" color="#D5A449" key="api_gateway_paletteItem" />,
+  apiGateway: <AWSPaletteItem id="apiGateway" icon="apiGateway" text="API Gateway" color="#7A48D6" key="apiGateway_paletteItem" />,
+  sns: <AWSPaletteItem id="sns" icon="sns" text="SNS" color="#CC2264" key="sns_paletteItem" />
 };
