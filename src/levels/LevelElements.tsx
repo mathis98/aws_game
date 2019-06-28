@@ -38,7 +38,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
   weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,
   browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#67923D"/>,
-  mobile: <IconElement image={getIcon('mobile')} description="Benutzer"/>,
+  mobile: <IconElement image={getIcon('mobile')} description="Benutzer" color="#232F3E"/>,
   vdots: <IconElement image={getIcon('vdots')}/>,
 };
 

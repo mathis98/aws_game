@@ -109,6 +109,7 @@ function Level6Validator(state: LevelState): LevelFeedback {
   if (state.dynamodb === "s3") {
     return {correct: true, stars: 1, feedbackComponent: "Zu viele kleine Daten für S3." };
   }
+
   // perfect:
   if (state.dynamodb === "dynamodb") {
     return {correct: true, stars: 3};
