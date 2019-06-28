@@ -10,6 +10,8 @@ export type IconLevelElement =
   "shop" |
   "customer" |
   "users" |
+  "users2" |
+  "users3" |
   "gameserver" |
   "supportEmployee" |
   "weatherStation" |
@@ -29,7 +31,9 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
   shop: <IconElement image={getIcon('shop')} description="Shop" />,
   customer: <IconElement image={getIcon('customer')} description="Kunde" />,
-  users: <IconElement image={getIcon('users')} description="Benutzer" />,
+  users: <IconElement image={getIcon('users')} description="Benutzer" color="#004260"/>,
+  users2: <IconElement image={getIcon('users')} description="Benutzer" color="#339900"/>,
+  users3: <IconElement image={getIcon('users')} description="Benutzer" color="#CD912D"/>,
   gameserver: <IconElement image={getIcon('gameserver')} description="Gameserver" />,
   supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
   weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,
