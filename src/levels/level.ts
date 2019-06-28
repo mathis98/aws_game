@@ -55,6 +55,26 @@ export interface LevelFeedback {
   feedbackComponent?: JSX.Element | string;
 }
 
+export function calcStars(stars: number):  1 | 2 | 3 {
+  if(stars <= 1)
+    return 1;
+  if(stars == 2)
+    return 2;
+  if(stars >= 3)
+    return 3;
+
+  return 1;
+}
+
+export function calcPoints(points: number): number {
+  if(points <= 0)
+    return 0;
+  if(points >= 100)
+    return 100;
+
+  return points;
+}
+
 /**
  * LevelValidator:
  *  LevelState: Objekt, in dem die für jede dropzone die id des darin

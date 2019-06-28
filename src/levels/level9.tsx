@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Level, LevelState, LevelFeedback } from './level';
+import { Level, LevelState, LevelFeedback, calcStars } from './level';
 
 const level9: Level = {
   columns: 3,
@@ -75,6 +75,7 @@ const level9: Level = {
       targetId: "redshift",
       sourceAnchor: "right",
       targetAnchor: "left",
+      doubleArrow: true,
     },
     {
       sourceId: "redshift",
@@ -89,35 +90,33 @@ const level9: Level = {
       targetAnchor: "top",
     },
   ],
-  awspalette: ["redshift", "forecast", "s3", "lakeFormation", "dynamodb", "lambdaTensorflow"],
+  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "redshift", "forecast", "lakeFormation"],
   validator: level9Validator,
 };
 
 function level9Validator(state: LevelState): LevelFeedback {
-
   // needs to be correct
-  if(state.lakeFormation !== "lakeFormation" )
+  if( !(state.lakeFormation === "lakeFormation" ) )
     return { correct: false, feedbackComponent: "Die rohen Daten brauchen ein Interface." };
-  if( !(state.s3 === "s3" || state.s3 === "dynamodb"))
+  if( !(state.s3 === "s3" || state.s3 === "dynamodb") )
     return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
-  if(state.redshift !== "redshift" )
+  if( !(state.redshift === "redshift" ) )
     return { correct: false, feedbackComponent: "" };
-  if( !(state.forecast === "forecast" || state.forecast === "lambdaTensorflow"))
+  if( !(state.forecast === "forecast" || state.forecast === "lambdaTensorflow") )
     return { correct: false, feedbackComponent: "lol" };
 
   // possible:
-  if(state.s3 === "dynamodb") // really false?, why doesnt dynamodb work?
-    return { correct: false, feedbackComponent: "Data Lakes können nicht in Datenbanken wie Dynamo erstellt werden." };
+  var stars = 3;
+  var message = "";
+  if (state.s3 === "dynamodb") {
+    stars--;
+    message += "Lake Formation kommt mit S3 besser zurecht. ";
+  }
   if (state.forecast === "lambdaTensorflow") {
-    return {correct: true, stars: 2, feedbackComponent: "Gute Wahl, wenn Machine Learning den Mittelpunkt des Services darstellen soll. Es gibt aber anderse AWS Webservices, die diese Arbeit übernehmen." };
+    stars--;
+    message += "Es gibt ein extra AWS service für Machine Learning. ";
   }
-
-  // perfect:
-  if (state.forecast === "forecast") {
-    return {correct: true, stars: 3};
-  }
-
-  return {correct: false};
+  return {correct: true, stars: calcStars(stars), feedbackComponent: message};
 }
 
 export default level9;
