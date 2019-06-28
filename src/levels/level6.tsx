@@ -52,7 +52,7 @@ const level6: Level = {
         row: 2,
       },
       id: "users",
-      icon: "users"
+      icon: "users3"
     },
   ],
   relations: [

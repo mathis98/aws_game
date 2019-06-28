@@ -12,7 +12,7 @@ const level5: Level = {
         row: 1,
       },
       id: "users",
-      icon: "users",
+      icon: "users2",
     },
     {
       position: {
