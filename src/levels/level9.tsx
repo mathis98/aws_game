@@ -83,12 +83,14 @@ const level9: Level = {
       sourceAnchor: "right",
       targetAnchor: "left",
     },
+    /*
     {
       sourceId: "forecast",
       targetId: "mobile",
       sourceAnchor: "bottom",
       targetAnchor: "top",
     },
+    */
   ],
   awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "redshift", "forecast", "lakeFormation"],
   validator: level9Validator,
@@ -101,9 +103,9 @@ function level9Validator(state: LevelState): LevelFeedback {
   if( !(state.s3 === "s3" || state.s3 === "dynamodb") )
     return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
   if( !(state.redshift === "redshift" ) )
-    return { correct: false, feedbackComponent: "" };
+    return { correct: false, feedbackComponent: "Lake Formation ist nicht mit Redshift verbunden." };
   if( !(state.forecast === "forecast" || state.forecast === "lambdaTensorflow") )
-    return { correct: false, feedbackComponent: "lol" };
+    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht analysiert." };
 
   // possible:
   var stars = 3;
