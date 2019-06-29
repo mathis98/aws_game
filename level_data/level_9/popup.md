@@ -1,4 +1,4 @@
-## Level 7: Aktienkurse
+## Level 9: Aktienkurse
 
 Der Benutzer klickt in einer in S3 gehosteten Aktien-Web-App auf einen Link um Aktienkurse zu bekommen.
 Die App ruft daraufhin eine REST API auf, welche von Amazon API Gateway bereitgestellt wird.

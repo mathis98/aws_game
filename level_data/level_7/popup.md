@@ -1,4 +1,4 @@
-## Level 9: Machine Learning Wetterdaten
+## Level 7: Machine Learning Wetterdaten
 
 Für die Verbesserung von Wettervorhersagen wollen
 Wissenschaftler viele Daten sammeln und mithilfe von machine learning bessere Prognosen erstellen.
