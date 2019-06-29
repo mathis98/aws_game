@@ -1,5 +1,7 @@
 ## Redshift
 
+Reshift ist ein Cloud-basiertes **Data Warehouse**.
+
 Redshift kann Queries direkt auf einen S3 Data Lake
 ausführen. Das heißt, dass die Daten nicht erneut
 geladen werden müssen, welches Zeit, Speicherplatz,
