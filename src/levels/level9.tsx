@@ -1,122 +1,94 @@
-import * as React from 'react';
-import { Level, LevelState, LevelFeedback} from './level';
+import { Level, LevelFeedback, LevelState } from './level'
+import * as React from 'react'
 
-const level9: Level = {
-  columns: 4,
-  rows: 3,
+const level7: Level ={
+  columns: 3,
+  rows: 2,
   gap: "2em",
   elements: [
     {
       position: {
         column: 0,
-        row: 1,
-      },
-      id: "weatherData",
-      icon: "weatherData",
-    },
-    {
-      position: {
-        column: 1,
-        row: 0,
-      },
-      id: "redshift",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 1,
-        row: 1,
-      },
-      id: "lakeFormation",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 1,
-        row: 2,
+        row: 0
       },
       id: "s3",
-      droppable: true,
+      droppable: true
+    },
+    {
+      position: {
+        column: 0,
+        row: 1
+      },
+      id: "browser",
+      icon: "browser"
+    },
+    {
+      position: {
+        column: 1,
+        row: 1
+      },
+      id: "api_gateway",
+      droppable: true
     },
     {
       position: {
         column: 2,
-        row: 0,
+        row: 1
       },
-      id: "forecast",
-      droppable: true,
+      id: "lambda_stock_data",
+      droppable: true
     },
     {
       position: {
-        column: 3,
-        row: 0,
+        column: 2,
+        row: 0
       },
-      id: "webServer",
-      icon: "webServer"
-    },
+      id: "dynamodb",
+      droppable: true
+    }
   ],
   relations: [
     {
-      sourceId: "weatherData",
-      targetId: "lakeFormation",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "redshift",
-      targetId: "lakeFormation",
+      sourceId: "s3",
+      targetId: "browser",
       sourceAnchor: "bottom",
-      targetAnchor: "top",
-      doubleArrow: true,
+      targetAnchor: "top"
     },
     {
-      sourceId: "lakeFormation",
-      targetId: "s3",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-      dashed: true,
-      doubleArrow: true,
-    },
-    {
-      sourceId: "redshift",
-      targetId: "forecast",
+      sourceId: "browser",
+      targetId: "api_gateway",
       sourceAnchor: "right",
       targetAnchor: "left",
+      doubleArrow: true
     },
     {
-      sourceId: "forecast",
-      targetId: "webServer",
+      sourceId: "api_gateway",
+      targetId: "lambda_stock_data",
       sourceAnchor: "right",
       targetAnchor: "left",
+      doubleArrow: true
     },
+    {
+      sourceId: "lambda_stock_data",
+      targetId: "dynamodb",
+      sourceAnchor: "top",
+      targetAnchor: "bottom"
+    }
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "redshift", "forecast", "lakeFormation"],
-  validator: level9Validator,
-};
-
-function level9Validator(state: LevelState): LevelFeedback {
-  // needs to be correct
-  if( !(state.lakeFormation === "lakeFormation" ) )
-    return { correct: false, feedbackComponent: "Die Wetterdaten brauchen ein Interface." };
-  if( !(state.s3 === "s3" || state.s3 === "dynamodb") )
-    return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
-  if( !(state.redshift === "redshift" ) )
-    return { correct: false, feedbackComponent: "Lake Formation ist nicht mit einem Data Warehouse verknüpft." };
-  if( !(state.forecast === "forecast" || state.forecast === "lambdaTensorflow") )
-    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht analysiert." };
-
-  // possible:
-  var stars = 3;
-  var message = "";
-  if (state.s3 === "dynamodb") {
-    stars--;
-    message += "Lake Formation kommt mit S3 besser zurecht. ";
-  }
-  if (state.forecast === "lambdaTensorflow") {
-    stars--;
-    message += "Es gibt ein extra AWS service für Machine Learning. ";
-  }
-  return {correct: true, stars: stars, feedbackComponent: message};
+  awspalette: ["s3", "dynamodb", "lambda_stock_data", "api_gateway"],
+  validator: Level7Validator
 }
 
-export default level9;
+function Level7Validator(state: LevelState): LevelFeedback {
+  if (
+    state.s3 === 's3' &&
+    state.dynamodb === 'dynamodb' &&
+    state.lambda_stock_data === 'lambda_stock_data' &&
+    state.api_gateway === 'api_gateway'
+  ) {
+    return {correct: true};
+  }
+  return {correct: false};
+}
+
+export default level7;

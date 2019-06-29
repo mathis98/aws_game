@@ -1,9 +1,10 @@
-## Level 7: Aktienkurse
+## Level 9: Machine Learning Wetterdaten
 
-Der Benutzer klickt in einer in S3 gehosteten Aktien-Web-App auf einen Link um Aktienkurse zu bekommen.
-Die App ruft daraufhin eine REST API auf, welche von Amazon API Gateway bereitgestellt wird.
-Diese triggert dann eine Lambda-Funktion, welche wiederum die Aktienkurse aus DynamoDB liest und die Daten zurück an den Benutzer schickt.
+Für die Verbesserung der Wettervorhersage wollen
+Wissenschaftler viele Daten sammeln und mithilfe machine learning bessere Prognosen erstellen.
 
-Abstraktion: Die Aktienkurse liegen schon in DynamoDB und sind aktuell.
+Um kosten zu sparen, werden die aktuellen Wetterdaten aus einem Datenspeicher in
+einen **Data Lake** gesammelt. Die gespeicherten Daten sollen in einem Warehouse eingebunden werden.
+Bei Bedarf werden die Daten analysiert, um Wetterprognosen zu erstellen.
+Je mehr Daten analysiert werden, desto akkurater werden die Vorhersagen.
 
-Viel Erfolg.

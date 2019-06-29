@@ -1,10 +1,11 @@
 ## Lake Formation
 
-Ein Data Lake ist, ähnlich wie ein Data Warehouse,
-eine Ansammlung von historischen Daten. Der Unterschied
-besteht darin, dass in einem Data Lake die Daten nicht
+Ein Data Lake ist eine **Ansammlung von historischen Daten**.
+Der Unterschied besteht darin, dass in einem Data Lake die Daten nicht
 nur in seiner Originalform, sondern auch in eine für
 Datenanalyse optimierte Form gespeichert werden.
+
+Lake Formation organisiert Daten in **S3**, um die Effizienz zu steigeern.
 
 AWS Lake Formation ist ein Service, das KI-unterstützt,
 ein Data Lake erschafft und auch verwaltet. So werden
