@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Level, LevelState, LevelFeedback, calcStars} from './level';
+import { Level, LevelState, LevelFeedback} from './level';
 
 const level2: Level ={
     columns: 6,
@@ -109,7 +109,7 @@ function Level2Validator(state: LevelState): LevelFeedback {
     stars--;
     message += "Ein DynamoDB wird nicht effizient genutzt. ";
   }
-  return {correct: true, stars: calcStars(stars), feedbackComponent: message};
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level2;

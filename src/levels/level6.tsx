@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Level, LevelState, LevelFeedback, calcStars} from './level';
+import {Level, LevelState, LevelFeedback} from './level';
 
 const level6: Level = {
   columns: 3,
@@ -112,7 +112,7 @@ function Level6Validator(state: LevelState): LevelFeedback {
     stars--;
     message += "Zu viele kleine Daten für S3. ";
   }
-  return {correct: true, stars: calcStars(stars), feedbackComponent: message};
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level6;

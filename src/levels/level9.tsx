@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Level, LevelState, LevelFeedback, calcStars } from './level';
+import { Level, LevelState, LevelFeedback} from './level';
 
 const level9: Level = {
   columns: 3,
@@ -118,7 +118,7 @@ function level9Validator(state: LevelState): LevelFeedback {
     stars--;
     message += "Es gibt ein extra AWS service für Machine Learning. ";
   }
-  return {correct: true, stars: calcStars(stars), feedbackComponent: message};
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level9;

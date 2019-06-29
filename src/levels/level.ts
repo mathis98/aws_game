@@ -51,28 +51,8 @@ export interface LevelFeedback {
   correct: boolean;
   points?: number;
   maxPoints?: number;
-  stars?: 1 | 2 | 3;
+  stars?: number;
   feedbackComponent?: JSX.Element | string;
-}
-
-export function calcStars(stars: number):  1 | 2 | 3 {
-  if(stars <= 1)
-    return 1;
-  if(stars == 2)
-    return 2;
-  if(stars >= 3)
-    return 3;
-
-  return 1;
-}
-
-export function calcPoints(points: number): number {
-  if(points <= 0)
-    return 0;
-  if(points >= 100)
-    return 100;
-
-  return points;
 }
 
 /**
