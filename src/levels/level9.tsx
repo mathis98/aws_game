@@ -2,32 +2,24 @@ import * as React from 'react';
 import { Level, LevelState, LevelFeedback} from './level';
 
 const level9: Level = {
-  columns: 3,
+  columns: 4,
   rows: 3,
   gap: "2em",
   elements: [
     {
       position: {
         column: 0,
-        row: 0,
-      },
-      id: "weatherStation",
-      icon: "weatherStation",
-    },
-    {
-      position: {
-        column: 0,
         row: 1,
       },
-      id: "lakeFormation",
-      droppable: true,
+      id: "weatherData",
+      icon: "weatherData",
     },
     {
       position: {
-        column: 0,
-        row: 2,
+        column: 1,
+        row: 0,
       },
-      id: "s3",
+      id: "redshift",
       droppable: true,
     },
     {
@@ -35,32 +27,47 @@ const level9: Level = {
         column: 1,
         row: 1,
       },
-      id: "redshift",
+      id: "lakeFormation",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 1,
+        row: 2,
+      },
+      id: "s3",
       droppable: true,
     },
     {
       position: {
         column: 2,
-        row: 1,
+        row: 0,
       },
       id: "forecast",
       droppable: true,
     },
     {
       position: {
-        column: 2,
-        row: 2,
+        column: 3,
+        row: 0,
       },
-      id: "mobile",
-      icon: "mobile"
+      id: "webServer",
+      icon: "webServer"
     },
   ],
   relations: [
     {
-      sourceId: "weatherStation",
+      sourceId: "weatherData",
+      targetId: "lakeFormation",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "redshift",
       targetId: "lakeFormation",
       sourceAnchor: "bottom",
       targetAnchor: "top",
+      doubleArrow: true,
     },
     {
       sourceId: "lakeFormation",
@@ -71,26 +78,17 @@ const level9: Level = {
       doubleArrow: true,
     },
     {
-      sourceId: "lakeFormation",
-      targetId: "redshift",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-      doubleArrow: true,
-    },
-    {
       sourceId: "redshift",
       targetId: "forecast",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
-    /*
     {
       sourceId: "forecast",
-      targetId: "mobile",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
+      targetId: "webServer",
+      sourceAnchor: "right",
+      targetAnchor: "left",
     },
-    */
   ],
   awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "redshift", "forecast", "lakeFormation"],
   validator: level9Validator,
@@ -99,11 +97,11 @@ const level9: Level = {
 function level9Validator(state: LevelState): LevelFeedback {
   // needs to be correct
   if( !(state.lakeFormation === "lakeFormation" ) )
-    return { correct: false, feedbackComponent: "Die rohen Daten brauchen ein Interface." };
+    return { correct: false, feedbackComponent: "Die Wetterdaten brauchen ein Interface." };
   if( !(state.s3 === "s3" || state.s3 === "dynamodb") )
     return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
   if( !(state.redshift === "redshift" ) )
-    return { correct: false, feedbackComponent: "Lake Formation ist nicht mit Redshift verbunden." };
+    return { correct: false, feedbackComponent: "Lake Formation ist nicht mit einem Data Warehouse verknüpft." };
   if( !(state.forecast === "forecast" || state.forecast === "lambdaTensorflow") )
     return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht analysiert." };
 

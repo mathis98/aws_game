@@ -17,6 +17,8 @@ export type IconLevelElement =
   "weatherStation" |
   "browser" |
   "mobile" |
+  "webServer" |
+  "weatherData" |
   "vdots";
 
 function getIcon(filename: IconLevelElement) {
@@ -37,8 +39,10 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   gameserver: <IconElement image={getIcon('gameserver')} description="Gameserver" />,
   supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
   weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,
-  browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#67923D"/>,
+  browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#FEC77C"/>,
   mobile: <IconElement image={getIcon('mobile')} description="Benutzer" color="#232F3E"/>,
+  webServer: <IconElement image={getIcon('webServer')} description="Web Server" color="#7895A4"/>,
+  weatherData: <IconElement image={getIcon('weatherData')} description="Wetter Daten" color="#7B7C7F"/>,
   vdots: <IconElement image={getIcon('vdots')}/>,
 };
 
