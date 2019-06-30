@@ -55,7 +55,6 @@ export type AWSProductLevelElement =
   "lambda_stock_data" |
   "kinesis" |
   "cognito" |
-  "api_gateway"|
   "apiGateway" |
   "sns"|
   "lakeFormation" |
@@ -74,7 +73,6 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   lambda_image_metadata: <AWSPaletteItem id="lambda_image_metadata" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   lambda_stock_data: <AWSPaletteItem id="lambda_stock_data" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
-  api_gateway: <AWSPaletteItem id="api_gateway" icon="aws-api-gateway" text="API Gateway" color="#D5A449" key="api_gateway_paletteItem" />,
   apiGateway: <AWSPaletteItem id="apiGateway" icon="apiGateway" text="API Gateway" color="#7A48D6" key="apiGateway_paletteItem" />,
   sns: <AWSPaletteItem id="sns" icon="sns" text="SNS" color="#CC2264" key="sns_paletteItem" />,
   lakeFormation: <AWSPaletteItem id="lakeFormation" icon="lakeFormation" text="Lake Formation" color="#693CC5" key="lakeFormation_paletteItem" />,
