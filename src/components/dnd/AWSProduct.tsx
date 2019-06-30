@@ -5,8 +5,9 @@ const css = require('./AWSProduct.css');
 
 export interface AWSProductProps {
   icon: string;
-  text: string;
+  text?: string;
   color: string;
+  noText?: boolean;
 }
 
 export default class AWSProduct extends React.Component<AWSProductProps, {}> {
@@ -16,9 +17,11 @@ export default class AWSProduct extends React.Component<AWSProductProps, {}> {
       <div className={css.awsProduct} style={{backgroundColor: this.props.color}}>
         <div className={css.awsProductIcon} style={{backgroundImage: `url(${img})`}} />
         <div className={css.awsProductNameWrapper}>
+          {!this.props.noText &&
           <Typography variant="body1" component="span" className={css.awsProductName}>
             {this.props.text}
           </Typography>
+          }
         </div>
       </div>
     );
