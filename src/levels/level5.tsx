@@ -66,11 +66,14 @@ const level5: Level = {
 };
 
 function Level5Validator(state: LevelState): LevelFeedback {
-  if (state.ses === "ses" && state.lambdaTensorflow === "lambdaTensorflow") {
-    return {correct: true, stars: 3};
-  }
 
-  return {correct: false};
+  // needs to be correct
+  if( !(state.ses === "ses") )
+    return { correct: false, feedbackComponent: "Die Emails können nicht empfangen und gesendet werden." };
+  if( !(state.lambdaTensorflow === "lambdaTensorflow") )
+    return { correct: false, feedbackComponent: "Die Emails können nicht klassifiziert werden." };
+
+  return {correct: true, stars: 3};
 }
 
 export default level5;
