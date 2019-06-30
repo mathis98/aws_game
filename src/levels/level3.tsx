@@ -8,7 +8,7 @@ const level3: Level ={
   elements: [
     {
       position: {
-        column: 1,
+        column: 0,
         row: 0
       },
       id: "camera",
@@ -16,7 +16,7 @@ const level3: Level ={
     },
     {
       position: {
-        column: 1,
+        column: 0,
         row: 1
       },
       id: "s3",
@@ -24,7 +24,7 @@ const level3: Level ={
     },
     {
       position: {
-        column: 2,
+        column: 1,
         row: 1
       },
       id: "lambda_image_metadata",
@@ -32,7 +32,7 @@ const level3: Level ={
     },
     {
       position: {
-        column: 3,
+        column: 2,
         row: 1
       },
       id: "dynamodb",
@@ -40,7 +40,7 @@ const level3: Level ={
     },
     {
       position: {
-        column: 3,
+        column: 2,
         row: 2
       },
       id: "shop",

@@ -2,13 +2,13 @@ import { Level, LevelFeedback, LevelState } from './level'
 import * as React from 'react'
 
 const level4: Level ={
-  columns: 5,
-  rows: [2, 2, 1, 2, 2],
-  gap: "2em",
+  columns: 4,
+  rows: 4,
+  gap: "3em",
   elements: [
     {
       position: {
-        column: 1,
+        column: 0,
         row: 1
       },
       id: "users",
@@ -16,7 +16,7 @@ const level4: Level ={
     },
     {
       position: {
-        column: 2,
+        column: 1,
         row: 1
       },
       id: "shield",
@@ -24,7 +24,7 @@ const level4: Level ={
     },
     {
       position: {
-        column: 3,
+        column: 2,
         row: 1
       },
       id: "cognito",
@@ -32,19 +32,19 @@ const level4: Level ={
     },
     {
       position: {
-        column: 3,
-        row: 3
+        column: 2,
+        row: 2
       },
-      id: "gameserver",
-      icon: "gameserver"
+      id: "dynamodb",
+      droppable: true
     },
     {
       position: {
-        column: 2,
-        row: 3
+        column: 3,
+        row: 1
       },
-      id: "dynamo",
-      droppable: true
+      id: "gameserver",
+      icon: "gameserver"
     }
   ],
   relations: [
@@ -62,16 +62,17 @@ const level4: Level ={
     },
     {
       sourceId: "cognito",
-      targetId: "gameserver",
+      targetId: "dynamodb",
       sourceAnchor: "bottom",
-      targetAnchor: "top"
+      targetAnchor: "top",
+      doubleArrow: true,
+      dashed: true
     },
     {
-      sourceId: "gameserver",
-      targetId: "dynamo",
-      sourceAnchor: "left",
-      targetAnchor: "right",
-      doubleArrow: true
+      sourceId: "cognito",
+      targetId: "gameserver",
+      sourceAnchor: "right",
+      targetAnchor: "left",
     }
   ],
   awspalette: ["shield", "cognito", "dynamodb", "s3"],
@@ -79,14 +80,23 @@ const level4: Level ={
 };
 
 function Level4Validator(state: LevelState): LevelFeedback {
-  if (state.cognito === "cognito" && state.dynamo === "dynamodb" && state.shield === "shield") {
-    return {correct: true, stars: 3};
-  } else if (state.cognito === "cognito" && state.dynamo === "s3" && state.shield === "shield") {
-    return {correct: true, points: 20};
-  } else if (state.cognito === "shield" && state.shield === "cognito") {
-    return { correct: false, feedbackComponent: "Der Login-Service ist gegen DDoS Angriffe ungeschützt!"}
+
+  // needs to be correct
+  if( !(state.shield === "shield") )
+    return { correct: false, feedbackComponent: "Der Login-Service ist gegen DDoS Angriffe ungeschützt!" };
+  if( !(state.cognito === "cognito") )
+    return { correct: false, feedbackComponent: "Die Benutzer und Server können nicht mit einem Benutzerverwaltungssystem interagieren." };
+  if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb") )
+    return { correct: false, feedbackComponent: "Die Spieldaten können nicht gespeichert werden." };
+
+  // possible:
+  let stars = 3;
+  let message = "";
+  if (state.dynamodb === "s3") {
+    stars--;
+    message += "Die Spieldaten sind zu klein für S3. ";
   }
-  return {correct: false};
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level4;
