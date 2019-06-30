@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Level, LevelState, LevelFeedback } from './level';
+import { Level, LevelState, LevelFeedback} from './level';
 
 const level2: Level ={
     columns: 6,
@@ -89,7 +89,7 @@ const level2: Level ={
   ],
   awspalette: ["s3", "dynamodb"],
   validator: Level2Validator
-}
+};
 
 function Level2Validator(state: LevelState): LevelFeedback {
   // needs to be correct
@@ -98,20 +98,18 @@ function Level2Validator(state: LevelState): LevelFeedback {
   if( !(state.s3 === "s3" || state.s3 === "dynamodb"))
     return { correct: false, feedbackComponent: "Die Bilder werden nicht abgespeichert." };
 
-  //possible
-  if (state.dynamodb === "s3" && state.s3 === "dynamodb")
-    return {correct: true, stars: 1, feedbackComponent: "S3 und DynamoDB werden nicht effizient genutzt."};
-  if (state.dynamodb === "dynamodb" && state.s3 === "dynamodb")
-    return {correct: true, stars: 2, feedbackComponent: "DynamoDB wird nicht effizient genutzt."};
-  if (state.dynamodb === "s3" && state.s3 === "s3")
-    return {correct: true, stars: 2, feedbackComponent: "S3 wird nicht effizient genutzt."};
-
-  // perfect
-  if (state.dynamodb === "dynamodb" && state.s3 === "s3") {
-    return {correct: true, stars: 3};
+  // possible:
+  let stars = 3;
+  let message = "";
+  if (state.dynamodb === "s3") {
+    stars--;
+    message += "Ein S3 Bucket wird nicht effizient genutzt. ";
   }
-
-  return {correct: false};
+  if (state.s3 === "dynamodb") {
+    stars--;
+    message += "Ein DynamoDB wird nicht effizient genutzt. ";
+  }
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level2;

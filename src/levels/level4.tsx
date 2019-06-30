@@ -76,7 +76,7 @@ const level4: Level ={
   ],
   awspalette: ["shield", "cognito", "dynamodb", "s3"],
   validator: Level4Validator
-}
+};
 
 function Level4Validator(state: LevelState): LevelFeedback {
   if (state.cognito === "cognito" && state.dynamo === "dynamodb" && state.shield === "shield") {

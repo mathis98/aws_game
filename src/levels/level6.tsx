@@ -89,32 +89,30 @@ const level6: Level = {
       targetAnchor: "top",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "lambda"],
+  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis"],
   validator: Level6Validator,
 };
 
 function Level6Validator(state: LevelState): LevelFeedback {
 
   // needs to be correct
-  if(state.kinesis !== "kinesis" )
+  if( !(state.kinesis === "kinesis") )
     return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht empfangen." };
   if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb"))
     return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
-  if(!(state.lambda === "lambda" || state.lambda === "lambdaTensorflow") )
+  if( !(state.lambda === "lambdaTensorflow") )
     return { correct: false, feedbackComponent: "Die gesamelten Daten werden nicht richtig verarbeitet" };
-  if(state.ses !== "ses" )
+  if( !(state.ses === "ses") )
     return { correct: false, feedbackComponent: "Es werden keine Emails verschickt." };
 
   // possible:
+  let stars = 3;
+  let message = "";
   if (state.dynamodb === "s3") {
-    return {correct: true, stars: 1, feedbackComponent: "Zu viele kleine Daten für S3." };
+    stars--;
+    message += "Zu viele kleine Daten für S3. ";
   }
-  // perfect:
-  if (state.dynamodb === "dynamodb") {
-    return {correct: true, stars: 3};
-  }
-
-  return {correct: false};
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level6;
