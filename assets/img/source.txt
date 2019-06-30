@@ -1,9 +1,0 @@
--https://www.flaticon.com/free-icon/web_1034609#term=browser&page=1&position=4
--https://www.flaticon.com/free-icon/photo-camera_149098#term=camera&page=1&position=2
--https://www.flaticon.com/free-icon/business-person-silhouette-wearing-tie_33750#term=guy%20tie&page=1&position=1
--https://www.flaticon.com/free-icon/folder_149333#term=files&page=1&position=38
--https://www.flaticon.com/free-icon/shop_1067602#term=shop&page=1&position=86
--https://www.flaticon.com/free-icon/support_771601#term=customer%20support&page=1&position=1
--https://www.flaticon.com/free-icon/wind-sign_1851004
--https://www.flaticon.com/free-icon/globe_1034591
--https://www.flaticon.com/free-icon/cloud_860276

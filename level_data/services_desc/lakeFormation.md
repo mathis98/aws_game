@@ -1,9 +1,9 @@
 ## Lake Formation
 
 Ein Data Lake ist eine **Ansammlung von historischen Daten**.
-Der Unterschied besteht darin, dass in einem Data Lake die Daten nicht
+Die Daten werden in einem Data Lake nicht
 nur in seiner Originalform, sondern auch in eine für
-Datenanalyse optimierte Form gespeichert werden.
+Datenanalyse optimierte Form gespeichert.
 
 Lake Formation organisiert Daten in **S3**, um die Effizienz zu steigeern.
 

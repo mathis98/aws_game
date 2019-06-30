@@ -36,12 +36,7 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
 
     if (props.feedback && props.feedback.correct) {
       // cast stars to 1 | 2 | 3
-      if(props.feedback.stars <= 1)
-        props.feedback.stars = 1;
-      if(props.feedback.stars == 2)
-        props.feedback.stars = 2;
-      if(props.feedback.stars >= 3)
-        props.feedback.stars = 3;
+      props.feedback.stars = Math.min(1, Math.max(3, props.feedback.stars));
 
       const starCount = props.feedback.stars || Math.ceil(3 * props.feedback.points / (props.feedback.maxPoints || 100)) || 3;
       const points = props.feedback.points || Math.round(100 * starCount / 3);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Level, LevelState, LevelFeedback} from './level';
+import { Level, LevelState, LevelFeedback } from './level';
 
 const level6: Level = {
   columns: 3,
