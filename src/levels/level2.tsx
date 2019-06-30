@@ -99,8 +99,8 @@ function Level2Validator(state: LevelState): LevelFeedback {
     return { correct: false, feedbackComponent: "Die Bilder werden nicht abgespeichert." };
 
   // possible:
-  var stars = 3;
-  var message = "";
+  let stars = 3;
+  let message = "";
   if (state.dynamodb === "s3") {
     stars--;
     message += "Ein S3 Bucket wird nicht effizient genutzt. ";

@@ -106,8 +106,8 @@ function Level6Validator(state: LevelState): LevelFeedback {
     return { correct: false, feedbackComponent: "Es werden keine Emails verschickt." };
 
   // possible:
-  var stars = 3;
-  var message = "";
+  let stars = 3;
+  let message = "";
   if (state.dynamodb === "s3") {
     stars--;
     message += "Zu viele kleine Daten für S3. ";

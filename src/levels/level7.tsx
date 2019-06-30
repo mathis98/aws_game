@@ -106,8 +106,8 @@ function level9Validator(state: LevelState): LevelFeedback {
     return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht analysiert." };
 
   // possible:
-  var stars = 3;
-  var message = "";
+  let stars = 3;
+  let message = "";
   if (state.s3 === "dynamodb") {
     stars--;
     message += "Lake Formation ist mit S3 effizienter. ";
