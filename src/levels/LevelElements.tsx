@@ -6,8 +6,10 @@ export type IconLevelElement =
   "cam" |
   "bpol" |
   "camera" |
+  "camera2" |
   "documents" |
   "shop" |
+  "shop2" |
   "customer" |
   "users" |
   "users2" |
@@ -30,8 +32,10 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   cam: <IconElement image={getIcon('cam')} description="Kamera" />,
   bpol: <IconElement image={getIcon('bpol')} description="Bundespolizei" />,
   camera: <IconElement image={getIcon('camera')} description="Kamera" color="#E44800"/>,
+  camera2: <IconElement image={getIcon('camera')} description="Kamera" color="#547B80"/>,
   documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
-  shop: <IconElement image={getIcon('shop')} description="Shop" />,
+  shop: <IconElement image={getIcon('shop')} description="Shop" color="#00909D" />,
+  shop2: <IconElement image={getIcon('shop')} description="Shop" color="#73A353" />,
   customer: <IconElement image={getIcon('customer')} description="Kunde" color="#8C3494"/>,
   users: <IconElement image={getIcon('users')} description="Benutzer" color="#004260"/>,
   users2: <IconElement image={getIcon('users')} description="Benutzer" color="#689676"/>,
@@ -39,7 +43,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   gameserver: <IconElement image={getIcon('gameserver')} description="Gameserver" />,
   supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
   weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,
-  browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#FEC77C"/>,
+  browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#7E82AD"/>,
   mobile: <IconElement image={getIcon('mobile')} description="Benutzer" color="#232F3E"/>,
   webServer: <IconElement image={getIcon('webServer')} description="Web Server" color="#7895A4"/>,
   weatherData: <IconElement image={getIcon('weatherData')} description="Wetterdaten" color="#7B7C7F"/>,
