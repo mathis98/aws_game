@@ -98,7 +98,7 @@ const level8: Level = {
     },
     {
       sourceId: "sns",
-      targetId: "re1",
+      targetId: "rec1",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
