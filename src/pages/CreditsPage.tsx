@@ -47,7 +47,7 @@ export const CreditsPage = withRouter((props: any) => {
             {
               sources.map((item: any) =>
                 <span key={item.name}>
-                <Link href={item.url}>
+                <Link href={item.url} target="_blank" rel="noopener">
                   <img className={css.iconCreditsImage}
                        src={require(`../../assets/img/${item.name}.svg`)}/>{item.creator}
                 </Link>
