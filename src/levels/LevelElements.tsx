@@ -5,6 +5,7 @@ import AWSPaletteItem from 'components/dnd/AWSPaletteItem';
 export type IconLevelElement =
   "cam" |
   "bpol" |
+  "cactus" |
   "camera" |
   "camera2" |
   "documents" |
@@ -31,6 +32,7 @@ function getIcon(filename: IconLevelElement) {
 export const allIcons: Record<IconLevelElement, JSX.Element> = {
   cam: <IconElement image={getIcon('cam')} description="Kamera" />,
   bpol: <IconElement image={getIcon('bpol')} description="Bundespolizei" />,
+  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze" />,
   camera: <IconElement image={getIcon('camera')} description="Kamera" color="#E44800"/>,
   camera2: <IconElement image={getIcon('camera')} description="Kamera" color="#547B80"/>,
   documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
@@ -68,6 +70,10 @@ export type AWSProductLevelElement =
   "sns"|
   "lakeFormation" |
   "redshift" |
+  "IoTCore" |
+  "quicksight" | 
+  "sagemaker" |
+  "analytics" |
   "forecast";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
@@ -77,6 +83,11 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   shield: <AWSPaletteItem id="shield" icon="shield" text="AWS Shield" color="#D6242D" key="shield_paletteItem" />,
   cognito: <AWSPaletteItem id="cognito" icon="cognito" text="Cognito" color="#D6242D" key="cognito_paletteItem" />,
   ses: <AWSPaletteItem id="ses" icon="ses" text="SES" color="#445EE0" key="ses_paletteItem" />,
+  sns: <AWSPaletteItem id="sns" icon="ses" text="SNS" color="#445EE0" key="sns_paletteItem" />,
+  IoTCore: <AWSPaletteItem id="IoTCore" icon="IoTCore" text="IoTCore" color="#445EE0" key="IoTCore_paletteItem" />,
+  quicksight: <AWSPaletteItem id="quicksight" icon="quicksight" text="quicksight" color="#445EE0" key="quicksight_paletteItem" />,
+  sagemaker: <AWSPaletteItem id="sagemaker" icon="sagemaker" text="sagemaker" color="#445EE0" key="sagemaker_paletteItem" />,
+  analytics: <AWSPaletteItem id="analytics" icon="analytics" text="analytics" color="#445EE0" key="analytics_paletteItem" />,
   lambda: <AWSPaletteItem id="lambda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
   lambda_image_metadata: <AWSPaletteItem id="lambda_image_metadata" icon="lambda" text="Lambda für Metadaten" color="#D86613" key="lambda_paletteItem" />,

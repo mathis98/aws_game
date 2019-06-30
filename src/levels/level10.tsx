@@ -9,15 +9,15 @@ const level10: Level = {
     {
       position: {
         column: 0,
-        row: 0,
+        row: 1,
       },
       id: "input",
-      icon: " TODO ",
+      icon: "cactus",
     },
     {
       position: {
         column: 1,
-        row: 0,
+        row: 1,
       },
       id: "IoTCore",
       droppable: true,
@@ -25,7 +25,7 @@ const level10: Level = {
     {
       position: {
         column: 2,
-        row: 0,
+        row: 1,
       },
       id: "s3",
       droppable: true,
@@ -33,7 +33,7 @@ const level10: Level = {
     {
       position: {
         column: 2,
-        row: 1,
+        row: 3,
       },
       id: "analytics",
       droppable: true,
@@ -49,7 +49,7 @@ const level10: Level = {
     {
       position: {
         column: 3,
-        row: 1,
+        row: 2,
       },
       id: "sagemaker",
       droppable: true,
@@ -57,23 +57,15 @@ const level10: Level = {
     {
       position: {
         column: 4,
-        row: 0,
+        row: 1,
       },
       id: "sns",
       droppable: true,
-    },  
-    {
-      position: {
-        column: 4,
-        row: 1,
-      },
-      id: "ses",
-      droppable: true,
-    },       
+    },        
     {
       position: {
         column: 5,
-        row: 2,
+        row: 1,
       },
       id: "customer",
       icon: "customer"
@@ -97,31 +89,25 @@ const level10: Level = {
       targetId: "analytics",
       sourceAnchor: "bottom",
       targetAnchor: "top",
-      doubleArrow: "true",
+      doubleArrow: true,
     },
     {
       sourceId: "s3",
       targetId: "quicksight",
       sourceAnchor: "right",
-      targetAnchor: "left",
+      targetAnchor: "bottom",
     },    
     {
       sourceId: "s3",
       targetId: "sagemaker",
       sourceAnchor: "right",
-      targetAnchor: "left",
+      targetAnchor: "top",
     },
     {
       sourceId: "quicksight",
       targetId: "sns",
       sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "quicksight",
-      targetId: "ses",
-      sourceAnchor: "right",
-      targetAnchor: "left",
+      targetAnchor: "top",
     },
     {
       sourceId: "sns",
@@ -130,13 +116,13 @@ const level10: Level = {
       targetAnchor: "left",
     },
     {
-      sourceId: "ses",
+      sourceId: "sagemaker",
       targetId: "customer",
       sourceAnchor: "right",
-      targetAnchor: "left",
+      targetAnchor: "bottom",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "sns", "lambdaTensorflow", "kinesis", "lambda", "IoTCore", "quicksight", "sagemaker",´"analytics"],
+  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "sns", "lambdaTensorflow", "kinesis", "lambda", "IoTCore", "quicksight", "sagemaker", "analytics"],
   validator: Level10Validator,
 };
 
@@ -153,8 +139,6 @@ function Level10Validator(state: LevelState): LevelFeedback {
     return { correct: false, feedbackComponent: "Noch nicht implementiert." };
   if( !(state.s3 === "s3" || state.s3 === "dynamodb"))
     return { correct: false, feedbackComponent: "Noch nicht implementiert." };
-  if(!(state.ses === "ses" || state.ses === "sns"))
-    return { correct: false, feedbackComponent: "Noch nicht implementiert." };
   if(!(state.sns === "ses" || state.sns === "sns"))
     return { correct: false, feedbackComponent: "Noch nicht implementiert." };
 
@@ -163,7 +147,7 @@ function Level10Validator(state: LevelState): LevelFeedback {
     return {correct: true, stars: 2, feedbackComponent: "Bei großen Dateien eignet sich dynamoDB weniger." };
   }
   // perfect:
-  if (state.s3 === "s3" && ((state.sns === "ses" && state.ses === "sns"|| state.sns === "sns" && state.ses === "ses") )) {
+  if (state.s3 === "s3" && state.sns === "sns") {
     return {correct: true, stars: 3};
   }
 
