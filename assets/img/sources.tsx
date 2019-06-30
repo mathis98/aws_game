@@ -40,16 +40,16 @@ const sources: Source[] = [
     "creator": "Freepik",
     "url": "https://www.flaticon.com/free-icon/wind-sign_1851004",
   },
-  // {
-  //   "name": "Smashicons",
-  //   "creator": "Freepik",
-  //   "url": "https://www.flaticon.com/free-icon/globe_1034591",
-  // },
-  // {
-  //   "name": "weatherData",
-  //   "creator": "Pause08",
-  //   "url": "https://www.flaticon.com/free-icon/cloud_860276",
-  // },
+  {
+    "name": "Smashicons",
+    "creator": "Freepik",
+    "url": "https://www.flaticon.com/free-icon/globe_1034591",
+  },
+  {
+    "name": "weatherData",
+    "creator": "Pause08",
+    "url": "https://www.flaticon.com/free-icon/cloud_860276",
+  },
 ];
 
 export default sources;
