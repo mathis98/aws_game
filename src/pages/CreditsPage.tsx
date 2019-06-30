@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Container, Typography } from "@material-ui/core";
+import { Button, Container, Link, Typography } from "@material-ui/core";
 import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { withRouter } from "react-router";
 import sources from "../../assets/img/sources";
@@ -16,7 +16,6 @@ export const CreditsPage = withRouter((props: any) => {
 
   const members = ["Paul Seidemann", "Conrad Klaus", "Mark Bauknecht ", "Mathis Arend", "Leon Wiemers", "Jan Beckschewe", "Dominic Schialer"];
 
-
   console.log("so", sources);
   shuffleArray(members);
 
@@ -29,29 +28,34 @@ export const CreditsPage = withRouter((props: any) => {
 
     <div className={css.creditsWrapper}>
       <Container maxWidth="xs">
-        <Typography variant="h4">
-          Ein Projekt von
-        </Typography>
-        <Typography variant="body1">
-          {
-            members.map(item => <span key={item}>{item}<br/></span>)
-          }
-        </Typography>
+        <p>
+          <Typography variant="h4">
+            Ein Projekt von
+          </Typography>
+          <Typography variant="body1">
+            {
+              members.map(item => <span key={item}>{item}<br/></span>)
+            }
+          </Typography>
+        </p>
 
-
-        <Typography variant="h4">
-          Icons von
-        </Typography>
-        <Typography variant="body1">
-          {
-            sources.map((item: any) =>
-              <span key={item.name}>
-                <a href={item.url}>
-                  <img className={css.iconCreditsImage} width={50} src={require(`../../assets/img/${item.name}.svg`)}/> {item.creator}
-                </a><br/>
+        <p>
+          <Typography variant="h4">
+            Icons von
+          </Typography>
+          <Typography variant="body1">
+            {
+              sources.map((item: any) =>
+                <span key={item.name}>
+                <Link href={item.url}>
+                  <img className={css.iconCreditsImage}
+                       src={require(`../../assets/img/${item.name}.svg`)}/>{item.creator}
+                </Link>
+                <br/>
               </span>)
-          }
-        </Typography>
+            }
+          </Typography>
+        </p>
 
       </Container>
     </div>

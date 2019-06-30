@@ -17,4 +17,8 @@
 
 .iconCreditsImage {
     display: inline-block;
+    margin-right: 0.4em;
+    background-color: #A1A1A1;
+    vertical-align: middle;
+    width: 3em;
 }
