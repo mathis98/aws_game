@@ -12,7 +12,7 @@ const level3: Level ={
         row: 0
       },
       id: "camera",
-      icon: "camera"
+      icon: "camera2"
     },
     {
       position: {
@@ -44,7 +44,7 @@ const level3: Level ={
         row: 2
       },
       id: "shop",
-      icon: "shop"
+      icon: "shop2"
     }
   ],
   relations: [
@@ -75,7 +75,7 @@ const level3: Level ={
   ],
   awspalette: ["s3", "dynamodb", "lambda_image_metadata"],
   validator: Level3Validator
-}
+};
 
 function Level3Validator(state: LevelState): LevelFeedback {
 
