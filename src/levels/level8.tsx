@@ -49,26 +49,10 @@ const level8: Level = {
     {
       position: {
         column: 4,
-        row: 0,
-      },
-      id: "rec1",
-      icon: "mobile"
-    },
-    {
-      position: {
-        column: 4,
         row: 1,
       },
-      id: "rec2",
-      icon: "vdots"
-    },
-    {
-      position: {
-        column: 4,
-        row: 2,
-      },
-      id: "rec3",
-      icon: "mobile"
+      id: "rec",
+      icon: "mobiles"
     },
   ],
   relations: [
@@ -98,13 +82,7 @@ const level8: Level = {
     },
     {
       sourceId: "sns",
-      targetId: "rec1",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "sns",
-      targetId: "rec3",
+      targetId: "rec",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
