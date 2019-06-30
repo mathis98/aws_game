@@ -1,8 +1,12 @@
-import PageWrapper from "components/PageWrapper";
 import * as React from "react";
-import { Typography } from "@material-ui/core";
+import { Button, Container, Typography } from "@material-ui/core";
+import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
+import { withRouter } from "react-router";
+import sources from "../../assets/img/sources";
 
-export const CreditsPage = (props: any) => {
+const css = require("./CreditsPage.css");
+
+export const CreditsPage = withRouter((props: any) => {
   const shuffleArray = (array: any[]) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -11,18 +15,52 @@ export const CreditsPage = (props: any) => {
   };
 
   const members = ["Paul Seidemann", "Conrad Klaus", "Mark Bauknecht ", "Mathis Arend", "Leon Wiemers", "Jan Beckschewe", "Dominic Schialer"];
+
+
+  console.log("so", sources);
   shuffleArray(members);
 
+  return <>
+    <Container maxWidth="md" className={css.creditsTitle}>
+      <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+        Credits
+      </Typography>
+    </Container>
 
-  return <PageWrapper>
-    <Typography variant="h4">
-      <div>Projekt von</div>
-    </Typography>
-    <Typography variant="body1">
-      {
-        members.map(item => <span key={item}>{item}<br/></span>)
-      }
-    </Typography>
+    <div className={css.creditsWrapper}>
+      <Container maxWidth="xs">
+        <Typography variant="h4">
+          Ein Projekt von
+        </Typography>
+        <Typography variant="body1">
+          {
+            members.map(item => <span key={item}>{item}<br/></span>)
+          }
+        </Typography>
 
-  </PageWrapper>;
-};
+
+        <Typography variant="h4">
+          Icons von
+        </Typography>
+        <Typography variant="body1">
+          {
+            sources.map((item: any) =>
+              <span key={item.name}>
+                <a href={item.url}>
+                  <img className={css.iconCreditsImage} width={50} src={require(`../../assets/img/${item.name}.svg`)}/> {item.creator}
+                </a><br/>
+              </span>)
+          }
+        </Typography>
+
+      </Container>
+    </div>
+
+    <Container maxWidth="md">
+      <Button variant="outlined" color="primary" className={css.backButton} onClick={() => props.history.push("/")}>
+        <ArrowBackIcon className={css.backIcon}/>
+        Zurück
+      </Button>
+    </Container>
+  </>;
+});
