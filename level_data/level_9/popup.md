@@ -1,12 +1,9 @@
-## Level 9: Machine Learning Wetterdaten
+## Level 9: Aktienkurse
 
-Zur verbesserung des Frühwarnsystems wollen die
-Wissenschaftler sehr viele Daten sammeln und das
-daraus entstehende Modell für die **Vorhersage** von
-Unwetter benutzen.
+Der Benutzer klickt in einer in S3 gehosteten Aktien-Web-App auf einen Link um Aktienkurse zu bekommen.
+Die App ruft daraufhin eine REST API auf, welche von Amazon API Gateway bereitgestellt wird.
+Diese triggert dann eine Lambda-Funktion, welche wiederum die Aktienkurse aus DynamoDB liest und die Daten zurück an den Benutzer schickt.
 
-Um kosten zu sparen, werden unformattierte Daten in
-einen **Data Lake** gesammelt und vom System bei Bedarf
-analysiert, um so das Modell zu verfeinern. Je mehr
-Daten es empfängt, desto akurrater sind die Vorhersagen
-die es treffen kann.
+Abstraktion: Die Aktienkurse liegen schon in DynamoDB und sind aktuell.
+
+Viel Erfolg.

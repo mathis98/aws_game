@@ -1,94 +1,122 @@
-import { Level, LevelFeedback, LevelState } from './level'
-import * as React from 'react'
+import * as React from 'react';
+import { Level, LevelState, LevelFeedback} from './level';
 
-const level7: Level ={
-  columns: 3,
-  rows: 2,
+const level9: Level = {
+  columns: 4,
+  rows: 3,
   gap: "2em",
   elements: [
     {
       position: {
         column: 0,
-        row: 0
+        row: 1,
       },
-      id: "s3",
-      droppable: true
-    },
-    {
-      position: {
-        column: 0,
-        row: 1
-      },
-      id: "browser",
-      icon: "browser"
+      id: "weatherData",
+      icon: "weatherData",
     },
     {
       position: {
         column: 1,
-        row: 1
+        row: 0,
       },
-      id: "api_gateway",
-      droppable: true
+      id: "redshift",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 1,
+        row: 1,
+      },
+      id: "lakeFormation",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 1,
+        row: 2,
+      },
+      id: "s3",
+      droppable: true,
     },
     {
       position: {
         column: 2,
-        row: 1
+        row: 0,
       },
-      id: "lambda_stock_data",
-      droppable: true
+      id: "forecast",
+      droppable: true,
     },
     {
       position: {
-        column: 2,
-        row: 0
+        column: 3,
+        row: 0,
       },
-      id: "dynamodb",
-      droppable: true
-    }
+      id: "webServer",
+      icon: "webServer"
+    },
   ],
   relations: [
     {
-      sourceId: "s3",
-      targetId: "browser",
+      sourceId: "weatherData",
+      targetId: "lakeFormation",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "redshift",
+      targetId: "lakeFormation",
       sourceAnchor: "bottom",
-      targetAnchor: "top"
+      targetAnchor: "top",
+      doubleArrow: true,
     },
     {
-      sourceId: "browser",
-      targetId: "api_gateway",
+      sourceId: "lakeFormation",
+      targetId: "s3",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+      dashed: true,
+      doubleArrow: true,
+    },
+    {
+      sourceId: "redshift",
+      targetId: "forecast",
       sourceAnchor: "right",
       targetAnchor: "left",
-      doubleArrow: true
     },
     {
-      sourceId: "api_gateway",
-      targetId: "lambda_stock_data",
+      sourceId: "forecast",
+      targetId: "webServer",
       sourceAnchor: "right",
       targetAnchor: "left",
-      doubleArrow: true
     },
-    {
-      sourceId: "lambda_stock_data",
-      targetId: "dynamodb",
-      sourceAnchor: "top",
-      targetAnchor: "bottom"
-    }
   ],
-  awspalette: ["s3", "dynamodb", "lambda_stock_data", "api_gateway"],
-  validator: Level7Validator
-}
+  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow", "kinesis", "redshift", "forecast", "lakeFormation"],
+  validator: level9Validator,
+};
 
-function Level7Validator(state: LevelState): LevelFeedback {
-  if (
-    state.s3 === 's3' &&
-    state.dynamodb === 'dynamodb' &&
-    state.lambda_stock_data === 'lambda_stock_data' &&
-    state.api_gateway === 'api_gateway'
-  ) {
-    return {correct: true};
+function level9Validator(state: LevelState): LevelFeedback {
+  // needs to be correct
+  if( !(state.lakeFormation === "lakeFormation" ) )
+    return { correct: false, feedbackComponent: "Die Wetterdaten brauchen ein Interface." };
+  if( !(state.s3 === "s3" || state.s3 === "dynamodb") )
+    return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
+  if( !(state.redshift === "redshift" ) )
+    return { correct: false, feedbackComponent: "Lake Formation ist nicht mit einem Data Warehouse verknüpft." };
+  if( !(state.forecast === "forecast" || state.forecast === "lambdaTensorflow") )
+    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht analysiert." };
+
+  // possible:
+  let stars = 3;
+  let message = "";
+  if (state.s3 === "dynamodb") {
+    stars--;
+    message += "Lake Formation ist mit S3 effizienter. ";
   }
-  return {correct: false};
+  if (state.forecast === "lambdaTensorflow") {
+    stars--;
+    message += "Es gibt ein extra AWS service für Machine Learning. ";
+  }
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
-export default level7;
+export default level9;

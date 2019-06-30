@@ -51,7 +51,7 @@ export interface LevelFeedback {
   correct: boolean;
   points?: number;
   maxPoints?: number;
-  stars?: 1 | 2 | 3;
+  stars?: number;
   feedbackComponent?: JSX.Element | string;
 }
 
