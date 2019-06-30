@@ -5,6 +5,8 @@ import ResetPopup from '../components/ResetPopup';
 import AWSProduct from '../components/dnd/AWSProduct';
 import MarkdownViewer from '../components/MarkdownViewer';
 
+import cx from 'classnames';
+
 import { Button, Container, Typography, Collapse } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { resetScore } from '../actions';
@@ -120,11 +122,11 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
                 <div className={css.icons}>
                   {randIcons.map((icon: any) =>
                     <div
-                      className={this.state.desc == icon.text.default ? css.icon_active : css.icon}
+                      className={cx(css.icon, {[css.icon_active]: this.state.desc == icon.text.default})}
                       key={icon.icon}
                       onClick={() => this.changeDescThrottle(icon.text)}
                     >
-                      <AWSProduct icon={icon.icon} noText={true} color={icon.color}/>
+                      <AWSProduct icon={icon.icon} noText color={icon.color}/>
                     </div>
                   )}
                 </div>
