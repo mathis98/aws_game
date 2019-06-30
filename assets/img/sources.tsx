@@ -41,7 +41,7 @@ const sources: Source[] = [
     "url": "https://www.flaticon.com/free-icon/wind-sign_1851004",
   },
   {
-    "name": "Smashicons",
+    "name": "webServer",
     "creator": "Freepik",
     "url": "https://www.flaticon.com/free-icon/globe_1034591",
   },
