@@ -39,7 +39,7 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
       if(props.feedback.stars <= 1)
         props.feedback.stars = 1;
       if(props.feedback.stars == 2)
-        props.feedback.stars = 1;
+        props.feedback.stars = 2;
       if(props.feedback.stars >= 3)
         props.feedback.stars = 3;
 
