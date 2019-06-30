@@ -32,7 +32,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   camera: <IconElement image={getIcon('camera')} description="Kamera" color="#E44800"/>,
   documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
   shop: <IconElement image={getIcon('shop')} description="Shop" />,
-  customer: <IconElement image={getIcon('customer')} description="Kunde" />,
+  customer: <IconElement image={getIcon('customer')} description="Kunde" color="#8C3494"/>,
   users: <IconElement image={getIcon('users')} description="Benutzer" color="#004260"/>,
   users2: <IconElement image={getIcon('users')} description="Benutzer" color="#689676"/>,
   users3: <IconElement image={getIcon('users')} description="Benutzer" color="#8F6C56"/>,
