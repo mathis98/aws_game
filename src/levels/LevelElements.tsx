@@ -10,6 +10,8 @@ export type IconLevelElement =
   "shop" |
   "customer" |
   "users" |
+  "users2" |
+  "users3" |
   "gameserver" |
   "supportEmployee" |
   "weatherStation" |
@@ -29,11 +31,13 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
   shop: <IconElement image={getIcon('shop')} description="Shop" />,
   customer: <IconElement image={getIcon('customer')} description="Kunde" />,
-  users: <IconElement image={getIcon('users')} description="Benutzer" />,
+  users: <IconElement image={getIcon('users')} description="Benutzer" color="#004260"/>,
+  users2: <IconElement image={getIcon('users')} description="Benutzer" color="#689676"/>,
+  users3: <IconElement image={getIcon('users')} description="Benutzer" color="#8F6C56"/>,
   gameserver: <IconElement image={getIcon('gameserver')} description="Gameserver" />,
   supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
   weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,
-  browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#1498C3"/>,
+  browser: <IconElement image={getIcon('browser')} description="Web-Browser" color="#67923D"/>,
   mobile: <IconElement image={getIcon('mobile')} description="Benutzer"/>,
   vdots: <IconElement image={getIcon('vdots')}/>,
 };
