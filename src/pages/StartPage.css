@@ -7,22 +7,8 @@
   flex-direction: column;
 }
 
-.start_button_wrapper {
-  margin-bottom: 20px;
-}
-
 .start_button {
   margin-bottom: 10px!important;
-}
-
-.text {
-  color: #336633;
-  font-family: Impact;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-top: 2px solid #336633;
-  border-bottom: 2px solid #336633;
-  text-align: center;
 }
 
 .title {
@@ -44,22 +30,23 @@
 }
 
 .icon {
-  width: 100px;
-  height: 100px;
-  display: inline-block;
-  filter: opacity(65%);
+  flex-grow: 1;
   cursor: pointer;
+  transition: transform .2s;
 }
 
-.icon_active {
-  width: 100px;
-  height: 100px;
-  display: inline-block;
-  cursor: pointer;
+.icon:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 
 .icon:hover {
-  filter: opacity(100%);
+  transform: scale(1.15);
+}
+
+.icon_active {
+  transform: scale(1.1);
 }
 
 .content {

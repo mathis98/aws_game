@@ -1,9 +1,10 @@
 import * as React from 'react';
-import PageWrapper from 'components/PageWrapper';
 import LinkButton from '../components/LinkButton';
 import ResetPopup from '../components/ResetPopup';
 import AWSProduct from '../components/dnd/AWSProduct';
 import MarkdownViewer from '../components/MarkdownViewer';
+
+import cx from 'classnames';
 
 import { Button, Container, Typography, Collapse } from '@material-ui/core';
 import { connect } from 'react-redux';
@@ -44,7 +45,7 @@ const icons = [
 ]
 
 const strings = [
-  'Das spannende AWS Spiel',
+  'Das spannendste AWS Spiel',
   'Ein Ort zum Lernen',
   'Spaß für Groß und Klein',
   'Meistern Sie Serverless',
@@ -96,7 +97,7 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
   render() {
     return (
       <>
-        <PageWrapper>
+        <Container maxWidth="md" className={css.wrapper}>
           <div className={css.content}>
             <Container maxWidth="md" className={css.title}>
               <Typography component="h1" variant="h2" color="textPrimary" align="center" className={css.titleName} gutterBottom>
@@ -120,11 +121,11 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
                 <div className={css.icons}>
                   {randIcons.map((icon: any) =>
                     <div
-                      className={this.state.desc == icon.text.default ? css.icon_active : css.icon}
+                      className={cx(css.icon, {[css.icon_active]: this.state.desc == icon.text.default})}
                       key={icon.icon}
                       onClick={() => this.changeDescThrottle(icon.text)}
                     >
-                      <AWSProduct icon={icon.icon} noText={true} color={icon.color}/>
+                      <AWSProduct icon={icon.icon} noText color={icon.color}/>
                     </div>
                   )}
                 </div>
@@ -146,7 +147,7 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
               Level wählen
             </LinkButton>
           </div>
-        </PageWrapper>
+        </Container>
         <footer>
           <LinkButton to="/credits" size="medium">Credits</LinkButton>
         </footer>

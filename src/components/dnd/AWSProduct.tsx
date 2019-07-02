@@ -16,13 +16,13 @@ export default class AWSProduct extends React.Component<AWSProductProps, {}> {
     return (
       <div className={css.awsProduct} style={{backgroundColor: this.props.color}}>
         <div className={css.awsProductIcon} style={{backgroundImage: `url(${img})`}} />
+        {!this.props.noText &&
         <div className={css.awsProductNameWrapper}>
-          {!this.props.noText &&
           <Typography variant="body1" component="span" className={css.awsProductName}>
             {this.props.text}
           </Typography>
-          }
         </div>
+        }
       </div>
     );
   }
