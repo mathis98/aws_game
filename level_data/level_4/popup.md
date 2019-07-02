@@ -6,7 +6,8 @@ sodass das Unternehmen täglich Spieler und Geld verliert!
 
 Gebraucht werden leistungsstarke **Spielserver** die vom Anmeldeservice **abgekoppelt** sind.
 Die registrierten Spieler werden mit Account und verschlüsseltem Passwort gespeichert.
-Nach außen soll das System robust gegen DDoS-Angriffen sein.
+Nach außen soll das System robust gegen DDoS-Angriffen sein. Außerdem soll der **Punktestand** der Spieler
+gespeichert werden.
 
 Wenn Sie oben rechts auf ihre aktuelle **Punktzahl** klicken, sehen Sie wie ihr Score berechnet wurde.
 Sie können jederzeit ein Level erneut spielen, um einen besseren Score zu erhalten.
