@@ -32,19 +32,19 @@ const level4: Level ={
     },
     {
       position: {
-        column: 2,
-        row: 2
-      },
-      id: "dynamodb",
-      droppable: true
-    },
-    {
-      position: {
         column: 3,
         row: 1
       },
       id: "gameserver",
       icon: "gameserver"
+    },
+    {
+      position: {
+        column: 3,
+        row: 2
+      },
+      id: "dynamodb",
+      droppable: true
     }
   ],
   relations: [
@@ -62,17 +62,17 @@ const level4: Level ={
     },
     {
       sourceId: "cognito",
+      targetId: "gameserver",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "gameserver",
       targetId: "dynamodb",
       sourceAnchor: "bottom",
       targetAnchor: "top",
       doubleArrow: true,
       dashed: true
-    },
-    {
-      sourceId: "cognito",
-      targetId: "gameserver",
-      sourceAnchor: "right",
-      targetAnchor: "left",
     }
   ],
   awspalette: ["shield", "cognito", "dynamodb", "s3"],
