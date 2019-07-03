@@ -12,7 +12,6 @@ import { resetScore } from '../actions';
 import {ScoreState} from '../reducers/score';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import Typed from 'react-typed';
-import { Close } from '@material-ui/icons';
 import { throttle } from 'throttle-typescript';
 
 const css = require('./StartPage.css');

@@ -14,6 +14,7 @@ import StartPage from "pages/StartPage";
 import GamePageManager from "components/GamePageManager";
 import LevelsPage from "pages/LevelsPage";
 import ErrorPage from "pages/ErrorPage";
+import { CreditsPage } from "pages/CreditsPage";
 
 require('./global.css');
 
@@ -39,6 +40,7 @@ ReactDOM.render(
         <Route path="/" exact component={StartPage} />
         <Route path="/levels" exact component={LevelsPage} />
         <Route path="/levels/:levelId" exact component={GamePageManager} />
+        <Route path="/credits" exact component={CreditsPage} />
 
           {/* Catch all unknown routes and show error page */}
           <Route component={ErrorPage} />
