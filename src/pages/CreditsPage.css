@@ -1,0 +1,28 @@
+.backButton {
+    margin: 2em 0 !important;
+}
+
+.creditsWrapper {
+    padding: 2em 0;
+    background-color: #f1f1f1;
+}
+
+.creditsTitle {
+    padding: 3em 0 1em 0;
+}
+
+.backIcon {
+    margin-right: 0.4em;
+}
+
+.iconCreditsImage {
+    display: inline-block;
+    margin-right: 0.4em;
+    background-color: #A1A1A1;
+    vertical-align: middle;
+    width: 3em;
+}
+
+.card {
+    padding: 1em 0 1em 0;
+}

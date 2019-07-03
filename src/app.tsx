@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
+import { CreditsPage } from "pages/CreditsPage";
 
 import Header from 'components/Header';
 
@@ -10,7 +11,6 @@ import StartPage from "pages/StartPage";
 import GamePageManager from "components/GamePageManager";
 import LevelsPage from "pages/LevelsPage";
 import ErrorPage from "pages/ErrorPage";
-import store from "./store";
 
 require('./global.css');
 
@@ -22,6 +22,7 @@ ReactDOM.render(
         <Route path="/" exact component={StartPage} />
         <Route path="/levels" exact component={LevelsPage} />
         <Route path="/levels/:levelId" exact component={GamePageManager} />
+        <Route path="/credits" exact component={CreditsPage} />
 
           {/* Catch all unknown routes and show error page */}
           <Route component={ErrorPage} />

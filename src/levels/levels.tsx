@@ -15,9 +15,9 @@ export const LEVEL_TITLES = [
     'Spielserver',
     'E-Mail-Empfang',
     'Tornado-Warnsystem',
-    'Aktienkurse',
-    'Benachrichtigungen',
     'Machine Learning Wetterdaten',
+    'Benachrichtigungen',
+    'Aktienkurse',
     'Internet of Things (IoT)',
 ]
 
