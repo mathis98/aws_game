@@ -4,7 +4,7 @@ import * as React from "react";
 import { PersonRounded as PersonRoundedIcon } from "@material-ui/icons";
 import SignInPopup from "components/SignInPopup";
 import store from "../store";
-import { setUsername } from "../actions";
+import * as reduxActions from "../actions";
 
 interface SignInPopupProps {
   username: string;
@@ -24,8 +24,10 @@ const UsernameButton = (props: SignInPopupProps) => {
     setSignOutPopperOpen(false);
   };
 
+
   const signOut = (event: any): void => {
-    store.dispatch(setUsername(''));
+    store.dispatch(reduxActions.setUsername(''));
+    store.dispatch(reduxActions.resetScore());
     setSignOutPopperOpen(false);
   };
 
@@ -39,6 +41,7 @@ const UsernameButton = (props: SignInPopupProps) => {
           <Button id={"hmmm"}
                   color="inherit" variant="outlined"
                   onClick={() => setSignOutPopperOpen(true)}
+                  ref={anchorRef}
           >
             <Typography style={{textTransform: 'none'}}>{props.username}</Typography>
             <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>

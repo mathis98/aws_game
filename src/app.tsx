@@ -11,6 +11,7 @@ import StartPage from "pages/StartPage";
 import GamePageManager from "components/GamePageManager";
 import LevelsPage from "pages/LevelsPage";
 import ErrorPage from "pages/ErrorPage";
+import store from "./store";
 
 require('./global.css');
 
