@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Container, Link, Typography } from "@material-ui/core";
+import { Button, Card, CardContent, Container, Grid, Link, Typography } from "@material-ui/core";
 import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { withRouter } from "react-router";
 import sources from "../../assets/img/sources";
@@ -27,36 +27,49 @@ export const CreditsPage = withRouter((props: any) => {
     </Container>
 
     <div className={css.creditsWrapper}>
-      <Container maxWidth="xs">
-        <p>
-          <Typography variant="h4">
-            Ein Projekt von
-          </Typography>
-          <Typography variant="body1">
-            {
-              members.map(item => <span key={item}>{item}<br/></span>)
-            }
-          </Typography>
-        </p>
+      <Container maxWidth="xs" className={css.card}>
+        <Grid container spacing={5}>
+          <Container maxWidth="xs" className={css.card}>
+            <Grid item>
+              <Card>
+                <CardContent>
+                  <Typography variant="h4">
+                    Ein Projekt von
+                  </Typography>
+                  <Typography variant="body1">
+                    {
+                      members.map(item => <span key={item}>{item}<br/></span>)
+                    }
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Container>
 
-        <p>
-          <Typography variant="h4">
-            Icons von
-          </Typography>
-          <Typography variant="body1">
-            {
-              sources.map((item: any) =>
-                <span key={item.name}>
-                <Link href={item.url} target="_blank" rel="noopener">
-                  <img className={css.iconCreditsImage}
-                       src={require(`../../assets/img/${item.name}.svg`)}/>{item.creator}
-                </Link>
-                <br/>
-              </span>)
-            }
-          </Typography>
-        </p>
-
+          <Container maxWidth="xs" className={css.card}>
+            <Grid item>
+              <Card>
+                <CardContent>
+                  <Typography variant="h4">
+                    Icons von
+                  </Typography>
+                  <Typography variant="body1">
+                    {
+                      sources.map((item: any) =>
+                        <span key={item.name}>
+                  <Link href={item.url} target="_blank" rel="noopener">
+                    <img className={css.iconCreditsImage}
+                         src={require(`../../assets/img/${item.name}.svg`)}/>{item.creator}
+                  </Link>
+                  <br/>
+                </span>)
+                    }
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Container>
+        </Grid>
       </Container>
     </div>
 
