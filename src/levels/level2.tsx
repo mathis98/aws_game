@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Level, LevelState, LevelFeedback} from './level';
 
 const level2: Level ={
-    columns: 6,
+  columns: 6,
   rows: 6,
   gap: "1em",
   elements: [

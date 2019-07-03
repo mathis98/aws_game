@@ -1,22 +1,22 @@
-import { Level, LevelFeedback, LevelState } from './level'
 import * as React from 'react'
+import { Level, LevelFeedback, LevelState } from './level'
 
 const level3: Level ={
-  columns: 6,
+  columns: 3,
   rows: 3,
   gap: "2em",
   elements: [
     {
       position: {
-        column: 1,
-        row: 1
+        column: 0,
+        row: 0
       },
       id: "camera",
-      icon: "camera"
+      icon: "camera2"
     },
     {
       position: {
-        column: 2,
+        column: 0,
         row: 1
       },
       id: "s3",
@@ -24,7 +24,7 @@ const level3: Level ={
     },
     {
       position: {
-        column: 3,
+        column: 1,
         row: 1
       },
       id: "lambda_image_metadata",
@@ -32,19 +32,27 @@ const level3: Level ={
     },
     {
       position: {
-        column: 4,
+        column: 2,
         row: 1
       },
       id: "dynamodb",
       droppable: true
+    },
+    {
+      position: {
+        column: 2,
+        row: 2
+      },
+      id: "shop",
+      icon: "shop2"
     }
   ],
   relations: [
     {
       sourceId: "camera",
       targetId: "s3",
-      sourceAnchor: "right",
-      targetAnchor: "left"
+      sourceAnchor: "bottom",
+      targetAnchor: "top"
     },
     {
       sourceId: "s3",
@@ -57,21 +65,40 @@ const level3: Level ={
       targetId: "dynamodb",
       sourceAnchor: "right",
       targetAnchor: "left"
+    },
+    {
+      sourceId: "dynamodb",
+      targetId: "shop",
+      sourceAnchor: "bottom",
+      targetAnchor: "top"
     }
   ],
   awspalette: ["s3", "dynamodb", "lambda_image_metadata"],
   validator: Level3Validator
-}
+};
 
 function Level3Validator(state: LevelState): LevelFeedback {
-  if (
-    state.s3 === 's3' &&
-    state.lambda_image_metadata === 'lambda_image_metadata' &&
-    state.dynamodb === 'dynamodb'
-  ) {
-    return {correct: true};
+
+  // needs to be correct
+  if( !(state.s3 === "s3" || state.s3 === "dynamodb") )
+    return { correct: false, feedbackComponent: "Die Bilder können nicht abgespeichert werden." };
+  if( !(state.lambda_image_metadata === "lambda_image_metadata") )
+    return { correct: false, feedbackComponent: "Die Metadaten können nicht extrahiert werden." };
+  if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb") )
+    return { correct: false, feedbackComponent: "Die extrahierten Metadaten können nicht abgespeichert werden." };
+
+  // possible:
+  let stars = 3;
+  let message = "";
+  if (state.s3 === "dynamodb") {
+    stars--;
+    message += "Bilder sind zu groß für DynamoDB. ";
   }
-  return {correct: false};
+  if (state.dynamodb === "s3") {
+    stars--;
+    message += "Metadaten sind kleine Dateien und ineffizient für S3. ";
+  }
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level3;
