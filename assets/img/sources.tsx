@@ -18,7 +18,7 @@ const sources: Source[] = [
   {
     "name": "customer",
     "creator": "Freepik",
-    "url": "https://www.flaticon.com/free-icon/business-person-silhouette-wearing-tie_33750",
+    "url": "https://www.flaticon.com/free-icon/employee_912316",
   },
   {
     "name": "documents",
