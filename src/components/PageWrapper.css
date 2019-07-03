@@ -1,7 +1,8 @@
 .component {
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
   padding: 20px;
+  padding: 0px;
 }
 
 /* use material breakpoints https://material-ui.com/layout/breakpoints/ */
@@ -10,6 +11,7 @@
 @media(min-width: 960px) {
   .component {
     width: 70%;
+    padding: 20px;
   }
 }
 
@@ -17,6 +19,7 @@
 @media(min-width: 1280px) {
   .component {
     width: 60%;
+    padding: 20px;
   }
 }
 
@@ -24,5 +27,6 @@
 @media(min-width: 1920px) {
   .component {
     width: 50%;
+    padding: 20px;
   }
 }

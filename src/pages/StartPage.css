@@ -1,23 +1,74 @@
 .button_group {
   margin: 0 auto;
-  max-width: 350px;
   padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .start_button {
-  width: 100%;
+  margin-bottom: 10px!important;
 }
 
-.start_button_wrapper {
-  margin-bottom: 20px;
+.title {
+  padding: 3em 0 1em 0;
 }
 
-.text {
-  color: #336633;
-  font-family: Impact;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-top: 2px solid #336633;
-  border-bottom: 2px solid #336633;
-  text-align: center;
+.icons {
+  display: flex;
+  justify-content: center;
+}
+
+.icons_wrapper {
+  padding: 2.5em 0 1em 0;
+}
+
+.titleName {
+  margin-bottom: -0.5em !important;
+  padding-bottom: 0.5em;
+}
+
+.icon {
+  flex-grow: 1;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.icon:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.icon:hover {
+  transform: scale(1.15);
+}
+
+.icon_active {
+  transform: scale(1.1);
+}
+
+.content {
+  min-height: calc(100vh - 340px)
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  height: 16px;
+  font-size: 16px;
+}
+
+@media(min-width: 700px) {
+  .button_group {
+    flex-direction: row;
+  }
+  .icons_wrapper {
+    padding: 4em 0 1em 0;
+  }
+  .content {
+    min-height: calc(100vh - 250px)
+  }
 }
