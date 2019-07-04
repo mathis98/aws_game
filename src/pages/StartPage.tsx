@@ -13,6 +13,7 @@ import {ScoreState} from '../reducers/score';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import Typed from 'react-typed';
 import { throttle } from 'throttle-typescript';
+import EndScreen from 'components/Endsceen';
 
 const css = require('./StartPage.css');
 
@@ -96,6 +97,7 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
   render() {
     return (
       <>
+        <EndScreen />
         <Container maxWidth="md" className={css.wrapper}>
           <div className={css.content}>
             <Container maxWidth="md" className={css.title}>

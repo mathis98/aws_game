@@ -6,6 +6,7 @@ import { ClearRounded as ClearIcon, StarRounded as StarIcon } from '@material-ui
 import { connect } from 'react-redux';
 import { setScore, setNextLevel } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import CountUp from 'components/CountUp';
 
 const css = require('./FeedbackPopup.css');
 
@@ -65,7 +66,12 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
             <Star delay={1} filled={this.state.starCount > 1} />
             <Star delay={1.5} filled={this.state.starCount > 2} />
           </div>
-          <AnimatedPoints value={this.state.points} ticks={4 * 60} />
+          <div className={css.pointsContainer}>
+            <Typography variant="h3" align="center">
+              <span>+</span>
+              <CountUp value={this.state.points} ticks={4 * 60} />
+            </Typography>
+          </div>
           <Typography variant="body1">
             Gute Arbeit! Sie haben eine funktionierende Konfiguration gefunden.
             Wenn Sie noch nicht alle Sterne haben, können sie ihre Lösung noch
@@ -136,46 +142,5 @@ interface AnimatedPointsProps {
   ticks: number;
 }
 
-class AnimatedPoints extends React.Component<AnimatedPointsProps, {currentTick: number}> {
-  interval: any;
-
-  constructor(props: AnimatedPointsProps) {
-    super(props);
-    this.state = {currentTick: 0};
-  }
-
-  sigmoid(x: number) {
-    return 2 * (1 / (1 + Math.pow(Math.E, -5 * x)) - 0.5) / 0.9866142981514305;
-  }
-
-  render() {
-    return (
-      <div className={css.pointsContainer}>
-        <Typography variant="h3" align="center">
-          <span>+</span>
-          {Math.round(this.sigmoid(this.state.currentTick/this.props.ticks) * this.props.value)}
-        </Typography>
-      </div>
-    );
-  }
-
-  tick() {
-    const nextTick = this.state.currentTick + 1;
-    if (nextTick > this.props.ticks) {
-      clearInterval(this.interval);
-      return;
-    }
-
-    this.setState({currentTick: nextTick});
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000 / 60);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-}
 
 export default connect()(withRouter(FeedbackPopup));
