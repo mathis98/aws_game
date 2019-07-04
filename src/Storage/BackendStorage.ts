@@ -11,7 +11,7 @@ export const getStateFromBackend = async (username: string): Promise<ScoreState>
 export const saveStateToBackend = (state: StateType): void => {
   if (state.username) {
     // This is a really quick and dirty solution
-    // It might breaks the savegame under some specific conditions:
+    // It might break the savegame under some specific conditions:
     // If
     // - the lambda takes more than 300 ms, which is the case like 2% of the time
     // - a reoccurring user logs back in

@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, TextField } from "@material-ui/core";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
 import * as React from "react";
 import { setUsername } from "../actions";
@@ -22,18 +22,25 @@ class SignInPopup extends React.Component<SignInPopupProps, SignInPopupState> {
     this.handleSignIn = this.handleSignIn.bind(this);
   }
 
-
   render() {
     return (
       <Dialog open={this.props.open} onClose={this.props.onClose} maxWidth="md">
-        <TextField
-          label="Nutzername"
-          variant="outlined"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
+        <DialogContent>
+          <DialogContentText>
+            <TextField
+              label="Nutzername"
+              variant="outlined"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </DialogContentText>
 
-        <Button onClick={this.handleSignIn}>Anmelden</Button>
+          <Button
+            color="primary"
+            fullWidth
+            variant="contained"
+            onClick={this.handleSignIn}>Anmelden</Button>
+        </DialogContent>
 
         <DialogActions>
           <Button onClick={this.props.onClose} color="secondary">
@@ -50,6 +57,7 @@ class SignInPopup extends React.Component<SignInPopupProps, SignInPopupState> {
 
   handleSignIn() {
     store.dispatch(setUsername(this.state.username));
+    this.props.onClose();
   }
 
 }
