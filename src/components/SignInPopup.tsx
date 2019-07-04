@@ -32,6 +32,7 @@ class SignInPopup extends React.Component<SignInPopupProps, SignInPopupState> {
               variant="outlined"
               value={this.state.username}
               onChange={this.handleChange}
+              onKeyPress={(e: any) => {if (e.key === 'Enter') {this.handleSignIn();}}}
             />
           </DialogContentText>
 

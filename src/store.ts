@@ -26,7 +26,17 @@ const loadInitialSavegame = () => {
 };
 
 store.subscribe(() => {
-  saveSavegame((store.getState() as StateType))
+  // This is a really quick and dirty solution
+  // It might break the savegame under some specific conditions:
+  // If
+  // - the lambda takes more than 300 ms, which is the case like 2% of the time
+  // - a reoccurring user logs back in
+  // - and the post function finishes sooner than the post, which is around 50% of the time
+  //
+  // So if it happens to you... well sorry, but amazon took too long
+  setTimeout(() => {
+    saveSavegame((store.getState() as StateType));
+  }, 300);
 });
 
 loadInitialSavegame();
