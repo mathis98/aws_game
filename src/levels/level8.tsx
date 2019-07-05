@@ -12,7 +12,7 @@ const level8: Level = {
         row: 1,
       },
       id: "sender",
-      icon: "mobile",
+      icon: "client",
     },
     {
       position: {

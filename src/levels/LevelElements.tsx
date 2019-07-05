@@ -22,7 +22,8 @@ export type IconLevelElement =
   "webServer" |
   "weatherData" |
   "vdots" |
-  "mobiles";
+  "mobiles" |
+  "client";
 
 function getIcon(filename: IconLevelElement) {
   return require(`../../assets/img/${filename}.svg`)
@@ -50,6 +51,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   weatherData: <IconElement image={getIcon('weatherData')} description="Wetterdaten" color="#7B7C7F"/>,
   vdots: <IconElement image={getIcon('vdots')}/>,
   mobiles: <IconElement image={getIcon('mobiles')} description="Empfänger"/>,
+  client: <IconElement image={getIcon('client')} description="Client" color="#232F3E"/>,
 };
 
 
