@@ -1,42 +1,49 @@
-import {SET_SCORE, SET_NEXT_LEVEL, RESET_SCORE} from '../actions';
-import {LEVELS} from 'levels/levels';
+import { SET_SCORE, SET_NEXT_LEVEL, RECEIVE_INITIAL_DATA, RESET_SCORE } from '../actions';
+import { LEVELS } from 'levels/levels';
 
 export interface ScoreAction {
   type: string;
   score: number;
   level: number;
   stars: number;
+  data: ScoreAction;
 }
 
-export interface scoreType {
+export interface ScoreType {
   points: number;
   stars: number;
 }
 
 export interface ScoreState {
-  score: scoreType[];
+  score: ScoreType[];
   level: number;
 }
 
 const initialState = {
-    score: new Array(LEVELS.length).fill({points:0, stars:0}),
-    level: 1,
+  score: new Array(LEVELS.length).fill({points: 0, stars: 0}),
+  level: 1,
 };
 
 const score = (state: ScoreState = initialState, action: ScoreAction) => {
   switch (action.type) {
+    case RECEIVE_INITIAL_DATA:
+      if (action.data === undefined) {
+        return state;
+      }
+
+      return action.data;
     case SET_SCORE:
       return {
         ...state,
-        score: state.score.map((item:any, index:any) => {
+        score: state.score.map((item: any, index: any) => {
           if (index + 1 !== action.level)
-            return item
+            return item;
           return {
             points: action.score,
-            stars: action.stars
-          }
-        })
-      }
+            stars: action.stars,
+          };
+        }),
+      };
     case SET_NEXT_LEVEL:
       return {
         ...state,
@@ -47,13 +54,13 @@ const score = (state: ScoreState = initialState, action: ScoreAction) => {
         ...state,
         level: initialState.level,
         score: initialState.score,
-      }
+      };
     default:
-      return state
+      return state;
   }
 };
 
-export function scoreSum(array: scoreType[]) {
+export function scoreSum(array: ScoreType[]) {
   return array.reduce((acc, el) => el.points + acc, 0);
 }
 

@@ -5,6 +5,7 @@ import AWSPaletteItem from 'components/dnd/AWSPaletteItem';
 export type IconLevelElement =
   "cam" |
   "bpol" |
+  "cactus" |
   "camera" |
   "camera2" |
   "documents" |
@@ -21,7 +22,9 @@ export type IconLevelElement =
   "mobile" |
   "webServer" |
   "weatherData" |
-  "vdots";
+  "vdots" |
+  "mobiles" |
+  "client";
 
 function getIcon(filename: IconLevelElement) {
   return require(`../../assets/img/${filename}.svg`)
@@ -31,6 +34,7 @@ function getIcon(filename: IconLevelElement) {
 export const allIcons: Record<IconLevelElement, JSX.Element> = {
   cam: <IconElement image={getIcon('cam')} description="Kamera" />,
   bpol: <IconElement image={getIcon('bpol')} description="Bundespolizei" />,
+  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze mit Sensoren" />,
   camera: <IconElement image={getIcon('camera')} description="Kamera" color="#E44800"/>,
   camera2: <IconElement image={getIcon('camera')} description="Kamera" color="#547B80"/>,
   documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
@@ -48,6 +52,8 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   webServer: <IconElement image={getIcon('webServer')} description="Web Server" color="#7895A4"/>,
   weatherData: <IconElement image={getIcon('weatherData')} description="Wetterdaten" color="#7B7C7F"/>,
   vdots: <IconElement image={getIcon('vdots')}/>,
+  mobiles: <IconElement image={getIcon('mobiles')} description="Empfänger"/>,
+  client: <IconElement image={getIcon('client')} description="Client" color="#232F3E"/>,
 };
 
 
@@ -61,6 +67,7 @@ export type AWSProductLevelElement =
   "lambdaTensorflow" |
   "lambda_image_metadata" |
   "lambda_stock_data" |
+  "lambda_rec_data" |
   "kinesis" |
   "cognito" |
   "api_gateway"|
@@ -68,6 +75,10 @@ export type AWSProductLevelElement =
   "sns"|
   "lakeFormation" |
   "redshift" |
+  "IoTCore" |
+  "QuickSight" | 
+  "Sagemaker" |
+  "Analytics" |
   "forecast";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
@@ -81,10 +92,15 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
   lambda_image_metadata: <AWSPaletteItem id="lambda_image_metadata" icon="lambda" text="Lambda für Metadaten" color="#D86613" key="lambda_paletteItem" />,
   lambda_stock_data: <AWSPaletteItem id="lambda_stock_data" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
+  lambda_rec_data: <AWSPaletteItem id="lambda_rec_data" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
   api_gateway: <AWSPaletteItem id="api_gateway" icon="aws-api-gateway" text="API Gateway" color="#D5A449" key="api_gateway_paletteItem" />,
   apiGateway: <AWSPaletteItem id="apiGateway" icon="apiGateway" text="API Gateway" color="#7A48D6" key="apiGateway_paletteItem" />,
   sns: <AWSPaletteItem id="sns" icon="sns" text="SNS" color="#CC2264" key="sns_paletteItem" />,
+  IoTCore: <AWSPaletteItem id="IoTCore" icon="IoTCore" text="IoTCore" color="#5FA232" key="IoTCore_paletteItem" />,
+  QuickSight: <AWSPaletteItem id="QuickSight" icon="QuickSight" text="QuickSight" color="#7A48D6" key="quicksight_paletteItem" />,
+  Sagemaker: <AWSPaletteItem id="Sagemaker" icon="Sagemaker" text="Sagemaker" color="#28977C" key="sagemaker_paletteItem" />,
+  Analytics: <AWSPaletteItem id="Analytics" icon="Analytics" text="Analytics" color="#5FA232" key="analytics_paletteItem" />,
   lakeFormation: <AWSPaletteItem id="lakeFormation" icon="lakeFormation" text="Lake Formation" color="#693CC5" key="lakeFormation_paletteItem" />,
   redshift: <AWSPaletteItem id="redshift" icon="redshift" text="Redshift" color="#693CC5" key="redshift_paletteItem" />,
   forecast: <AWSPaletteItem id="forecast" icon="forecast" text="Forecast" color="#1C7B68" key="forecast_paletteItem" />

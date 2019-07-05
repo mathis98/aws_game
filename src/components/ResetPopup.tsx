@@ -16,7 +16,6 @@ interface ResetPopupProps {
 
 class ResetPopup extends React.Component<ResetPopupProps> {
   render() {
-    console.log('rendering reset popup!');
     return (
       <>
         <Dialog
