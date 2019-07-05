@@ -32,7 +32,7 @@ function getIcon(filename: IconLevelElement) {
 export const allIcons: Record<IconLevelElement, JSX.Element> = {
   cam: <IconElement image={getIcon('cam')} description="Kamera" />,
   bpol: <IconElement image={getIcon('bpol')} description="Bundespolizei" />,
-  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze" />,
+  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze mit Sensoren" />,
   camera: <IconElement image={getIcon('camera')} description="Kamera" color="#E44800"/>,
   camera2: <IconElement image={getIcon('camera')} description="Kamera" color="#547B80"/>,
   documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
