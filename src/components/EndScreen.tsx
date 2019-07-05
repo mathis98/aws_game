@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Dialog, Slide, Container, Typography, Fade } from "@material-ui/core";
 import { TransitionProps } from '@material-ui/core/transitions';
 import CountUp from 'components/CountUp';
-import Typed from 'react-typed';
 
 const css = require('./EndScreen.css');
 

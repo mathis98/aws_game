@@ -13,7 +13,7 @@ import {ScoreState} from '../reducers/score';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import Typed from 'react-typed';
 import { throttle } from 'throttle-typescript';
-import EndScreen from 'components/Endsceen';
+import EndScreen from 'components/EndScreen';
 
 const css = require('./StartPage.css');
 
