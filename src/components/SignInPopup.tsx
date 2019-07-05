@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, TextField } from "@material-ui/core";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, TextField, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import * as React from "react";
 import { setUsername } from "../actions";
@@ -24,28 +24,28 @@ class SignInPopup extends React.Component<SignInPopupProps, SignInPopupState> {
 
   render() {
     return (
-      <Dialog open={this.props.open} onClose={this.props.onClose} maxWidth="md">
+      <Dialog open={this.props.open} onClose={this.props.onClose} maxWidth="xs" fullWidth>
         <DialogContent>
-          <DialogContentText>
+          <Typography variant="h5" style={{marginBottom: "0.75em", marginTop: "0.3em"}}>
+            Anmelden
+          </Typography>
             <TextField
               label="Nutzername"
               variant="outlined"
               value={this.state.username}
               onChange={this.handleChange}
+              fullWidth
+              autoFocus
               onKeyPress={(e: any) => {if (e.key === 'Enter') {this.handleSignIn();}}}
             />
-          </DialogContentText>
-
-          <Button
-            color="primary"
-            fullWidth
-            variant="contained"
-            onClick={this.handleSignIn}>Anmelden</Button>
         </DialogContent>
 
         <DialogActions>
           <Button onClick={this.props.onClose} color="secondary">
             Schließen
+          </Button>
+          <Button color="primary" onClick={this.handleSignIn}>
+            Anmelden
           </Button>
         </DialogActions>
       </Dialog>

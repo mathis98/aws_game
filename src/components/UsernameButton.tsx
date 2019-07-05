@@ -6,6 +6,8 @@ import SignInPopup from "components/SignInPopup";
 import store from "../store";
 import * as reduxActions from "../actions";
 
+const css = require("./UsernameButton.css");
+
 interface SignInPopupProps {
   username: string;
 }
@@ -32,30 +34,21 @@ const UsernameButton = (props: SignInPopupProps) => {
   };
 
   return (
-    <div>
+    <>
       <SignInPopup open={signInPopupOpen} onClose={() => setSignInPopupOpen(false)}/>
 
       {
         props.username
           ?
-          <Button id={"hmmm"}
-                  color="inherit" variant="outlined"
-                  onClick={() => setSignOutPopperOpen(true)}
-                  ref={anchorRef}
-          >
-            <Typography style={{textTransform: 'none'}}>{props.username}</Typography>
-            <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
+          <Button color="inherit" variant="outlined" onClick={() => setSignOutPopperOpen(true)} ref={anchorRef} className={css.headerButton}>
+            <Typography className={css.username}>{props.username}</Typography>
+            <PersonRoundedIcon className={css.userIcon} />
           </Button>
-
           :
-          <Button
-            color="inherit" variant="outlined"
-            onClick={() => setSignInPopupOpen(true)}
-          >
+          <Button color="inherit" variant="outlined" onClick={() => setSignInPopupOpen(true)} className={css.headerButton}>
             Anmelden
-            <PersonRoundedIcon style={{marginLeft: '0.3em'}}/>
+            <PersonRoundedIcon className={css.userIcon} />
           </Button>
-
       }
 
       <Menu open={signOutPopperOpen} anchorEl={anchorRef.current} onClose={() => setSignOutPopperOpen(false)}
@@ -63,12 +56,9 @@ const UsernameButton = (props: SignInPopupProps) => {
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         transformOrigin={{ vertical: "top", horizontal: "center" }}
       >
-        <MenuList>
-          <MenuItem onClick={signOut}>Abmelden</MenuItem>
-        </MenuList>
+        <MenuItem onClick={signOut}>Abmelden</MenuItem>
       </Menu>
-
-    </div>
+    </>
   );
 };
 
