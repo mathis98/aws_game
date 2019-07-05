@@ -109,6 +109,7 @@ const level8: Level = {
       targetAnchor: "left",
     },
   ],
+
   awspalette: ["s3", "dynamodb", "iam", "lambda", "sns", "apiGateway"],
   validator: level8Validator,
 };

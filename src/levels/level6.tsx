@@ -89,6 +89,7 @@ const level6: Level = {
       targetAnchor: "top",
     },
   ],
+  
   awspalette: ["s3", "dynamodb", "ses", "lambdaTensorflow", "kinesis"],
   validator: Level6Validator,
 };

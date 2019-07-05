@@ -90,6 +90,7 @@ const level9: Level = {
       targetAnchor: "left",
     },
   ],
+  
   awspalette: ["s3", "dynamodb", "lambdaTensorflow", "redshift", "forecast", "lakeFormation"],
   validator: level9Validator,
 };
