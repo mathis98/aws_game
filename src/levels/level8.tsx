@@ -12,7 +12,7 @@ const level8: Level = {
         row: 1,
       },
       id: "sender",
-      icon: "mobile",
+      icon: "client",
     },
     {
       position: {
@@ -27,7 +27,7 @@ const level8: Level = {
         column: 2,
         row: 1,
       },
-      id: "lambda",
+      id: "lambda_rec_data",
       droppable: true,
     },
     {
@@ -49,26 +49,10 @@ const level8: Level = {
     {
       position: {
         column: 4,
-        row: 0,
-      },
-      id: "rec1",
-      icon: "mobile"
-    },
-    {
-      position: {
-        column: 4,
         row: 1,
       },
-      id: "rec2",
-      icon: "vdots"
-    },
-    {
-      position: {
-        column: 4,
-        row: 2,
-      },
-      id: "rec3",
-      icon: "mobile"
+      id: "rec",
+      icon: "mobiles"
     },
   ],
   relations: [
@@ -80,47 +64,41 @@ const level8: Level = {
     },
     {
       sourceId: "apiGateway",
-      targetId: "lambda",
+      targetId: "lambda_rec_data",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
-      sourceId: "lambda",
+      sourceId: "lambda_rec_data",
       targetId: "dynamodb",
       sourceAnchor: "bottom",
       targetAnchor: "top",
     },
     {
-      sourceId: "lambda",
+      sourceId: "lambda_rec_data",
       targetId: "sns",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
       sourceId: "sns",
-      targetId: "re1",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "sns",
-      targetId: "rec3",
+      targetId: "rec",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "lambda", "sns", "apiGateway"],
+  awspalette: ["s3", "dynamodb", "iam", "lambda_rec_data", "sns", "apiGateway"],
   validator: level8Validator,
 };
 
 function level8Validator(state: LevelState): LevelFeedback {
   if (state.apiGateway === "iam") {
     return {correct: false, feedbackComponent: "IAM ermöglicht den Zugriff der Services nur über die Command Line Interface (CLI)"};
-  } else if(!(state.lambda === "lambda")) {
+  } else if(!(state.lambda_rec_data === "lambda_rec_data")) {
     return { correct: false, feedbackComponent: "Es gibt keine funktion die getriggert werden soll."};
-  } else if(state.apiGateway === "apiGateway" && state.lambda === "lambda" && state.dynamodb === "s3" && state.sns === "sns") {
+  } else if(state.apiGateway === "apiGateway" && state.lambda_rec_data === "lambda_rec_data" && state.dynamodb === "s3" && state.sns === "sns") {
     return {correct: true, stars: 1, feedbackComponent: "Kontakte mit einem *Namen* und einer *Nummer* können effizienter Gespeichert werden."};
-  } else if(state.apiGateway === "apiGateway" && state.lambda === "lambda" && state.dynamodb === "dynamodb" && state.sns === "sns") {
+  } else if(state.apiGateway === "apiGateway" && state.lambda_rec_data === "lambda_rec_data" && state.dynamodb === "dynamodb" && state.sns === "sns") {
     return {correct: true, stars: 3};
   }
   return {correct: false};
