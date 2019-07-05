@@ -4,7 +4,7 @@ import { ScoreState } from "../reducers/score";
 const apiUrl = "https://api.slsgame.janbe.eu/score";
 
 export const getStateFromBackend = async (username: string): Promise<ScoreState> => {
-  const resp = await fetch(apiUrl + "?user=" + encodeURI(username));
+  const resp = await fetch(apiUrl + "?user=" + encodeURIComponent(username));
   return (await resp.json()).data;
 };
 
