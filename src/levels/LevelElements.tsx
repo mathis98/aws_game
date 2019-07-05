@@ -83,7 +83,6 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   shield: <AWSPaletteItem id="shield" icon="shield" text="AWS Shield" color="#D6242D" key="shield_paletteItem" />,
   cognito: <AWSPaletteItem id="cognito" icon="cognito" text="Cognito" color="#D6242D" key="cognito_paletteItem" />,
   ses: <AWSPaletteItem id="ses" icon="ses" text="SES" color="#445EE0" key="ses_paletteItem" />,
-  sns: <AWSPaletteItem id="sns" icon="ses" text="SNS" color="#CB9B4A" key="sns_paletteItem" />,
   IoTCore: <AWSPaletteItem id="IoTCore" icon="IoTCore" text="IoTCore" color="#5FA232" key="IoTCore_paletteItem" />,
   QuickSight: <AWSPaletteItem id="QuickSight" icon="QuickSight" text="QuickSight" color="#7A48D6" key="quicksight_paletteItem" />,
   Sagemaker: <AWSPaletteItem id="Sagemaker" icon="Sagemaker" text="Sagemaker" color="#28977C" key="sagemaker_paletteItem" />,
