@@ -43,6 +43,9 @@ class Header extends React.Component<HeaderProps, SignInPopupState> {
             anchorEl={this.state.anchorEl}
             onClose={() => this.setState({anchorEl: null})}
             disableAutoFocusItem
+            getContentAnchorEl={null}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            transformOrigin={{ vertical: "top", horizontal: "center" }}
           >
             <MenuItem disabled divider style={{ opacity: 1 }}>Gesamtpunktzahl: {totalPoints} Punkte</MenuItem>
             {this.props.score.map((d, i) => {

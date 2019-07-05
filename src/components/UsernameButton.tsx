@@ -1,4 +1,4 @@
-import { Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper, Typography } from "@material-ui/core";
+import {Button, Menu, MenuItem, MenuList, Typography} from "@material-ui/core";
 import { connect } from "react-redux";
 import * as React from "react";
 import { PersonRounded as PersonRoundedIcon } from "@material-ui/icons";
@@ -58,27 +58,15 @@ const UsernameButton = (props: SignInPopupProps) => {
 
       }
 
-      <Popper open={signOutPopperOpen} anchorEl={anchorRef.current} transition disablePortal>
-        {({TransitionProps, placement}) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-          >
-            <Paper id="menu-list-grow">
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList>
-                  <MenuItem
-                  >
-                    <Button onClick={signOut}>Abmelden</Button>
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      <Menu open={signOutPopperOpen} anchorEl={anchorRef.current} onClose={() => setSignOutPopperOpen(false)}
+        getContentAnchorEl={null}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        transformOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <MenuList>
+          <MenuItem onClick={signOut}>Abmelden</MenuItem>
+        </MenuList>
+      </Menu>
 
     </div>
   );
