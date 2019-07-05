@@ -3,7 +3,7 @@ import { Level, LevelState, LevelFeedback } from './level';
 
 const level10: Level = {
   columns: 5,
-  rows: 3,
+  rows: 2,
   gap: "2em",
   elements: [
     {
@@ -33,7 +33,7 @@ const level10: Level = {
     {
       position: {
         column: 2,
-        row: 3,
+        row: 2,
       },
       id: "Analytics",
       droppable: true,
