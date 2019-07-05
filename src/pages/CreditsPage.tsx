@@ -16,7 +16,6 @@ export const CreditsPage = withRouter((props: any) => {
 
   const members = ["Paul Seidemann", "Conrad Klaus", "Mark Bauknecht ", "Mathis Arend", "Leon Wiemers", "Jan Beckschewe", "Dominic Schialer"];
 
-  console.log("so", sources);
   shuffleArray(members);
 
   return <>
