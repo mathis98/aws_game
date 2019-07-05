@@ -1,12 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {Route, Switch} from "react-router";
+import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import { createStore, applyMiddleware, compose } from 'redux';
-import preventWrongLevel from './middleware/levels';
-import rootReducer from './reducers';
 import { Provider } from 'react-redux';
-import { loadState, saveState } from './localStorage';
+import { CreditsPage } from "pages/CreditsPage";
 
 import Header from 'components/Header';
 
@@ -14,23 +11,9 @@ import StartPage from "pages/StartPage";
 import GamePageManager from "components/GamePageManager";
 import LevelsPage from "pages/LevelsPage";
 import ErrorPage from "pages/ErrorPage";
-import { CreditsPage } from "pages/CreditsPage";
+import store from "./store";
 
 require('./global.css');
-
-const persistedState = loadState();
-const store = createStore(
-  rootReducer,
-  persistedState,
-  compose(
-    applyMiddleware(preventWrongLevel),
-    ((window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()) || compose,
-  ),
-);
-
-store.subscribe(() => {
-  saveState(store.getState())
-})
 
 ReactDOM.render(
   <Provider store={store}>

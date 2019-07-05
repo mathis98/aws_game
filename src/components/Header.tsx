@@ -1,20 +1,25 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@material-ui/core';
+import { AppBar, Button, Menu, MenuItem, Toolbar, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { ScoreState, scoreType, scoreSum } from '../reducers/score';
+import { ScoreState, scoreSum, ScoreType } from '../reducers/score';
 import { StarRounded as StarIcon } from '@material-ui/icons';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { LEVEL_TITLES } from 'levels/levels';
+import UsernameButton from "components/UsernameButton";
 
 const css = require('./Header.css');
 
-export interface HeaderProps extends RouteComponentProps {
-  score: scoreType[];
+
+interface SignInPopupState {
+  anchorEl?: HTMLElement;
 }
 
-class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
+export interface HeaderProps extends RouteComponentProps {
+  score: ScoreType[];
+}
+
+class Header extends React.Component<HeaderProps, SignInPopupState> {
 
   constructor(props: HeaderProps) {
     super(props);
@@ -38,8 +43,11 @@ class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
             anchorEl={this.state.anchorEl}
             onClose={() => this.setState({anchorEl: null})}
             disableAutoFocusItem
+            getContentAnchorEl={null}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            transformOrigin={{ vertical: "top", horizontal: "center" }}
           >
-            <MenuItem onClick={console.log} disabled divider style={{ opacity: 1 }}>Gesamtpunktzahl: {totalPoints} Punkte</MenuItem>
+            <MenuItem disabled divider style={{ opacity: 1 }}>Gesamtpunktzahl: {totalPoints} Punkte</MenuItem>
             {this.props.score.map((d, i) => {
               return (
                 <MenuItem onClick={() => {this.props.history.push(`/levels/${i + 1}`); this.setState({anchorEl: null})}} key={`menuitem${i}`}>
@@ -59,6 +67,10 @@ class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
               {totalPoints} Punkte
             </Typography>
           </Button>
+
+
+          <UsernameButton/>
+
         </Toolbar>
       </AppBar>
     );
@@ -67,6 +79,6 @@ class Header extends React.Component<HeaderProps, {anchorEl?: HTMLElement}> {
 
 const mapStateToProps = (state: {score: ScoreState}) => ({
   score: state.score.score,
-})
+});
 
 export default connect(mapStateToProps)(withRouter(Header));
