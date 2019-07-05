@@ -35,9 +35,9 @@ export const CreditsPage = withRouter((props: any) => {
                   <Typography variant="h4">
                     Ein Projekt von
                   </Typography>
-                    {
-                      members.map(item => <Typography variant="body1" key={item}>{item}</Typography>)
-                    }
+                  {
+                    members.map(item => <Typography variant="body1" key={item}>{item}</Typography>)
+                  }
                 </CardContent>
               </Card>
             </Grid>
@@ -50,16 +50,16 @@ export const CreditsPage = withRouter((props: any) => {
                   <Typography variant="h4">
                     Icons von
                   </Typography>
-                    {
-                      sources.map((item: any) =>
-                        <Typography variant="body1" key={item.name} style={{margin: "0.3em"}}>
-                          <Link  href={item.url} target="_blank" rel="noopener">
-                            <img className={css.iconCreditsImage}
-                                 src={require(`../../assets/img/${item.name}.svg`)}/>{item.creator}
-                          </Link>
-                        </Typography>,
-                      )
-                    }
+                  {
+                    sources.map((item: any) =>
+                      <Typography variant="body1" key={item.name} style={{margin: "0.3em"}}>
+                        <Link href={item.url} target="_blank" rel="noopener">
+                          <img className={css.iconCreditsImage}
+                               src={require(`../../assets/img/${item.name}.svg`)}/>{item.creator}
+                        </Link>
+                      </Typography>,
+                    )
+                  }
                 </CardContent>
               </Card>
             </Grid>
