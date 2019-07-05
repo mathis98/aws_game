@@ -5,6 +5,7 @@ import AWSPaletteItem from 'components/dnd/AWSPaletteItem';
 export type IconLevelElement =
   "cam" |
   "bpol" |
+  "cactus" |
   "camera" |
   "camera2" |
   "documents" |
@@ -33,6 +34,7 @@ function getIcon(filename: IconLevelElement) {
 export const allIcons: Record<IconLevelElement, JSX.Element> = {
   cam: <IconElement image={getIcon('cam')} description="Kamera" />,
   bpol: <IconElement image={getIcon('bpol')} description="Bundespolizei" />,
+  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze mit Sensoren" />,
   camera: <IconElement image={getIcon('camera')} description="Kamera" color="#E44800"/>,
   camera2: <IconElement image={getIcon('camera')} description="Kamera" color="#547B80"/>,
   documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
@@ -73,6 +75,10 @@ export type AWSProductLevelElement =
   "sns"|
   "lakeFormation" |
   "redshift" |
+  "IoTCore" |
+  "QuickSight" | 
+  "Sagemaker" |
+  "Analytics" |
   "forecast";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
@@ -91,6 +97,10 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   api_gateway: <AWSPaletteItem id="api_gateway" icon="aws-api-gateway" text="API Gateway" color="#D5A449" key="api_gateway_paletteItem" />,
   apiGateway: <AWSPaletteItem id="apiGateway" icon="apiGateway" text="API Gateway" color="#7A48D6" key="apiGateway_paletteItem" />,
   sns: <AWSPaletteItem id="sns" icon="sns" text="SNS" color="#CC2264" key="sns_paletteItem" />,
+  IoTCore: <AWSPaletteItem id="IoTCore" icon="IoTCore" text="IoTCore" color="#5FA232" key="IoTCore_paletteItem" />,
+  QuickSight: <AWSPaletteItem id="QuickSight" icon="QuickSight" text="QuickSight" color="#7A48D6" key="quicksight_paletteItem" />,
+  Sagemaker: <AWSPaletteItem id="Sagemaker" icon="Sagemaker" text="Sagemaker" color="#28977C" key="sagemaker_paletteItem" />,
+  Analytics: <AWSPaletteItem id="Analytics" icon="Analytics" text="Analytics" color="#5FA232" key="analytics_paletteItem" />,
   lakeFormation: <AWSPaletteItem id="lakeFormation" icon="lakeFormation" text="Lake Formation" color="#693CC5" key="lakeFormation_paletteItem" />,
   redshift: <AWSPaletteItem id="redshift" icon="redshift" text="Redshift" color="#693CC5" key="redshift_paletteItem" />,
   forecast: <AWSPaletteItem id="forecast" icon="forecast" text="Forecast" color="#1C7B68" key="forecast_paletteItem" />
