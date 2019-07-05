@@ -122,7 +122,7 @@ const level10: Level = {
       targetAnchor: "bottom",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "sns", "lambdaTensorflow", "kinesis", "lambda", "IoTCore", "QuickSight", "Sagemaker", "Analytics"],
+  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "sns", "lambdaTensorflow", "kinesis", "IoTCore", "QuickSight", "Sagemaker", "Analytics"],
   validator: Level10Validator,
 };
 
