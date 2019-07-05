@@ -71,9 +71,9 @@ export type AWSProductLevelElement =
   "lakeFormation" |
   "redshift" |
   "IoTCore" |
-  "quicksight" | 
-  "sagemaker" |
-  "analytics" |
+  "QuickSight" | 
+  "Sagemaker" |
+  "Analytics" |
   "forecast";
 
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
@@ -85,9 +85,9 @@ export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   ses: <AWSPaletteItem id="ses" icon="ses" text="SES" color="#445EE0" key="ses_paletteItem" />,
   sns: <AWSPaletteItem id="sns" icon="ses" text="SNS" color="#CB9B4A" key="sns_paletteItem" />,
   IoTCore: <AWSPaletteItem id="IoTCore" icon="IoTCore" text="IoTCore" color="#5FA232" key="IoTCore_paletteItem" />,
-  quicksight: <AWSPaletteItem id="quicksight" icon="quicksight" text="quicksight" color="#7A48D6" key="quicksight_paletteItem" />,
-  sagemaker: <AWSPaletteItem id="sagemaker" icon="sagemaker" text="sagemaker" color="#28977C" key="sagemaker_paletteItem" />,
-  analytics: <AWSPaletteItem id="analytics" icon="analytics" text="analytics" color="#5FA232" key="analytics_paletteItem" />,
+  QuickSight: <AWSPaletteItem id="QuickSight" icon="QuickSight" text="QuickSight" color="#7A48D6" key="quicksight_paletteItem" />,
+  Sagemaker: <AWSPaletteItem id="Sagemaker" icon="Sagemaker" text="Sagemaker" color="#28977C" key="sagemaker_paletteItem" />,
+  Analytics: <AWSPaletteItem id="Analytics" icon="Analytics" text="Analytics" color="#5FA232" key="analytics_paletteItem" />,
   lambda: <AWSPaletteItem id="lambda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
   lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
   lambda_image_metadata: <AWSPaletteItem id="lambda_image_metadata" icon="lambda" text="Lambda für Metadaten" color="#D86613" key="lambda_paletteItem" />,

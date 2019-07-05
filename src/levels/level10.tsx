@@ -35,7 +35,7 @@ const level10: Level = {
         column: 2,
         row: 3,
       },
-      id: "analytics",
+      id: "Analytics",
       droppable: true,
     },  
     {
@@ -43,7 +43,7 @@ const level10: Level = {
         column: 3,
         row: 0,
       },
-      id: "quicksight",
+      id: "QuickSight",
       droppable: true,
     },  
     {
@@ -51,7 +51,7 @@ const level10: Level = {
         column: 3,
         row: 2,
       },
-      id: "sagemaker",
+      id: "Sagemaker",
       droppable: true,
     },   
     {
@@ -86,25 +86,25 @@ const level10: Level = {
     },
     {
       sourceId: "s3",
-      targetId: "analytics",
+      targetId: "Analytics",
       sourceAnchor: "bottom",
       targetAnchor: "top",
       doubleArrow: true,
     },
     {
       sourceId: "s3",
-      targetId: "quicksight",
+      targetId: "QuickSight",
       sourceAnchor: "right",
       targetAnchor: "bottom",
     },    
     {
       sourceId: "s3",
-      targetId: "sagemaker",
+      targetId: "Sagemaker",
       sourceAnchor: "right",
       targetAnchor: "top",
     },
     {
-      sourceId: "quicksight",
+      sourceId: "QuickSight",
       targetId: "sns",
       sourceAnchor: "right",
       targetAnchor: "top",
@@ -116,26 +116,26 @@ const level10: Level = {
       targetAnchor: "left",
     },
     {
-      sourceId: "sagemaker",
+      sourceId: "Sagemaker",
       targetId: "customer",
       sourceAnchor: "right",
       targetAnchor: "bottom",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "sns", "lambdaTensorflow", "kinesis", "lambda", "IoTCore", "quicksight", "sagemaker", "analytics"],
+  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "sns", "lambdaTensorflow", "kinesis", "lambda", "IoTCore", "QuickSight", "Sagemaker", "Analytics"],
   validator: Level10Validator,
 };
 
 function Level10Validator(state: LevelState): LevelFeedback {
 
   // needs to be correct
-  if(state.sagemaker !== "sagemaker" )
+  if(state.Sagemaker !== "Sagemaker" )
     return { correct: false, feedbackComponent: "Der Kunde möchte ein Machine Learning Modell für die spätere Automatisierung generieren lassen." };
-  if(state.analytics !== "analytics" )
+  if(state.Analytics !== "Analytics" )
     return { correct: false, feedbackComponent: "Die Daten müssen ausgewertet werden." };
   if(state.IoTCore !== "IoTCore")
     return { correct: false, feedbackComponent: "Es ist wichtig die Sensordaten entsprechend zu verarbeiten." };
-  if(state.quicksight !== "quicksight" )
+  if(state.QuickSight !== "QuickSight" )
     return { correct: false, feedbackComponent: "Der Kunde möchte Visualisierte Ergebnisse." };
   if( !(state.s3 === "s3" || state.s3 === "dynamodb"))
     return { correct: false, feedbackComponent: "Die Daten müssen sicher gespeichert werden." };
