@@ -18,7 +18,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   shop: <IconElement image={getIcon('shop')} description="Shop" />,
   customer: <IconElement image={getIcon('customer')} description="Kunde" />,
   users: <IconElement image={getIcon('users')} description="Benutzer" />,
-  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze" />,
+  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze mit Sensoren" />,
   gameserver: <IconElement image={getIcon('gameserver')} description="Gameserver" />,
   supportEmployee: <IconElement image={getIcon('supportEmployee')} description="Support-Mitarbeiter" color="#CD912D"/>,
   weatherStation: <IconElement image={getIcon('weatherStation')} description="Wetterstation" color="#1498C3"/>,

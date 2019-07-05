@@ -130,22 +130,24 @@ function Level10Validator(state: LevelState): LevelFeedback {
 
   // needs to be correct
   if(state.sagemaker !== "sagemaker" )
-    return { correct: false, feedbackComponent: "Noch nicht implementiert." };
+    return { correct: false, feedbackComponent: "Der Kunde möchte ein Machine Learning Modell für die spätere Automatisierung generieren lassen." };
   if(state.analytics !== "analytics" )
-    return { correct: false, feedbackComponent: "Noch nicht implementiert." };
+    return { correct: false, feedbackComponent: "Die Daten müssen ausgewertet werden." };
   if(state.IoTCore !== "IoTCore")
-    return { correct: false, feedbackComponent: "Noch nicht implementiert." };
+    return { correct: false, feedbackComponent: "Es ist wichtig die Sensordaten entsprechend zu verarbeiten." };
   if(state.quicksight !== "quicksight" )
-    return { correct: false, feedbackComponent: "Noch nicht implementiert." };
+    return { correct: false, feedbackComponent: "Der Kunde möchte Visualisierte Ergebnisse." };
   if( !(state.s3 === "s3" || state.s3 === "dynamodb"))
-    return { correct: false, feedbackComponent: "Noch nicht implementiert." };
+    return { correct: false, feedbackComponent: "Die Daten müssen sicher gespeichert werden." };
   if(!(state.sns === "ses" || state.sns === "sns"))
-    return { correct: false, feedbackComponent: "Noch nicht implementiert." };
+    return { correct: false, feedbackComponent: "Der Kunde möchte regelmäßig geupdated werden." };
 
   // possible:
-  if (state.s3 === "dynamodb") {
+  if(state.sns === "ses")
+    return {correct: true, stars: 1, feedbackComponent: "Der Kunde möchte die Updates lieber auf sein Smartphone erhalten." };
+  if (state.s3 === "dynamodb")
     return {correct: true, stars: 2, feedbackComponent: "Bei großen Dateien eignet sich dynamoDB weniger." };
-  }
+    
   // perfect:
   if (state.s3 === "s3" && state.sns === "sns") {
     return {correct: true, stars: 3};
