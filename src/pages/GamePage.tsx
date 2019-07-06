@@ -6,7 +6,7 @@ import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
 import {LEVELS} from 'levels/levels'
-import { DragDropContextProvider } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { isMobile } from 'react-device-detect';
 import TouchBackend from 'react-dnd-touch-backend';
@@ -61,7 +61,7 @@ export default class GamePage extends React.Component<GamePageProps, GamePageSta
         <GamePageSnackbar open={this.state.showSnackbar} onClose={() => this.setState({ showSnackbar: false })}
                           message="Es gibt noch leere Felder! Fülle alle Felder bevor du abgibst."
         />
-        <DragDropContextProvider backend={isMobile ? (TouchBackend as any) : HTML5Backend}>
+        <DndProvider backend={isMobile ? (TouchBackend as any) : HTML5Backend}>
           <SplitterLayout customClassName={css.matchViewportHeight} percentage primaryMinSize={25} secondaryMinSize={10} secondaryInitialSize={30}>
             <SplitterPanel className={css.gridBackground} >
               <GameBoard level={this.level} ref={this.gameBoardRef} />
@@ -94,7 +94,7 @@ export default class GamePage extends React.Component<GamePageProps, GamePageSta
               </SplitterPanel>
             </SplitterLayout>
           </SplitterLayout>
-        </DragDropContextProvider>
+        </DndProvider>
       </div>
     );
   }
