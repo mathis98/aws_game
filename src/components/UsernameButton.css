@@ -11,3 +11,9 @@
 .headerButton {
   max-width: 12em;
 }
+
+@media (max-width: 550px) {
+  .headerButton {
+    max-width: 9em;
+  }
+}
