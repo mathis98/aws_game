@@ -4,8 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 module.exports = {
   devServer: {
     historyApiFallback: true,
@@ -92,6 +90,5 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new webpack.EnvironmentPlugin({'PUBLIC_URL': null, 'BRANCH_NAME': null, 'CI_COMMIT_SHA': null}),
-    // new BundleAnalyzerPlugin(),
   ]
 }
