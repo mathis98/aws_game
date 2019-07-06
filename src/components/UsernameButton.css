@@ -1,0 +1,13 @@
+.username {
+  text-transform: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userIcon {
+ margin-left: 0.3em;
+}
+
+.headerButton {
+  max-width: 12em;
+}
