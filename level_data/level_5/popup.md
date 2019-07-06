@@ -6,4 +6,6 @@ Diese triggert dann eine Lambda-Funktion, welche wiederum die Aktienkurse aus Dy
 
 Abstraktion: Die Aktienkurse liegen schon in DynamoDB und sind aktuell.
 
+Sollte ein Level zu schwer sein, können Sie es auch mit einem Klick auf ihre Punktzahl überspringen und später abschließen.
+
 Viel Erfolg.

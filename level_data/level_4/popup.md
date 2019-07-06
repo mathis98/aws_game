@@ -9,7 +9,7 @@ Die registrierten Spieler werden mit Account und verschlüsseltem Passwort gespe
 Nach außen soll das System robust gegen DDoS-Angriffen sein. Außerdem soll der **Punktestand** der Spieler
 gespeichert werden.
 
-Wenn Sie oben rechts auf ihre aktuelle **Punktzahl** klicken, sehen Sie wie ihr Score berechnet wurde.
+Wenn Sie oben auf ihre aktuelle **Punktzahl** klicken, sehen Sie wie ihr Score berechnet wurde.
 Sie können jederzeit ein Level erneut spielen, um einen besseren Score zu erhalten.
 
 Fangen Sie an.
