@@ -92,6 +92,6 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new webpack.EnvironmentPlugin({'PUBLIC_URL': null, 'BRANCH_NAME': null, 'CI_COMMIT_SHA': null}),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ]
 }

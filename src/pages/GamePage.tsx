@@ -6,7 +6,7 @@ import GameBoard from 'components/GameBoard';
 import SplitterPanel from 'components/SplitterPanel';
 import MarkdownViewer from 'components/MarkdownViewer';
 import {LEVELS} from 'levels/levels'
-import { DndProvider } from 'react-dnd/';
+import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { isMobile } from 'react-device-detect';
 import TouchBackend from 'react-dnd-touch-backend';
