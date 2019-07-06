@@ -34,11 +34,11 @@
     content: "BC";
   }
   .pointsName::after {
-      content: "Ⓟ"
+      content: "Pkt."
   }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 375px) {
   .toolBarNameContainer {
     display: none !important;
   }
