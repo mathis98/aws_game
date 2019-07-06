@@ -31,11 +31,13 @@ class Header extends React.Component<HeaderProps, SignInPopupState> {
     return (
       <AppBar position="static" className={css.fixed_size_app_bar}>
         <Toolbar className={css.toolBar}>
-          <Link to="/" className={css.link}>
-            <Typography variant="h6" color="inherit" className={css.toolBarName}>
-              AWS Boot Camp
-            </Typography>
-          </Link>
+          <Button color="inherit" className={css.toolBarNameContainer}>
+            <Link to="/" className={css.link}>
+              <Typography variant="h6" color="inherit" className={css.toolBarName}>
+                AWS&nbsp;
+              </Typography>
+            </Link>
+          </Button>
 
           <Menu
             keepMounted
@@ -63,8 +65,8 @@ class Header extends React.Component<HeaderProps, SignInPopupState> {
           </Menu>
 
           <Button color="inherit" onClick={(event) => this.setState({anchorEl: event.currentTarget})}>
-            <Typography variant="h6" color="inherit">
-              {totalPoints} Punkte
+            <Typography variant="h6" color="inherit" className={css.pointsName}>
+              {totalPoints}&nbsp;
             </Typography>
           </Button>
 

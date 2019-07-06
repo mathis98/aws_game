@@ -21,6 +21,29 @@
   padding-bottom: 0.5em;
 }
 
+.toolBarName::after {
+  content: "Boot Camp";
+}
+
+.pointsName::after {
+  content: "Punkte"
+}
+
+@media (max-width: 550px) {
+  .toolBarName::after {
+    content: "BC";
+  }
+  .pointsName::after {
+      content: "Pkt."
+  }
+}
+
+@media (max-width: 375px) {
+  .toolBarNameContainer {
+    display: none !important;
+  }
+}
+
 .link {
   color: white;
   text-decoration: none;
@@ -46,6 +69,8 @@
 .levelName {
   width: 100%;
   padding-right: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .levelPoints {
