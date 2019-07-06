@@ -14,13 +14,13 @@ export const LEVEL_TITLES = [
     'Fotostudio',
     'Lambda Functions',
     'Spielserver',
+    'Aktienkurse',
     'E-Mail-Empfang',
+    'Benachrichtigungen',
     'Tornado-Warnsystem',
     'Machine Learning Wetterdaten',
-    'Benachrichtigungen',
-    'Aktienkurse',
     'Internet of Things (IoT)',
-]
+];
 
 export const LEVELS = [
     level1,
