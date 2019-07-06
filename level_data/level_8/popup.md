@@ -1,3 +1,9 @@
-## Level 8: Benachrichtigungen
+## Level 8: Tornado-Warnsystem
 
-Ein Unternehmen will bei sicherheitskritischen Systemupdates **automatisch** ihre Mitarbeiter benachrichtigen. Die Kontaktdaten der Mitarbeiter werden in eine **Datenbank** gespeichert, woraus das System die Handynummer liest und es an den **Nachrichtenverteiler** weiterleitet.
+Tornados verursachen große Schäden und fordern oft Menschenleben. Ein Team von Wissenschaftlern entwickelt 
+ein **Warnsystem**, welches bei den richtigen Konditionen für einen Tornado eine Warnung per E-Mail an die
+Wissenschaftler (Benutzer) schickt.
+
+Zunächst müssen die Sensoren der Wetterstation die **Streaming-Daten** speichern können. Diese sollen automatisch
+**analysiert** und bei Gefahr per **E-Mail** verschickt werden. Für das Analysieren der Daten können sie auch
+maschinelles Lernen verwenden.

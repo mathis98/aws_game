@@ -1,79 +1,94 @@
-import * as React from 'react';
-import { Level, LevelState, LevelFeedback } from './level';
+import { Level, LevelFeedback, LevelState } from './level'
+import * as React from 'react'
 
-const level5: Level = {
-  columns: 5,
-  rows: 4,
-  gap: "3em",
+const level5: Level ={
+  columns: 3,
+  rows: 2,
+  gap: "2em",
   elements: [
     {
       position: {
+        column: 0,
+        row: 0
+      },
+      id: "s3",
+      droppable: true
+    },
+    {
+      position: {
+        column: 0,
+        row: 1
+      },
+      id: "browser",
+      icon: "browser"
+    },
+    {
+      position: {
         column: 1,
-        row: 1,
+        row: 1
       },
-      id: "users",
-      icon: "users2",
+      id: "apiGateway",
+      droppable: true
     },
     {
       position: {
         column: 2,
-        row: 1,
+        row: 1
       },
-      id: "ses",
-      droppable: true,
+      id: "lambda_stock_data",
+      droppable: true
     },
     {
       position: {
         column: 2,
-        row: 2,
+        row: 0
       },
-      id: "lambdaTensorflow",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 3,
-        row: 1,
-      },
-      id: "supportEmployee",
-      icon: "supportEmployee",
-    },
+      id: "dynamodb",
+      droppable: true
+    }
   ],
   relations: [
     {
-      sourceId: "users",
-      targetId: "ses",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "ses",
-      targetId: "lambdaTensorflow",
+      sourceId: "s3",
+      targetId: "browser",
       sourceAnchor: "bottom",
-      targetAnchor: "top",
-      doubleArrow: true,
-      dashed: true,
+      targetAnchor: "top"
     },
     {
-      sourceId: "ses",
-      targetId: "supportEmployee",
+      sourceId: "browser",
+      targetId: "apiGateway",
       sourceAnchor: "right",
       targetAnchor: "left",
+      doubleArrow: true
     },
+    {
+      sourceId: "apiGateway",
+      targetId: "lambda_stock_data",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+      doubleArrow: true
+    },
+    {
+      sourceId: "lambda_stock_data",
+      targetId: "dynamodb",
+      sourceAnchor: "top",
+      targetAnchor: "bottom"
+    }
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow"],
-  validator: Level5Validator,
-};
+  awspalette: ["s3", "dynamodb", "lambda_stock_data", "apiGateway"],
+  validator: Level5Validator
+}
 
 function Level5Validator(state: LevelState): LevelFeedback {
-
-  // needs to be correct
-  if( !(state.ses === "ses") )
-    return { correct: false, feedbackComponent: "Die Emails können nicht empfangen und gesendet werden." };
-  if( !(state.lambdaTensorflow === "lambdaTensorflow") )
-    return { correct: false, feedbackComponent: "Die Emails können nicht klassifiziert werden." };
-
-  return {correct: true, stars: 3};
+  if (
+    state.s3 === 's3' &&
+    state.dynamodb === 'dynamodb' &&
+    state.lambda_stock_data === 'lambda_stock_data' &&
+    state.apiGateway === 'apiGateway'
+  ) {
+    return {correct: true};
+  }
+  return {correct: false};
 }
 
 export default level5;

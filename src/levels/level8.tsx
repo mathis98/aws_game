@@ -2,24 +2,40 @@ import * as React from 'react';
 import { Level, LevelState, LevelFeedback } from './level';
 
 const level8: Level = {
-  columns: 5,
+  columns: 3,
   rows: 3,
   gap: "2em",
   elements: [
     {
       position: {
         column: 0,
+        row: 0,
+      },
+      id: "weatherStation",
+      icon: "weatherStation",
+    },
+    {
+      position: {
+        column: 0,
         row: 1,
       },
-      id: "sender",
-      icon: "client",
+      id: "kinesis",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 0,
+        row: 2,
+      },
+      id: "dynamodb",
+      droppable: true,
     },
     {
       position: {
         column: 1,
         row: 1,
       },
-      id: "apiGateway",
+      id: "lambda",
       droppable: true,
     },
     {
@@ -27,7 +43,7 @@ const level8: Level = {
         column: 2,
         row: 1,
       },
-      id: "lambda_rec_data",
+      id: "ses",
       droppable: true,
     },
     {
@@ -35,73 +51,68 @@ const level8: Level = {
         column: 2,
         row: 2,
       },
-      id: "dynamodb",
-      droppable: true
-    },
-    {
-      position: {
-        column: 3,
-        row: 1,
-      },
-      id: "sns",
-      droppable: true
-    },
-    {
-      position: {
-        column: 4,
-        row: 1,
-      },
-      id: "rec",
-      icon: "mobiles"
+      id: "users",
+      icon: "users3"
     },
   ],
   relations: [
     {
-      sourceId: "sender",
-      targetId: "apiGateway",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "apiGateway",
-      targetId: "lambda_rec_data",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "lambda_rec_data",
-      targetId: "dynamodb",
+      sourceId: "weatherStation",
+      targetId: "kinesis",
       sourceAnchor: "bottom",
       targetAnchor: "top",
     },
     {
-      sourceId: "lambda_rec_data",
-      targetId: "sns",
+      sourceId: "kinesis",
+      targetId: "dynamodb",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+      dashed: true,
+      doubleArrow: true,
+    },
+    {
+      sourceId: "kinesis",
+      targetId: "lambda",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
-      sourceId: "sns",
-      targetId: "rec",
+      sourceId: "lambda",
+      targetId: "ses",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
+    {
+      sourceId: "ses",
+      targetId: "users",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+    },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "lambda_rec_data", "sns", "apiGateway"],
-  validator: level8Validator,
+  awspalette: ["s3", "dynamodb", "ses", "lambdaTensorflow", "kinesis"],
+  validator: Level8Validator,
 };
 
-function level8Validator(state: LevelState): LevelFeedback {
-  if (state.apiGateway === "iam") {
-    return {correct: false, feedbackComponent: "IAM ermöglicht den Zugriff der Services nur über die Command Line Interface (CLI)"};
-  } else if(!(state.lambda_rec_data === "lambda_rec_data")) {
-    return { correct: false, feedbackComponent: "Es gibt keine funktion die getriggert werden soll."};
-  } else if(state.apiGateway === "apiGateway" && state.lambda_rec_data === "lambda_rec_data" && state.dynamodb === "s3" && state.sns === "sns") {
-    return {correct: true, stars: 1, feedbackComponent: "Kontakte mit einem *Namen* und einer *Nummer* können effizienter Gespeichert werden."};
-  } else if(state.apiGateway === "apiGateway" && state.lambda_rec_data === "lambda_rec_data" && state.dynamodb === "dynamodb" && state.sns === "sns") {
-    return {correct: true, stars: 3};
+function Level8Validator(state: LevelState): LevelFeedback {
+
+  // needs to be correct
+  if( !(state.kinesis === "kinesis") )
+    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht empfangen." };
+  if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb"))
+    return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
+  if( !(state.lambda === "lambdaTensorflow") )
+    return { correct: false, feedbackComponent: "Die gesamelten Daten werden nicht richtig verarbeitet" };
+  if( !(state.ses === "ses") )
+    return { correct: false, feedbackComponent: "Es werden keine Emails verschickt." };
+
+  // possible:
+  let stars = 3;
+  let message = "";
+  if (state.dynamodb === "s3") {
+    stars--;
+    message += "Zu viele kleine Daten für S3. ";
   }
-  return {correct: false};
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level8;
