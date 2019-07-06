@@ -89,7 +89,7 @@ const level8: Level = {
       targetAnchor: "top",
     },
   ],
-  awspalette: ["s3", "dynamodb", "ses", "lambdaTensorflow", "kinesis"],
+  awspalette: ["s3", "dynamodb", "ses", "sns", "lambdaTensorflow", "kinesis"],
   validator: Level8Validator,
 };
 
@@ -102,8 +102,8 @@ function Level8Validator(state: LevelState): LevelFeedback {
     return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
   if( !(state.lambda === "lambdaTensorflow") )
     return { correct: false, feedbackComponent: "Die gesamelten Daten werden nicht richtig verarbeitet" };
-  if( !(state.ses === "ses") )
-    return { correct: false, feedbackComponent: "Es werden keine Emails verschickt." };
+  if( !(state.ses === "ses" || state.ses === "sns") )
+    return { correct: false, feedbackComponent: "Es werden keine Benachrichtigungen verschickt." };
 
   // possible:
   let stars = 3;
@@ -111,6 +111,10 @@ function Level8Validator(state: LevelState): LevelFeedback {
   if (state.dynamodb === "s3") {
     stars--;
     message += "Zu viele kleine Daten für S3. ";
+  }
+  if (state.ses === "sns") {
+    stars--;
+    message += "Es gibt ein extra AWS Service für das Versenden von E-Mails. ";
   }
   return {correct: true, stars: stars, feedbackComponent: message};
 }
