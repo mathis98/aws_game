@@ -1,12 +1,11 @@
-## Level 5: E-Mail-Empfang
+## Level 5: Aktienkurse
 
-Ein Internetprovider möchte die empfangenen **E-Mails** automatisch Mitarbeitern aus der richtigen Abteilung zustellen.
-Beispielsweise sollen Spam-Mails herausgefiltert werden und Bestellungen, Kündigungen, Störungen
-direkt an die **zuständigen Mitarbeiter** weitergeleitet werden.
+Der Benutzer klickt in einer in S3 gehosteten Aktien-Web-App auf einen Link um Aktienkurse zu bekommen.
+Die App ruft daraufhin eine REST API auf, welche von Amazon API Gateway bereitgestellt wird.
+Diese triggert dann eine Lambda-Funktion, welche wiederum die Aktienkurse aus DynamoDB liest und die Daten zurück an den Benutzer schickt.
 
-Für die Klassifizierung soll Machine Learning mit Tensorflow implementiert werden.
+Abstraktion: Die Aktienkurse liegen schon in DynamoDB und sind aktuell.
 
-Wenn Sie oben rechts auf ihre aktuelle **Punktzahl** klicken, sehen Sie wie ihr Score berechnet wurde.
-Sie können jederzeit ein Level erneut spielen, um einen besseren Score zu erhalten.
+Sollte ein Level zu schwer sein, können Sie es auch mit einem Klick auf ihre Punktzahl überspringen und später abschließen.
 
-Um wirklich alle Services sehen zu können, müssen Sie manchmal durch die Services oben rechts **durchscrollen**.
+Viel Erfolg.

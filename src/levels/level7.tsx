@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Level, LevelState, LevelFeedback} from './level';
+import { Level, LevelState, LevelFeedback } from './level';
 
-const level9: Level = {
-  columns: 4,
+const level7: Level = {
+  columns: 5,
   rows: 3,
   gap: "2em",
   elements: [
@@ -11,112 +11,97 @@ const level9: Level = {
         column: 0,
         row: 1,
       },
-      id: "weatherData",
-      icon: "weatherData",
-    },
-    {
-      position: {
-        column: 1,
-        row: 0,
-      },
-      id: "redshift",
-      droppable: true,
+      id: "sender",
+      icon: "client",
     },
     {
       position: {
         column: 1,
         row: 1,
       },
-      id: "lakeFormation",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 1,
-        row: 2,
-      },
-      id: "s3",
+      id: "apiGateway",
       droppable: true,
     },
     {
       position: {
         column: 2,
-        row: 0,
+        row: 1,
       },
-      id: "forecast",
+      id: "lambda_rec_data",
       droppable: true,
     },
     {
       position: {
-        column: 3,
-        row: 0,
+        column: 2,
+        row: 2,
       },
-      id: "webServer",
-      icon: "webServer"
+      id: "dynamodb",
+      droppable: true
+    },
+    {
+      position: {
+        column: 3,
+        row: 1,
+      },
+      id: "sns",
+      droppable: true
+    },
+    {
+      position: {
+        column: 4,
+        row: 1,
+      },
+      id: "rec",
+      icon: "mobiles"
     },
   ],
   relations: [
     {
-      sourceId: "weatherData",
-      targetId: "lakeFormation",
+      sourceId: "sender",
+      targetId: "apiGateway",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
-      sourceId: "redshift",
-      targetId: "lakeFormation",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-      doubleArrow: true,
-    },
-    {
-      sourceId: "lakeFormation",
-      targetId: "s3",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-      dashed: true,
-      doubleArrow: true,
-    },
-    {
-      sourceId: "redshift",
-      targetId: "forecast",
+      sourceId: "apiGateway",
+      targetId: "lambda_rec_data",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
-      sourceId: "forecast",
-      targetId: "webServer",
+      sourceId: "lambda_rec_data",
+      targetId: "dynamodb",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+    },
+    {
+      sourceId: "lambda_rec_data",
+      targetId: "sns",
+      sourceAnchor: "right",
+      targetAnchor: "left",
+    },
+    {
+      sourceId: "sns",
+      targetId: "rec",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
   ],
-  awspalette: ["s3", "dynamodb", "lambdaTensorflow", "redshift", "forecast", "lakeFormation"],
-  validator: level9Validator,
+  awspalette: ["s3", "dynamodb", "iam", "lambda_rec_data", "sns", "apiGateway"],
+  validator: level7Validator,
 };
 
-function level9Validator(state: LevelState): LevelFeedback {
-  // needs to be correct
-  if( !(state.lakeFormation === "lakeFormation" ) )
-    return { correct: false, feedbackComponent: "Die Wetterdaten brauchen ein Interface." };
-  if( !(state.s3 === "s3" || state.s3 === "dynamodb") )
-    return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
-  if( !(state.redshift === "redshift" ) )
-    return { correct: false, feedbackComponent: "Lake Formation ist nicht mit einem Data Warehouse verknüpft." };
-  if( !(state.forecast === "forecast" || state.forecast === "lambdaTensorflow") )
-    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht analysiert." };
-
-  // possible:
-  let stars = 3;
-  let message = "";
-  if (state.s3 === "dynamodb") {
-    stars--;
-    message += "Lake Formation ist mit S3 effizienter. ";
+function level7Validator(state: LevelState): LevelFeedback {
+  if (state.apiGateway === "iam") {
+    return {correct: false, feedbackComponent: "IAM ermöglicht den Zugriff der Services nur über die Command Line Interface (CLI)"};
+  } else if(!(state.lambda_rec_data === "lambda_rec_data")) {
+    return { correct: false, feedbackComponent: "Es gibt keine funktion die getriggert werden soll."};
+  } else if(state.apiGateway === "apiGateway" && state.lambda_rec_data === "lambda_rec_data" && state.dynamodb === "s3" && state.sns === "sns") {
+    return {correct: true, stars: 1, feedbackComponent: "Kontakte mit einem *Namen* und einer *Nummer* können effizienter Gespeichert werden."};
+  } else if(state.apiGateway === "apiGateway" && state.lambda_rec_data === "lambda_rec_data" && state.dynamodb === "dynamodb" && state.sns === "sns") {
+    return {correct: true, stars: 3};
   }
-  if (state.forecast === "lambdaTensorflow") {
-    stars--;
-    message += "Es gibt ein extra AWS service für Machine Learning. ";
-  }
-  return {correct: true, stars: stars, feedbackComponent: message};
+  return {correct: false};
 }
 
-export default level9;
+export default level7;
