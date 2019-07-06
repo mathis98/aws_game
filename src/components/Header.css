@@ -25,13 +25,13 @@
   content: "Boot Camp";
 }
 
-@media (max-width: 550px) {
+@media (max-width: 480px) {
   .toolBarName::after {
     content: "BC";
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 360px) {
   .toolBarNameContainer {
     display: none !important;
   }
