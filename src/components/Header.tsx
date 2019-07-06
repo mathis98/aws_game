@@ -65,8 +65,8 @@ class Header extends React.Component<HeaderProps, SignInPopupState> {
           </Menu>
 
           <Button color="inherit" onClick={(event) => this.setState({anchorEl: event.currentTarget})}>
-            <Typography variant="h6" color="inherit">
-              {totalPoints} Punkte
+            <Typography variant="h6" color="inherit" className={css.pointsName}>
+              {totalPoints}&nbsp;
             </Typography>
           </Button>
 

@@ -25,13 +25,20 @@
   content: "Boot Camp";
 }
 
-@media (max-width: 480px) {
+.pointsName::after {
+  content: "Punkte"
+}
+
+@media (max-width: 550px) {
   .toolBarName::after {
     content: "BC";
   }
+  .pointsName::after {
+      content: "Ⓟ"
+  }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 340px) {
   .toolBarNameContainer {
     display: none !important;
   }
