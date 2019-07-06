@@ -2,41 +2,17 @@ import * as React from 'react';
 import { Level, LevelState, LevelFeedback } from './level';
 
 const level6: Level = {
-  columns: 3,
-  rows: 3,
-  gap: "2em",
+  columns: 5,
+  rows: 4,
+  gap: "3em",
   elements: [
-    {
-      position: {
-        column: 0,
-        row: 0,
-      },
-      id: "weatherStation",
-      icon: "weatherStation",
-    },
-    {
-      position: {
-        column: 0,
-        row: 1,
-      },
-      id: "kinesis",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 0,
-        row: 2,
-      },
-      id: "dynamodb",
-      droppable: true,
-    },
     {
       position: {
         column: 1,
         row: 1,
       },
-      id: "lambda",
-      droppable: true,
+      id: "users",
+      icon: "users2",
     },
     {
       position: {
@@ -51,68 +27,53 @@ const level6: Level = {
         column: 2,
         row: 2,
       },
-      id: "users",
-      icon: "users3"
+      id: "lambdaTensorflow",
+      droppable: true,
+    },
+    {
+      position: {
+        column: 3,
+        row: 1,
+      },
+      id: "supportEmployee",
+      icon: "supportEmployee",
     },
   ],
   relations: [
     {
-      sourceId: "weatherStation",
-      targetId: "kinesis",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-    },
-    {
-      sourceId: "kinesis",
-      targetId: "dynamodb",
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-      dashed: true,
-      doubleArrow: true,
-    },
-    {
-      sourceId: "kinesis",
-      targetId: "lambda",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "lambda",
+      sourceId: "users",
       targetId: "ses",
       sourceAnchor: "right",
       targetAnchor: "left",
     },
     {
       sourceId: "ses",
-      targetId: "users",
+      targetId: "lambdaTensorflow",
       sourceAnchor: "bottom",
       targetAnchor: "top",
+      doubleArrow: true,
+      dashed: true,
+    },
+    {
+      sourceId: "ses",
+      targetId: "supportEmployee",
+      sourceAnchor: "right",
+      targetAnchor: "left",
     },
   ],
-  awspalette: ["s3", "dynamodb", "ses", "lambdaTensorflow", "kinesis"],
+  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow"],
   validator: Level6Validator,
 };
 
 function Level6Validator(state: LevelState): LevelFeedback {
 
   // needs to be correct
-  if( !(state.kinesis === "kinesis") )
-    return { correct: false, feedbackComponent: "Die Wetterdaten werden nicht empfangen." };
-  if( !(state.dynamodb === "s3" || state.dynamodb === "dynamodb"))
-    return { correct: false, feedbackComponent: "Die Wetterdaten können nicht abgespeichert werden." };
-  if( !(state.lambda === "lambdaTensorflow") )
-    return { correct: false, feedbackComponent: "Die gesamelten Daten werden nicht richtig verarbeitet" };
   if( !(state.ses === "ses") )
-    return { correct: false, feedbackComponent: "Es werden keine Emails verschickt." };
+    return { correct: false, feedbackComponent: "Die Emails können nicht empfangen und gesendet werden." };
+  if( !(state.lambdaTensorflow === "lambdaTensorflow") )
+    return { correct: false, feedbackComponent: "Die Emails können nicht klassifiziert werden." };
 
-  // possible:
-  let stars = 3;
-  let message = "";
-  if (state.dynamodb === "s3") {
-    stars--;
-    message += "Zu viele kleine Daten für S3. ";
-  }
-  return {correct: true, stars: stars, feedbackComponent: message};
+  return {correct: true, stars: 3};
 }
 
 export default level6;
