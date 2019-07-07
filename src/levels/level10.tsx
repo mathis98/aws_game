@@ -3,7 +3,7 @@ import { Level, LevelState, LevelFeedback } from './level';
 
 const level10: Level = {
   columns: 5,
-  rows: 2,
+  rows: 3,
   gap: "2em",
   elements: [
     {
@@ -37,7 +37,7 @@ const level10: Level = {
       },
       id: "Analytics",
       droppable: true,
-    },  
+    },
     {
       position: {
         column: 3,
@@ -45,7 +45,7 @@ const level10: Level = {
       },
       id: "QuickSight",
       droppable: true,
-    },  
+    },
     {
       position: {
         column: 3,
@@ -53,7 +53,7 @@ const level10: Level = {
       },
       id: "Sagemaker",
       droppable: true,
-    },   
+    },
     {
       position: {
         column: 4,
@@ -61,7 +61,7 @@ const level10: Level = {
       },
       id: "sns",
       droppable: true,
-    },        
+    },
     {
       position: {
         column: 5,
@@ -96,7 +96,7 @@ const level10: Level = {
       targetId: "QuickSight",
       sourceAnchor: "right",
       targetAnchor: "bottom",
-    },    
+    },
     {
       sourceId: "s3",
       targetId: "Sagemaker",
@@ -147,7 +147,7 @@ function Level10Validator(state: LevelState): LevelFeedback {
     return {correct: true, stars: 1, feedbackComponent: "Der Kunde möchte die Updates lieber auf sein Smartphone erhalten." };
   if (state.s3 === "dynamodb")
     return {correct: true, stars: 2, feedbackComponent: "Bei großen Dateien eignet sich dynamoDB weniger." };
-    
+
   // perfect:
   if (state.s3 === "s3" && state.sns === "sns") {
     return {correct: true, stars: 3};
