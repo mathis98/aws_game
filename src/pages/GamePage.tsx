@@ -17,12 +17,16 @@ import { allAWSProducts } from 'levels/LevelElements';
 import GamePageSnackbar from 'components/GamePageSnackbar';
 import FeedbackPopup from 'components/FeedbackPopup';
 import ErrorPage from 'pages/ErrorPage'
+import { autoCompleteFeedback } from 'levels/DefaultValidators';
+import { setScore } from '../actions';
+import { connect } from 'react-redux';
 
 
 const css = require('./GamePage.css');
 
 export interface GamePageProps {
   levelId: number;
+  dispatch: Function;
 }
 
 export interface GamePageState {
@@ -33,7 +37,7 @@ export interface GamePageState {
   showFeedback?: boolean;
 }
 
-export default class GamePage extends React.Component<GamePageProps, GamePageState> {
+class GamePage extends React.Component<GamePageProps, GamePageState> {
   level: Level;
   levelInfoMd: string;
   gameBoardRef: any;
@@ -121,7 +125,14 @@ export default class GamePage extends React.Component<GamePageProps, GamePageSta
         }
       }
 
-      this.setState({feedback: this.level.validator(state), showFeedback: true});
+      const feedback = this.level.validator(state);
+      autoCompleteFeedback(feedback);
+
+      this.props.dispatch(setScore(feedback.points, this.props.levelId, feedback.stars));
+
+      this.setState({feedback: feedback, showFeedback: true});
     }
   }
 }
+
+export default connect()(GamePage);
