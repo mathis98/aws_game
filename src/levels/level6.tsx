@@ -61,7 +61,7 @@ const level6: Level = {
       targetAnchor: "left",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "lambdaTensorflow"],
+  awspalette: ["s3", "dynamodb", "shield", "ses", "lambdaTensorflow"],
   validator: Level6Validator,
 };
 

@@ -50,6 +50,16 @@ const sources: Source[] = [
     "creator": "Pause08",
     "url": "https://www.flaticon.com/free-icon/cloud_860276",
   },
+  {
+    "name": "cactus",
+    "creator": "Freepik",
+    "url": "https://www.flaticon.com/free-icon/cactus_875030",
+  },
+  {
+    "name": "waterTap",
+    "creator": "Freepik",
+    "url": "https://www.flaticon.com/free-icon/water-tap_1890929",
+  },
 ];
 
 export default sources;

@@ -33,7 +33,7 @@ const icons = [
   {icon: 'dynamodb', color: '#3B48CC', text: require('level_data/services_desc/dynamodb.md')},
   {icon: 'cognito', color: '#D6242D', text: require('level_data/services_desc/cognito.md')},
   {icon: 'ses', color: '#445EE0', text: require('level_data/services_desc/ses.md')},
-  {icon: 'lambdaTensorflow', color: '#D86613', text: require('level_data/services_desc/lambdaTensorflow.md')},
+  {icon: 'lambda', color: '#D86613', text: require('level_data/services_desc/lambdaTensorflow.md')},
   {icon: 'kinesis', color: '#7A48D6', text: require('level_data/services_desc/kinesis.md')},
   {icon: 'apiGateway', color: '#D5A449', text: require('level_data/services_desc/apiGateway.md')},
   {icon: 'shield', color: '#D6242D', text: require('level_data/services_desc/shield.md')},
@@ -41,7 +41,7 @@ const icons = [
   {icon: 'sns', color: '#CC2264', text: require('level_data/services_desc/sns.md')},
   {icon: 'redshift', color: '#693CC5', text: require('level_data/services_desc/redshift.md')},
   {icon: 'forecast', color: '#1C7B68', text: require('level_data/services_desc/forecast.md')},
-]
+];
 
 const strings = [
   'Das spannendste AWS Spiel',
@@ -54,7 +54,7 @@ const strings = [
   'Serverless rocks!',
   'Awesome Web Site!',
   '01000001 01010111 01010011',
-]
+];
 
 const random = (a: any, n: number) => a.sort(() => .5 - Math.random()).slice(0, n);
 
@@ -65,11 +65,11 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
     if(this.props.score.findIndex((e: any) => e.points > 0) != -1)
       this.setState({ resetOpen: true });
     else this.props.history.push('levels/1');
-  }
+  };
   deleteScore = () => {
     this.props.dispatch(resetScore());
     this.props.history.push('levels/1');
-  }
+  };
   changeDesc = (text: any) => {
     if(this.state.desc === text.default) {
       this.setState({ show: false });
@@ -83,7 +83,7 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
         show: true,
       });
     }
-  }
+  };
   changeDescThrottle = throttle(this.changeDesc, 400);
   constructor(props: StartPageProps) {
     super(props);
@@ -158,6 +158,6 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
 const mapStateToProps = (state: {score: ScoreState}) => ({
   level: state.score.level,
   score: state.score.score
-})
+});
 
 export default connect(mapStateToProps)(withRouter(StartPage));

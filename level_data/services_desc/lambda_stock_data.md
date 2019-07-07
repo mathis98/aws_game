@@ -1,4 +1,4 @@
-## Lambda Function
+## Lambda für Aktienkurse
 
 AWS Lambda ist ein Dienst, der eigenen Code ausführt, ohne dass man sich um die
 unterliegende Server-Infrastruktur kümmern muss.

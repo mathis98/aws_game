@@ -87,13 +87,13 @@ const level7: Level = {
       targetAnchor: "left",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "lambda_rec_data", "sns", "apiGateway"],
+  awspalette: ["s3", "dynamodb", "cognito", "lambda_rec_data", "sns", "apiGateway"],
   validator: level7Validator,
 };
 
 function level7Validator(state: LevelState): LevelFeedback {
-  if (state.apiGateway === "iam") {
-    return {correct: false, feedbackComponent: "IAM ermöglicht den Zugriff der Services nur über die Command Line Interface (CLI)"};
+  if (state.apiGateway === "cognito") {
+    return {correct: false, feedbackComponent: "Cognito ermöglicht den Zugriff der Services nur über die Command Line Interface (CLI)"};
   } else if(!(state.lambda_rec_data === "lambda_rec_data")) {
     return { correct: false, feedbackComponent: "Es gibt keine funktion die getriggert werden soll."};
   } else if(state.apiGateway === "apiGateway" && state.lambda_rec_data === "lambda_rec_data" && state.dynamodb === "s3" && state.sns === "sns") {

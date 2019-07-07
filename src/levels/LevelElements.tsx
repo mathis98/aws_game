@@ -12,6 +12,7 @@ export type IconLevelElement =
   "shop" |
   "shop2" |
   "customer" |
+  "customer2" |
   "users" |
   "users2" |
   "users3" |
@@ -24,6 +25,7 @@ export type IconLevelElement =
   "weatherData" |
   "vdots" |
   "mobiles" |
+  "waterTap" |
   "client";
 
 function getIcon(filename: IconLevelElement) {
@@ -34,13 +36,14 @@ function getIcon(filename: IconLevelElement) {
 export const allIcons: Record<IconLevelElement, JSX.Element> = {
   cam: <IconElement image={getIcon('cam')} description="Kamera" />,
   bpol: <IconElement image={getIcon('bpol')} description="Bundespolizei" />,
-  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze mit Sensoren" />,
+  cactus: <IconElement image={getIcon('cactus')} description="Wunderpflanze mit Sensoren" color="#3e603e"/>,
   camera: <IconElement image={getIcon('camera')} description="Kamera" color="#E44800"/>,
   camera2: <IconElement image={getIcon('camera')} description="Kamera" color="#547B80"/>,
-  documents: <IconElement image={getIcon('documents')} description="Kundendaten" />,
+  documents: <IconElement image={getIcon('documents')} description="Kundendaten" color="#547B80"/>,
   shop: <IconElement image={getIcon('shop')} description="Shop" color="#00909D" />,
   shop2: <IconElement image={getIcon('shop')} description="Shop" color="#73A353" />,
   customer: <IconElement image={getIcon('customer')} description="Kunde" color="#8C3494"/>,
+  customer2: <IconElement image={getIcon('customer')} description="Kunde" color="#A35563"/>,
   users: <IconElement image={getIcon('users')} description="Benutzer" color="#004260"/>,
   users2: <IconElement image={getIcon('users')} description="Benutzer" color="#689676"/>,
   users3: <IconElement image={getIcon('users')} description="Benutzer" color="#8F6C56"/>,
@@ -54,16 +57,15 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   vdots: <IconElement image={getIcon('vdots')}/>,
   mobiles: <IconElement image={getIcon('mobiles')} description="Empfänger"/>,
   client: <IconElement image={getIcon('client')} description="Client" color="#232F3E"/>,
+  waterTap: <IconElement image={getIcon('waterTap')} description="Bewässerung" color="#67ADA9"/>,
 };
 
 
 export type AWSProductLevelElement =
   "s3" |
   "dynamodb" |
-  "iam" |
   "shield" |
   "ses" |
-  "lambda" |
   "lambdaTensorflow" |
   "lambda_image_metadata" |
   "lambda_stock_data" |
@@ -84,15 +86,13 @@ export type AWSProductLevelElement =
 export const allAWSProducts: Record<AWSProductLevelElement, JSX.Element> = {
   s3: <AWSPaletteItem id="s3" icon="s3" text="S3" color="#3F8624" key="s3_paletteItem" />,
   dynamodb: <AWSPaletteItem id="dynamodb" icon="dynamodb" text="DynamoDB" color="#3B48CC" key="dynamodb_paletteItem" />,
-  iam: <AWSPaletteItem id="iam" icon="iam" text="IAM" color="#D6242D" key="iam_paletteItem" />,
   shield: <AWSPaletteItem id="shield" icon="shield" text="AWS Shield" color="#D6242D" key="shield_paletteItem" />,
   cognito: <AWSPaletteItem id="cognito" icon="cognito" text="Cognito" color="#D6242D" key="cognito_paletteItem" />,
   ses: <AWSPaletteItem id="ses" icon="ses" text="SES" color="#445EE0" key="ses_paletteItem" />,
-  lambda: <AWSPaletteItem id="lambda" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
-  lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambdaTensorflow" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
+  lambdaTensorflow: <AWSPaletteItem id="lambdaTensorflow" icon="lambda" text="Lambda für Tensorflow" color="#DC710E" key="lambdaTensorflow_paletteItem" />,
   lambda_image_metadata: <AWSPaletteItem id="lambda_image_metadata" icon="lambda" text="Lambda für Metadaten" color="#D86613" key="lambda_paletteItem" />,
-  lambda_stock_data: <AWSPaletteItem id="lambda_stock_data" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
-  lambda_rec_data: <AWSPaletteItem id="lambda_rec_data" icon="lambda" text="Lambda" color="#D86613" key="lambda_paletteItem" />,
+  lambda_stock_data: <AWSPaletteItem id="lambda_stock_data" icon="lambda" text="Lambda für Aktienkurse" color="#D86613" key="lambda_paletteItem" />,
+  lambda_rec_data: <AWSPaletteItem id="lambda_rec_data" icon="lambda" text="Lambda für Empfängerdaten" color="#D86613" key="lambda_paletteItem" />,
   kinesis: <AWSPaletteItem id="kinesis" icon="kinesis" text="Kinesis" color="#7A48D6" key="kinesis_paletteItem" />,
   api_gateway: <AWSPaletteItem id="api_gateway" icon="aws-api-gateway" text="API Gateway" color="#D5A449" key="api_gateway_paletteItem" />,
   apiGateway: <AWSPaletteItem id="apiGateway" icon="apiGateway" text="API Gateway" color="#7A48D6" key="apiGateway_paletteItem" />,
