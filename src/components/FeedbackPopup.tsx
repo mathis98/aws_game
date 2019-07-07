@@ -4,7 +4,7 @@ import { DialogContent, DialogActions, Dialog, Typography, Button } from '@mater
 import cx from "classnames";
 import { ClearRounded as ClearIcon, StarRounded as StarIcon } from '@material-ui/icons';
 import { connect } from 'react-redux';
-import { setScore, setNextLevel } from '../actions';
+import { setNextLevel } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 const css = require('./FeedbackPopup.css');
@@ -19,33 +19,18 @@ export interface FeedbackPopupProps extends RouteComponentProps {
 
 export interface FeedbackPopupState {
   feedback?: LevelFeedback;
-  starCount: number;
-  points: number;
 }
 
 class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupState> {
-  state: FeedbackPopupState = {
-    starCount: 0,
-    points: 0,
-  };
+  state: FeedbackPopupState = {};
 
   nextLevelBound = this.nextLevel.bind(this);
 
   componentWillReceiveProps(props: FeedbackPopupProps, state: FeedbackPopupState) {
     this.setState({feedback: props.feedback});
-
-    if (props.feedback && props.feedback.correct) {
-      // cast stars to 1 | 2 | 3
-      props.feedback.stars = Math.min(3, Math.max(1, props.feedback.stars));
-
-      const starCount = props.feedback.stars || Math.ceil(3 * props.feedback.points / (props.feedback.maxPoints || 100)) || 3;
-      const points = props.feedback.points || Math.round(100 * starCount / 3);
-      this.setState({starCount, points});
-    }
   }
 
   nextLevel() {
-    this.props.dispatch(setScore(this.state.points, this.props.levelId, this.state.starCount));
     this.props.dispatch(setNextLevel(this.props.levelId + 1));
     this.props.history.push(`/levels/${this.props.levelId + 1}`);
   }
@@ -62,10 +47,10 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
           </Typography>
           <div className={css.starContainer}>
             <Star delay={0.5} filled />
-            <Star delay={1} filled={this.state.starCount > 1} />
-            <Star delay={1.5} filled={this.state.starCount > 2} />
+            <Star delay={1} filled={this.state.feedback.stars > 1} />
+            <Star delay={1.5} filled={this.state.feedback.stars > 2} />
           </div>
-          <AnimatedPoints value={this.state.points} ticks={4 * 60} />
+          <AnimatedPoints value={this.state.feedback.points} ticks={4 * 60} />
           <Typography variant="body1">
             Gute Arbeit! Sie haben eine funktionierende Konfiguration gefunden.
             Wenn Sie noch nicht alle Sterne haben, können sie ihre Lösung noch
