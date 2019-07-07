@@ -2,17 +2,33 @@ import * as React from 'react';
 import { Level, LevelState, LevelFeedback } from './level';
 
 const level10: Level = {
-  columns: 5,
+  columns: 4,
   rows: 3,
   gap: "2em",
   elements: [
     {
       position: {
         column: 0,
+        row: 0,
+      },
+      id: "waterTap",
+      icon: "waterTap",
+    },
+    {
+      position: {
+        column: 0,
         row: 1,
       },
-      id: "input",
+      id: "cactus",
       icon: "cactus",
+    },
+    {
+      position: {
+        column: 1,
+        row: 0,
+      },
+      id: "Sagemaker",
+      droppable: true,
     },
     {
       position: {
@@ -24,8 +40,8 @@ const level10: Level = {
     },
     {
       position: {
-        column: 2,
-        row: 1,
+        column: 1,
+        row: 2,
       },
       id: "s3",
       droppable: true,
@@ -33,15 +49,7 @@ const level10: Level = {
     {
       position: {
         column: 2,
-        row: 2,
-      },
-      id: "Analytics",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 3,
-        row: 0,
+        row: 1,
       },
       id: "QuickSight",
       droppable: true,
@@ -49,14 +57,6 @@ const level10: Level = {
     {
       position: {
         column: 3,
-        row: 2,
-      },
-      id: "Sagemaker",
-      droppable: true,
-    },
-    {
-      position: {
-        column: 4,
         row: 1,
       },
       id: "sns",
@@ -64,8 +64,8 @@ const level10: Level = {
     },
     {
       position: {
-        column: 5,
-        row: 1,
+        column: 3,
+        row: 2,
       },
       id: "customer",
       icon: "customer"
@@ -73,7 +73,13 @@ const level10: Level = {
   ],
   relations: [
     {
-      sourceId: "input",
+      sourceId: "waterTap",
+      targetId: "cactus",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+    },
+    {
+      sourceId: "cactus",
       targetId: "IoTCore",
       sourceAnchor: "right",
       targetAnchor: "left",
@@ -81,79 +87,83 @@ const level10: Level = {
     {
       sourceId: "IoTCore",
       targetId: "s3",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "s3",
-      targetId: "Analytics",
       sourceAnchor: "bottom",
       targetAnchor: "top",
       doubleArrow: true,
+      dashed: true,
     },
     {
-      sourceId: "s3",
+      sourceId: "IoTCore",
+      targetId: "Sagemaker",
+      sourceAnchor: "top",
+      targetAnchor: "bottom",
+      doubleArrow: true,
+    },
+    {
+      sourceId: "Sagemaker",
+      targetId: "waterTap",
+      sourceAnchor: "left",
+      targetAnchor: "right",
+    },
+    {
+      sourceId: "IoTCore",
       targetId: "QuickSight",
       sourceAnchor: "right",
-      targetAnchor: "bottom",
-    },
-    {
-      sourceId: "s3",
-      targetId: "Sagemaker",
-      sourceAnchor: "right",
-      targetAnchor: "top",
+      targetAnchor: "left",
     },
     {
       sourceId: "QuickSight",
       targetId: "sns",
       sourceAnchor: "right",
-      targetAnchor: "top",
+      targetAnchor: "left",
     },
     {
       sourceId: "sns",
       targetId: "customer",
-      sourceAnchor: "right",
-      targetAnchor: "left",
-    },
-    {
-      sourceId: "Sagemaker",
-      targetId: "customer",
-      sourceAnchor: "right",
-      targetAnchor: "bottom",
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
     },
   ],
-  awspalette: ["s3", "dynamodb", "iam", "shield", "ses", "sns", "lambdaTensorflow", "kinesis", "IoTCore", "QuickSight", "Sagemaker", "Analytics"],
+  awspalette: ["s3", "dynamodb", "ses", "sns", "lambdaTensorflow", "kinesis", "IoTCore", "QuickSight", "Sagemaker"],
   validator: Level10Validator,
 };
 
 function Level10Validator(state: LevelState): LevelFeedback {
 
   // needs to be correct
-  if(state.Sagemaker !== "Sagemaker" )
-    return { correct: false, feedbackComponent: "Der Kunde möchte ein Machine Learning Modell für die spätere Automatisierung generieren lassen." };
-  if(state.Analytics !== "Analytics" )
-    return { correct: false, feedbackComponent: "Die Daten müssen ausgewertet werden." };
-  if(state.IoTCore !== "IoTCore")
-    return { correct: false, feedbackComponent: "Es ist wichtig die Sensordaten entsprechend zu verarbeiten." };
-  if(state.QuickSight !== "QuickSight" )
-    return { correct: false, feedbackComponent: "Der Kunde möchte Visualisierte Ergebnisse." };
+  if( !(state.IoTCore === "IoTCore" || state.IoTCore === "kinesis"))
+    return { correct: false, feedbackComponent: "Die Sensordaten können nicht richtig empfangen und verwendet werden." };
   if( !(state.s3 === "s3" || state.s3 === "dynamodb"))
-    return { correct: false, feedbackComponent: "Die Daten müssen sicher gespeichert werden." };
+    return { correct: false, feedbackComponent: "Die Daten werden nicht gespeichert." };
+  if(!(state.Sagemaker === "Sagemaker" || state.Sagemaker === "lambdaTensorflow"))
+    return { correct: false, feedbackComponent: "Es wird kein Machine Learning Modell verwendet, um die Bewässerung zu steuern." };
+  if(state.QuickSight !== "QuickSight" )
+    return { correct: false, feedbackComponent: "Die Daten werden nicht visualisiert." };
   if(!(state.sns === "ses" || state.sns === "sns"))
-    return { correct: false, feedbackComponent: "Der Kunde möchte regelmäßig geupdated werden." };
+    return { correct: false, feedbackComponent: "Der Kunde bekommt keine Benachrichtigungen der visualisierten Daten." };
 
   // possible:
-  if(state.sns === "ses")
-    return {correct: true, stars: 1, feedbackComponent: "Der Kunde möchte die Updates lieber auf sein Smartphone erhalten." };
-  if (state.s3 === "dynamodb")
-    return {correct: true, stars: 2, feedbackComponent: "Bei großen Dateien eignet sich dynamoDB weniger." };
+  let stars = 3;
+  let message = "";
 
-  // perfect:
-  if (state.s3 === "s3" && state.sns === "sns") {
-    return {correct: true, stars: 3};
+  if (state.IoTCore === "kinesis") {
+    stars--;
+    message += "Es gibt noch andere Möglichkeiten die Sensordaten einzulesen. ";
+  }
+  if (state.s3 === "dynamodb") {
+    stars--;
+    message += "Bei großen Dateien eignet sich dynamoDB weniger. ";
+  }
+  if (state.Sagemaker === "lambdaTensorflow") {
+    stars--;
+    message += "Sagemaker eignet sich hier besser für maschinelles Lernen. ";
+  }
+  if (state.sns === "ses") {
+    stars--;
+    message += "Der Kunde möchte die Updates lieber auf seinem Smartphone erhalten. ";
   }
 
-  return {correct: false};
+  return {correct: true, stars: stars, feedbackComponent: message};
 }
 
 export default level10;
