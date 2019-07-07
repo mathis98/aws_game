@@ -6,18 +6,19 @@ import sources from "../../assets/img/sources";
 
 const css = require("./CreditsPage.css");
 
+const shuffleArray = (array: any[]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+export function getMembers() {
+  return shuffleArray(["Paul Seidemann", "Conrad Klaus", "Mark Bauknecht ", "Mathis Arend", "Leon Wiemers", "Jan Beckschewe", "Dominic Schialer"]);
+}
+
 export const CreditsPage = withRouter((props: any) => {
-  const shuffleArray = (array: any[]) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-  };
-
-  const members = ["Paul Seidemann", "Conrad Klaus", "Mark Bauknecht ", "Mathis Arend", "Leon Wiemers", "Jan Beckschewe", "Dominic Schialer"];
-
-  shuffleArray(members);
-
   return <>
     <Container maxWidth="md" className={css.creditsTitle}>
       <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -36,7 +37,7 @@ export const CreditsPage = withRouter((props: any) => {
                     Ein Projekt von
                   </Typography>
                   {
-                    members.map(item => <Typography variant="body1" key={item}>{item}</Typography>)
+                    getMembers().map(item => <Typography variant="body1" key={item}>{item}</Typography>)
                   }
                 </CardContent>
               </Card>
