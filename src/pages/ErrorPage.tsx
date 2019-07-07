@@ -1,22 +1,29 @@
 import * as React from 'react';
-import PageWrapper from 'components/PageWrapper';
-import LinkButton from 'components/LinkButton';
-import { Typography } from '@material-ui/core';
+import { Typography, Button, Container } from '@material-ui/core';
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons';
+import { withRouter, RouteComponentProps } from 'react-router';
 
-export default class ErrorPage extends React.Component {
+const css = require("./ErrorPage.css");
+
+class ErrorPage extends React.Component<RouteComponentProps, {}> {
   render() {
     return (
-      <PageWrapper>
-        <Typography variant="h4" color="error" gutterBottom>
-          404 - Seite nicht gefunden
+      <Container maxWidth="xs" className={css.wrapper}>
+        <Typography variant="h1" align="center" color="error">
+          404
         </Typography>
-        <p>
-          <LinkButton to="/" variant="contained" color="primary">
-            <ArrowBackIcon/> Zurück
-          </LinkButton>
-        </p>
-      </PageWrapper>
+
+        <Typography variant="subtitle1" align="center" gutterBottom>
+          Seite nicht gefunden
+        </Typography>
+        <div className={css.buttonWrapper}>
+          <Button variant="outlined" color="primary" onClick={this.props.history.goBack}>
+            Zurück
+          </Button>
+        </div>
+      </Container>
     );
   }
 }
+
+export default withRouter(ErrorPage);

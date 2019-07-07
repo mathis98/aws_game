@@ -1,3 +1,12 @@
-.component {
+.backIcon {
+  margin-right: 0.4em;
+}
 
+.buttonWrapper {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.wrapper {
+  padding-top: 2em;
 }
