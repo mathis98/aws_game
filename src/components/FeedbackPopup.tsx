@@ -6,6 +6,7 @@ import { ClearRounded as ClearIcon, StarRounded as StarIcon } from '@material-ui
 import { connect } from 'react-redux';
 import { setNextLevel } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { ScoreState, ScoreType } from 'src/reducers/score';
 
 const css = require('./FeedbackPopup.css');
 
@@ -15,6 +16,7 @@ export interface FeedbackPopupProps extends RouteComponentProps {
   open: boolean;
   levelId: number;
   dispatch: Function;
+  score: ScoreType[];
 }
 
 export interface FeedbackPopupState {
@@ -31,8 +33,12 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
   }
 
   nextLevel() {
-    this.props.dispatch(setNextLevel(this.props.levelId + 1));
-    this.props.history.push(`/levels/${this.props.levelId + 1}`);
+    if (this.props.score.every((el) => el.points > 0)) {
+      console.log("done");
+    } else {
+      this.props.dispatch(setNextLevel(this.props.levelId + 1));
+      this.props.history.push(`/levels/${this.props.levelId + 1}`);
+    }
   }
 
   render() {
@@ -95,7 +101,7 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
     }
 
     return (
-      <Dialog open={!!this.props.open} maxWidth="sm" fullWidth>
+      <Dialog open={!!this.props.open} onClose={this.props.onClose} maxWidth="sm" fullWidth>
         <DialogContent>
           {content}
           {hint}
@@ -163,4 +169,8 @@ class AnimatedPoints extends React.Component<AnimatedPointsProps, {currentTick: 
   }
 }
 
-export default connect()(withRouter(FeedbackPopup));
+const mapStateToProps = (state: { score: ScoreState }) => ({
+  score: state.score.score,
+});
+
+export default connect(mapStateToProps)(withRouter(FeedbackPopup));
