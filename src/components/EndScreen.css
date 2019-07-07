@@ -1,0 +1,37 @@
+.background {
+  min-height: fit-content;
+  height: 100%;
+  box-sizing: border-box;
+  color: white;
+  padding-top: 5em;
+  padding-bottom: 1em;
+  animation: bg 3s forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes bg {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: #1b1b1b;
+  }
+}
+
+.credits > hr {
+  margin-top: 7em;
+  margin-bottom: 1em;
+}
+
+.credits {
+  color: rgb(158, 158, 158);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.backButton {
+  color: white !important;
+  margin-top: 1em !important;
+}
