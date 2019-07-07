@@ -12,6 +12,7 @@ import GamePageManager from "components/GamePageManager";
 import LevelsPage from "pages/LevelsPage";
 import ErrorPage from "pages/ErrorPage";
 import store from "./store";
+import EndScreen from "components/EndScreen";
 
 require('./global.css');
 
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path="/levels" exact component={LevelsPage} />
         <Route path="/levels/:levelId" exact component={GamePageManager} />
         <Route path="/credits" exact component={CreditsPage} />
+        <Route path="/endpage" exact component={EndScreen} />
 
           {/* Catch all unknown routes and show error page */}
           <Route component={ErrorPage} />

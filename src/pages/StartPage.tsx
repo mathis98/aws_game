@@ -149,6 +149,7 @@ class StartPage extends React.Component<StartPageProps, StartPageState> {
         </Container>
         <footer>
           <LinkButton to="/credits" size="medium">Credits</LinkButton>
+          <LinkButton to="/endpage" size="medium">Endscreen</LinkButton>
         </footer>
       </>
     );
