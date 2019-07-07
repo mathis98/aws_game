@@ -52,12 +52,12 @@ const sources: Source[] = [
   },
   {
     "name": "cactus",
-    "creator": "freepik",
+    "creator": "Freepik",
     "url": "https://www.flaticon.com/free-icon/cactus_875030",
   },
   {
     "name": "waterTap",
-    "creator": "freepik",
+    "creator": "Freepik",
     "url": "https://www.flaticon.com/free-icon/water-tap_1890929",
   },
 ];
