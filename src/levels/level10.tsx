@@ -68,7 +68,7 @@ const level10: Level = {
         row: 2,
       },
       id: "customer",
-      icon: "customer"
+      icon: "customer2"
     },
   ],
   relations: [

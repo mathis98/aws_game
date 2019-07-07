@@ -12,6 +12,7 @@ export type IconLevelElement =
   "shop" |
   "shop2" |
   "customer" |
+  "customer2" |
   "users" |
   "users2" |
   "users3" |
@@ -42,6 +43,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   shop: <IconElement image={getIcon('shop')} description="Shop" color="#00909D" />,
   shop2: <IconElement image={getIcon('shop')} description="Shop" color="#73A353" />,
   customer: <IconElement image={getIcon('customer')} description="Kunde" color="#8C3494"/>,
+  customer2: <IconElement image={getIcon('customer')} description="Kunde" color="#A35563"/>,
   users: <IconElement image={getIcon('users')} description="Benutzer" color="#004260"/>,
   users2: <IconElement image={getIcon('users')} description="Benutzer" color="#689676"/>,
   users3: <IconElement image={getIcon('users')} description="Benutzer" color="#8F6C56"/>,
@@ -55,7 +57,7 @@ export const allIcons: Record<IconLevelElement, JSX.Element> = {
   vdots: <IconElement image={getIcon('vdots')}/>,
   mobiles: <IconElement image={getIcon('mobiles')} description="Empfänger"/>,
   client: <IconElement image={getIcon('client')} description="Client" color="#232F3E"/>,
-  waterTap: <IconElement image={getIcon('waterTap')} description="Bewässerung" color="#689676"/>,
+  waterTap: <IconElement image={getIcon('waterTap')} description="Bewässerung" color="#67ADA9"/>,
 };
 
 
