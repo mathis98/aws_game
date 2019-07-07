@@ -6,7 +6,8 @@ import { ClearRounded as ClearIcon, StarRounded as StarIcon } from '@material-ui
 import { connect } from 'react-redux';
 import { setNextLevel } from '../actions';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { ScoreState, ScoreType } from 'src/reducers/score';
+import { ScoreType, ScoreState } from 'src/reducers/score';
+import CountUp from './CountUp';
 
 const css = require('./FeedbackPopup.css');
 
@@ -17,6 +18,7 @@ export interface FeedbackPopupProps extends RouteComponentProps {
   levelId: number;
   dispatch: Function;
   score: ScoreType[];
+  endScreenTrigger: Function;
 }
 
 export interface FeedbackPopupState {
@@ -34,7 +36,7 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
 
   nextLevel() {
     if (this.props.score.every((el) => el.points > 0)) {
-      console.log("done");
+      this.props.endScreenTrigger();
     } else {
       this.props.dispatch(setNextLevel(this.props.levelId + 1));
       this.props.history.push(`/levels/${this.props.levelId + 1}`);
@@ -56,7 +58,12 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
             <Star delay={1} filled={this.state.feedback.stars > 1} />
             <Star delay={1.5} filled={this.state.feedback.stars > 2} />
           </div>
-          <AnimatedPoints value={this.state.feedback.points} ticks={4 * 60} />
+          <div className={css.pointsContainer}>
+            <Typography variant="h3" align="center">
+              <span>+</span>
+              <CountUp value={this.state.feedback.points} ticks={4 * 60} />
+            </Typography>
+          </div>
           <Typography variant="body1">
             Gute Arbeit! Sie haben eine funktionierende Konfiguration gefunden.
             Wenn Sie noch nicht alle Sterne haben, können sie ihre Lösung noch
@@ -119,53 +126,6 @@ class Star extends React.Component<{filled?: boolean, delay: number}, {}> {
    return (
      <StarIcon className={cx(css.star, {[css.starFilled]: this.props.filled})} style={{animationDelay: `${this.props.delay}s`}} />
    );
-  }
-}
-
-interface AnimatedPointsProps {
-  value: number;
-  ticks: number;
-}
-
-class AnimatedPoints extends React.Component<AnimatedPointsProps, {currentTick: number}> {
-  interval: any;
-
-  constructor(props: AnimatedPointsProps) {
-    super(props);
-    this.state = {currentTick: 0};
-  }
-
-  sigmoid(x: number) {
-    return 2 * (1 / (1 + Math.pow(Math.E, -5 * x)) - 0.5) / 0.9866142981514305;
-  }
-
-  render() {
-    return (
-      <div className={css.pointsContainer}>
-        <Typography variant="h3" align="center">
-          <span>+</span>
-          {Math.round(this.sigmoid(this.state.currentTick/this.props.ticks) * this.props.value)}
-        </Typography>
-      </div>
-    );
-  }
-
-  tick() {
-    const nextTick = this.state.currentTick + 1;
-    if (nextTick > this.props.ticks) {
-      clearInterval(this.interval);
-      return;
-    }
-
-    this.setState({currentTick: nextTick});
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000 / 60);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 }
 

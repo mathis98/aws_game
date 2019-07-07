@@ -20,6 +20,7 @@ import ErrorPage from 'pages/ErrorPage'
 import { autoCompleteFeedback } from 'levels/DefaultValidators';
 import { setScore } from '../actions';
 import { connect } from 'react-redux';
+import EndScreen from 'components/EndScreen';
 
 
 const css = require('./GamePage.css');
@@ -35,6 +36,7 @@ export interface GamePageState {
   showSnackbar?: boolean;
   feedback?: LevelFeedback;
   showFeedback?: boolean;
+  showEndScreen?: boolean;
 }
 
 class GamePage extends React.Component<GamePageProps, GamePageState> {
@@ -60,8 +62,9 @@ class GamePage extends React.Component<GamePageProps, GamePageState> {
 
     return (
       <div>
+        {this.state.showEndScreen && <EndScreen />}
         <InstructionsPopup instructionsMd={this.levelInfoMd} />
-        <FeedbackPopup open={this.state.showFeedback} feedback={this.state.feedback} onClose={() => this.setState({showFeedback: false})} levelId={this.props.levelId} />
+        <FeedbackPopup open={this.state.showFeedback} feedback={this.state.feedback} onClose={() => this.setState({ showFeedback: false })} levelId={this.props.levelId} endScreenTrigger={() => this.setState({showFeedback:false, showEndScreen: true})} />
         <GamePageSnackbar open={this.state.showSnackbar} onClose={() => this.setState({ showSnackbar: false })}
                           message="Es gibt noch leere Felder! Fülle alle Felder bevor du abgibst."
         />
