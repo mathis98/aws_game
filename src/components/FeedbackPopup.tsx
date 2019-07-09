@@ -38,8 +38,15 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
     if (this.props.score.every((el) => el.points > 0)) {
       this.props.endScreenTrigger();
     } else {
-      this.props.dispatch(setNextLevel(this.props.levelId + 1));
-      this.props.history.push(`/levels/${this.props.levelId + 1}`);
+      let nextLevel;
+      for (let i = 0; i < this.props.score.length; i++) {
+        nextLevel = (i + this.props.levelId) % this.props.score.length;
+        if (this.props.score[nextLevel].points == 0) {
+          break;
+        }
+      }
+      this.props.dispatch(setNextLevel(nextLevel + 1));
+      this.props.history.push(`/levels/${nextLevel + 1}`);
     }
   }
 
