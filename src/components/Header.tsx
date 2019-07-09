@@ -29,7 +29,7 @@ class Header extends React.Component<HeaderProps, SignInPopupState> {
   render() {
     const totalPoints = scoreSum(this.props.score);
     return (
-      <AppBar position="static" className={css.fixed_size_app_bar}>
+      <AppBar position="static" className={css.fixed_size_app_bar} style={{boxShadow: 'none'}}>
         <Toolbar className={css.toolBar}>
           <Button color="inherit" className={css.toolBarNameContainer}>
             <Link to="/" className={css.link}>
