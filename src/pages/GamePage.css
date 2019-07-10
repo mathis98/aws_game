@@ -1,5 +1,6 @@
 .matchViewportHeight {
   height: calc(100vh - var(--app-bar-height)) !important;
+  z-index: -1;
 }
 
 .gridBackground {
