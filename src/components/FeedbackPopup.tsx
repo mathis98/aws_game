@@ -28,31 +28,40 @@ export interface FeedbackPopupState {
 class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupState> {
   state: FeedbackPopupState = {};
 
-  nextLevelBound = this.nextLevel.bind(this);
+  constructor(props: FeedbackPopupProps) {
+    super(props);
+    this.nextLevel = this.nextLevel.bind(this);
+  }
 
   componentWillReceiveProps(props: FeedbackPopupProps, state: FeedbackPopupState) {
     this.setState({feedback: props.feedback});
   }
 
   nextLevel() {
-    if (this.props.score.every((el) => el.points > 0)) {
+    const nextLevelID = this.getNextLevelID();
+    if (nextLevelID == -1) {
       this.props.endScreenTrigger();
     } else {
-      let nextLevel;
-      for (let i = 0; i < this.props.score.length; i++) {
-        nextLevel = (i + this.props.levelId) % this.props.score.length;
-        if (this.props.score[nextLevel].points == 0) {
-          break;
-        }
-      }
-      this.props.dispatch(setNextLevel(nextLevel + 1));
-      this.props.history.push(`/levels/${nextLevel + 1}`);
+      this.props.dispatch(setNextLevel(nextLevelID + 1));
+      this.props.history.push(`/levels/${nextLevelID + 1}`);
     }
+  }
+
+  getNextLevelID() {
+    for (let i = 0; i < this.props.score.length; i++) {
+      const nextLevel = (i + this.props.levelId) % this.props.score.length;
+      if (this.props.score[nextLevel].points == 0) {
+        return nextLevel;
+      }
+    }
+    return -1;
   }
 
   render() {
 
     let content, buttons, hint;
+
+    const nextLevelID = this.getNextLevelID();
 
     if (this.props.feedback) {
       if (this.props.feedback.correct) {
@@ -79,7 +88,7 @@ class FeedbackPopup extends React.Component<FeedbackPopupProps, FeedbackPopupSta
         </>;
         buttons = <>
           <Button onClick={this.props.onClose}>Lösung verbessern</Button>
-          <Button onClick={this.nextLevelBound}>Nächstes Level</Button>
+          <Button onClick={this.nextLevel}>{nextLevelID == -1 ? "Spiel fertigstellen" : `Weiter zu Level ${nextLevelID + 1}`}</Button>
         </>;
       } else {
         content = <>
