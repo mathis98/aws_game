@@ -66,25 +66,18 @@ module.exports = {
         use: 'raw-loader',
       },
       {
-        test: /\.svg/,
-        use: {
-          loader: 'svg-url-loader',
-          options: {}
-        }
-      },
-      {
-          test: /\.(png|jpg|gif)$/i,
-          use: [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 10000
-              }
+        test: /\.(png|jpg|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000
             }
-          ]
-        }
-      ]
-    },
+          }
+        ]
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
