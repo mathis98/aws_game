@@ -66,7 +66,14 @@ module.exports = {
         use: 'raw-loader',
       },
       {
-          test: /\.(png|jpg|gif|svg)$/i,
+        test: /\.svg/,
+        use: {
+          loader: 'svg-url-loader',
+          options: {}
+        }
+      },
+      {
+          test: /\.(png|jpg|gif)$/i,
           use: [
             {
               loader: 'url-loader',
@@ -91,4 +98,4 @@ module.exports = {
     }),
     new webpack.EnvironmentPlugin({'PUBLIC_URL': null, 'BRANCH_NAME': null, 'CI_COMMIT_SHA': null}),
   ]
-}
+};
