@@ -1,5 +1,7 @@
 # Game
 
+A game for teaching the basics of serverless using AWS.
+
 ## Setup
 
 1. Install [Node.js][1]
