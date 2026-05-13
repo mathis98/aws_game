@@ -16,3 +16,13 @@ A game for teaching the basics of serverless using AWS.
 3. Changes saved will be automatically reloaded in the browser
 
 [1]: https://nodejs.org/
+
+## Screenshots
+
+### Start Screen
+
+![Start Screen](Start.png)
+
+### Example Level
+
+![Level Screen](Level.png)
